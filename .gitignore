@@ -1,0 +1,15 @@
+# Binaries
+server
+server.exe
+*.exe
+
+# Databases
+*.db
+*.db-shm
+*.db-wal
+
+# Python & testing cache
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log

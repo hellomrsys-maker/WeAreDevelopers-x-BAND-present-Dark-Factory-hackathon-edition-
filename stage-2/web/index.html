@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablekeeper — Restaurant Reservations</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-elevated: #1f2937;
+      --border: #374151;
+      --border-focus: #f59e0b;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --primary: #f59e0b;
+      --primary-hover: #d97706;
+      --primary-text: #090d16;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --radius: 10px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.875rem 1.5rem;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.925rem;
+      font-weight: 500;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text);
+    }
+
+    .auth-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .user-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface-elevated);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: 1.875rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.35rem; margin-bottom: 1rem; }
+    p.subtitle { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-muted);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-text);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #283548;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.85rem;
+    }
+
+    .search-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto;
+      gap: 1rem;
+      align-items: end;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-btn-wrapper {
+      padding-bottom: 2px;
+    }
+
+    .grid-container {
+      margin-top: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .grid-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0.5rem;
+    }
+
+    .grid-header {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .table-label-col {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-align: left;
+      padding: 0.5rem 1rem 0.5rem 0.25rem;
+      white-space: nowrap;
+    }
+
+    .table-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: var(--surface-elevated);
+      color: var(--primary);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      font-weight: 500;
+    }
+
+    .combo-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .slot-cell {
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+      user-select: none;
+    }
+
+    .slot-cell[data-available="true"] {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border-color: rgba(52, 211, 153, 0.35);
+    }
+
+    .slot-cell[data-available="true"]:hover {
+      background: rgba(16, 185, 129, 0.3);
+      border-color: #10b981;
+      transform: scale(1.03);
+    }
+
+    .slot-cell[data-available="false"] {
+      background: rgba(55, 65, 81, 0.3);
+      color: #4b5563;
+      cursor: not-allowed;
+      border-color: rgba(55, 65, 81, 0.4);
+    }
+
+    .alert {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fde68a;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #a7f3d0;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .ref-highlight {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      background: var(--surface-elevated);
+      border-radius: 8px;
+      display: inline-block;
+      margin: 0.75rem 0;
+      border: 1px solid var(--border);
+    }
+
+    .status-badge {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+
+    .status-confirmed {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .status-cancelled {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 640px) {
+      .search-bar {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="brand" onclick="navigateTo(event, '/')">
+        <span>🍽️</span> Tablekeeper
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="nav-link" onclick="navigateTo(event, '/')">Reserve</a>
+        <a href="/lookup" class="nav-link" onclick="navigateTo(event, '/lookup')">My Bookings</a>
+      </nav>
+      <div id="auth-section" class="auth-bar">
+        <!-- current-user and logout-button will be dynamically injected when signed in -->
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- View: Search and Availability Grid (/) -->
+    <section id="view-search">
+      <div class="search-bar">
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="restaurant-select">Restaurant</label>
+          <select id="restaurant-select" data-testid="restaurant-select">
+            <option value="r_anker">Zum Anker</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="date-input">Date</label>
+          <input type="date" id="date-input" data-testid="date-input">
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="party-size-input">Party Size</label>
+          <input type="number" id="party-size-input" data-testid="party-size-input" min="1" value="2">
+        </div>
+        <div class="search-btn-wrapper">
+          <button type="button" id="search-button" data-testid="search-button" class="btn btn-primary" onclick="performSearch()">
+            Find Tables
+          </button>
+        </div>
+      </div>
+
+      <!-- Container for global auth-error on booking attempt when signed out -->
+      <div id="grid-auth-error-container"></div>
+
+      <!-- Grid area or no-slots -->
+      <div id="results-area"></div>
+
+      <!-- Booking Form & Confirmation Area -->
+      <div id="booking-area"></div>
+    </section>
+
+    <!-- View: Signup (/signup) -->
+    <section id="view-signup" class="hidden">
+      <div class="card" style="max-width: 440px; margin: 2rem auto;">
+        <h2>Create an Account</h2>
+        <p class="subtitle">Book verified tables instantly across dining destinations</p>
+        <div id="signup-error-container"></div>
+        <form onsubmit="event.preventDefault(); return false;">
+          <div class="form-group">
+            <label for="signup-display-name">Display Name</label>
+            <input type="text" id="signup-display-name" data-testid="signup-display-name" required placeholder="Ada Lovelace">
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" data-testid="signup-email" required placeholder="ada@example.com">
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" data-testid="signup-password" required placeholder="••••••••">
+          </div>
+          <button type="button" id="signup-submit" data-testid="signup-submit" class="btn btn-primary" style="width: 100%;" onclick="handleSignup(event)">
+            Sign Up
+          </button>
+          <div style="margin-top: 1rem; text-align: center; font-size: 0.875rem;">
+            <span style="color: var(--text-muted);">Already have an account?</span>
+            <a href="/login" onclick="navigateTo(event, '/login')" style="color: var(--primary); text-decoration: none; font-weight: 600;"> Log In</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- View: Login (/login) -->
+    <section id="view-login" class="hidden">
+      <div class="card" style="max-width: 440px; margin: 2rem auto;">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Sign in to manage and confirm your reservations</p>
+        <div id="login-error-container"></div>
+        <form onsubmit="event.preventDefault(); return false;">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" data-testid="login-email" required placeholder="ada@example.com">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" data-testid="login-password" required placeholder="••••••••">
+          </div>
+          <button type="button" id="login-submit" data-testid="login-submit" class="btn btn-primary" style="width: 100%;" onclick="handleLogin(event)">
+            Log In
+          </button>
+          <div style="margin-top: 1rem; text-align: center; font-size: 0.875rem;">
+            <span style="color: var(--text-muted);">Don't have an account?</span>
+            <a href="/signup" onclick="navigateTo(event, '/signup')" style="color: var(--primary); text-decoration: none; font-weight: 600;"> Create Account</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- View: Lookup (/lookup) -->
+    <section id="view-lookup" class="hidden">
+      <div class="card" style="max-width: 580px; margin: 2rem auto;">
+        <h2>Find Your Reservation</h2>
+        <p class="subtitle">Enter your booking confirmation reference code to view or cancel</p>
+        <div class="form-group" style="display: flex; gap: 0.75rem;">
+          <input type="text" id="lookup-reference-input" data-testid="lookup-reference-input" placeholder="e.g. K3P7QW" style="text-transform: uppercase;">
+          <button type="button" id="lookup-submit" data-testid="lookup-submit" class="btn btn-primary" onclick="performLookup()">
+            Look Up
+          </button>
+        </div>
+        <div id="lookup-result-area"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // State management
+    let currentUser = null;
+    let currentRestaurant = null;
+    let currentSearchSeq = 0;
+    let activeBooking = null; // Holds current selected slot and idempotency key
+
+    // Initialize application
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set default date to 7 days ahead
+      const d = new Date();
+      d.setDate(d.getDate() + 7);
+      document.getElementById('date-input').value = d.toISOString().split('T')[0];
+
+      loadSession();
+      loadRestaurants();
+      initRoute();
+    });
+
+    window.addEventListener('popstate', () => {
+      initRoute();
+    });
+
+    function navigateTo(event, path) {
+      if (event) event.preventDefault();
+      history.pushState(null, '', path);
+      initRoute();
+    }
+
+    function initRoute() {
+      const path = window.location.pathname;
+      document.getElementById('view-search').classList.add('hidden');
+      document.getElementById('view-signup').classList.add('hidden');
+      document.getElementById('view-login').classList.add('hidden');
+      document.getElementById('view-lookup').classList.add('hidden');
+
+      // Clear volatile auth errors on navigation
+      clearAuthErrors();
+
+      if (path === '/signup') {
+        document.getElementById('view-signup').classList.remove('hidden');
+      } else if (path === '/login') {
+        document.getElementById('view-login').classList.remove('hidden');
+      } else if (path === '/lookup') {
+        document.getElementById('view-lookup').classList.remove('hidden');
+      } else {
+        document.getElementById('view-search').classList.remove('hidden');
+      }
+    }
+
+    function clearAuthErrors() {
+      const err1 = document.getElementById('signup-error-container');
+      if (err1) err1.innerHTML = '';
+      const err2 = document.getElementById('login-error-container');
+      if (err2) err2.innerHTML = '';
+      const err3 = document.getElementById('grid-auth-error-container');
+      if (err3) err3.innerHTML = '';
+    }
+
+    function loadSession() {
+      const token = localStorage.getItem('tablekeeper_token');
+      const name = localStorage.getItem('tablekeeper_name');
+      const email = localStorage.getItem('tablekeeper_email');
+      if (token && name) {
+        currentUser = { token, name, email };
+        renderAuthBar();
+      } else {
+        currentUser = null;
+        renderAuthBar();
+      }
+    }
+
+    function renderAuthBar() {
+      const container = document.getElementById('auth-section');
+      if (currentUser) {
+        container.innerHTML = `
+          <div class="user-badge" data-testid="current-user">
+            <span>👤</span> ${currentUser.name}
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" data-testid="logout-button" onclick="handleLogout()">
+            Log Out
+          </button>
+        `;
+      } else {
+        container.innerHTML = `
+          <a href="/login" class="btn btn-secondary btn-sm" onclick="navigateTo(event, '/login')">Log In</a>
+          <a href="/signup" class="btn btn-primary btn-sm" onclick="navigateTo(event, '/signup')">Sign Up</a>
+        `;
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('tablekeeper_token');
+      localStorage.removeItem('tablekeeper_name');
+      localStorage.removeItem('tablekeeper_email');
+      currentUser = null;
+      renderAuthBar();
+      const bookingArea = document.getElementById('booking-area');
+      if (bookingArea) bookingArea.innerHTML = '';
+    }
+
+    async function loadRestaurants() {
+      try {
+        const res = await fetch('/restaurants');
+        if (res.ok) {
+          const data = await res.json();
+          const select = document.getElementById('restaurant-select');
+          if (data.restaurants && data.restaurants.length > 0) {
+            select.innerHTML = data.restaurants.map(r => `
+              <option value="${r.id}">${r.name}</option>
+            `).join('');
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load restaurants:', err);
+      }
+    }
+
+    async function handleLogin(e) {
+      if (e) e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const errContainer = document.getElementById('login-error-container');
+      errContainer.innerHTML = '';
+
+      try {
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          const displayName = data.display_name || (data.user && data.user.display_name) || email;
+          const token = data.token;
+          localStorage.setItem('tablekeeper_token', token);
+          localStorage.setItem('tablekeeper_name', displayName);
+          localStorage.setItem('tablekeeper_email', email);
+          currentUser = { token: token, name: displayName, email: email };
+          renderAuthBar();
+        } else {
+          errContainer.innerHTML = `<div class="alert alert-error" data-testid="auth-error">${data.message || 'Invalid credentials'}</div>`;
+        }
+      } catch (err) {
+        errContainer.innerHTML = `<div class="alert alert-error" data-testid="auth-error">Network error. Please try again.</div>`;
+      }
+    }
+
+    async function handleSignup(e) {
+      if (e) e.preventDefault();
+      const displayName = document.getElementById('signup-display-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const errContainer = document.getElementById('signup-error-container');
+      errContainer.innerHTML = '';
+
+      try {
+        const res = await fetch('/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ display_name: displayName, email, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          const finalName = data.display_name || (data.user && data.user.display_name) || displayName;
+          const token = data.token;
+          localStorage.setItem('tablekeeper_token', token);
+          localStorage.setItem('tablekeeper_name', finalName);
+          localStorage.setItem('tablekeeper_email', email);
+          currentUser = { token: token, name: finalName, email: email };
+          renderAuthBar();
+        } else {
+          errContainer.innerHTML = `<div class="alert alert-error" data-testid="auth-error">${data.message || 'Signup failed'}</div>`;
+        }
+      } catch (err) {
+        errContainer.innerHTML = `<div class="alert alert-error" data-testid="auth-error">Network error. Please try again.</div>`;
+      }
+    }
+
+    // Availability Search
+    async function performSearch() {
+      const restaurantId = document.getElementById('restaurant-select').value;
+      const date = document.getElementById('date-input').value;
+      const partySize = parseInt(document.getElementById('party-size-input').value, 10);
+      const resultsArea = document.getElementById('results-area');
+
+      const thisSeq = ++currentSearchSeq;
+
+      try {
+        const [restRes, availRes] = await Promise.all([
+          fetch(`/restaurants/${restaurantId}`),
+          fetch(`/availability?restaurant_id=${encodeURIComponent(restaurantId)}&date=${encodeURIComponent(date)}&party_size=${partySize}`)
+        ]);
+
+        if (thisSeq !== currentSearchSeq) return; // Prevent race conditions / late arrivals
+
+        if (!availRes.ok || !restRes.ok) {
+          resultsArea.innerHTML = `<div class="empty-state" data-testid="no-slots"><h3>No Availability</h3><p>Unable to retrieve slots for this date.</p></div>`;
+          return;
+        }
+
+        const restData = await restRes.json();
+        const availData = await availRes.json();
+        currentRestaurant = restData;
+
+        if (!availData.slots || availData.slots.length === 0) {
+          resultsArea.innerHTML = `<div class="empty-state" data-testid="no-slots"><h3>Restaurant Closed</h3><p>No dining slots available on this date.</p></div>`;
+          return;
+        }
+
+        renderAvailabilityGrid(restData, availData, partySize);
+      } catch (err) {
+        if (thisSeq === currentSearchSeq) {
+          resultsArea.innerHTML = `<div class="empty-state" data-testid="no-slots"><h3>Search Error</h3><p>Could not connect to service.</p></div>`;
+        }
+      }
+    }
+
+    function renderAvailabilityGrid(restaurant, avail, partySize) {
+      const resultsArea = document.getElementById('results-area');
+      const slots = avail.slots;
+      const tables = restaurant.tables || [];
+      const combinable = restaurant.combinable || [];
+
+      const slotTimes = slots.map(s => {
+        const parts = s.starts_at_local.split('T');
+        return parts.length > 1 ? parts[1].substring(0, 5) : s.starts_at_local;
+      });
+
+      let html = `
+        <div class="card" data-testid="availability-grid">
+          <h2>Available Tables — ${restaurant.name}</h2>
+          <p class="subtitle">Select an open slot to reserve for your party of ${partySize}</p>
+          <div class="grid-container">
+            <table class="grid-table">
+              <thead>
+                <tr>
+                  <th class="grid-header" style="text-align: left;">Table</th>
+                  ${slotTimes.map(t => `<th class="grid-header">${t}</th>`).join('')}
+                </tr>
+              </thead>
+              <tbody>
+      `;
+
+      // 1. Single tables
+      for (const t of tables) {
+        const displayLabel = t.label || t.id;
+        html += `
+          <tr>
+            <td class="table-label-col">
+              Table ${displayLabel}
+              <span class="table-badge">Seats ${t.capacity}</span>
+            </td>
+        `;
+
+        for (let i = 0; i < slots.length; i++) {
+          const s = slots[i];
+          const timeHHMM = slotTimes[i];
+          const isAvail = s.available_table_ids && s.available_table_ids.includes(t.id);
+          const cellTestId = `slot-${t.id}-${timeHHMM}`;
+
+          html += `
+            <td>
+              <div class="slot-cell"
+                   data-testid="${cellTestId}"
+                   data-available="${isAvail ? 'true' : 'false'}"
+                   onclick="handleSlotClick('${t.id}', null, '${s.starts_at_local}', '${displayLabel}', ${isAvail})">
+                ${isAvail ? 'Open' : '—'}
+              </div>
+            </td>
+          `;
+        }
+        html += `</tr>`;
+      }
+
+      // 2. Combinable pairs
+      for (const pair of combinable) {
+        if (pair.length !== 2) continue;
+        const tA = tables.find(tbl => tbl.id === pair[0]) || { id: pair[0], label: pair[0], capacity: 0 };
+        const tB = tables.find(tbl => tbl.id === pair[1]) || { id: pair[1], label: pair[1], capacity: 0 };
+        const displayComboLabel = `${tA.label || tA.id} + ${tB.label || tB.id}`;
+        const comboCap = tA.capacity + tB.capacity;
+
+        html += `
+          <tr>
+            <td class="table-label-col">
+              Table ${displayComboLabel}
+              <span class="table-badge combo-badge">Combo ${comboCap}</span>
+            </td>
+        `;
+
+        for (let i = 0; i < slots.length; i++) {
+          const s = slots[i];
+          const timeHHMM = slotTimes[i];
+          let isAvail = false;
+          if (s.available_options) {
+            isAvail = s.available_options.some(opt => 
+              opt.table_ids && opt.table_ids.length === 2 &&
+              ((opt.table_ids[0] === pair[0] && opt.table_ids[1] === pair[1]) ||
+               (opt.table_ids[0] === pair[1] && opt.table_ids[1] === pair[0]))
+            );
+          }
+          const cellTestId = `slot-${pair[0]}+${pair[1]}-${timeHHMM}`;
+
+          html += `
+            <td>
+              <div class="slot-cell"
+                   data-testid="${cellTestId}"
+                   data-available="${isAvail ? 'true' : 'false'}"
+                   onclick="handleSlotClick(null, ['${pair[0]}', '${pair[1]}'], '${s.starts_at_local}', '${displayComboLabel}', ${isAvail})">
+                ${isAvail ? 'Open' : '—'}
+              </div>
+            </td>
+          `;
+        }
+        html += `</tr>`;
+      }
+
+      html += `
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
+      resultsArea.innerHTML = html;
+    }
+
+    function handleSlotClick(tableId, tableIds, startsAtLocal, labelText, isAvailable) {
+      if (!isAvailable) return;
+
+      if (!currentUser) {
+        const authErrContainer = document.getElementById('grid-auth-error-container');
+        authErrContainer.innerHTML = `<div class="alert alert-error" data-testid="auth-error">Authentication required: Please log in or sign up to book a table.</div>`;
+        return;
+      }
+
+      clearAuthErrors();
+
+      const searchPartySize = document.getElementById('party-size-input').value || '2';
+      const timePart = startsAtLocal.split('T')[1].substring(0, 5);
+
+      activeBooking = {
+        restaurantId: currentRestaurant.id,
+        restaurantName: currentRestaurant.name,
+        tableId: tableId,
+        tableIds: tableIds || [tableId],
+        startsAtLocal: startsAtLocal,
+        partySize: parseInt(searchPartySize, 10),
+        labelText: labelText,
+        timePart: timePart,
+        idempotencyKey: crypto.randomUUID(),
+        confirmedReference: null
+      };
+
+      renderBookingForm();
+    }
+
+    function renderBookingForm() {
+      const bookingArea = document.getElementById('booking-area');
+      const b = activeBooking;
+      if (!b) {
+        bookingArea.innerHTML = '';
+        return;
+      }
+
+      // Summary must contain table label(s) and local start time (e.g. Table 2 at 19:00)
+      const summaryText = `Table ${b.labelText} at ${b.timePart}`;
+
+      bookingArea.innerHTML = `
+        <div class="card" data-testid="booking-form" style="border: 2px solid var(--primary);">
+          <h2>Complete Reservation</h2>
+          <p class="subtitle" data-testid="booking-summary">${summaryText}</p>
+
+          <div id="booking-feedback"></div>
+
+          <div class="form-group" style="max-width: 240px;">
+            <label for="booking-party-size">Party Size</label>
+            <input type="number" id="booking-party-size" data-testid="booking-party-size"
+                   value="${b.partySize}" min="1" oninput="handlePartySizeChange(event)">
+          </div>
+
+          <button type="button" id="booking-submit" data-testid="booking-submit"
+                  class="btn btn-primary" onclick="submitBooking()">
+            Confirm Reservation
+          </button>
+
+          <div id="confirmation-container"></div>
+        </div>
+      `;
+
+      if (b.confirmedReference) {
+        renderConfirmation(b.confirmedReference);
+      }
+    }
+
+    function handlePartySizeChange(e) {
+      const val = parseInt(e.target.value, 10);
+      if (val !== activeBooking.partySize) {
+        activeBooking.partySize = val;
+        // Mint NEW idempotency key on field edit (§9)
+        activeBooking.idempotencyKey = crypto.randomUUID();
+        activeBooking.confirmedReference = null;
+        const conf = document.getElementById('confirmation-container');
+        if (conf) conf.innerHTML = '';
+        const fb = document.getElementById('booking-feedback');
+        if (fb) fb.innerHTML = '';
+      }
+    }
+
+    async function submitBooking() {
+      const b = activeBooking;
+      if (!b) return;
+
+      const fb = document.getElementById('booking-feedback');
+      const confContainer = document.getElementById('confirmation-container');
+      fb.innerHTML = '';
+
+      const payload = {
+        restaurant_id: b.restaurantId,
+        starts_at_local: b.startsAtLocal,
+        party_size: b.partySize
+      };
+      if (b.tableIds && b.tableIds.length > 1) {
+        payload.table_ids = b.tableIds;
+      } else {
+        payload.table_id = b.tableId || b.tableIds[0];
+      }
+
+      try {
+        const res = await fetch('/reservations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.token}`,
+            'Idempotency-Key': b.idempotencyKey
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (res.status === 201 || res.status === 200) {
+          b.confirmedReference = data.reference;
+          renderConfirmation(data.reference, data);
+        } else if (res.status === 409) {
+          confContainer.innerHTML = '';
+          fb.innerHTML = `<div class="alert alert-error" data-testid="booking-error">${data.message || 'Table unavailable for requested time.'}</div>`;
+          performSearch();
+        } else {
+          confContainer.innerHTML = '';
+          fb.innerHTML = `<div class="alert alert-error" data-testid="booking-error">${data.message || 'Reservation refused.'}</div>`;
+        }
+      } catch (err) {
+        confContainer.innerHTML = '';
+        fb.innerHTML = `<div class="alert alert-warning" data-testid="booking-uncertain">Connection disrupted. You can safely retry your reservation.</div>`;
+      }
+    }
+
+    function renderConfirmation(ref, data) {
+      const confContainer = document.getElementById('confirmation-container');
+      const b = activeBooking;
+      const restName = b.restaurantName || 'Zum Anker';
+      const detailsText = `${restName} — Table ${b.labelText} at ${b.timePart}`;
+      const tablesText = `${b.labelText} (${(b.tableIds || [b.tableId]).join(', ')})`;
+
+      confContainer.innerHTML = `
+        <div class="card" data-testid="confirmation" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); margin-top: 1.5rem;">
+          <h3 style="color: #34d399; margin-bottom: 0.25rem;">Booking Confirmed!</h3>
+          <p class="subtitle" style="margin-bottom: 0.5rem;">Your reservation reference:</p>
+          <div class="ref-highlight" data-testid="confirmation-reference">${ref}</div>
+          <p data-testid="confirmation-details" style="font-weight: 500; margin-top: 0.5rem;">${detailsText}</p>
+          <p data-testid="confirmation-tables" style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">${tablesText}</p>
+        </div>
+      `;
+    }
+
+    // Lookup
+    async function performLookup() {
+      const refInput = document.getElementById('lookup-reference-input');
+      const ref = refInput.value.trim().toUpperCase();
+      const resultArea = document.getElementById('lookup-result-area');
+      resultArea.innerHTML = '';
+
+      if (!ref) {
+        resultArea.innerHTML = `<div class="alert alert-error" data-testid="reservation-error">Please enter a valid reservation reference.</div>`;
+        return;
+      }
+
+      loadSession();
+      const headers = {};
+      if (currentUser && currentUser.token) {
+        headers['Authorization'] = `Bearer ${currentUser.token}`;
+      }
+
+      try {
+        const res = await fetch(`/reservations/${encodeURIComponent(ref)}`, { headers });
+        if (res.ok) {
+          const r = await res.json();
+          renderReservationDetail(r);
+        } else {
+          resultArea.innerHTML = `<div class="alert alert-error" data-testid="reservation-error">Reservation not found or access denied.</div>`;
+        }
+      } catch (err) {
+        resultArea.innerHTML = `<div class="alert alert-error" data-testid="reservation-error">Network error. Please try again.</div>`;
+      }
+    }
+
+    function renderReservationDetail(r) {
+      const resultArea = document.getElementById('lookup-result-area');
+      const isConfirmed = r.status === 'confirmed';
+      const tablesRaw = (r.table_ids && r.table_ids.length > 0) ? r.table_ids : (r.table_id ? [r.table_id] : []);
+      // Render both labels (e.g. 2) and IDs (e.g. t_2)
+      const tablesList = tablesRaw.map(id => id.replace(/^t_/, '') + ` (${id})`).join(', ');
+
+      let cancelBtnHTML = '';
+      if (isConfirmed) {
+        cancelBtnHTML = `
+          <button type="button" class="btn btn-danger btn-sm" data-testid="reservation-cancel-button"
+                  style="margin-top: 1rem;" onclick="cancelBooking('${r.reference}')">
+            Cancel Reservation
+          </button>
+        `;
+      }
+
+      resultArea.innerHTML = `
+        <div class="card" data-testid="reservation-detail" style="background: var(--surface-elevated); margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div class="ref-highlight" style="font-size: 1.25rem; margin: 0;">${r.reference}</div>
+            <span class="status-badge status-${r.status}" data-testid="reservation-status">${r.status}</span>
+          </div>
+          <div style="font-size: 0.95rem; line-height: 1.7;">
+            <div><strong>Restaurant:</strong> ${r.restaurant_id}</div>
+            <div><strong>Date & Time:</strong> ${r.starts_at_local}</div>
+            <div><strong>Party Size:</strong> ${r.party_size} guests</div>
+            <div><strong>Tables:</strong> <span data-testid="reservation-tables">${tablesList}</span></div>
+          </div>
+          ${cancelBtnHTML}
+        </div>
+      `;
+    }
+
+    async function cancelBooking(ref) {
+      const resultArea = document.getElementById('lookup-result-area');
+      loadSession();
+      const headers = {};
+      if (currentUser && currentUser.token) {
+        headers['Authorization'] = `Bearer ${currentUser.token}`;
+      }
+
+      try {
+        const res = await fetch(`/reservations/${encodeURIComponent(ref)}/cancel`, {
+          method: 'POST',
+          headers
+        });
+        if (res.ok) {
+          const r = await res.json();
+          renderReservationDetail(r);
+        } else {
+          const data = await res.json();
+          resultArea.insertAdjacentHTML('afterbegin', `<div class="alert alert-error" data-testid="reservation-error">${data.message || 'Cancellation refused'}</div>`);
+        }
+      } catch (err) {
+        resultArea.insertAdjacentHTML('afterbegin', `<div class="alert alert-error" data-testid="reservation-error">Network error during cancellation</div>`);
+      }
+    }
+  </script>
+</body>
+</html>
