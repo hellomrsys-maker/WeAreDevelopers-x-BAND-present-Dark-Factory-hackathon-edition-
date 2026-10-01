@@ -1,4 +1,4 @@
-# tester
+# adversarial-tester
 
 Harness: Claude Code
 Model: Claude 3.5 Sonnet
