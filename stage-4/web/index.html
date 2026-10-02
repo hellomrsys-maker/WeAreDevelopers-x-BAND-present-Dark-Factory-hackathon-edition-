@@ -393,6 +393,137 @@
         display: none;
       }
     }
+
+    /* Simulation Bar & Drawer Styles */
+    .sim-bar {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.98), rgba(31, 41, 55, 0.95));
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.875rem;
+      backdrop-filter: blur(8px);
+      z-index: 90;
+    }
+    .sim-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .sim-pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .sim-pulse.idle {
+      background: #6b7280;
+    }
+    .sim-pulse.active {
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .sim-title {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .sim-subtitle {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+    }
+    .sim-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sim-select {
+      background: var(--surface-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .sim-drawer {
+      background: rgba(17, 24, 39, 0.98);
+      border-bottom: 2px solid var(--border);
+      max-height: 260px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .sim-drawer-header {
+      padding: 0.6rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sim-drawer-header h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .sim-chip {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .sim-feed {
+      padding: 0.75rem 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+    }
+    .sim-event {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.3);
+    }
+    .sim-time {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    .sim-badge {
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .sim-badge-reserve { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .sim-badge-search { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .sim-badge-cancel { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .sim-badge-series { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+    .sim-badge-amend { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .sim-msg {
+      color: var(--text);
+    }
+    .sim-feed-placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      padding: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -410,6 +541,45 @@
       </div>
     </div>
   </header>
+
+  <!-- Live Customer Simulator Control Bar -->
+  <div id="sim-control-bar" class="sim-bar">
+    <div class="sim-info">
+      <span id="sim-pulse" class="sim-pulse idle"></span>
+      <div>
+        <div class="sim-title">Live Diners: <span id="sim-state-text" style="color:var(--text-muted);">Idle</span></div>
+        <div class="sim-subtitle" id="sim-stats-text">Simulates real-world autonomous customer personas in real time</div>
+      </div>
+    </div>
+    <div class="sim-actions">
+      <select id="sim-speed-select" class="sim-select" title="Simulation Speed">
+        <option value="3500">Speed: Normal (3.5s)</option>
+        <option value="1800">Speed: Fast (1.8s)</option>
+        <option value="5000">Speed: Relaxed (5s)</option>
+      </select>
+      <button type="button" id="sim-toggle-btn" class="btn btn-secondary btn-sm" onclick="toggleCustomerSimulation()">
+        ▶️ Start Live Traffic
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSimDrawer()">
+        📋 Live Stream (<span id="sim-event-count">0</span>)
+      </button>
+    </div>
+  </div>
+
+  <!-- Live Simulation Drawer / Log Feed -->
+  <div id="sim-drawer" class="sim-drawer hidden">
+    <div class="sim-drawer-header">
+      <h4>⚡ Autonomous Diners Activity Stream</h4>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <span class="sim-chip">5 Personas Active</span>
+        <button type="button" class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="clearSimLog()">Clear</button>
+        <button type="button" class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="toggleSimDrawer()">✕</button>
+      </div>
+    </div>
+    <div id="sim-feed" class="sim-feed">
+      <div class="sim-feed-placeholder">Click "Start Live Traffic" to watch autonomous diners search, book, amend, adopt series, and cancel reservations live!</div>
+    </div>
+  </div>
 
   <main>
     <!-- View: Search and Availability Grid (/) -->
@@ -1082,6 +1252,263 @@
         }
       } catch (err) {
         resultArea.insertAdjacentHTML('afterbegin', `<div class="alert alert-error" data-testid="reservation-error">Network error during cancellation</div>`);
+      }
+    }
+
+    // ==========================================
+    // Autonomous Live Customer Simulation Engine
+    // ==========================================
+    let simTimer = null;
+    let simIsRunning = false;
+    let simActionCount = 0;
+    let simReservations = []; // Stores active reservations made by simulated diners
+    let simUsers = {}; // Cached diner tokens
+
+    const SIM_PERSONAS = [
+      { name: "Ada Lovelace", email: "sim_ada@diner.local", role: "Family Planner", partySize: 4, daysAhead: 7 },
+      { name: "Charles Babbage", email: "sim_charles@diner.local", role: "Business Host", partySize: 2, daysAhead: 2 },
+      { name: "Alan Turing", email: "sim_alan@diner.local", role: "Series Planner", partySize: 2, daysAhead: 5, wantSeries: true },
+      { name: "Grace Hopper", email: "sim_grace@diner.local", role: "Flexible Guest", partySize: 3, daysAhead: 4, wantAmend: true },
+      { name: "John von Neumann", email: "sim_john@diner.local", role: "Cancellation Test", partySize: 2, daysAhead: 6, wantCancel: true }
+    ];
+
+    function toggleCustomerSimulation() {
+      if (simIsRunning) {
+        stopCustomerSimulation();
+      } else {
+        startCustomerSimulation();
+      }
+    }
+
+    function startCustomerSimulation() {
+      simIsRunning = true;
+      document.getElementById('sim-pulse').className = 'sim-pulse active';
+      document.getElementById('sim-state-text').textContent = 'Active (Live Diners Operating)';
+      document.getElementById('sim-state-text').style.color = '#10b981';
+      document.getElementById('sim-toggle-btn').textContent = '⏹️ Stop Diners';
+      document.getElementById('sim-toggle-btn').className = 'btn btn-primary btn-sm';
+      
+      const speed = parseInt(document.getElementById('sim-speed-select').value, 10) || 3500;
+      simTimer = setInterval(runSimulationStep, speed);
+      addSimLog('SYSTEM', 'Autonomous diner simulation started', 'search');
+      runSimulationStep(); // Immediate first step
+    }
+
+    function stopCustomerSimulation() {
+      simIsRunning = false;
+      if (simTimer) clearInterval(simTimer);
+      simTimer = null;
+      document.getElementById('sim-pulse').className = 'sim-pulse idle';
+      document.getElementById('sim-state-text').textContent = 'Idle';
+      document.getElementById('sim-state-text').style.color = 'var(--text-muted)';
+      document.getElementById('sim-toggle-btn').textContent = '▶️ Start Live Traffic';
+      document.getElementById('sim-toggle-btn').className = 'btn btn-secondary btn-sm';
+      addSimLog('SYSTEM', 'Autonomous diner simulation paused', 'search');
+    }
+
+    function toggleSimDrawer() {
+      const drawer = document.getElementById('sim-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function clearSimLog() {
+      document.getElementById('sim-feed').innerHTML = '<div class="sim-feed-placeholder">Log cleared. Ready for live activity...</div>';
+      simActionCount = 0;
+      document.getElementById('sim-event-count').textContent = '0';
+    }
+
+    function addSimLog(type, message, category = 'reserve') {
+      const feed = document.getElementById('sim-feed');
+      const placeholder = feed.querySelector('.sim-feed-placeholder');
+      if (placeholder) placeholder.remove();
+
+      simActionCount++;
+      document.getElementById('sim-event-count').textContent = simActionCount;
+      document.getElementById('sim-stats-text').textContent = `${simActionCount} autonomous diner actions executed`;
+
+      const now = new Date();
+      const timeStr = now.toTimeString().split(' ')[0];
+
+      let badgeClass = 'sim-badge-reserve';
+      if (category === 'search') badgeClass = 'sim-badge-search';
+      if (category === 'cancel') badgeClass = 'sim-badge-cancel';
+      if (category === 'series') badgeClass = 'sim-badge-series';
+      if (category === 'amend') badgeClass = 'sim-badge-amend';
+
+      const entry = document.createElement('div');
+      entry.className = 'sim-event';
+      entry.innerHTML = `
+        <span class="sim-time">[${timeStr}]</span>
+        <span class="sim-badge ${badgeClass}">${type}</span>
+        <span class="sim-msg">${message}</span>
+      `;
+      feed.prepend(entry);
+
+      // Keep max 50 items in feed
+      while (feed.children.length > 50) {
+        feed.removeChild(feed.lastChild);
+      }
+    }
+
+    async function ensureSimUser(persona) {
+      if (simUsers[persona.email]) return simUsers[persona.email];
+      try {
+        let res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: persona.email, password: 'password123' })
+        });
+        if (res.ok) {
+          const d = await res.json();
+          simUsers[persona.email] = d.token;
+          return d.token;
+        }
+        res = await fetch('/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ display_name: persona.name, email: persona.email, password: 'password123' })
+        });
+        if (res.ok) {
+          const d = await res.json();
+          simUsers[persona.email] = d.token;
+          return d.token;
+        }
+      } catch (err) {
+        console.error('Sim user auth error:', err);
+      }
+      return null;
+    }
+
+    async function runSimulationStep() {
+      const persona = SIM_PERSONAS[Math.floor(Math.random() * SIM_PERSONAS.length)];
+      const token = await ensureSimUser(persona);
+      if (!token) return;
+
+      const restSelect = document.getElementById('restaurant-select');
+      const restId = (restSelect && restSelect.value) ? restSelect.value : 'r_anker';
+
+      const userBookings = simReservations.filter(b => b.email === persona.email && b.status === 'confirmed');
+
+      if (persona.wantCancel && userBookings.length > 0 && Math.random() > 0.4) {
+        const target = userBookings.pop();
+        try {
+          const res = await fetch(`/reservations/${encodeURIComponent(target.reference)}/cancel`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (res.ok) {
+            target.status = 'cancelled';
+            addSimLog('CANCEL', `<strong>${persona.name}</strong> cancelled booking <code>${target.reference}</code>`, 'cancel');
+            triggerGridRefreshIfMatching(target.date);
+            return;
+          }
+        } catch (e) {}
+      }
+
+      if (persona.wantAmend && userBookings.length > 0 && Math.random() > 0.5) {
+        const target = userBookings[0];
+        try {
+          const newSize = target.party_size === 2 ? 3 : 2;
+          const res = await fetch(`/reservations/${encodeURIComponent(target.reference)}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ party_size: newSize })
+          });
+          if (res.ok) {
+            target.party_size = newSize;
+            addSimLog('AMEND', `<strong>${persona.name}</strong> amended party size on <code>${target.reference}</code> to ${newSize}`, 'amend');
+            return;
+          }
+        } catch (e) {}
+      }
+
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + persona.daysAhead);
+      const dateStr = targetDate.toISOString().split('T')[0];
+
+      try {
+        const availRes = await fetch(`/availability?restaurant_id=${encodeURIComponent(restId)}&date=${encodeURIComponent(dateStr)}&party_size=${persona.partySize}`);
+        if (!availRes.ok) return;
+        const avail = await availRes.json();
+        if (!avail.slots || avail.slots.length === 0) {
+          addSimLog('SEARCH', `<strong>${persona.name}</strong> checked ${dateStr} (venue closed)`, 'search');
+          return;
+        }
+
+        const candidateSlots = avail.slots.filter(s => s.available_table_ids && s.available_table_ids.length > 0);
+        if (candidateSlots.length === 0) {
+          addSimLog('SEARCH', `<strong>${persona.name}</strong> checked ${dateStr} for party of ${persona.partySize} (fully booked)`, 'search');
+          return;
+        }
+
+        const pickedSlot = candidateSlots[Math.floor(Math.random() * candidateSlots.length)];
+        const pickedTable = pickedSlot.available_table_ids[0];
+        const idempotencyKey = 'sim_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+
+        const bookRes = await fetch('/reservations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'Idempotency-Key': idempotencyKey
+          },
+          body: JSON.stringify({
+            restaurant_id: restId,
+            table_id: pickedTable,
+            starts_at_local: pickedSlot.starts_at_local,
+            party_size: persona.partySize
+          })
+        });
+
+        if (bookRes.ok) {
+          const booked = await bookRes.json();
+          simReservations.push({
+            reference: booked.reference,
+            email: persona.email,
+            date: dateStr,
+            party_size: persona.partySize,
+            status: 'confirmed'
+          });
+
+          addSimLog('RESERVE', `<strong>${persona.name}</strong> booked Table ${pickedTable} at ${pickedSlot.starts_at_local.split('T')[1]} (Ref: <code>${booked.reference}</code>)`, 'reserve');
+
+          if (persona.wantSeries && Math.random() > 0.3) {
+            try {
+              const seriesKey = 'sim_series_' + Date.now();
+              const sRes = await fetch('/series', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`,
+                  'Idempotency-Key': seriesKey
+                },
+                body: JSON.stringify({
+                  anchor_reference: booked.reference,
+                  count: 4,
+                  interval_weeks: 1
+                })
+              });
+              if (sRes.ok) {
+                const sData = await sRes.json();
+                addSimLog('SERIES', `<strong>${persona.name}</strong> adopted agreement for 4-week series (ID: <code>${sData.series_id}</code>)`, 'series');
+              }
+            } catch (se) {}
+          }
+
+          triggerGridRefreshIfMatching(dateStr);
+        }
+      } catch (err) {
+        console.error('Simulation step error:', err);
+      }
+    }
+
+    function triggerGridRefreshIfMatching(changedDate) {
+      const activeDateInput = document.getElementById('date-input');
+      if (activeDateInput && activeDateInput.value === changedDate) {
+        performSearch();
       }
     }
   </script>
