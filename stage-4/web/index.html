@@ -670,6 +670,57 @@
       gap: 0.75rem;
       z-index: 10;
     }
+
+    /* Agent Operations & Telemetry Ledger Styles */
+    .btn-filter {
+      background: transparent;
+      color: var(--text-muted);
+      border: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-filter:hover {
+      color: var(--text);
+    }
+    .btn-filter.active {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-status.confirmed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .badge-status.rejected {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .badge-status.anon {
+      background: rgba(148, 163, 184, 0.15);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+    .badge-status.auth {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
   </style>
 </head>
 <body>
@@ -682,6 +733,7 @@
         <a href="/" class="nav-link" onclick="navigateTo(event, '/')">Reserve</a>
         <a href="/lookup" class="nav-link" onclick="navigateTo(event, '/lookup')">My Bookings</a>
         <a href="/admin" class="nav-link" onclick="navigateTo(event, '/admin')">Staff Desk</a>
+        <a href="/agents" class="nav-link" onclick="navigateTo(event, '/agents')">🤖 Agent Telemetry</a>
         <a href="/factory" class="nav-link" onclick="navigateTo(event, '/factory')">3D Dark Factory</a>
       </nav>
       <div id="auth-section" class="auth-bar">
@@ -708,8 +760,11 @@
       <button type="button" id="sim-toggle-btn" class="btn btn-secondary btn-sm" onclick="toggleCustomerSimulation()">
         ▶️ Start Live Traffic
       </button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo(event, '/agents')">
+        📊 Metrics & Ledger
+      </button>
       <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSimDrawer()">
-        📋 Live Stream (<span id="sim-event-count">0</span>)
+        📋 Feed (<span id="sim-event-count">0</span>)
       </button>
     </div>
   </div>
@@ -918,6 +973,248 @@
       </div>
     </section>
 
+    <!-- View: Autonomous Agent Operations & Telemetry (/agents) -->
+    <section id="view-agents" class="hidden">
+      <!-- Title & Fleet Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2 style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+            🤖 Autonomous Agent Fleet Telemetry & Ledger
+          </h2>
+          <p class="subtitle" style="margin-bottom:0;">
+            Live multi-agent autonomous simulation booking single tables, declared combinable pairs, series agreements, and handling race conditions.
+          </p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <select id="agent-scenario-select" class="sim-select" style="padding:0.4rem 0.75rem; font-size:0.85rem; width:auto;" onchange="setAgentScenario(this.value)">
+            <option value="balanced">🌟 Balanced Operations (Singles & Combinations)</option>
+            <option value="combinations">👥 Combinable Pair Focus ([T1+T2] & [T2+T3])</option>
+            <option value="anonymous">👤 Anonymous Walk-ins (High Volume)</option>
+            <option value="stress">⚡ Peak Rush & Invariant Collision Testing</option>
+          </select>
+          <button type="button" id="agent-main-toggle-btn" class="btn btn-primary btn-sm" onclick="toggleCustomerSimulation()">
+            ▶️ Start Agent Fleet
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="triggerImmediateAgentBatch(5)">
+            ⚡ Run 5 Actions Now
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="resetAgentLedger()">
+            🗑️ Reset Telemetry
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="kpi-row" style="margin-bottom:1.5rem;">
+        <div class="kpi-card accent">
+          <div class="kpi-label">Total Agent Operations</div>
+          <div class="kpi-val" id="telemetry-total-ops">0</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Cumulative requests</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Success Rate (Confirmed)</div>
+          <div class="kpi-val" id="telemetry-success-rate">100%</div>
+          <div style="font-size:0.75rem; color:#10b981;" id="telemetry-success-count">0 confirmed</div>
+        </div>
+        <div class="kpi-card danger">
+          <div class="kpi-label">Failure / Conflict Rate</div>
+          <div class="kpi-val" id="telemetry-failure-rate">0.0%</div>
+          <div style="font-size:0.75rem; color:#ef4444;" id="telemetry-failure-count">0 rejected</div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-label">Double-Entry Ledger Variance</div>
+          <div class="kpi-val" style="color:#a855f7;">$0.00</div>
+          <div style="font-size:0.75rem; color:#a855f7;">Invariants Balanced (100%)</div>
+        </div>
+      </div>
+
+      <!-- Graphical Dashboards (2 Columns: Gauges + Utilization) -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap:1.5rem; margin-bottom:1.5rem;">
+        
+        <!-- Graphical Card 1: Success / Failure Distribution Gauge & Error Breakdown -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+            <h3 style="margin-bottom:0;">📊 Success vs. Failure Distribution</h3>
+            <span class="sim-chip" id="gauge-status-chip">Optimal (0% Err)</span>
+          </div>
+          <p class="subtitle">Live graphical gauge comparing confirmed bookings against specification edge-case rejections</p>
+          
+          <div style="display:flex; align-items:center; gap:2rem; margin-top:1rem; flex-wrap:wrap;">
+            <!-- SVG Donut Chart -->
+            <div style="position:relative; width:140px; height:140px; flex-shrink:0;">
+              <svg viewBox="0 0 36 36" style="width:100%; height:100%; transform: rotate(-90deg);">
+                <!-- Background circle -->
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3.8"/>
+                <!-- Success stroke (emerald) -->
+                <path id="svg-success-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="3.8" stroke-dasharray="100, 100" stroke-linecap="round"/>
+                <!-- Failure stroke (crimson) -->
+                <path id="svg-failure-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#ef4444" stroke-width="3.8" stroke-dasharray="0, 100" stroke-dashoffset="-100" stroke-linecap="round"/>
+              </svg>
+              <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                <span id="svg-center-rate" style="font-size:1.35rem; font-weight:700; color:#10b981;">100%</span>
+                <span style="font-size:0.65rem; text-transform:uppercase; color:var(--text-muted);">Success</span>
+              </div>
+            </div>
+
+            <!-- Error Breakdown Bars -->
+            <div style="flex:1; min-width:180px;">
+              <div style="margin-bottom:0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.2rem;">
+                  <span>🟢 Confirmed Reservations (201/200)</span>
+                  <strong id="bar-confirmed-cnt">0</strong>
+                </div>
+                <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden;">
+                  <div id="bar-confirmed-fill" style="width:0%; height:100%; background:#10b981; transition:width 0.3s;"></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.2rem;">
+                  <span>🔴 Table Unavailable (409/422)</span>
+                  <strong id="bar-unavail-cnt">0</strong>
+                </div>
+                <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden;">
+                  <div id="bar-unavail-fill" style="width:0%; height:100%; background:#ef4444; transition:width 0.3s;"></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.2rem;">
+                  <span>🟡 Combinable / Capacity Rules (422)</span>
+                  <strong id="bar-combo-cnt">0</strong>
+                </div>
+                <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden;">
+                  <div id="bar-combo-fill" style="width:0%; height:100%; background:#f59e0b; transition:width 0.3s;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.2rem;">
+                  <span>🟣 Cancellations & Amendments</span>
+                  <strong id="bar-mgmt-cnt">0</strong>
+                </div>
+                <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden;">
+                  <div id="bar-mgmt-fill" style="width:0%; height:100%; background:#a855f7; transition:width 0.3s;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graphical Card 2: Table & Combination Utilization Histogram -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+            <h3 style="margin-bottom:0;">🍽️ Table & Pair Utilization Breakdown</h3>
+            <span class="sim-chip">5 Seating Targets</span>
+          </div>
+          <p class="subtitle">Real-time utilization across official Zum Anker fixtures and declared combinable pairs</p>
+
+          <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+            <!-- Table 1 -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                <span><strong>Table 1 (t_1)</strong> — Capacity 2</span>
+                <span id="util-t1-text">0 Bookings (0%)</span>
+              </div>
+              <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;">
+                <div id="util-t1-bar" style="width:0%; height:100%; background:#38bdf8; transition:width 0.4s;"></div>
+              </div>
+            </div>
+
+            <!-- Table 2 -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                <span><strong>Table 2 (t_2)</strong> — Capacity 4</span>
+                <span id="util-t2-text">0 Bookings (0%)</span>
+              </div>
+              <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;">
+                <div id="util-t2-bar" style="width:0%; height:100%; background:#60a5fa; transition:width 0.4s;"></div>
+              </div>
+            </div>
+
+            <!-- Table 3 -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                <span><strong>Table 3 (t_3)</strong> — Capacity 6</span>
+                <span id="util-t3-text">0 Bookings (0%)</span>
+              </div>
+              <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;">
+                <div id="util-t3-bar" style="width:0%; height:100%; background:#818cf8; transition:width 0.4s;"></div>
+              </div>
+            </div>
+
+            <!-- Pair 1: t_1 + t_2 -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                <span><strong>🔗 Pair 1 (t_1 + t_2)</strong> — Capacity 6</span>
+                <span id="util-p1-text">0 Bookings (0%)</span>
+              </div>
+              <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;">
+                <div id="util-p1-bar" style="width:0%; height:100%; background:#d97706; transition:width 0.4s;"></div>
+              </div>
+            </div>
+
+            <!-- Pair 2: t_2 + t_3 -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                <span><strong>🔗 Pair 2 (t_2 + t_3)</strong> — Capacity 10</span>
+                <span id="util-p2-text">0 Bookings (0%)</span>
+              </div>
+              <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;">
+                <div id="util-p2-bar" style="width:0%; height:100%; background:#10b981; transition:width 0.4s;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabular Representation: Agent Action Ledger -->
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.75rem;">
+          <div>
+            <h3 style="margin-bottom:0.25rem;">📋 Real-Time Agent Operation Ledger</h3>
+            <p class="subtitle" style="margin-bottom:0;">Live tabular record of every autonomous booking attempt, status, and invariant verification</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <input type="text" id="agent-ledger-search" class="form-control" style="width:200px; padding:0.35rem 0.6rem; font-size:0.8rem;" placeholder="Search persona, table..." oninput="renderAgentLedgerTable()">
+            <div style="display:flex; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:6px; padding:2px;">
+              <button type="button" class="btn btn-sm btn-filter active" id="btn-flt-all" onclick="filterAgentLedger('all')">All (<span id="cnt-flt-all">0</span>)</button>
+              <button type="button" class="btn btn-sm btn-filter" id="btn-flt-confirmed" onclick="filterAgentLedger('confirmed')">Confirmed (<span id="cnt-flt-confirmed">0</span>)</button>
+              <button type="button" class="btn btn-sm btn-filter" id="btn-flt-rejected" onclick="filterAgentLedger('rejected')">Rejected (<span id="cnt-flt-rejected">0</span>)</button>
+              <button type="button" class="btn btn-sm btn-filter" id="btn-flt-anon" onclick="filterAgentLedger('anon')">Anonymous (<span id="cnt-flt-anon">0</span>)</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="table" style="width:100%; font-size:0.82rem;">
+            <thead>
+              <tr>
+                <th style="width:45px;">#</th>
+                <th style="width:85px;">Time</th>
+                <th>Agent Persona</th>
+                <th>Auth Type</th>
+                <th>Action</th>
+                <th>Target Table(s)</th>
+                <th style="text-align:center;">Party</th>
+                <th>Slot Time</th>
+                <th>Outcome / Status</th>
+                <th>Reference ID</th>
+                <th style="text-align:right;">Latency</th>
+              </tr>
+            </thead>
+            <tbody id="agent-ledger-tbody">
+              <tr>
+                <td colspan="11" style="text-align:center; padding:2rem; color:var(--text-muted);">
+                  No agent actions recorded yet. Click <strong>"▶️ Start Agent Fleet"</strong> or <strong>"⚡ Run 5 Actions Now"</strong> to begin!
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <!-- View: 3D Dark Factory & Restaurant Dining Floor (/factory) -->
     <section id="view-factory" class="hidden">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
@@ -1012,6 +1309,7 @@
       document.getElementById('view-login').classList.add('hidden');
       document.getElementById('view-lookup').classList.add('hidden');
       document.getElementById('view-admin').classList.add('hidden');
+      document.getElementById('view-agents').classList.add('hidden');
       document.getElementById('view-factory').classList.add('hidden');
 
       // Update active nav-link highlighting
@@ -1035,6 +1333,9 @@
       } else if (path === '/admin') {
         document.getElementById('view-admin').classList.remove('hidden');
         loadAdminDashboard();
+      } else if (path === '/agents') {
+        document.getElementById('view-agents').classList.remove('hidden');
+        renderAgentTelemetryView();
       } else if (path === '/factory') {
         document.getElementById('view-factory').classList.remove('hidden');
         init3DFactoryCanvas();
@@ -1561,7 +1862,7 @@
     }
 
     // ==========================================
-    // Autonomous Live Customer Simulation Engine
+    // Autonomous Multi-Agent Fleet & Telemetry Engine
     // ==========================================
     let simTimer = null;
     let simIsRunning = false;
@@ -1569,13 +1870,260 @@
     let simReservations = []; // Stores active reservations made by simulated diners
     let simUsers = {}; // Cached diner tokens
 
+    // Comprehensive Agent Fleet: Authenticated + Anonymous Walk-ins + Chaos Stress Invariants
     const SIM_PERSONAS = [
-      { name: "Ada Lovelace", email: "sim_ada@diner.local", role: "Family Planner", partySize: 4, daysAhead: 7 },
-      { name: "Charles Babbage", email: "sim_charles@diner.local", role: "Business Host", partySize: 2, daysAhead: 2 },
-      { name: "Alan Turing", email: "sim_alan@diner.local", role: "Series Planner", partySize: 2, daysAhead: 5, wantSeries: true },
-      { name: "Grace Hopper", email: "sim_grace@diner.local", role: "Flexible Guest", partySize: 3, daysAhead: 4, wantAmend: true },
-      { name: "John von Neumann", email: "sim_john@diner.local", role: "Cancellation Test", partySize: 2, daysAhead: 6, wantCancel: true }
+      { name: "Ada Lovelace", email: "sim_ada@diner.local", role: "Family Planner", partySize: 4, daysAhead: 7, isAnon: false, wantPair: true },
+      { name: "Charles Babbage", email: "sim_charles@diner.local", role: "Business Host", partySize: 2, daysAhead: 2, isAnon: false },
+      { name: "Alan Turing", email: "sim_alan@diner.local", role: "Series Planner", partySize: 2, daysAhead: 5, wantSeries: true, isAnon: false },
+      { name: "Grace Hopper", email: "sim_grace@diner.local", role: "Flexible Guest", partySize: 3, daysAhead: 4, wantAmend: true, isAnon: false },
+      { name: "John von Neumann", email: "sim_john@diner.local", role: "Cancellation Tester", partySize: 2, daysAhead: 6, wantCancel: true, isAnon: false },
+      { name: "Anonymous Diner #81", email: "anon_81@guest.local", role: "Walk-in Guest", partySize: 2, daysAhead: 3, isAnon: true },
+      { name: "Anonymous Banquet #14", email: "anon_14@guest.local", role: "Walk-in Banquet", partySize: 6, daysAhead: 5, isAnon: true, wantPair: true },
+      { name: "Chaos Tester (Race)", email: "chaos_agent@stress.local", role: "Adversarial Invariants", partySize: 4, daysAhead: 7, isAnon: false, wantStress: true }
     ];
+
+    // Real-Time Agent Action Ledger & Statistical Aggregator
+    let agentLedger = [];
+    let agentFilter = 'all';
+    let agentScenario = 'balanced';
+    let agentStats = {
+      total: 0,
+      confirmed: 0,
+      rejected: 0,
+      unavail: 0,
+      comboErr: 0,
+      mgmt: 0,
+      latencies: [],
+      tableCounts: { 't_1': 0, 't_2': 0, 't_3': 0, 't_1+t_2': 0, 't_2+t_3': 0 }
+    };
+
+    function recordAgentAction(item) {
+      agentStats.total++;
+      if (item.status === 'CONFIRMED') {
+        agentStats.confirmed++;
+      } else {
+        agentStats.rejected++;
+        if (item.errorCode === 'table_unavailable' || item.errorCode === 'rejected_409') {
+          agentStats.unavail++;
+        } else if (item.errorCode === 'combination_not_allowed' || item.errorCode === 'party_exceeds_capacity') {
+          agentStats.comboErr++;
+        } else {
+          agentStats.unavail++;
+        }
+      }
+
+      if (item.action === 'AMEND' || item.action === 'CANCEL' || item.action === 'SERIES') {
+        agentStats.mgmt++;
+      }
+
+      if (item.targetTable && agentStats.tableCounts[item.targetTable] !== undefined) {
+        agentStats.tableCounts[item.targetTable]++;
+      }
+
+      if (item.latencyMs) {
+        agentStats.latencies.push(item.latencyMs);
+        if (agentStats.latencies.length > 50) agentStats.latencies.shift();
+      }
+
+      agentLedger.unshift(item);
+      if (agentLedger.length > 100) agentLedger.pop();
+
+      // Broadcast UI updates
+      renderAgentTelemetryView();
+      if (!document.getElementById('view-admin').classList.contains('hidden')) {
+        loadAdminDashboard();
+      }
+    }
+
+    function setAgentScenario(val) {
+      agentScenario = val;
+      addSimLog('SCENARIO', `Agent fleet scenario switched to: <strong>${val.toUpperCase()}</strong>`, 'search');
+    }
+
+    async function triggerImmediateAgentBatch(count = 5) {
+      addSimLog('BATCH', `Executing rapid batch of ${count} autonomous agent actions...`, 'search');
+      for (let i = 0; i < count; i++) {
+        await runSimulationStep();
+      }
+    }
+
+    function resetAgentLedger() {
+      agentLedger = [];
+      agentStats = {
+        total: 0,
+        confirmed: 0,
+        rejected: 0,
+        unavail: 0,
+        comboErr: 0,
+        mgmt: 0,
+        latencies: [],
+        tableCounts: { 't_1': 0, 't_2': 0, 't_3': 0, 't_1+t_2': 0, 't_2+t_3': 0 }
+      };
+      simReservations = [];
+      renderAgentTelemetryView();
+      addSimLog('SYSTEM', 'Agent ledger & telemetry metrics cleared.', 'search');
+    }
+
+    function filterAgentLedger(filterType) {
+      agentFilter = filterType;
+      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-flt-${filterType}`);
+      if (activeBtn) activeBtn.classList.add('active');
+      renderAgentLedgerTable();
+    }
+
+    function renderAgentLedgerTable() {
+      const tbody = document.getElementById('agent-ledger-tbody');
+      if (!tbody) return;
+
+      const search = (document.getElementById('agent-ledger-search')?.value || '').toLowerCase().trim();
+
+      let filtered = agentLedger.filter(item => {
+        if (agentFilter === 'confirmed' && item.status !== 'CONFIRMED') return false;
+        if (agentFilter === 'rejected' && item.status !== 'REJECTED') return false;
+        if (agentFilter === 'anon' && !item.isAnon) return false;
+        if (search) {
+          const matchStr = `${item.persona} ${item.targetTable} ${item.reference} ${item.action} ${item.status}`.toLowerCase();
+          return matchStr.includes(search);
+        }
+        return true;
+      });
+
+      // Update pill counters
+      const allCount = agentLedger.length;
+      const confCount = agentLedger.filter(i => i.status === 'CONFIRMED').length;
+      const rejCount = agentLedger.filter(i => i.status === 'REJECTED').length;
+      const anonCount = agentLedger.filter(i => i.isAnon).length;
+
+      const cAll = document.getElementById('cnt-flt-all'); if (cAll) cAll.textContent = allCount;
+      const cConf = document.getElementById('cnt-flt-confirmed'); if (cConf) cConf.textContent = confCount;
+      const cRej = document.getElementById('cnt-flt-rejected'); if (cRej) cRej.textContent = rejCount;
+      const cAnon = document.getElementById('cnt-flt-anon'); if (cAnon) cAnon.textContent = anonCount;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="11" style="text-align:center; padding:2rem; color:var(--text-muted);">
+              ${agentLedger.length === 0 ? 'No agent operations yet. Click "Start Agent Fleet" or "Run 5 Actions Now" to begin!' : 'No actions match current filter criteria.'}
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(item => `
+        <tr>
+          <td style="color:var(--text-muted); font-family:monospace;">#${item.id}</td>
+          <td style="color:var(--text-muted); font-family:monospace;">${item.time}</td>
+          <td>
+            <strong>${item.persona}</strong>
+            <div style="font-size:0.7rem; color:var(--text-muted);">${item.role}</div>
+          </td>
+          <td>
+            <span class="badge-status ${item.isAnon ? 'anon' : 'auth'}">
+              ${item.isAnon ? '👤 Anonymous' : '🔑 Authenticated'}
+            </span>
+          </td>
+          <td><span class="sim-chip">${item.action}</span></td>
+          <td><strong>${item.targetTable}</strong></td>
+          <td style="text-align:center;">${item.partySize}p</td>
+          <td style="font-family:monospace;">${item.slotTime}</td>
+          <td>
+            <span class="badge-status ${item.status === 'CONFIRMED' ? 'confirmed' : 'rejected'}">
+              ${item.status === 'CONFIRMED' ? '🟢 CONFIRMED' : '🔴 REJECTED (' + (item.errorCode || '422') + ')'}
+            </span>
+          </td>
+          <td style="font-family:monospace;">
+            ${item.reference !== '-' ? `<code>${item.reference}</code>` : '<span style="color:var(--text-muted);">-</span>'}
+          </td>
+          <td style="text-align:right; font-family:monospace; color:${item.latencyMs < 30 ? '#10b981' : '#f59e0b'};">
+            ${item.latencyMs}ms
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderAgentTelemetryView() {
+      // 1. KPI Cards
+      const totalEl = document.getElementById('telemetry-total-ops');
+      if (totalEl) totalEl.textContent = agentStats.total;
+
+      const successRate = agentStats.total > 0 ? ((agentStats.confirmed / agentStats.total) * 100).toFixed(1) : '100.0';
+      const failureRate = agentStats.total > 0 ? ((agentStats.rejected / agentStats.total) * 100).toFixed(1) : '0.0';
+
+      const sRateEl = document.getElementById('telemetry-success-rate'); if (sRateEl) sRateEl.textContent = `${successRate}%`;
+      const sCntEl = document.getElementById('telemetry-success-count'); if (sCntEl) sCntEl.textContent = `${agentStats.confirmed} confirmed`;
+
+      const fRateEl = document.getElementById('telemetry-failure-rate'); if (fRateEl) fRateEl.textContent = `${failureRate}%`;
+      const fCntEl = document.getElementById('telemetry-failure-count'); if (fCntEl) fCntEl.textContent = `${agentStats.rejected} rejected / conflicts`;
+
+      // 2. SVG Donut Chart
+      const successRing = document.getElementById('svg-success-ring');
+      const failureRing = document.getElementById('svg-failure-ring');
+      const centerRate = document.getElementById('svg-center-rate');
+      const gaugeChip = document.getElementById('gauge-status-chip');
+
+      if (successRing && failureRing && centerRate) {
+        const sVal = parseFloat(successRate);
+        const fVal = parseFloat(failureRate);
+        successRing.setAttribute('stroke-dasharray', `${sVal}, 100`);
+        failureRing.setAttribute('stroke-dasharray', `${fVal}, 100`);
+        failureRing.setAttribute('stroke-dashoffset', `-${sVal}`);
+        centerRate.textContent = `${sVal.toFixed(0)}%`;
+
+        if (gaugeChip) {
+          if (fVal > 25) {
+            gaugeChip.textContent = `High Contention (${fVal}% Rej)`;
+            gaugeChip.style.borderColor = '#ef4444';
+            gaugeChip.style.color = '#ef4444';
+          } else if (fVal > 0) {
+            gaugeChip.textContent = `Balanced Traffic (${fVal}% Rej)`;
+            gaugeChip.style.borderColor = '#f59e0b';
+            gaugeChip.style.color = '#f59e0b';
+          } else {
+            gaugeChip.textContent = 'Optimal (0% Err)';
+            gaugeChip.style.borderColor = '#10b981';
+            gaugeChip.style.color = '#10b981';
+          }
+        }
+      }
+
+      // 3. Error Breakdown Bars
+      const maxOps = Math.max(1, agentStats.total);
+      const bConfCnt = document.getElementById('bar-confirmed-cnt'); if (bConfCnt) bConfCnt.textContent = agentStats.confirmed;
+      const bConfFill = document.getElementById('bar-confirmed-fill'); if (bConfFill) bConfFill.style.width = `${(agentStats.confirmed / maxOps) * 100}%`;
+
+      const bUnavailCnt = document.getElementById('bar-unavail-cnt'); if (bUnavailCnt) bUnavailCnt.textContent = agentStats.unavail;
+      const bUnavailFill = document.getElementById('bar-unavail-fill'); if (bUnavailFill) bUnavailFill.style.width = `${(agentStats.unavail / maxOps) * 100}%`;
+
+      const bComboCnt = document.getElementById('bar-combo-cnt'); if (bComboCnt) bComboCnt.textContent = agentStats.comboErr;
+      const bComboFill = document.getElementById('bar-combo-fill'); if (bComboFill) bComboFill.style.width = `${(agentStats.comboErr / maxOps) * 100}%`;
+
+      const bMgmtCnt = document.getElementById('bar-mgmt-cnt'); if (bMgmtCnt) bMgmtCnt.textContent = agentStats.mgmt;
+      const bMgmtFill = document.getElementById('bar-mgmt-fill'); if (bMgmtFill) bMgmtFill.style.width = `${(agentStats.mgmt / maxOps) * 100}%`;
+
+      // 4. Table Utilization Bars
+      const targetMax = Math.max(1, agentStats.confirmed);
+      const targets = [
+        { id: 't1', key: 't_1', label: 'Table 1' },
+        { id: 't2', key: 't_2', label: 'Table 2' },
+        { id: 't3', key: 't_3', label: 'Table 3' },
+        { id: 'p1', key: 't_1+t_2', label: 'Pair 1 [T1+T2]' },
+        { id: 'p2', key: 't_2+t_3', label: 'Pair 2 [T2+T3]' }
+      ];
+
+      targets.forEach(t => {
+        const count = agentStats.tableCounts[t.key] || 0;
+        const pct = ((count / targetMax) * 100).toFixed(0);
+        const textEl = document.getElementById(`util-${t.id}-text`);
+        const barEl = document.getElementById(`util-${t.id}-bar`);
+        if (textEl) textEl.textContent = `${count} Bookings (${pct}%)`;
+        if (barEl) barEl.style.width = `${pct}%`;
+      });
+
+      // 5. Table Rows
+      renderAgentLedgerTable();
+    }
 
     function toggleCustomerSimulation() {
       if (simIsRunning) {
@@ -1587,49 +2135,49 @@
 
     function startCustomerSimulation() {
       simIsRunning = true;
-      document.getElementById('sim-pulse').className = 'sim-pulse active';
-      document.getElementById('sim-state-text').textContent = 'Active (Live Diners Operating)';
-      document.getElementById('sim-state-text').style.color = '#10b981';
-      document.getElementById('sim-toggle-btn').textContent = '⏹️ Stop Diners';
-      document.getElementById('sim-toggle-btn').className = 'btn btn-primary btn-sm';
+      const p = document.getElementById('sim-pulse'); if (p) p.className = 'sim-pulse active';
+      const st = document.getElementById('sim-state-text'); if (st) { st.textContent = 'Active (Live Diners Operating)'; st.style.color = '#10b981'; }
+      const tb = document.getElementById('sim-toggle-btn'); if (tb) { tb.textContent = '⏹️ Stop Diners'; tb.className = 'btn btn-primary btn-sm'; }
+      const ab = document.getElementById('agent-main-toggle-btn'); if (ab) { ab.textContent = '⏹️ Pause Fleet'; ab.className = 'btn btn-secondary btn-sm'; }
       
-      const speed = parseInt(document.getElementById('sim-speed-select').value, 10) || 3500;
+      const speed = parseInt(document.getElementById('sim-speed-select')?.value, 10) || 3500;
       simTimer = setInterval(runSimulationStep, speed);
-      addSimLog('SYSTEM', 'Autonomous diner simulation started', 'search');
-      runSimulationStep(); // Immediate first step
+      addSimLog('SYSTEM', 'Autonomous diner fleet started', 'search');
+      runSimulationStep();
     }
 
     function stopCustomerSimulation() {
       simIsRunning = false;
       if (simTimer) clearInterval(simTimer);
       simTimer = null;
-      document.getElementById('sim-pulse').className = 'sim-pulse idle';
-      document.getElementById('sim-state-text').textContent = 'Idle';
-      document.getElementById('sim-state-text').style.color = 'var(--text-muted)';
-      document.getElementById('sim-toggle-btn').textContent = '▶️ Start Live Traffic';
-      document.getElementById('sim-toggle-btn').className = 'btn btn-secondary btn-sm';
-      addSimLog('SYSTEM', 'Autonomous diner simulation paused', 'search');
+      const p = document.getElementById('sim-pulse'); if (p) p.className = 'sim-pulse idle';
+      const st = document.getElementById('sim-state-text'); if (st) { st.textContent = 'Idle'; st.style.color = 'var(--text-muted)'; }
+      const tb = document.getElementById('sim-toggle-btn'); if (tb) { tb.textContent = '▶️ Start Live Traffic'; tb.className = 'btn btn-secondary btn-sm'; }
+      const ab = document.getElementById('agent-main-toggle-btn'); if (ab) { ab.textContent = '▶️ Start Agent Fleet'; ab.className = 'btn btn-primary btn-sm'; }
+      addSimLog('SYSTEM', 'Autonomous diner fleet paused', 'search');
     }
 
     function toggleSimDrawer() {
       const drawer = document.getElementById('sim-drawer');
-      drawer.classList.toggle('hidden');
+      if (drawer) drawer.classList.toggle('hidden');
     }
 
     function clearSimLog() {
-      document.getElementById('sim-feed').innerHTML = '<div class="sim-feed-placeholder">Log cleared. Ready for live activity...</div>';
+      const feed = document.getElementById('sim-feed');
+      if (feed) feed.innerHTML = '<div class="sim-feed-placeholder">Log cleared. Ready for live activity...</div>';
       simActionCount = 0;
-      document.getElementById('sim-event-count').textContent = '0';
+      const ec = document.getElementById('sim-event-count'); if (ec) ec.textContent = '0';
     }
 
     function addSimLog(type, message, category = 'reserve') {
       const feed = document.getElementById('sim-feed');
+      if (!feed) return;
       const placeholder = feed.querySelector('.sim-feed-placeholder');
       if (placeholder) placeholder.remove();
 
       simActionCount++;
-      document.getElementById('sim-event-count').textContent = simActionCount;
-      document.getElementById('sim-stats-text').textContent = `${simActionCount} autonomous diner actions executed`;
+      const ec = document.getElementById('sim-event-count'); if (ec) ec.textContent = simActionCount;
+      const st = document.getElementById('sim-stats-text'); if (st) st.textContent = `${simActionCount} autonomous diner actions executed`;
 
       const now = new Date();
       const timeStr = now.toTimeString().split(' ')[0];
@@ -1649,7 +2197,6 @@
       `;
       feed.prepend(entry);
 
-      // Keep max 50 items in feed
       while (feed.children.length > 50) {
         feed.removeChild(feed.lastChild);
       }
@@ -1684,36 +2231,70 @@
       return null;
     }
 
+    // Main Simulation Execution Loop (Supports Single Tables, Combinable Pairs, Series, & Stress Tests)
     async function runSimulationStep() {
-      const persona = SIM_PERSONAS[Math.floor(Math.random() * SIM_PERSONAS.length)];
+      // 1. Scenario-based Persona Selection
+      let pool = SIM_PERSONAS;
+      if (agentScenario === 'combinations') {
+        pool = SIM_PERSONAS.filter(p => p.wantPair || p.partySize >= 4);
+      } else if (agentScenario === 'anonymous') {
+        pool = SIM_PERSONAS.filter(p => p.isAnon);
+      } else if (agentScenario === 'stress') {
+        pool = SIM_PERSONAS.filter(p => p.wantStress || p.wantCancel);
+      }
+      if (!pool || pool.length === 0) pool = SIM_PERSONAS;
+
+      const persona = pool[Math.floor(Math.random() * pool.length)];
       const token = await ensureSimUser(persona);
       if (!token) return;
 
       const restSelect = document.getElementById('restaurant-select');
       const restId = (restSelect && restSelect.value) ? restSelect.value : 'r_anker';
-
       const userBookings = simReservations.filter(b => b.email === persona.email && b.status === 'confirmed');
 
+      const now = new Date();
+      const timeStr = now.toTimeString().split(' ')[0];
+
+      // 2. Cancellation Test Flow
       if (persona.wantCancel && userBookings.length > 0 && Math.random() > 0.4) {
         const target = userBookings.pop();
+        const tStart = performance.now();
         try {
           const res = await fetch(`/reservations/${encodeURIComponent(target.reference)}/cancel`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
           });
+          const latencyMs = Math.round(performance.now() - tStart);
           if (res.ok) {
             target.status = 'cancelled';
             addSimLog('CANCEL', `<strong>${persona.name}</strong> cancelled booking <code>${target.reference}</code>`, 'cancel');
+            recordAgentAction({
+              id: simActionCount,
+              time: timeStr,
+              persona: persona.name,
+              isAnon: persona.isAnon,
+              role: persona.role,
+              action: 'CANCEL',
+              targetTable: target.table_id || 't_1',
+              partySize: target.party_size,
+              slotTime: target.slot || '19:00',
+              status: 'CONFIRMED',
+              errorCode: '',
+              reference: target.reference,
+              latencyMs
+            });
             triggerGridRefreshIfMatching(target.date);
             return;
           }
         } catch (e) {}
       }
 
+      // 3. Amendment Test Flow
       if (persona.wantAmend && userBookings.length > 0 && Math.random() > 0.5) {
         const target = userBookings[0];
+        const newSize = target.party_size === 2 ? 3 : 2;
+        const tStart = performance.now();
         try {
-          const newSize = target.party_size === 2 ? 3 : 2;
           const res = await fetch(`/reservations/${encodeURIComponent(target.reference)}`, {
             method: 'PATCH',
             headers: {
@@ -1722,14 +2303,31 @@
             },
             body: JSON.stringify({ party_size: newSize })
           });
+          const latencyMs = Math.round(performance.now() - tStart);
           if (res.ok) {
             target.party_size = newSize;
             addSimLog('AMEND', `<strong>${persona.name}</strong> amended party size on <code>${target.reference}</code> to ${newSize}`, 'amend');
+            recordAgentAction({
+              id: simActionCount,
+              time: timeStr,
+              persona: persona.name,
+              isAnon: persona.isAnon,
+              role: persona.role,
+              action: 'AMEND',
+              targetTable: target.table_id || 't_2',
+              partySize: newSize,
+              slotTime: target.slot || '19:00',
+              status: 'CONFIRMED',
+              errorCode: '',
+              reference: target.reference,
+              latencyMs
+            });
             return;
           }
         } catch (e) {}
       }
 
+      // 4. Booking Flow (Single Tables, Combinations, or Intentional Non-Transitive Rejection)
       const targetDate = new Date();
       targetDate.setDate(targetDate.getDate() + persona.daysAhead);
       const dateStr = targetDate.toISOString().split('T')[0];
@@ -1743,16 +2341,95 @@
           return;
         }
 
-        const candidateSlots = avail.slots.filter(s => s.available_table_ids && s.available_table_ids.length > 0);
+        // Stress Mode: Try invalid non-transitive combination [t_1, t_3] to verify 422 combination_not_allowed
+        if (persona.wantStress && Math.random() > 0.4) {
+          const tStart = performance.now();
+          const stressRes = await fetch('/reservations', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+              'Idempotency-Key': 'stress_' + Date.now()
+            },
+            body: JSON.stringify({
+              restaurant_id: restId,
+              table_ids: ["t_1", "t_3"], // Non-transitive combination prohibited by specification!
+              starts_at_local: avail.slots[0].starts_at_local,
+              party_size: 8
+            })
+          });
+          const latencyMs = Math.round(performance.now() - tStart);
+          const errData = await stressRes.json();
+          addSimLog('STRESS', `<strong>${persona.name}</strong> tested non-transitive pair [t_1, t_3] -> rejected <code>${errData.error?.code || 'combination_not_allowed'}</code> (PASS)`, 'cancel');
+          recordAgentAction({
+            id: simActionCount,
+            time: timeStr,
+            persona: persona.name,
+            isAnon: persona.isAnon,
+            role: persona.role,
+            action: 'STRESS_TEST',
+            targetTable: 't_1+t_3 (Prohibited)',
+            partySize: 8,
+            slotTime: avail.slots[0].starts_at_local.split('T')[1],
+            status: 'REJECTED',
+            errorCode: errData.error?.code || 'combination_not_allowed',
+            reference: '-',
+            latencyMs
+          });
+          return;
+        }
+
+        // Filter valid candidate slots
+        const candidateSlots = avail.slots.filter(s => (s.available_table_ids && s.available_table_ids.length > 0) || (s.available_options && s.available_options.length > 0));
         if (candidateSlots.length === 0) {
           addSimLog('SEARCH', `<strong>${persona.name}</strong> checked ${dateStr} for party of ${persona.partySize} (fully booked)`, 'search');
+          recordAgentAction({
+            id: simActionCount,
+            time: timeStr,
+            persona: persona.name,
+            isAnon: persona.isAnon,
+            role: persona.role,
+            action: 'SEARCH',
+            targetTable: 'All Tables',
+            partySize: persona.partySize,
+            slotTime: '19:00',
+            status: 'REJECTED',
+            errorCode: 'table_unavailable',
+            reference: '-',
+            latencyMs: 12
+          });
           return;
         }
 
         const pickedSlot = candidateSlots[Math.floor(Math.random() * candidateSlots.length)];
-        const pickedTable = pickedSlot.available_table_ids[0];
         const idempotencyKey = 'sim_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
 
+        // Determine whether to book a declared pair or a single table
+        let isPairBooking = (persona.wantPair || persona.partySize >= 6);
+        let reqBody = {};
+        let targetTableLabel = '';
+
+        if (isPairBooking && pickedSlot.available_options && pickedSlot.available_options.some(o => o.table_ids && o.table_ids.length > 1)) {
+          const pairOpt = pickedSlot.available_options.find(o => o.table_ids && o.table_ids.length > 1);
+          reqBody = {
+            restaurant_id: restId,
+            table_ids: pairOpt.table_ids,
+            starts_at_local: pickedSlot.starts_at_local,
+            party_size: persona.partySize
+          };
+          targetTableLabel = pairOpt.table_ids.join('+');
+        } else {
+          const pickedTable = (pickedSlot.available_table_ids && pickedSlot.available_table_ids.length > 0) ? pickedSlot.available_table_ids[0] : 't_1';
+          reqBody = {
+            restaurant_id: restId,
+            table_id: pickedTable,
+            starts_at_local: pickedSlot.starts_at_local,
+            party_size: persona.partySize
+          };
+          targetTableLabel = pickedTable;
+        }
+
+        const tStart = performance.now();
         const bookRes = await fetch('/reservations', {
           method: 'POST',
           headers: {
@@ -1760,26 +2437,43 @@
             'Authorization': `Bearer ${token}`,
             'Idempotency-Key': idempotencyKey
           },
-          body: JSON.stringify({
-            restaurant_id: restId,
-            table_id: pickedTable,
-            starts_at_local: pickedSlot.starts_at_local,
-            party_size: persona.partySize
-          })
+          body: JSON.stringify(reqBody)
         });
+        const latencyMs = Math.round(performance.now() - tStart);
 
         if (bookRes.ok) {
           const booked = await bookRes.json();
           simReservations.push({
             reference: booked.reference,
             email: persona.email,
+            persona: persona.name,
             date: dateStr,
             party_size: persona.partySize,
-            status: 'confirmed'
+            table_id: targetTableLabel,
+            table_ids: reqBody.table_ids,
+            status: 'confirmed',
+            slot: pickedSlot.starts_at_local.split('T')[1]
           });
 
-          addSimLog('RESERVE', `<strong>${persona.name}</strong> booked Table ${pickedTable} at ${pickedSlot.starts_at_local.split('T')[1]} (Ref: <code>${booked.reference}</code>)`, 'reserve');
+          addSimLog('RESERVE', `<strong>${persona.name}</strong> booked ${targetTableLabel.includes('+') ? 'Combinable Pair ' + targetTableLabel : 'Table ' + targetTableLabel} at ${pickedSlot.starts_at_local.split('T')[1]} (Ref: <code>${booked.reference}</code>)`, 'reserve');
 
+          recordAgentAction({
+            id: simActionCount,
+            time: timeStr,
+            persona: persona.name,
+            isAnon: persona.isAnon,
+            role: persona.role,
+            action: targetTableLabel.includes('+') ? 'BOOK_PAIR' : 'BOOK_SINGLE',
+            targetTable: targetTableLabel,
+            partySize: persona.partySize,
+            slotTime: pickedSlot.starts_at_local.split('T')[1],
+            status: 'CONFIRMED',
+            errorCode: '',
+            reference: booked.reference,
+            latencyMs
+          });
+
+          // If Series persona, create recurring series
           if (persona.wantSeries && Math.random() > 0.3) {
             try {
               const seriesKey = 'sim_series_' + Date.now();
@@ -1804,6 +2498,23 @@
           }
 
           triggerGridRefreshIfMatching(dateStr);
+        } else {
+          const errData = await bookRes.json();
+          recordAgentAction({
+            id: simActionCount,
+            time: timeStr,
+            persona: persona.name,
+            isAnon: persona.isAnon,
+            role: persona.role,
+            action: targetTableLabel.includes('+') ? 'BOOK_PAIR' : 'BOOK_SINGLE',
+            targetTable: targetTableLabel,
+            partySize: persona.partySize,
+            slotTime: pickedSlot.starts_at_local.split('T')[1],
+            status: 'REJECTED',
+            errorCode: errData.error?.code || 'rejected_' + bookRes.status,
+            reference: '-',
+            latencyMs
+          });
         }
       } catch (err) {
         console.error('Simulation step error:', err);
@@ -1837,7 +2548,8 @@
         // Update live stats from simulator if any
         if (simReservations && simReservations.length > 0) {
           const confirmedCount = simReservations.filter(r => r.status === 'confirmed').length;
-          document.getElementById('admin-kpi-tables').textContent = `${confirmedCount} Booked / 3 Total`;
+          const kpi = document.getElementById('admin-kpi-tables');
+          if (kpi) kpi.textContent = `${confirmedCount} Booked / 3 Total`;
         }
       } catch (err) {
         console.error('Failed to load admin telemetry:', err);
@@ -1853,28 +2565,44 @@
         { id: 't_3', label: '3', capacity: 6 }
       ];
 
+      // Render the 3 Canonical Tables
       floor.innerHTML = tables.map(t => {
-        const isOccupied = simReservations.some(r => r.status === 'confirmed' && (r.table_id === t.id));
+        const isOccupied = isTableOccupied(t.id);
+        const resInfo = getTableReservationInfo(t.id);
         return `
           <div class="table-box ${isOccupied ? 'occupied' : 'available'}">
             <div style="font-size:1.5rem; margin-bottom:0.25rem;">${isOccupied ? '🔴' : '🟢'}</div>
             <strong>Table ${t.label}</strong>
             <div style="font-size:0.8rem; color:var(--text-muted);">${t.id} • Max ${t.capacity} guests</div>
             <div style="margin-top:0.5rem; font-size:0.75rem; font-weight:600; color:${isOccupied ? 'var(--danger)' : 'var(--accent)'};">
-              ${isOccupied ? 'OCCUPIED' : 'AVAILABLE'}
+              ${isOccupied ? 'OCCUPIED' + (resInfo ? ' (' + (resInfo.persona || 'Guest') + ')' : '') : 'AVAILABLE'}
             </div>
           </div>
         `;
       }).join('');
 
-      // Add combinable pair indicator
+      // Render BOTH Official Declared Combinable Pairs (Pair 1 & Pair 2)
+      const p1Occupied = isTableOccupied('t_1') && isTableOccupied('t_2');
+      const p2Occupied = isTableOccupied('t_2') && isTableOccupied('t_3');
+
       floor.innerHTML += `
-        <div class="table-box available" style="border-style:dashed;">
+        <!-- Pair 1: Table 1 + Table 2 -->
+        <div class="table-box ${p1Occupied ? 'occupied' : 'available'}" style="border-style:dashed;">
           <div style="font-size:1.5rem; margin-bottom:0.25rem;">🔗</div>
           <strong>Table 1 + Table 2</strong>
-          <div style="font-size:0.8rem; color:var(--text-muted);">Declared Pair • Max 6 guests</div>
-          <div style="margin-top:0.5rem; font-size:0.75rem; font-weight:600; color:var(--accent);">
-            COMBINABLE
+          <div style="font-size:0.8rem; color:var(--text-muted);">Declared Pair 1 • Max 6 guests</div>
+          <div style="margin-top:0.5rem; font-size:0.75rem; font-weight:600; color:${p1Occupied ? 'var(--danger)' : 'var(--accent)'};">
+            ${p1Occupied ? 'PAIR OCCUPIED' : 'COMBINABLE AVAILABLE'}
+          </div>
+        </div>
+
+        <!-- Pair 2: Table 2 + Table 3 -->
+        <div class="table-box ${p2Occupied ? 'occupied' : 'available'}" style="border-style:dashed;">
+          <div style="font-size:1.5rem; margin-bottom:0.25rem;">🔗</div>
+          <strong>Table 2 + Table 3</strong>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Declared Pair 2 • Max 10 guests</div>
+          <div style="margin-top:0.5rem; font-size:0.75rem; font-weight:600; color:${p2Occupied ? 'var(--danger)' : 'var(--accent)'};">
+            ${p2Occupied ? 'PAIR OCCUPIED' : 'COMBINABLE AVAILABLE'}
           </div>
         </div>
       `;
@@ -2016,7 +2744,7 @@
     let activeHoveredNode = null;
     let activeHoveredTable = null;
 
-    // Real Restaurant Tables (Zum Anker Fixtures)
+    // Real Restaurant Tables (Official Zum Anker Fixtures & Declared Combinations)
     const REAL_TABLES = [
       {
         id: "t_1",
@@ -2026,7 +2754,8 @@
         width: 60, depth: 52, height: 38,
         color: "#8B4513", // Polished warm mahogany wood
         edgeColor: "#A0522D",
-        combinableWith: "t_2",
+        combinableWith: ["t_2"],
+        pairLabel: "Pair 1 (with Table 2 for up to 6 guests)",
         chairs: [
           { x: -130, y: -2, rot: 0 },         // South chair facing table
           { x: -130, y: 72, rot: Math.PI }    // North chair facing table
@@ -2044,7 +2773,8 @@
         width: 98, depth: 64, height: 38,
         color: "#7c3f14", // Rich walnut hardwood
         edgeColor: "#934d19",
-        combinableWith: "t_1",
+        combinableWith: ["t_1", "t_3"],
+        pairLabel: "Pair 1 (with T1 for 6) or Pair 2 (with T3 for 10)",
         chairs: [
           { x: 5, y: -10, rot: 0 },
           { x: 65, y: -10, rot: 0 },
@@ -2066,7 +2796,8 @@
         width: 148, depth: 74, height: 38,
         color: "#5c2e0b", // Deep dark walnut banquet table
         edgeColor: "#753e12",
-        combinableWith: null,
+        combinableWith: ["t_2"],
+        pairLabel: "Pair 2 (with Table 2 for up to 10 guests)",
         chairs: [
           { x: -85, y: -95, rot: Math.PI },
           { x: -35, y: -95, rot: Math.PI },
@@ -2330,12 +3061,27 @@
     }
 
     function isTableOccupied(tableId) {
-      return (typeof simReservations !== 'undefined') && simReservations.some(r => r.status === 'confirmed' && (r.table_id === tableId || (r.table_id === 't_1+t_2' && (tableId === 't_1' || tableId === 't_2'))));
+      if (typeof simReservations === 'undefined') return false;
+      return simReservations.some(r => {
+        if (r.status !== 'confirmed') return false;
+        if (r.table_id === tableId) return true;
+        if (r.table_ids && r.table_ids.includes(tableId)) return true;
+        if (r.table_id === 't_1+t_2' && (tableId === 't_1' || tableId === 't_2')) return true;
+        if (r.table_id === 't_2+t_3' && (tableId === 't_2' || tableId === 't_3')) return true;
+        return false;
+      });
     }
 
     function getTableReservationInfo(tableId) {
       if (typeof simReservations === 'undefined') return null;
-      return simReservations.find(r => r.status === 'confirmed' && (r.table_id === tableId || (r.table_id === 't_1+t_2' && (tableId === 't_1' || tableId === 't_2'))));
+      return simReservations.find(r => {
+        if (r.status !== 'confirmed') return false;
+        if (r.table_id === tableId) return true;
+        if (r.table_ids && r.table_ids.includes(tableId)) return true;
+        if (r.table_id === 't_1+t_2' && (tableId === 't_1' || tableId === 't_2')) return true;
+        if (r.table_id === 't_2+t_3' && (tableId === 't_2' || tableId === 't_3')) return true;
+        return false;
+      });
     }
 
     function selectDiningTable(table) {
@@ -2346,10 +3092,10 @@
       document.getElementById('dossier-name').style.color = '#38bdf8';
       document.getElementById('dossier-role-badge').textContent = `Capacity: ${table.capacity} Guests`;
       document.getElementById('dossier-harness').textContent = 'Zum Anker (r_anker)';
-      document.getElementById('dossier-model').textContent = table.combinableWith ? `Yes (with Table ${table.combinableWith === 't_1' ? '1' : '2'} for 6 guests)` : 'No (Individual)';
+      document.getElementById('dossier-model').textContent = table.pairLabel || 'Individual Table';
 
       document.getElementById('dossier-desc').textContent = 
-        `Real 3D dining table with solid walnut hardwood top (${table.width}x${table.depth}cm), 4 brass-capped wooden legs, ${table.capacity} upholstered dining chairs with backrests, porcelain dinner plates, and crystal wine glasses.`;
+        `Real 3D dining table with solid walnut hardwood top (${table.width}x${table.depth}cm), 4 brass-capped wooden legs, ${table.capacity} upholstered dining chairs with backrests, porcelain dinner plates, and crystal wine glasses. Combinable pairs: ${table.pairLabel}.`;
 
       const statusEl = document.getElementById('dossier-status');
       if (occupied && resInfo) {
@@ -2639,9 +3385,11 @@
           factoryCtx.stroke();
         }
 
-        // Combinable Guide Bridge between Table 1 and Table 2 (Official Zum Anker Combinable Pair)
+        // 1. Declarable Pair 1: Table 1 + Table 2 (Capacity: 2 + 4 = 6)
         const t1 = REAL_TABLES[0];
         const t2 = REAL_TABLES[1];
+        const t3 = REAL_TABLES[2];
+
         const pt1 = transformPoint(t1.x + t1.width / 2, t1.y, 0, cx, cy);
         const pt2 = transformPoint(t2.x - t2.width / 2, t2.y, 0, cx, cy);
         factoryCtx.setLineDash([5, 5]);
@@ -2650,6 +3398,16 @@
         factoryCtx.beginPath();
         factoryCtx.moveTo(pt1.x, pt1.y);
         factoryCtx.lineTo(pt2.x, pt2.y);
+        factoryCtx.stroke();
+
+        // 2. Declarable Pair 2: Table 2 + Table 3 (Capacity: 4 + 6 = 10)
+        const pt2_south = transformPoint(t2.x - 10, t2.y - t2.depth / 2, 0, cx, cy);
+        const pt3_north = transformPoint(t3.x + 25, t3.y + t3.depth / 2, 0, cx, cy);
+        factoryCtx.strokeStyle = '#10b981';
+        factoryCtx.lineWidth = 2.5;
+        factoryCtx.beginPath();
+        factoryCtx.moveTo(pt2_south.x, pt2_south.y);
+        factoryCtx.lineTo(pt3_north.x, pt3_north.y);
         factoryCtx.stroke();
         factoryCtx.setLineDash([]);
 
@@ -2803,12 +3561,18 @@
           }
         });
 
-        // Combinable Pair Floating Label
-        const midPoint = transformPoint((t1.x + t2.x) / 2, t1.y, 22, cx, cy);
+        // Combinable Pairs Floating Labels
+        const midPoint1 = transformPoint((t1.x + t2.x) / 2, t1.y, 22, cx, cy);
         factoryCtx.fillStyle = '#fbbf24';
         factoryCtx.font = '600 10px -apple-system, sans-serif';
         factoryCtx.textAlign = 'center';
-        factoryCtx.fillText('🔗 Table 1 + Table 2 declared combination (Cap 6)', midPoint.x, midPoint.y);
+        factoryCtx.fillText('🔗 Pair 1: [T1 + T2] (Cap 6)', midPoint1.x, midPoint1.y);
+
+        const midPoint2 = transformPoint((t2.x + t3.x + 25) / 2, (t2.y + t3.y) / 2, 22, cx, cy);
+        factoryCtx.fillStyle = '#34d399';
+        factoryCtx.font = '600 10px -apple-system, sans-serif';
+        factoryCtx.textAlign = 'center';
+        factoryCtx.fillText('🔗 Pair 2: [T2 + T3] (Cap 10)', midPoint2.x, midPoint2.y);
 
       } else {
         // Labels above AI seat nodes
