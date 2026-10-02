@@ -918,16 +918,21 @@
       </div>
     </section>
 
-    <!-- View: 3D Dark Factory Agent Control Room (/factory) -->
+    <!-- View: 3D Dark Factory & Restaurant Dining Floor (/factory) -->
     <section id="view-factory" class="hidden">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
         <div>
-          <h2>3D Dark Factory Autonomous Control Room</h2>
-          <p class="subtitle" style="margin-bottom:0;">Real-time isometric visualization of the 6 AI Seats collaborating in the BAND Room</p>
+          <h2 id="factory-title" style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+            🍽️ 3D Restaurant Floor (Zum Anker Tables)
+          </h2>
+          <p class="subtitle" style="margin-bottom:0;">Interactive 3D dining room with real wooden tables, chairs, place settings, and autonomous agent orchestration</p>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center;">
-          <span class="sim-chip" style="background:rgba(16,185,129,0.15); color:#10b981; border-color:#10b981;">6 Seats Active</span>
-          <button class="btn btn-secondary btn-sm" onclick="resetFactoryCamera()">Center View</button>
+          <div style="display:flex; background:rgba(15,23,42,0.8); border:1px solid var(--border); border-radius:6px; padding:3px; gap:3px;">
+            <button id="btn-mode-dining" type="button" class="btn btn-sm" style="background:#2563eb; color:#fff; border:none; padding:0.3rem 0.75rem; border-radius:4px; font-weight:600; cursor:pointer;" onclick="switch3DMode('dining')">🍽️ Real Tables & Chairs</button>
+            <button id="btn-mode-factory" type="button" class="btn btn-sm" style="background:transparent; color:var(--text-muted); border:none; padding:0.3rem 0.75rem; border-radius:4px; cursor:pointer;" onclick="switch3DMode('factory')">🏭 AI Factory Matrix</button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="resetFactoryCamera()">Center View</button>
         </div>
       </div>
 
@@ -935,36 +940,37 @@
         <canvas id="factory-canvas"></canvas>
 
         <!-- Top Left HUD -->
-        <div class="factory-hud">
-          <div class="factory-hud-title">⚡ FACTORY CORE TELEMETRY</div>
-          <div>Mode: <strong>Autonomous Clean-Room Execution</strong></div>
-          <div>Architecture: <strong>Six-Seat Contract Matrix</strong></div>
-          <div>Invariants: <span style="color:#34d399;">0 Overlaps | 0 Leaks | Zero-Sum Ledger</span></div>
-          <div>Gate Status: <span style="color:#60a5fa;">Gate 1, 3, 4 Passing (100%)</span></div>
+        <div class="factory-hud" id="factory-hud-box">
+          <div class="factory-hud-title" id="hud-main-title">🍽️ ZUM ANKER FLOOR TELEMETRY</div>
+          <div>Mode: <strong id="hud-mode-text">Real 3D Dining Room</strong></div>
+          <div>Tables: <strong id="hud-venue-text">Table 1 (2p), Table 2 (4p), Table 3 (6p)</strong></div>
+          <div>Combination: <span style="color:#34d399;" id="hud-combo-text">Table 1 + Table 2 Declared Pair (Cap 6)</span></div>
+          <div>Floor Status: <span style="color:#60a5fa;" id="hud-status-text">All Tables Synchronized With Booking Engine</span></div>
         </div>
 
-        <!-- Node Dossier Panel -->
+        <!-- Node / Table Dossier Panel -->
         <div id="factory-dossier" class="factory-dossier">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <strong id="dossier-name" style="color:#c084fc; font-size:1rem;">Planner Seat</strong>
-            <span id="dossier-role-badge" class="sim-chip">Nexus Hub</span>
+            <strong id="dossier-name" style="color:#c084fc; font-size:1rem;">Table 1</strong>
+            <span id="dossier-role-badge" class="sim-chip">Capacity 2</span>
           </div>
-          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;">
-            Harness: <strong id="dossier-harness" style="color:var(--text);">Claude Code</strong> | 
-            Model: <strong id="dossier-model" style="color:var(--text);">Claude 3.5 Sonnet</strong>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;" id="dossier-meta">
+            Venue: <strong id="dossier-harness" style="color:var(--text);">Zum Anker (r_anker)</strong> | 
+            Combinable: <strong id="dossier-model" style="color:var(--text);">Yes (with Table 2)</strong>
           </div>
           <div id="dossier-desc" style="font-size:0.8rem; line-height:1.4; color:var(--text-muted); margin-bottom:0.5rem;">
-            Coordinates work, defines contracts in contracts/ folder before builders start, routes handoffs, verifies regression gate.
+            Fine dining station with solid walnut tabletop, 4 brass-capped legs, 2 plush chairs, and ceramic dinner place settings.
           </div>
-          <div style="font-size:0.75rem; color:#93c5fd; background:rgba(30,58,138,0.3); padding:0.4rem 0.6rem; border-radius:6px;">
-            Current Action: <span id="dossier-status">Verifying regression gate for Stage 4 merge</span>
+          <div style="font-size:0.75rem; color:#93c5fd; background:rgba(30,58,138,0.3); padding:0.4rem 0.6rem; border-radius:6px; margin-bottom:0.5rem;">
+            Status: <span id="dossier-status">🟢 Available (Ready for Reservation)</span>
           </div>
+          <div id="dossier-action-area"></div>
         </div>
 
         <!-- Bottom Stream Ticker -->
         <div class="factory-ticker">
           <span style="font-weight:700; color:#10b981;">TELEMETRY:</span>
-          <span id="factory-telemetry-text">Reviewer verified all 120 Stage 1 regression tests. Builder 2 committed Money Ledger invariant.</span>
+          <span id="factory-telemetry-text">Table floor synchronized. Click any 3D table to inspect or book.</span>
         </div>
       </div>
     </section>
@@ -1997,6 +2003,8 @@
     // ==========================================
     // 3D Dark Factory Isometric Canvas Visualizer
     // ==========================================
+    // 3D Visualizer: Real Restaurant Tables & AI Factory Engine
+    // ==========================================
     let factoryCanvas, factoryCtx;
     let factoryAnimId = null;
     let factoryRotation = 0.785; // Yaw
@@ -2004,7 +2012,79 @@
     let cameraZoom = 1.0;
     let isDragging = false;
     let lastMouseX = 0, lastMouseY = 0;
+    let current3DMode = 'dining'; // 'dining' or 'factory'
     let activeHoveredNode = null;
+    let activeHoveredTable = null;
+
+    // Real Restaurant Tables (Zum Anker Fixtures)
+    const REAL_TABLES = [
+      {
+        id: "t_1",
+        label: "Table 1",
+        capacity: 2,
+        x: -130, y: 35, z: 0,
+        width: 60, depth: 52, height: 38,
+        color: "#8B4513", // Polished warm mahogany wood
+        edgeColor: "#A0522D",
+        combinableWith: "t_2",
+        chairs: [
+          { x: -130, y: -2, rot: 0 },         // South chair facing table
+          { x: -130, y: 72, rot: Math.PI }    // North chair facing table
+        ],
+        placeSettings: [
+          { x: -130, y: 22 },
+          { x: -130, y: 48 }
+        ]
+      },
+      {
+        id: "t_2",
+        label: "Table 2",
+        capacity: 4,
+        x: 35, y: 35, z: 0,
+        width: 98, depth: 64, height: 38,
+        color: "#7c3f14", // Rich walnut hardwood
+        edgeColor: "#934d19",
+        combinableWith: "t_1",
+        chairs: [
+          { x: 5, y: -10, rot: 0 },
+          { x: 65, y: -10, rot: 0 },
+          { x: 5, y: 80, rot: Math.PI },
+          { x: 65, y: 80, rot: Math.PI }
+        ],
+        placeSettings: [
+          { x: 5, y: 20 },
+          { x: 65, y: 20 },
+          { x: 5, y: 50 },
+          { x: 65, y: 50 }
+        ]
+      },
+      {
+        id: "t_3",
+        label: "Table 3",
+        capacity: 6,
+        x: -35, y: -145, z: 0,
+        width: 148, depth: 74, height: 38,
+        color: "#5c2e0b", // Deep dark walnut banquet table
+        edgeColor: "#753e12",
+        combinableWith: null,
+        chairs: [
+          { x: -85, y: -95, rot: Math.PI },
+          { x: -35, y: -95, rot: Math.PI },
+          { x: 15, y: -95, rot: Math.PI },
+          { x: -85, y: -195, rot: 0 },
+          { x: -35, y: -195, rot: 0 },
+          { x: 15, y: -195, rot: 0 }
+        ],
+        placeSettings: [
+          { x: -85, y: -128 },
+          { x: -35, y: -128 },
+          { x: 15, y: -128 },
+          { x: -85, y: -162 },
+          { x: -35, y: -162 },
+          { x: 15, y: -162 }
+        ]
+      }
+    ];
 
     const FACTORY_SEATS = [
       {
@@ -2106,7 +2186,7 @@
       window.onmouseup = () => { isDragging = false; };
       window.onmousemove = (e) => {
         if (!isDragging) {
-          checkNodeHover(e);
+          check3DHover(e);
           return;
         }
         const dx = e.clientX - lastMouseX;
@@ -2123,13 +2203,64 @@
       };
 
       factoryCanvas.onclick = (e) => {
-        if (activeHoveredNode) {
+        if (current3DMode === 'dining' && activeHoveredTable) {
+          selectDiningTable(activeHoveredTable);
+        } else if (current3DMode === 'factory' && activeHoveredNode) {
           selectFactorySeat(activeHoveredNode);
         }
       };
 
+      // Set initial selected item in dossier
+      if (current3DMode === 'dining') {
+        selectDiningTable(REAL_TABLES[0]);
+      } else {
+        selectFactorySeat(FACTORY_SEATS[0]);
+      }
+
       if (!factoryAnimId) {
         animateFactory();
+      }
+    }
+
+    function switch3DMode(mode) {
+      current3DMode = mode;
+      const btnDining = document.getElementById('btn-mode-dining');
+      const btnFactory = document.getElementById('btn-mode-factory');
+      const title = document.getElementById('factory-title');
+      const hudTitle = document.getElementById('hud-main-title');
+      const hudMode = document.getElementById('hud-mode-text');
+      const hudVenue = document.getElementById('hud-venue-text');
+      const hudCombo = document.getElementById('hud-combo-text');
+      const hudStatus = document.getElementById('hud-status-text');
+
+      if (mode === 'dining') {
+        btnDining.style.background = '#2563eb';
+        btnDining.style.color = '#fff';
+        btnDining.style.fontWeight = '600';
+        btnFactory.style.background = 'transparent';
+        btnFactory.style.color = 'var(--text-muted)';
+        btnFactory.style.fontWeight = 'normal';
+        if (title) title.innerHTML = '🍽️ 3D Restaurant Floor (Zum Anker Tables)';
+        if (hudTitle) hudTitle.textContent = '🍽️ ZUM ANKER FLOOR TELEMETRY';
+        if (hudMode) hudMode.textContent = 'Real 3D Dining Tables & Chairs';
+        if (hudVenue) hudVenue.textContent = 'Table 1 (2p), Table 2 (4p), Table 3 (6p)';
+        if (hudCombo) hudCombo.textContent = 'Table 1 + Table 2 Declared Pair (Cap 6)';
+        if (hudStatus) hudStatus.textContent = 'Live Synced With Booking Engine';
+        selectDiningTable(REAL_TABLES[0]);
+      } else {
+        btnFactory.style.background = '#2563eb';
+        btnFactory.style.color = '#fff';
+        btnFactory.style.fontWeight = '600';
+        btnDining.style.background = 'transparent';
+        btnDining.style.color = 'var(--text-muted)';
+        btnDining.style.fontWeight = 'normal';
+        if (title) title.innerHTML = '🏭 3D Dark Factory Autonomous Control Room';
+        if (hudTitle) hudTitle.textContent = '⚡ FACTORY CORE TELEMETRY';
+        if (hudMode) hudMode.textContent = 'Autonomous Clean-Room Execution';
+        if (hudVenue) hudVenue.textContent = 'Six-Seat Contract Matrix';
+        if (hudCombo) hudCombo.textContent = '0 Overlaps | 0 Leaks | Zero-Sum Ledger';
+        if (hudStatus) hudStatus.textContent = 'Gate 1, 3, 4 Passing (100%)';
+        selectFactorySeat(FACTORY_SEATS[0]);
       }
     }
 
@@ -2163,25 +2294,85 @@
       return { x: screenX, y: screenY, depth: py, factor };
     }
 
-    function checkNodeHover(e) {
+    function check3DHover(e) {
       if (!factoryCanvas) return;
       const rect = factoryCanvas.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
       const cx = factoryCanvas.width / 2;
-      const cy = factoryCanvas.height / 2 + 30;
+      const cy = factoryCanvas.height / 2 + 25;
 
-      let found = null;
-      for (const seat of FACTORY_SEATS) {
-        const p = transformPoint(seat.x, seat.y, seat.z, cx, cy);
-        const dist = Math.hypot(mx - p.x, my - p.y);
-        if (dist < 32 * cameraZoom) {
-          found = seat;
-          break;
+      if (current3DMode === 'dining') {
+        let found = null;
+        for (const t of REAL_TABLES) {
+          const p = transformPoint(t.x, t.y, t.z + t.height / 2, cx, cy);
+          const dist = Math.hypot(mx - p.x, my - p.y);
+          if (dist < (t.width / 2 + 25) * cameraZoom) {
+            found = t;
+            break;
+          }
         }
+        activeHoveredTable = found;
+        factoryCanvas.style.cursor = found ? 'pointer' : (isDragging ? 'grabbing' : 'grab');
+      } else {
+        let found = null;
+        for (const seat of FACTORY_SEATS) {
+          const p = transformPoint(seat.x, seat.y, seat.z, cx, cy);
+          const dist = Math.hypot(mx - p.x, my - p.y);
+          if (dist < 32 * cameraZoom) {
+            found = seat;
+            break;
+          }
+        }
+        activeHoveredNode = found;
+        factoryCanvas.style.cursor = found ? 'pointer' : (isDragging ? 'grabbing' : 'grab');
       }
-      activeHoveredNode = found;
-      factoryCanvas.style.cursor = found ? 'pointer' : (isDragging ? 'grabbing' : 'grab');
+    }
+
+    function isTableOccupied(tableId) {
+      return (typeof simReservations !== 'undefined') && simReservations.some(r => r.status === 'confirmed' && (r.table_id === tableId || (r.table_id === 't_1+t_2' && (tableId === 't_1' || tableId === 't_2'))));
+    }
+
+    function getTableReservationInfo(tableId) {
+      if (typeof simReservations === 'undefined') return null;
+      return simReservations.find(r => r.status === 'confirmed' && (r.table_id === tableId || (r.table_id === 't_1+t_2' && (tableId === 't_1' || tableId === 't_2'))));
+    }
+
+    function selectDiningTable(table) {
+      const occupied = isTableOccupied(table.id);
+      const resInfo = getTableReservationInfo(table.id);
+
+      document.getElementById('dossier-name').textContent = `${table.label} (ID: ${table.id})`;
+      document.getElementById('dossier-name').style.color = '#38bdf8';
+      document.getElementById('dossier-role-badge').textContent = `Capacity: ${table.capacity} Guests`;
+      document.getElementById('dossier-harness').textContent = 'Zum Anker (r_anker)';
+      document.getElementById('dossier-model').textContent = table.combinableWith ? `Yes (with Table ${table.combinableWith === 't_1' ? '1' : '2'} for 6 guests)` : 'No (Individual)';
+
+      document.getElementById('dossier-desc').textContent = 
+        `Real 3D dining table with solid walnut hardwood top (${table.width}x${table.depth}cm), 4 brass-capped wooden legs, ${table.capacity} upholstered dining chairs with backrests, porcelain dinner plates, and crystal wine glasses.`;
+
+      const statusEl = document.getElementById('dossier-status');
+      if (occupied && resInfo) {
+        statusEl.innerHTML = `<span style="color:#ef4444; font-weight:700;">🔴 RESERVED</span> by <strong>${resInfo.persona || resInfo.guest_name || 'Guest'}</strong> (Party of ${resInfo.party_size || table.capacity})`;
+      } else {
+        statusEl.innerHTML = `<span style="color:#10b981; font-weight:700;">🟢 AVAILABLE</span> — Ready for guest seating`;
+      }
+
+      const actionArea = document.getElementById('dossier-action-area');
+      if (actionArea) {
+        actionArea.innerHTML = `
+          <button type="button" class="btn btn-primary btn-sm" style="width:100%; margin-top:0.35rem;" onclick="quickBookTable('${table.id}', ${table.capacity})">
+            📅 Book ${table.label} (Party of ${table.capacity})
+          </button>
+        `;
+      }
+    }
+
+    function quickBookTable(tableId, capacity) {
+      navigateTo(null, '/');
+      const partySelect = document.getElementById('party-size-select');
+      if (partySelect) partySelect.value = capacity;
+      handleSearch(null);
     }
 
     function selectFactorySeat(seat) {
@@ -2192,6 +2383,8 @@
       document.getElementById('dossier-model').textContent = seat.model;
       document.getElementById('dossier-desc').textContent = seat.desc;
       document.getElementById('dossier-status').textContent = seat.status;
+      const actionArea = document.getElementById('dossier-action-area');
+      if (actionArea) actionArea.innerHTML = '';
     }
 
     // Helper: generate 3D faces with normals & lighting
@@ -2216,7 +2409,7 @@
       nx /= len; ny /= len; nz /= len;
 
       // Light vector from top-left front
-      const lx = -0.5, ly = -0.6, lz = 0.63;
+      const lx = -0.4, ly = -0.5, lz = 0.77;
       const dot = Math.max(0.2, (nx * lx + ny * ly + nz * lz));
 
       const avgDepth = v3 ? (p0.depth + p1.depth + p2.depth + p3.depth) / 4 : (p0.depth + p1.depth + p2.depth) / 3;
@@ -2230,7 +2423,124 @@
       });
     }
 
-    // 3D Hexagonal Tower Pedestal Builder
+    // Solid 3D Box Builder (Tabletop, Legs, Chairs, Cushions, Backrests)
+    function build3DBox(faces, wx, wy, wz, w, d, h, color, isHovered, cx, cy) {
+      const hw = w / 2, hd = d / 2;
+      const v0 = [wx - hw, wy - hd, wz];
+      const v1 = [wx + hw, wy - hd, wz];
+      const v2 = [wx + hw, wy + hd, wz];
+      const v3 = [wx - hw, wy + hd, wz];
+      const v4 = [wx - hw, wy - hd, wz + h];
+      const v5 = [wx + hw, wy - hd, wz + h];
+      const v6 = [wx + hw, wy + hd, wz + h];
+      const v7 = [wx - hw, wy + hd, wz + h];
+
+      // Top face
+      add3DFace(faces, v4, v7, v6, v5, color, isHovered, cx, cy);
+      // Front face
+      add3DFace(faces, v0, v4, v5, v1, color, isHovered, cx, cy);
+      // Back face
+      add3DFace(faces, v2, v6, v7, v3, color, isHovered, cx, cy);
+      // Right face
+      add3DFace(faces, v1, v5, v6, v2, color, isHovered, cx, cy);
+      // Left face
+      add3DFace(faces, v3, v7, v4, v0, color, isHovered, cx, cy);
+      // Bottom face
+      add3DFace(faces, v0, v1, v2, v3, color, isHovered, cx, cy);
+    }
+
+    // Complete Real Dining Table Builder (Tabletop, 4 Legs, Brass Caps, Apron, Chairs, Place Settings)
+    function build3DRealDiningTable(faces, t, isOccupied, isHovered, cx, cy, time) {
+      const tableColor = isHovered ? '#b45309' : (isOccupied ? '#78350f' : t.color);
+      const legColor = '#27170e'; // Dark aged walnut leg
+      const brassColor = '#d97706'; // Polished brass foot cap
+
+      // 1. Solid Tabletop (Thick hardwood slab)
+      const topThickness = 5;
+      build3DBox(faces, t.x, t.y, t.height - topThickness, t.width, t.depth, topThickness, tableColor, isHovered, cx, cy);
+
+      // 2. Crisp Linen Table Runner down the center
+      const runnerColor = isOccupied ? '#991b1b' : '#334155';
+      build3DBox(faces, t.x, t.y, t.height - 0.1, t.width * 0.42, t.depth + 1, 0.4, runnerColor, isHovered, cx, cy);
+
+      // 3. Four Sturdy Corner Table Legs
+      const legW = 4.2;
+      const legH = t.height - topThickness;
+      const offX = t.width / 2 - 5.5;
+      const offY = t.depth / 2 - 5.5;
+      const legCorners = [
+        [t.x - offX, t.y - offY],
+        [t.x + offX, t.y - offY],
+        [t.x + offX, t.y + offY],
+        [t.x - offX, t.y + offY]
+      ];
+
+      for (const [lx, ly] of legCorners) {
+        // Wooden Leg Post
+        build3DBox(faces, lx, ly, 0, legW, legW, legH, legColor, isHovered, cx, cy);
+        // Polished Brass Foot Cap at floor level
+        build3DBox(faces, lx, ly, 0, legW + 0.8, legW + 0.8, 3, brassColor, isHovered, cx, cy);
+      }
+
+      // 4. Under-Table Support Apron Rails (Carpentry Structure)
+      const apronH = 4.5;
+      const apronZ = t.height - topThickness - apronH;
+      build3DBox(faces, t.x, t.y - offY, apronZ, t.width - 12, 2.5, apronH, '#3e2312', isHovered, cx, cy); // Front rail
+      build3DBox(faces, t.x, t.y + offY, apronZ, t.width - 12, 2.5, apronH, '#3e2312', isHovered, cx, cy); // Back rail
+      build3DBox(faces, t.x - offX, t.y, apronZ, 2.5, t.depth - 12, apronH, '#3e2312', isHovered, cx, cy); // Left rail
+      build3DBox(faces, t.x + offX, t.y, apronZ, 2.5, t.depth - 12, apronH, '#3e2312', isHovered, cx, cy); // Right rail
+
+      // 5. Real 3D Chairs Around the Table
+      const chairSeatH = 17;
+      const chairBackH = 20;
+      const cushionColor = isOccupied ? '#7f1d1d' : '#064e3b'; // Crimson velvet if occupied, emerald if free
+
+      for (const ch of t.chairs) {
+        // Chair Seat Cushion
+        build3DBox(faces, ch.x, ch.y, chairSeatH, 16, 16, 3.5, cushionColor, isHovered, cx, cy);
+
+        // 4 Slender Wooden Chair Legs
+        const cLegW = 2.0;
+        const cLegCorners = [
+          [ch.x - 5.5, ch.y - 5.5],
+          [ch.x + 5.5, ch.y - 5.5],
+          [ch.x + 5.5, ch.y + 5.5],
+          [ch.x - 5.5, ch.y + 5.5]
+        ];
+        for (const [clx, cly] of cLegCorners) {
+          build3DBox(faces, clx, cly, 0, cLegW, cLegW, chairSeatH, legColor, isHovered, cx, cy);
+        }
+
+        // Chair Backrest: 2 Vertical Uprights + Horizontal Ergonomic Back Panel
+        const isNorth = (ch.rot === Math.PI);
+        const backY = isNorth ? (ch.y + 6.5) : (ch.y - 6.5);
+        build3DBox(faces, ch.x - 5.5, backY, chairSeatH, cLegW, cLegW, chairBackH, legColor, isHovered, cx, cy);
+        build3DBox(faces, ch.x + 5.5, backY, chairSeatH, cLegW, cLegW, chairBackH, legColor, isHovered, cx, cy);
+        // Horizontal Backrest Panel
+        build3DBox(faces, ch.x, backY, chairSeatH + 8, 14, 2.4, 9, '#3e2312', isHovered, cx, cy);
+      }
+
+      // 6. Tabletop Place Settings (Ceramic Plates & Wine Glasses)
+      for (const ps of t.placeSettings) {
+        // Bone China Dinner Plate
+        build3DBox(faces, ps.x, ps.y, t.height, 9.5, 9.5, 1.2, '#f8fafc', isHovered, cx, cy);
+        // Inner Plate Rim
+        build3DBox(faces, ps.x, ps.y, t.height + 1.2, 6.8, 6.8, 0.3, '#e2e8f0', isHovered, cx, cy);
+        // Crystal Wine Glass / Tumbler
+        build3DBox(faces, ps.x + 5, ps.y + 4.5, t.height, 2.6, 2.6, 6.5, 'rgba(186, 230, 253, 0.85)', isHovered, cx, cy);
+      }
+
+      // 7. Atmospheric Centerpiece (Candle Lantern or Floral Vase)
+      build3DBox(faces, t.x, t.y, t.height, 6.5, 6.5, 7.5, '#78350f', isHovered, cx, cy);
+      // Flickering Golden Candle Flame Core
+      const flicker = Math.sin(time * 3 + t.width) * 1.5;
+      build3DOctahedron(faces, t.x, t.y, t.height + 10 + flicker * 0.4, 3.5, time * 2, '#fbbf24', isHovered, cx, cy);
+
+      // 8. Polished Brass Table Number Plaque
+      build3DBox(faces, t.x, t.y - t.depth / 2 + 2.5, t.height + 0.1, 14, 3.5, 0.7, brassColor, isHovered, cx, cy);
+    }
+
+    // 3D Hexagonal Tower Pedestal Builder (for AI Factory mode)
     function build3DHexTower(faces, wx, wy, wz, radius, height, color, isHovered, cx, cy) {
       const sides = 6;
       const bot = [], top = [];
@@ -2245,7 +2555,7 @@
         const next = (i + 1) % sides;
         add3DFace(faces, bot[i], bot[next], top[next], top[i], color, isHovered, cx, cy);
       }
-      // Top hexagon (split into triangles)
+      // Top hexagon
       for (let i = 1; i < sides - 1; i++) {
         add3DFace(faces, top[0], top[i], top[i + 1], null, color, isHovered, cx, cy);
       }
@@ -2267,7 +2577,7 @@
       }
     }
 
-    // 3D Rotating Cuboctahedron (Server / Block)
+    // 3D Rotating Cube (Server / Block)
     function build3DCube(faces, wx, wy, wz, size, rotZ, color, isHovered, cx, cy) {
       const s = size / 2;
       const local = [
@@ -2295,110 +2605,152 @@
       const w = factoryCanvas.width;
       const h = factoryCanvas.height;
       const cx = w / 2;
-      const cy = h / 2 + 20;
+      const cy = h / 2 + 25;
 
       factoryCtx.clearRect(0, 0, w, h);
 
-      // Draw 3D cyberspace grid floor
-      factoryCtx.strokeStyle = 'rgba(51, 65, 85, 0.28)';
-      factoryCtx.lineWidth = 1;
-      const gridSize = 320;
-      const step = 40;
-      for (let gx = -gridSize; gx <= gridSize; gx += step) {
-        const p1 = transformPoint(gx, -gridSize, -25, cx, cy);
-        const p2 = transformPoint(gx, gridSize, -25, cx, cy);
-        factoryCtx.beginPath();
-        factoryCtx.moveTo(p1.x, p1.y);
-        factoryCtx.lineTo(p2.x, p2.y);
-        factoryCtx.stroke();
-      }
-      for (let gy = -gridSize; gy <= gridSize; gy += step) {
-        const p1 = transformPoint(-gridSize, gy, -25, cx, cy);
-        const p2 = transformPoint(gridSize, gy, -25, cx, cy);
-        factoryCtx.beginPath();
-        factoryCtx.moveTo(p1.x, p1.y);
-        factoryCtx.lineTo(p2.x, p2.y);
-        factoryCtx.stroke();
-      }
-
-      // Connecting energy beams between seats
-      const connections = [
-        [0, 1], [0, 2], [0, 3], // Planner to Builders
-        [1, 4], [2, 4], [3, 4], // Builders to Reviewer
-        [4, 5], [5, 0]          // Reviewer to Tester, Tester to Planner
-      ];
-
-      for (const [fromIdx, toIdx] of connections) {
-        const s1 = FACTORY_SEATS[fromIdx];
-        const s2 = FACTORY_SEATS[toIdx];
-        const p1 = transformPoint(s1.x, s1.y, s1.z + 10, cx, cy);
-        const p2 = transformPoint(s2.x, s2.y, s2.z + 10, cx, cy);
-
-        factoryCtx.strokeStyle = 'rgba(147, 197, 253, 0.25)';
-        factoryCtx.lineWidth = 2;
-        factoryCtx.beginPath();
-        factoryCtx.moveTo(p1.x, p1.y);
-        factoryCtx.lineTo(p2.x, p2.y);
-        factoryCtx.stroke();
-      }
-
-      // Animate flowing 3D glowing data packets
-      for (const pkt of factoryPackets) {
-        pkt.progress += 0.006;
-        if (pkt.progress > 1) pkt.progress = 0;
-
-        const s1 = FACTORY_SEATS[pkt.from];
-        const s2 = FACTORY_SEATS[pkt.to];
-        const px = s1.x + (s2.x - s1.x) * pkt.progress;
-        const py = s1.y + (s2.y - s1.y) * pkt.progress;
-        const pz = s1.z + (s2.z - s1.z) * pkt.progress + 10;
-
-        const pt = transformPoint(px, py, pz, cx, cy);
-
-        factoryCtx.fillStyle = '#60a5fa';
-        factoryCtx.shadowColor = '#60a5fa';
-        factoryCtx.shadowBlur = 10;
-        factoryCtx.beginPath();
-        factoryCtx.arc(pt.x, pt.y, 4.5 * cameraZoom, 0, Math.PI * 2);
-        factoryCtx.fill();
-        factoryCtx.shadowBlur = 0;
-      }
-
-      // Construct all 3D solid model faces
       const time = Date.now() * 0.002;
       const allFaces = [];
 
-      FACTORY_SEATS.forEach((s, idx) => {
-        const isHovered = activeHoveredNode === s;
-        const bounce = Math.sin(time * 1.5 + idx) * 4;
+      if (current3DMode === 'dining') {
+        // ==========================================
+        // 1. RENDER 3D RESTAURANT DINING ROOM
+        // ==========================================
 
-        // 1. Solid Hexagonal Prism Tower Base (3D)
-        const baseRadius = (s.id === 'planner' ? 36 : 28);
-        const baseHeight = (s.id === 'planner' ? 24 : 18);
-        build3DHexTower(allFaces, s.x, s.y, s.z - 25, baseRadius, baseHeight, '#1e293b', isHovered, cx, cy);
-
-        // 2. Specific 3D Polyhedral Model per Seat
-        if (s.modelType === 'nexus') {
-          // Central Planner: Rotating 3D Stellated Dual Octahedron + Gyro Rings
-          build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 18, time * 0.8, s.color, isHovered, cx, cy);
-          build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 10, -time * 1.2, '#ffffff', isHovered, cx, cy);
-        } else if (s.modelType === 'vault') {
-          // Builder 2 (Money): Brilliant 3D Diamond Crystal
-          build3DOctahedron(allFaces, s.x, s.y, s.z + 12 + bounce, 15, time * 1.1, s.color, isHovered, cx, cy);
-        } else if (s.modelType === 'server' || s.modelType === 'console') {
-          // Builder 1 & 3: Rotating 3D Solid Data Cubes
-          build3DCube(allFaces, s.x, s.y, s.z + 12 + bounce, 20, time + idx, s.color, isHovered, cx, cy);
-        } else if (s.modelType === 'portal') {
-          // Reviewer: Twin 3D Pillars & Floating Octahedron Core
-          build3DCube(allFaces, s.x - 12, s.y, s.z + 6, 8, 0, '#475569', isHovered, cx, cy);
-          build3DCube(allFaces, s.x + 12, s.y, s.z + 6, 8, 0, '#475569', isHovered, cx, cy);
-          build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 12, time * 1.4, s.color, isHovered, cx, cy);
-        } else if (s.modelType === 'crucible') {
-          // Adversarial Tester: Spiked Chaos Reactor (Dual Cross-rotating Octahedra)
-          build3DOctahedron(allFaces, s.x, s.y, s.z + 12 + bounce, 16, time * 2.0, s.color, isHovered, cx, cy);
-          build3DCube(allFaces, s.x, s.y, s.z + 12 + bounce, 12, -time * 1.5, '#ef4444', isHovered, cx, cy);
+        // Elegant Dark Parquet Hardwood Floor Grid
+        factoryCtx.strokeStyle = 'rgba(78, 52, 46, 0.4)';
+        factoryCtx.lineWidth = 1.2;
+        const floorSpan = 300;
+        const floorStep = 30;
+        for (let gx = -floorSpan; gx <= floorSpan; gx += floorStep) {
+          const p1 = transformPoint(gx, -floorSpan, 0, cx, cy);
+          const p2 = transformPoint(gx, floorSpan, 0, cx, cy);
+          factoryCtx.beginPath();
+          factoryCtx.moveTo(p1.x, p1.y);
+          factoryCtx.lineTo(p2.x, p2.y);
+          factoryCtx.stroke();
         }
-      });
+        for (let gy = -floorSpan; gy <= floorSpan; gy += floorStep) {
+          const p1 = transformPoint(-floorSpan, gy, 0, cx, cy);
+          const p2 = transformPoint(floorSpan, gy, 0, cx, cy);
+          factoryCtx.beginPath();
+          factoryCtx.moveTo(p1.x, p1.y);
+          factoryCtx.lineTo(p2.x, p2.y);
+          factoryCtx.stroke();
+        }
+
+        // Combinable Guide Bridge between Table 1 and Table 2 (Official Zum Anker Combinable Pair)
+        const t1 = REAL_TABLES[0];
+        const t2 = REAL_TABLES[1];
+        const pt1 = transformPoint(t1.x + t1.width / 2, t1.y, 0, cx, cy);
+        const pt2 = transformPoint(t2.x - t2.width / 2, t2.y, 0, cx, cy);
+        factoryCtx.setLineDash([5, 5]);
+        factoryCtx.strokeStyle = '#d97706';
+        factoryCtx.lineWidth = 2.5;
+        factoryCtx.beginPath();
+        factoryCtx.moveTo(pt1.x, pt1.y);
+        factoryCtx.lineTo(pt2.x, pt2.y);
+        factoryCtx.stroke();
+        factoryCtx.setLineDash([]);
+
+        // Build all real 3D tables and chairs
+        for (const t of REAL_TABLES) {
+          const isOccupied = isTableOccupied(t.id);
+          const isHovered = activeHoveredTable === t;
+          build3DRealDiningTable(allFaces, t, isOccupied, isHovered, cx, cy, time);
+        }
+
+      } else {
+        // ==========================================
+        // 2. RENDER 3D DARK FACTORY AI CONTROL ROOM
+        // ==========================================
+
+        // Cyberspace floor grid
+        factoryCtx.strokeStyle = 'rgba(51, 65, 85, 0.28)';
+        factoryCtx.lineWidth = 1;
+        const gridSize = 320;
+        const step = 40;
+        for (let gx = -gridSize; gx <= gridSize; gx += step) {
+          const p1 = transformPoint(gx, -gridSize, -25, cx, cy);
+          const p2 = transformPoint(gx, gridSize, -25, cx, cy);
+          factoryCtx.beginPath();
+          factoryCtx.moveTo(p1.x, p1.y);
+          factoryCtx.lineTo(p2.x, p2.y);
+          factoryCtx.stroke();
+        }
+        for (let gy = -gridSize; gy <= gridSize; gy += step) {
+          const p1 = transformPoint(-gridSize, gy, -25, cx, cy);
+          const p2 = transformPoint(gridSize, gy, -25, cx, cy);
+          factoryCtx.beginPath();
+          factoryCtx.moveTo(p1.x, p1.y);
+          factoryCtx.lineTo(p2.x, p2.y);
+          factoryCtx.stroke();
+        }
+
+        // Connecting energy beams between AI seats
+        const connections = [
+          [0, 1], [0, 2], [0, 3],
+          [1, 4], [2, 4], [3, 4],
+          [4, 5], [5, 0]
+        ];
+        for (const [fromIdx, toIdx] of connections) {
+          const s1 = FACTORY_SEATS[fromIdx];
+          const s2 = FACTORY_SEATS[toIdx];
+          const p1 = transformPoint(s1.x, s1.y, s1.z + 10, cx, cy);
+          const p2 = transformPoint(s2.x, s2.y, s2.z + 10, cx, cy);
+          factoryCtx.strokeStyle = 'rgba(147, 197, 253, 0.25)';
+          factoryCtx.lineWidth = 2;
+          factoryCtx.beginPath();
+          factoryCtx.moveTo(p1.x, p1.y);
+          factoryCtx.lineTo(p2.x, p2.y);
+          factoryCtx.stroke();
+        }
+
+        // Flowing 3D data packets
+        for (const pkt of factoryPackets) {
+          pkt.progress += 0.006;
+          if (pkt.progress > 1) pkt.progress = 0;
+          const s1 = FACTORY_SEATS[pkt.from];
+          const s2 = FACTORY_SEATS[pkt.to];
+          const px = s1.x + (s2.x - s1.x) * pkt.progress;
+          const py = s1.y + (s2.y - s1.y) * pkt.progress;
+          const pz = s1.z + (s2.z - s1.z) * pkt.progress + 10;
+          const pt = transformPoint(px, py, pz, cx, cy);
+
+          factoryCtx.fillStyle = '#60a5fa';
+          factoryCtx.shadowColor = '#60a5fa';
+          factoryCtx.shadowBlur = 10;
+          factoryCtx.beginPath();
+          factoryCtx.arc(pt.x, pt.y, 4.5 * cameraZoom, 0, Math.PI * 2);
+          factoryCtx.fill();
+          factoryCtx.shadowBlur = 0;
+        }
+
+        // AI Seat Models
+        FACTORY_SEATS.forEach((s, idx) => {
+          const isHovered = activeHoveredNode === s;
+          const bounce = Math.sin(time * 1.5 + idx) * 4;
+          const baseRadius = (s.id === 'planner' ? 36 : 28);
+          const baseHeight = (s.id === 'planner' ? 24 : 18);
+          build3DHexTower(allFaces, s.x, s.y, s.z - 25, baseRadius, baseHeight, '#1e293b', isHovered, cx, cy);
+
+          if (s.modelType === 'nexus') {
+            build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 18, time * 0.8, s.color, isHovered, cx, cy);
+            build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 10, -time * 1.2, '#ffffff', isHovered, cx, cy);
+          } else if (s.modelType === 'vault') {
+            build3DOctahedron(allFaces, s.x, s.y, s.z + 12 + bounce, 15, time * 1.1, s.color, isHovered, cx, cy);
+          } else if (s.modelType === 'server' || s.modelType === 'console') {
+            build3DCube(allFaces, s.x, s.y, s.z + 12 + bounce, 20, time + idx, s.color, isHovered, cx, cy);
+          } else if (s.modelType === 'portal') {
+            build3DCube(allFaces, s.x - 12, s.y, s.z + 6, 8, 0, '#475569', isHovered, cx, cy);
+            build3DCube(allFaces, s.x + 12, s.y, s.z + 6, 8, 0, '#475569', isHovered, cx, cy);
+            build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 12, time * 1.4, s.color, isHovered, cx, cy);
+          } else if (s.modelType === 'crucible') {
+            build3DOctahedron(allFaces, s.x, s.y, s.z + 12 + bounce, 16, time * 2.0, s.color, isHovered, cx, cy);
+            build3DCube(allFaces, s.x, s.y, s.z + 12 + bounce, 12, -time * 1.5, '#ef4444', isHovered, cx, cy);
+          }
+        });
+      }
 
       // Painter's Algorithm: Sort all 3D faces from back to front
       allFaces.sort((a, b) => b.depth - a.depth);
@@ -2414,25 +2766,60 @@
 
         // Shaded face lighting
         factoryCtx.fillStyle = f.color;
-        factoryCtx.globalAlpha = Math.min(1.0, 0.4 + f.brightness * 0.6);
+        factoryCtx.globalAlpha = Math.min(1.0, 0.35 + f.brightness * 0.65);
         factoryCtx.fill();
 
-        // Wireframe edges with neon accent
-        factoryCtx.globalAlpha = f.isHovered ? 1.0 : 0.7;
-        factoryCtx.strokeStyle = f.isHovered ? '#ffffff' : f.color;
-        factoryCtx.lineWidth = f.isHovered ? 2 : 1;
+        // Subtle edge definition
+        factoryCtx.globalAlpha = f.isHovered ? 1.0 : 0.6;
+        factoryCtx.strokeStyle = f.isHovered ? '#fbbf24' : f.color;
+        factoryCtx.lineWidth = f.isHovered ? 2.2 : 0.9;
         factoryCtx.stroke();
         factoryCtx.globalAlpha = 1.0;
       }
 
-      // Draw floating 3D holographic labels
-      FACTORY_SEATS.forEach(s => {
-        const pt = transformPoint(s.x, s.y, s.z + 32, cx, cy);
-        factoryCtx.fillStyle = '#f8fafc';
-        factoryCtx.font = '600 11px -apple-system, sans-serif';
+      // Draw Floating 3D Holographic Badges & Labels
+      if (current3DMode === 'dining') {
+        // Floating badges above each real dining table
+        REAL_TABLES.forEach(t => {
+          const pt = transformPoint(t.x, t.y, t.height + 28, cx, cy);
+          const occupied = isTableOccupied(t.id);
+          const resInfo = getTableReservationInfo(t.id);
+
+          // Table Number Badge
+          factoryCtx.fillStyle = '#ffffff';
+          factoryCtx.font = '700 13px -apple-system, sans-serif';
+          factoryCtx.textAlign = 'center';
+          factoryCtx.fillText(`${t.label} (Cap ${t.capacity})`, pt.x, pt.y - 12);
+
+          // Status Pill Badge
+          if (occupied && resInfo) {
+            factoryCtx.fillStyle = '#ef4444';
+            factoryCtx.font = '600 11px -apple-system, sans-serif';
+            factoryCtx.fillText(`🔴 Reserved: ${resInfo.persona || resInfo.guest_name || 'Guest'}`, pt.x, pt.y + 3);
+          } else {
+            factoryCtx.fillStyle = '#10b981';
+            factoryCtx.font = '600 11px -apple-system, sans-serif';
+            factoryCtx.fillText('🟢 Available', pt.x, pt.y + 3);
+          }
+        });
+
+        // Combinable Pair Floating Label
+        const midPoint = transformPoint((t1.x + t2.x) / 2, t1.y, 22, cx, cy);
+        factoryCtx.fillStyle = '#fbbf24';
+        factoryCtx.font = '600 10px -apple-system, sans-serif';
         factoryCtx.textAlign = 'center';
-        factoryCtx.fillText(s.name, pt.x, pt.y);
-      });
+        factoryCtx.fillText('🔗 Table 1 + Table 2 declared combination (Cap 6)', midPoint.x, midPoint.y);
+
+      } else {
+        // Labels above AI seat nodes
+        FACTORY_SEATS.forEach(s => {
+          const pt = transformPoint(s.x, s.y, s.z + 32, cx, cy);
+          factoryCtx.fillStyle = '#f8fafc';
+          factoryCtx.font = '600 11px -apple-system, sans-serif';
+          factoryCtx.textAlign = 'center';
+          factoryCtx.fillText(s.name, pt.x, pt.y);
+        });
+      }
 
       factoryAnimId = requestAnimationFrame(animateFactory);
     }
