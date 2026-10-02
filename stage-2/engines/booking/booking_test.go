@@ -126,8 +126,8 @@ func TestBookingCreationAndCollision(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expected booking on t_3 to succeed, got %v", err)
 	}
-	if res4.TableID != "t_3" {
-		t.Errorf("expected t_3, got %s", res4.TableID)
+	if res4.TableID == nil || *res4.TableID != "t_3" {
+		t.Errorf("expected t_3, got %v", res4.TableID)
 	}
 }
 
@@ -189,7 +189,7 @@ func TestAtomicMoves(t *testing.T) {
 	if err != nil {
 		t.Fatalf("move failed: %v", err)
 	}
-	if len(results) != 1 || results[0].TableID != "t_3" {
+	if len(results) != 1 || results[0].TableID == nil || *results[0].TableID != "t_3" {
 		t.Fatalf("expected moved table t_3, got %v", results)
 	}
 
