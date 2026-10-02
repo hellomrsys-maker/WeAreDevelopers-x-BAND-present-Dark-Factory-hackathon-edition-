@@ -1,15 +1,15 @@
-# Stage 1 Run Guide
+# Stage 4 Run Guide
 
 ## Build
 
 ```sh
-docker build -t tablekeeper:stage-1 .
+docker build -t tablekeeper:stage-4 .
 ```
 
 ## Run
 
 ```sh
-docker run -d --rm -p 8080:8080 -e PORT=8080 tablekeeper:stage-1
+docker run -d --rm -p 8080:8080 -e PORT=8080 tablekeeper:stage-4
 ```
 
 ## Health Check
