@@ -1999,8 +1999,9 @@
     // ==========================================
     let factoryCanvas, factoryCtx;
     let factoryAnimId = null;
-    let factoryRotation = 0.785; // 45 degrees in radians
-    let factoryPitch = 0.52; // 30 degrees in radians
+    let factoryRotation = 0.785; // Yaw
+    let factoryPitch = 0.58;     // Pitch
+    let cameraZoom = 1.0;
     let isDragging = false;
     let lastMouseX = 0, lastMouseY = 0;
     let activeHoveredNode = null;
@@ -2012,8 +2013,9 @@
         role: "Nexus Hub / Coordinator",
         harness: "Claude Code",
         model: "Claude 3.5 Sonnet",
-        x: 0, y: 0, z: 40,
+        x: 0, y: 0, z: 20,
         color: "#c084fc",
+        modelType: "nexus",
         desc: "Coordinates work, defines contracts in contracts/ folder before builders start, routes handoffs, verifies regression gate.",
         status: "Gating releases & monitoring invariant checks"
       },
@@ -2023,8 +2025,9 @@
         role: "Scheduler & Booking Clerk",
         harness: "Claude Code",
         model: "Claude 3.5 Sonnet",
-        x: -160, y: -100, z: 0,
+        x: -170, y: -110, z: 0,
         color: "#60a5fa",
+        modelType: "server",
         desc: "Implements Calendar and Booking engines. Manages slots, operating hours, and non-transitive table combinations.",
         status: "Active in engines/calendar & engines/booking"
       },
@@ -2034,8 +2037,9 @@
         role: "Back-Office & Ledger",
         harness: "Claude Code",
         model: "Claude 3.5 Sonnet",
-        x: -160, y: 100, z: 0,
+        x: -170, y: 110, z: 0,
         color: "#34d399",
+        modelType: "vault",
         desc: "Implements Store, Audit, Guard, API, and the Double-Entry Money & Payments Engine with int64 minor units.",
         status: "Maintaining invariant: debits + credits == 0"
       },
@@ -2045,8 +2049,9 @@
         role: "Front-of-House Studio",
         harness: "Claude Code",
         model: "Claude 3.5 Sonnet",
-        x: 160, y: -100, z: 0,
+        x: 170, y: -110, z: 0,
         color: "#fbbf24",
+        modelType: "console",
         desc: "Builds single-page embedded web UI, guest booking screens, staff desk, and out-of-order search resolution.",
         status: "Serving responsive HTML5/CSS3 interface"
       },
@@ -2056,8 +2061,9 @@
         role: "Verification Officer",
         harness: "Claude Code",
         model: "Claude 3.5 Sonnet",
-        x: 160, y: 100, z: 0,
+        x: 170, y: 110, z: 0,
         color: "#fb923c",
+        modelType: "portal",
         desc: "Compares each handoff against the specification. Rejects code without test logs. Audits regression suites.",
         status: "Verified 100% of stage test suites"
       },
@@ -2067,14 +2073,14 @@
         role: "Quality Inspector",
         harness: "Claude Code",
         model: "Claude 3.5 Sonnet",
-        x: 0, y: 190, z: -10,
+        x: 0, y: 200, z: -10,
         color: "#f87171",
+        modelType: "crucible",
         desc: "Fuzzes boundary values, runs 50-client concurrency races, tests DST transitions, and verifies offline container starts.",
         status: "Stress testing concurrency & thread safety"
       }
     ];
 
-    // Data packets flowing between nodes
     let factoryPackets = [
       { from: 0, to: 1, progress: 0.1, label: "contract: Calendar" },
       { from: 0, to: 2, progress: 0.4, label: "contract: Money" },
@@ -2088,12 +2094,10 @@
       if (!factoryCanvas) return;
       factoryCtx = factoryCanvas.getContext('2d');
 
-      // Adjust for device pixel ratio
       const rect = factoryCanvas.parentElement.getBoundingClientRect();
       factoryCanvas.width = rect.width;
       factoryCanvas.height = rect.height;
 
-      // Mouse drag controls
       factoryCanvas.onmousedown = (e) => {
         isDragging = true;
         lastMouseX = e.clientX;
@@ -2107,10 +2111,15 @@
         }
         const dx = e.clientX - lastMouseX;
         const dy = e.clientY - lastMouseY;
-        factoryRotation += dx * 0.008;
-        factoryPitch = Math.max(0.2, Math.min(1.1, factoryPitch + dy * 0.008));
+        factoryRotation += dx * 0.007;
+        factoryPitch = Math.max(0.15, Math.min(1.2, factoryPitch + dy * 0.007));
         lastMouseX = e.clientX;
         lastMouseY = e.clientY;
+      };
+
+      factoryCanvas.onwheel = (e) => {
+        e.preventDefault();
+        cameraZoom = Math.max(0.5, Math.min(2.2, cameraZoom - e.deltaY * 0.001));
       };
 
       factoryCanvas.onclick = (e) => {
@@ -2126,22 +2135,32 @@
 
     function resetFactoryCamera() {
       factoryRotation = 0.785;
-      factoryPitch = 0.52;
+      factoryPitch = 0.58;
+      cameraZoom = 1.0;
     }
 
-    function project3D(x, y, z, cx, cy) {
-      // Rotation around Z axis
+    // 3D Camera Transformation & Perspective Math
+    function transformPoint(x, y, z, cx, cy) {
+      // Rotate around Z axis (Yaw)
       const cosR = Math.cos(factoryRotation);
       const sinR = Math.sin(factoryRotation);
-      const rx = x * cosR - y * sinR;
-      const ry = x * sinR + y * cosR;
+      const rx = (x * cosR - y * sinR) * cameraZoom;
+      const ry = (x * sinR + y * cosR) * cameraZoom;
+      const rz = z * cameraZoom;
 
-      // Pitch projection
+      // Rotate around X axis (Pitch)
       const cosP = Math.cos(factoryPitch);
       const sinP = Math.sin(factoryPitch);
-      const screenX = cx + rx;
-      const screenY = cy + ry * sinP - z * cosP;
-      return { x: screenX, y: screenY, depth: ry * cosP + z * sinP };
+      const py = ry * cosP - rz * sinP;
+      const pz = ry * sinP + rz * cosP;
+
+      // Perspective divide
+      const dist = 750;
+      const factor = dist / (dist + py);
+      const screenX = cx + rx * factor;
+      const screenY = cy - pz * factor;
+
+      return { x: screenX, y: screenY, depth: py, factor };
     }
 
     function checkNodeHover(e) {
@@ -2154,9 +2173,9 @@
 
       let found = null;
       for (const seat of FACTORY_SEATS) {
-        const p = project3D(seat.x, seat.y, seat.z, cx, cy);
+        const p = transformPoint(seat.x, seat.y, seat.z, cx, cy);
         const dist = Math.hypot(mx - p.x, my - p.y);
-        if (dist < 28) {
+        if (dist < 32 * cameraZoom) {
           found = seat;
           break;
         }
@@ -2175,38 +2194,134 @@
       document.getElementById('dossier-status').textContent = seat.status;
     }
 
+    // Helper: generate 3D faces with normals & lighting
+    function add3DFace(faces, v0, v1, v2, v3, baseColor, isHovered, cx, cy) {
+      const p0 = transformPoint(v0[0], v0[1], v0[2], cx, cy);
+      const p1 = transformPoint(v1[0], v1[1], v1[2], cx, cy);
+      const p2 = transformPoint(v2[0], v2[1], v2[2], cx, cy);
+      let p3 = null;
+      if (v3) p3 = transformPoint(v3[0], v3[1], v3[2], cx, cy);
+
+      // Backface culling via 2D cross product in screen space
+      const cross = (p1.x - p0.x) * (p2.y - p0.y) - (p1.y - p0.y) * (p2.x - p0.x);
+      if (cross <= 0) return; // Backface culled
+
+      // Calculate 3D normal for Lambertian lighting
+      const ax = v1[0] - v0[0], ay = v1[1] - v0[1], az = v1[2] - v0[2];
+      const bx = v2[0] - v0[0], by = v2[1] - v0[1], bz = v2[2] - v0[2];
+      let nx = ay * bz - az * by;
+      let ny = az * bx - ax * bz;
+      let nz = ax * by - ay * bx;
+      const len = Math.hypot(nx, ny, nz) || 1;
+      nx /= len; ny /= len; nz /= len;
+
+      // Light vector from top-left front
+      const lx = -0.5, ly = -0.6, lz = 0.63;
+      const dot = Math.max(0.2, (nx * lx + ny * ly + nz * lz));
+
+      const avgDepth = v3 ? (p0.depth + p1.depth + p2.depth + p3.depth) / 4 : (p0.depth + p1.depth + p2.depth) / 3;
+
+      faces.push({
+        pts: v3 ? [p0, p1, p2, p3] : [p0, p1, p2],
+        color: baseColor,
+        brightness: dot,
+        depth: avgDepth,
+        isHovered
+      });
+    }
+
+    // 3D Hexagonal Tower Pedestal Builder
+    function build3DHexTower(faces, wx, wy, wz, radius, height, color, isHovered, cx, cy) {
+      const sides = 6;
+      const bot = [], top = [];
+      for (let i = 0; i < sides; i++) {
+        const ang = (i * Math.PI * 2) / sides;
+        bot.push([wx + radius * Math.cos(ang), wy + radius * Math.sin(ang), wz]);
+        top.push([wx + radius * Math.cos(ang), wy + radius * Math.sin(ang), wz + height]);
+      }
+
+      // 6 side panels
+      for (let i = 0; i < sides; i++) {
+        const next = (i + 1) % sides;
+        add3DFace(faces, bot[i], bot[next], top[next], top[i], color, isHovered, cx, cy);
+      }
+      // Top hexagon (split into triangles)
+      for (let i = 1; i < sides - 1; i++) {
+        add3DFace(faces, top[0], top[i], top[i + 1], null, color, isHovered, cx, cy);
+      }
+    }
+
+    // 3D Rotating Octahedron Crystal
+    function build3DOctahedron(faces, wx, wy, wz, size, rotZ, color, isHovered, cx, cy) {
+      const tipTop = [wx, wy, wz + size * 1.3];
+      const tipBot = [wx, wy, wz - size * 1.3];
+      const mid = [];
+      for (let i = 0; i < 4; i++) {
+        const a = rotZ + (i * Math.PI) / 2;
+        mid.push([wx + size * Math.cos(a), wy + size * Math.sin(a), wz]);
+      }
+      for (let i = 0; i < 4; i++) {
+        const next = (i + 1) % 4;
+        add3DFace(faces, tipTop, mid[i], mid[next], null, color, isHovered, cx, cy);
+        add3DFace(faces, tipBot, mid[next], mid[i], null, color, isHovered, cx, cy);
+      }
+    }
+
+    // 3D Rotating Cuboctahedron (Server / Block)
+    function build3DCube(faces, wx, wy, wz, size, rotZ, color, isHovered, cx, cy) {
+      const s = size / 2;
+      const local = [
+        [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
+        [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s]
+      ];
+      const cosA = Math.cos(rotZ), sinA = Math.sin(rotZ);
+      const v = local.map(([x, y, z]) => [
+        wx + x * cosA - y * sinA,
+        wy + x * sinA + y * cosA,
+        wz + z
+      ]);
+
+      add3DFace(faces, v[0], v[1], v[2], v[3], color, isHovered, cx, cy); // Bottom
+      add3DFace(faces, v[4], v[7], v[6], v[5], color, isHovered, cx, cy); // Top
+      add3DFace(faces, v[0], v[4], v[5], v[1], color, isHovered, cx, cy); // Front
+      add3DFace(faces, v[2], v[6], v[7], v[3], color, isHovered, cx, cy); // Back
+      add3DFace(faces, v[1], v[5], v[6], v[2], color, isHovered, cx, cy); // Right
+      add3DFace(faces, v[3], v[7], v[4], v[0], color, isHovered, cx, cy); // Left
+    }
+
+    // Main 3D Animation Loop
     function animateFactory() {
       if (!factoryCtx || !factoryCanvas) return;
       const w = factoryCanvas.width;
       const h = factoryCanvas.height;
       const cx = w / 2;
-      const cy = h / 2 + 30;
+      const cy = h / 2 + 20;
 
       factoryCtx.clearRect(0, 0, w, h);
 
-      // Draw subtle grid floor
-      factoryCtx.strokeStyle = 'rgba(51, 65, 85, 0.25)';
+      // Draw 3D cyberspace grid floor
+      factoryCtx.strokeStyle = 'rgba(51, 65, 85, 0.28)';
       factoryCtx.lineWidth = 1;
-      const gridSize = 280;
+      const gridSize = 320;
       const step = 40;
       for (let gx = -gridSize; gx <= gridSize; gx += step) {
-        const p1 = project3D(gx, -gridSize, -20, cx, cy);
-        const p2 = project3D(gx, gridSize, -20, cx, cy);
+        const p1 = transformPoint(gx, -gridSize, -25, cx, cy);
+        const p2 = transformPoint(gx, gridSize, -25, cx, cy);
         factoryCtx.beginPath();
         factoryCtx.moveTo(p1.x, p1.y);
         factoryCtx.lineTo(p2.x, p2.y);
         factoryCtx.stroke();
       }
       for (let gy = -gridSize; gy <= gridSize; gy += step) {
-        const p1 = project3D(-gridSize, gy, -20, cx, cy);
-        const p2 = project3D(gridSize, gy, -20, cx, cy);
+        const p1 = transformPoint(-gridSize, gy, -25, cx, cy);
+        const p2 = transformPoint(gridSize, gy, -25, cx, cy);
         factoryCtx.beginPath();
         factoryCtx.moveTo(p1.x, p1.y);
         factoryCtx.lineTo(p2.x, p2.y);
         factoryCtx.stroke();
       }
 
-      // Draw connecting energy beams between seats
+      // Connecting energy beams between seats
       const connections = [
         [0, 1], [0, 2], [0, 3], // Planner to Builders
         [1, 4], [2, 4], [3, 4], // Builders to Reviewer
@@ -2214,12 +2329,12 @@
       ];
 
       for (const [fromIdx, toIdx] of connections) {
-        const fromSeat = FACTORY_SEATS[fromIdx];
-        const toSeat = FACTORY_SEATS[toIdx];
-        const p1 = project3D(fromSeat.x, fromSeat.y, fromSeat.z, cx, cy);
-        const p2 = project3D(toSeat.x, toSeat.y, toSeat.z, cx, cy);
+        const s1 = FACTORY_SEATS[fromIdx];
+        const s2 = FACTORY_SEATS[toIdx];
+        const p1 = transformPoint(s1.x, s1.y, s1.z + 10, cx, cy);
+        const p2 = transformPoint(s2.x, s2.y, s2.z + 10, cx, cy);
 
-        factoryCtx.strokeStyle = 'rgba(147, 197, 253, 0.18)';
+        factoryCtx.strokeStyle = 'rgba(147, 197, 253, 0.25)';
         factoryCtx.lineWidth = 2;
         factoryCtx.beginPath();
         factoryCtx.moveTo(p1.x, p1.y);
@@ -2227,68 +2342,97 @@
         factoryCtx.stroke();
       }
 
-      // Update & draw glowing data packets along the beams
+      // Animate flowing 3D glowing data packets
       for (const pkt of factoryPackets) {
-        pkt.progress += 0.007;
+        pkt.progress += 0.006;
         if (pkt.progress > 1) pkt.progress = 0;
 
         const s1 = FACTORY_SEATS[pkt.from];
         const s2 = FACTORY_SEATS[pkt.to];
         const px = s1.x + (s2.x - s1.x) * pkt.progress;
         const py = s1.y + (s2.y - s1.y) * pkt.progress;
-        const pz = s1.z + (s2.z - s1.z) * pkt.progress;
+        const pz = s1.z + (s2.z - s1.z) * pkt.progress + 10;
 
-        const pt = project3D(px, py, pz, cx, cy);
+        const pt = transformPoint(px, py, pz, cx, cy);
 
-        // Glowing packet circle
         factoryCtx.fillStyle = '#60a5fa';
         factoryCtx.shadowColor = '#60a5fa';
         factoryCtx.shadowBlur = 10;
         factoryCtx.beginPath();
-        factoryCtx.arc(pt.x, pt.y, 4, 0, Math.PI * 2);
+        factoryCtx.arc(pt.x, pt.y, 4.5 * cameraZoom, 0, Math.PI * 2);
         factoryCtx.fill();
         factoryCtx.shadowBlur = 0;
       }
 
-      // Draw seats sorted by 3D depth
-      const sortedSeats = [...FACTORY_SEATS].map((s, idx) => {
-        const p = project3D(s.x, s.y, s.z, cx, cy);
-        return { seat: s, proj: p, origIdx: idx };
-      }).sort((a, b) => a.proj.depth - b.proj.depth);
+      // Construct all 3D solid model faces
+      const time = Date.now() * 0.002;
+      const allFaces = [];
 
-      const time = Date.now() * 0.003;
-
-      for (const item of sortedSeats) {
-        const s = item.seat;
-        const p = item.proj;
+      FACTORY_SEATS.forEach((s, idx) => {
         const isHovered = activeHoveredNode === s;
+        const bounce = Math.sin(time * 1.5 + idx) * 4;
 
-        // Base pedestal
-        factoryCtx.fillStyle = 'rgba(30, 41, 59, 0.85)';
-        factoryCtx.strokeStyle = s.color;
-        factoryCtx.lineWidth = isHovered ? 3 : 1.5;
+        // 1. Solid Hexagonal Prism Tower Base (3D)
+        const baseRadius = (s.id === 'planner' ? 36 : 28);
+        const baseHeight = (s.id === 'planner' ? 24 : 18);
+        build3DHexTower(allFaces, s.x, s.y, s.z - 25, baseRadius, baseHeight, '#1e293b', isHovered, cx, cy);
+
+        // 2. Specific 3D Polyhedral Model per Seat
+        if (s.modelType === 'nexus') {
+          // Central Planner: Rotating 3D Stellated Dual Octahedron + Gyro Rings
+          build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 18, time * 0.8, s.color, isHovered, cx, cy);
+          build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 10, -time * 1.2, '#ffffff', isHovered, cx, cy);
+        } else if (s.modelType === 'vault') {
+          // Builder 2 (Money): Brilliant 3D Diamond Crystal
+          build3DOctahedron(allFaces, s.x, s.y, s.z + 12 + bounce, 15, time * 1.1, s.color, isHovered, cx, cy);
+        } else if (s.modelType === 'server' || s.modelType === 'console') {
+          // Builder 1 & 3: Rotating 3D Solid Data Cubes
+          build3DCube(allFaces, s.x, s.y, s.z + 12 + bounce, 20, time + idx, s.color, isHovered, cx, cy);
+        } else if (s.modelType === 'portal') {
+          // Reviewer: Twin 3D Pillars & Floating Octahedron Core
+          build3DCube(allFaces, s.x - 12, s.y, s.z + 6, 8, 0, '#475569', isHovered, cx, cy);
+          build3DCube(allFaces, s.x + 12, s.y, s.z + 6, 8, 0, '#475569', isHovered, cx, cy);
+          build3DOctahedron(allFaces, s.x, s.y, s.z + 14 + bounce, 12, time * 1.4, s.color, isHovered, cx, cy);
+        } else if (s.modelType === 'crucible') {
+          // Adversarial Tester: Spiked Chaos Reactor (Dual Cross-rotating Octahedra)
+          build3DOctahedron(allFaces, s.x, s.y, s.z + 12 + bounce, 16, time * 2.0, s.color, isHovered, cx, cy);
+          build3DCube(allFaces, s.x, s.y, s.z + 12 + bounce, 12, -time * 1.5, '#ef4444', isHovered, cx, cy);
+        }
+      });
+
+      // Painter's Algorithm: Sort all 3D faces from back to front
+      allFaces.sort((a, b) => b.depth - a.depth);
+
+      // Render all 3D shaded polygon faces
+      for (const f of allFaces) {
         factoryCtx.beginPath();
-        factoryCtx.ellipse(p.x, p.y + 12, 22, 10, 0, 0, Math.PI * 2);
+        factoryCtx.moveTo(f.pts[0].x, f.pts[0].y);
+        for (let i = 1; i < f.pts.length; i++) {
+          factoryCtx.lineTo(f.pts[i].x, f.pts[i].y);
+        }
+        factoryCtx.closePath();
+
+        // Shaded face lighting
+        factoryCtx.fillStyle = f.color;
+        factoryCtx.globalAlpha = Math.min(1.0, 0.4 + f.brightness * 0.6);
         factoryCtx.fill();
+
+        // Wireframe edges with neon accent
+        factoryCtx.globalAlpha = f.isHovered ? 1.0 : 0.7;
+        factoryCtx.strokeStyle = f.isHovered ? '#ffffff' : f.color;
+        factoryCtx.lineWidth = f.isHovered ? 2 : 1;
         factoryCtx.stroke();
+        factoryCtx.globalAlpha = 1.0;
+      }
 
-        // Glowing node orb with floating bounce
-        const bounce = Math.sin(time + item.origIdx) * 3;
-        factoryCtx.fillStyle = s.color;
-        factoryCtx.shadowColor = s.color;
-        factoryCtx.shadowBlur = isHovered ? 20 : 12;
-
-        factoryCtx.beginPath();
-        factoryCtx.arc(p.x, p.y - 4 + bounce, isHovered ? 14 : 11, 0, Math.PI * 2);
-        factoryCtx.fill();
-        factoryCtx.shadowBlur = 0;
-
-        // Seat label tag
+      // Draw floating 3D holographic labels
+      FACTORY_SEATS.forEach(s => {
+        const pt = transformPoint(s.x, s.y, s.z + 32, cx, cy);
         factoryCtx.fillStyle = '#f8fafc';
         factoryCtx.font = '600 11px -apple-system, sans-serif';
         factoryCtx.textAlign = 'center';
-        factoryCtx.fillText(s.name, p.x, p.y - 20 + bounce);
-      }
+        factoryCtx.fillText(s.name, pt.x, pt.y);
+      });
 
       factoryAnimId = requestAnimationFrame(animateFactory);
     }
