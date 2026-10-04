@@ -103,6 +103,18 @@ func (r *Router) setupRoutes() {
 		r.testH.Import(w, req)
 	})
 
+	r.mux.HandleFunc("/control/seed-ten", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		if err := r.store.SeedDefaultRestaurants(req.Context()); err != nil {
+			WriteError(w, http.StatusInternalServerError, "internal_error", err.Error())
+			return
+		}
+		WriteJSON(w, http.StatusOK, map[string]interface{}{"status": "ok", "seeded": 10})
+	})
+
 	// Auth endpoints
 	r.mux.HandleFunc("/auth/signup", func(w http.ResponseWriter, req *http.Request) {
 		if req.Method != http.MethodPost {

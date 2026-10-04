@@ -1163,6 +1163,656 @@
       box-shadow: 0 8px 24px rgba(218, 55, 67, 0.6) !important;
     }
 
+  
+    /* --- OPENTABLE REPLICA DESIGN SYSTEM (SCREENSHOTS 1, 2, 3) --- */
+
+    /* Screenshot 1: Metro & Region Selector Modal */
+    .ot-location-trigger-wrap {
+      position: relative;
+    }
+    .ot-location-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: var(--ot-card-elevated);
+      border: 1px solid var(--ot-border);
+      color: #ffffff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .ot-location-chip:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #64748b;
+    }
+    .ot-metro-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 590px;
+      background: #ffffff;
+      color: #1e293b;
+      border-radius: 12px;
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.12);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: inherit;
+    }
+    .ot-metro-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 380px;
+      max-height: 480px;
+    }
+    .ot-metro-col {
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+      background: #f8fafc;
+      padding: 0.75rem 0;
+    }
+    .ot-region-col {
+      overflow-y: auto;
+      background: #ffffff;
+      padding: 0.75rem 0;
+    }
+    .ot-col-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      padding: 0.5rem 1.25rem;
+    }
+    .ot-metro-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.9rem;
+      color: #334155;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .ot-metro-item:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    .ot-metro-item.active {
+      background: #e0f2fe;
+      color: #0284c7;
+      font-weight: 700;
+      border-left: 3px solid #0284c7;
+    }
+    .ot-region-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.9rem;
+      color: #334155;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .ot-region-item:hover {
+      background: #f8fafc;
+      color: #da3743;
+    }
+    .ot-region-item.selected {
+      background: #fff1f2;
+      color: #da3743;
+      font-weight: 700;
+    }
+    .ot-region-count {
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+    .ot-metro-footer {
+      border-top: 1px solid #e2e8f0;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      font-size: 0.85rem;
+    }
+    .ot-location-link {
+      color: #da3743;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+    }
+    .ot-location-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Screenshot 2: Top Search Bar & AI Prompt Chips */
+    .ot-hero-search-container {
+      margin-bottom: 2rem;
+    }
+    .ot-search-pill-wrapper {
+      background: #ffffff;
+      border-radius: 9999px;
+      padding: 6px;
+      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .ot-search-segment {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-right: 1px solid #e2e8f0;
+      color: #1e293b;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+    .ot-search-segment:hover {
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+    .ot-search-input-segment {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      color: #1e293b;
+    }
+    .ot-search-input-segment input {
+      border: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      font-size: 0.95rem !important;
+      color: #0f172a !important;
+      width: 100% !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    .ot-search-input-segment input::placeholder {
+      color: #64748b !important;
+    }
+    .btn-letsgo {
+      background: #da3743 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      font-size: 1rem !important;
+      border: none !important;
+      border-radius: 9999px !important;
+      padding: 12px 28px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      white-space: nowrap !important;
+      box-shadow: 0 4px 12px rgba(218, 55, 67, 0.35) !important;
+    }
+    .btn-letsgo:hover {
+      background: #b92b35 !important;
+      transform: translateY(-1px) !important;
+    }
+    .ot-location-nudge {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--ot-text-muted);
+      margin-top: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .ot-ai-section {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(245, 158, 11, 0.05) 50%, rgba(59, 130, 246, 0.05) 100%);
+      border: 1px solid var(--ot-border);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .ot-ai-intro {
+      max-width: 380px;
+    }
+    .ot-ai-heading {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+    .ot-ai-sub {
+      color: var(--ot-text-muted);
+      font-size: 0.95rem;
+    }
+    .ot-ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #f59e0b;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ot-ai-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+      max-width: 580px;
+    }
+    .ot-ai-chip {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      color: #f1f5f9;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+    }
+    .ot-ai-chip:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #da3743;
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    .ot-ai-chip-outline {
+      border: 1.5px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    /* Screenshot 3: OpenTable Icons Section & Carousel */
+    .ot-icons-section {
+      margin-bottom: 3.5rem;
+    }
+    .ot-icons-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+    .ot-icons-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+    .ot-icons-subtitle {
+      font-size: 0.95rem;
+      color: var(--ot-text-muted);
+      margin-top: 0.25rem;
+    }
+    .btn-explore-icons {
+      background: transparent;
+      border: 1px solid var(--ot-border);
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-explore-icons:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #94a3b8;
+    }
+    .ot-carousel-wrapper {
+      position: relative;
+    }
+    .ot-carousel {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+    }
+    .ot-carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .ot-carousel-btn {
+      position: absolute;
+      top: 42%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: all 0.2s ease;
+    }
+    .ot-carousel-btn:hover {
+      background: #da3743;
+      border-color: #da3743;
+    }
+    .ot-carousel-prev { left: -18px; }
+    .ot-carousel-next { right: -18px; }
+
+    .ot-icon-card {
+      min-width: 275px;
+      max-width: 275px;
+      background: var(--ot-card);
+      border: 1px solid var(--ot-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .ot-icon-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(218, 55, 67, 0.5);
+      box-shadow: 0 12px 28px -6px rgba(0,0,0,0.6);
+    }
+    .ot-icon-card.selected {
+      border: 2px solid #da3743;
+      box-shadow: 0 0 20px rgba(218, 55, 67, 0.35);
+    }
+    .ot-card-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 175px;
+      overflow: hidden;
+    }
+    .ot-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .ot-icon-card:hover .ot-card-img {
+      transform: scale(1.04);
+    }
+    .ot-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #ffffff;
+      color: #1e293b;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.725rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .ot-card-bookmark {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.15s ease;
+    }
+    .ot-card-bookmark:hover {
+      background: rgba(218, 55, 67, 0.9);
+    }
+    .ot-card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+    .ot-card-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ot-card-stars-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+    .ot-stars-red {
+      color: #da3743;
+      letter-spacing: 1px;
+    }
+    .ot-card-reviews {
+      color: var(--ot-text-muted);
+      font-size: 0.8rem;
+    }
+    .ot-card-meta {
+      font-size: 0.825rem;
+      color: #94a3b8;
+      margin-bottom: 0.6rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ot-card-booked {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #60a5fa;
+      margin-bottom: 0.85rem;
+    }
+    .ot-card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+    .btn-find-next {
+      background: rgba(218, 55, 67, 0.15);
+      color: #ff6b77;
+      border: 1px solid rgba(218, 55, 67, 0.4);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-find-next:hover {
+      background: #da3743;
+      color: #ffffff;
+    }
+    .btn-card-hotel-os {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.775rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .btn-card-hotel-os:hover {
+      background: rgba(16, 185, 129, 0.25);
+    }
+    .ot-sapphire-banner {
+      background: linear-gradient(90deg, #0b1a30 0%, #1e3a8a 50%, #0b1a30 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 12px;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.75rem;
+    }
+    .ot-sapphire-content {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .ot-sapphire-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .ot-sapphire-sub {
+      font-size: 0.85rem;
+      color: #93c5fd;
+    }
+
+    /* Real Hotel Operating System Console Modal */
+    .hotel-os-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .hotel-os-container {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 980px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+    }
+    .hotel-os-header {
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1e293b;
+    }
+    .hotel-os-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hotel-os-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .hotel-pms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .hotel-pms-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .hotel-pms-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hotel-table-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .hotel-table-cell {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .hotel-table-cell.vacant { border-left: 3px solid #10b981; }
+    .hotel-table-cell.seated { border-left: 3px solid #ef4444; }
+    .hotel-table-cell.reserved { border-left: 3px solid #f59e0b; }
+    .hotel-table-cell.checkout { border-left: 3px solid #a855f7; }
+
+    /* AI Recommendation Modal */
+    .ai-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .ai-modal-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
   </style>
 </head>
 <body>
@@ -1173,8 +1823,45 @@
         <span style="color:#ffffff; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em;">OpenTable</span>
         <span class="ot-badge-factory">Dark Factory</span>
       </a>
-      <div class="ot-location-chip">
-        <span>📍</span> <span>Bellevue, WA • Downtown</span>
+      <div class="ot-location-trigger-wrap">
+        <div class="ot-location-chip" id="ot-location-btn" onclick="toggleMetroModal(event)">
+          <span>📍</span> <span id="header-location-name">Seattle / Eastern Washington</span> <span style="font-size:0.75rem; color:#94a3b8;">▼</span>
+        </div>
+        <!-- Screenshot 1: Metro & Region Selector Modal -->
+        <div id="ot-metro-modal" class="ot-metro-dropdown" style="display:none;" onclick="event.stopPropagation()">
+          <div class="ot-metro-grid">
+            <!-- Metro Column -->
+            <div class="ot-metro-col">
+              <div class="ot-col-title">Metro</div>
+              <div class="ot-metro-item" onclick="selectMetro('New York City')"><span>New York City</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('New York State')"><span>New York State</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Philadelphia County')"><span>Philadelphia County</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Phoenix / Arizona')"><span>Phoenix / Arizona</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Portland / Oregon')"><span>Portland / Oregon</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('San Diego')"><span>San Diego</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('San Francisco Bay Area')"><span>San Francisco Bay Area</span> <span>›</span></div>
+              <div class="ot-metro-item active" onclick="selectMetro('Seattle / Eastern Washington')"><span>Seattle / Eastern Washington</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Washington, D.C. Area')"><span>Washington, D.C. Area</span> <span>›</span></div>
+            </div>
+            <!-- Region Column -->
+            <div class="ot-region-col">
+              <div class="ot-col-title">Region</div>
+              <div class="ot-region-item selected" onclick="selectRegion('All Seattle / Eastern Washington', 'All')"><span>All Seattle / Eastern Washington</span> <span class="ot-region-count">8934</span></div>
+              <div class="ot-region-item" onclick="selectRegion('Seattle', 'Seattle')"><span>Seattle</span> <span class="ot-region-count">3072</span></div>
+              <div class="ot-region-item" onclick="selectRegion('North of Seattle', 'North')"><span>North of Seattle</span> <span class="ot-region-count">784</span></div>
+              <div class="ot-region-item" onclick="selectRegion('South of Seattle', 'South')"><span>South of Seattle</span> <span class="ot-region-count">546</span></div>
+              <div class="ot-region-item" onclick="selectRegion('Eastside', 'Eastside')"><span>Eastside</span> <span class="ot-region-count">1089</span></div>
+              <div class="ot-region-item" onclick="selectRegion('Walla Walla', 'Walla Walla')"><span>Walla Walla</span> <span class="ot-region-count">137</span></div>
+              <div class="ot-region-item" onclick="selectRegion('Tacoma', 'Tacoma')"><span>Tacoma</span> <span class="ot-region-count">858</span></div>
+              <div class="ot-region-item" onclick="selectRegion('Whidbey Island', 'Whidbey')"><span>Whidbey Island</span> <span class="ot-region-count">45</span></div>
+              <div class="ot-region-item" onclick="selectRegion('Mt. Rainier', 'Rainier')"><span>Mt. Rainier</span> <span class="ot-region-count">5</span></div>
+            </div>
+          </div>
+          <div class="ot-metro-footer">
+            <span style="color:#0284c7; cursor:pointer; font-weight:600;" onclick="selectRegion('All Seattle / Eastern Washington', 'All')">Full list of Metros</span>
+            <span class="ot-location-link" onclick="getUserLocation()"><span style="color:#da3743; font-weight:bold;">↗</span> Get current location</span>
+          </div>
+        </div>
       </div>
       <nav class="nav-links">
         <a href="/" class="nav-link" onclick="navigateTo(event, '/')">Reserve</a>
@@ -1234,6 +1921,105 @@
   <main>
     <!-- View: Search and Availability Grid (/) -->
     <section id="view-search">
+
+      <!-- Screenshot 2: Top Reservation Search Bar -->
+      <div class="ot-hero-search-container">
+        <div class="ot-search-pill-wrapper">
+          <div class="ot-search-segment" onclick="document.getElementById('date-input').focus()">
+            <span>📅</span>
+            <span id="pill-date-display">Oct 4</span>
+            <span style="font-size:0.75rem; color:#64748b;">▼</span>
+          </div>
+          <div class="ot-search-segment" onclick="document.getElementById('party-size-input').focus()">
+            <span>🕒</span>
+            <span id="pill-time-display">7:00 PM</span>
+            <span style="font-size:0.75rem; color:#64748b;">▼</span>
+          </div>
+          <div class="ot-search-segment" onclick="document.getElementById('party-size-input').focus()">
+            <span>👥</span>
+            <span id="pill-party-display">2 people</span>
+            <span style="font-size:0.75rem; color:#64748b;">▼</span>
+          </div>
+          <div class="ot-search-input-segment">
+            <span>🔍</span>
+            <input type="text" id="top-search-query" placeholder="Location, Restaurant, or Cuisine" oninput="handleTopSearchInput(this.value)">
+          </div>
+          <button type="button" class="btn-letsgo" onclick="handleLetsGoClick()">
+            Let's go
+          </button>
+        </div>
+        <div class="ot-location-nudge">
+          It looks like you're in Seattle. Not correct? 
+          <span class="ot-location-link" onclick="getUserLocation()"><span style="color:#da3743;">📍</span> Get current location</span>
+        </div>
+      </div>
+
+      <!-- Screenshot 2: AI Dining Recommendations Section -->
+      <div class="ot-ai-section">
+        <div class="ot-ai-intro">
+          <h2 class="ot-ai-heading">Find the right table in Seattle</h2>
+          <div class="ot-ai-sub">Let OpenTable find the best spots for you.</div>
+          <div class="ot-ai-badge">✨ Powered by AI</div>
+        </div>
+        <div class="ot-ai-chips">
+          <div class="ot-ai-chip" onclick="handleAiPrompt('sushi')">
+            <span>🍣</span> What are the best sushi restaurants in town?
+          </div>
+          <div class="ot-ai-chip" onclick="handleAiPrompt('seafood')">
+            <span>🦪</span> What are the best seafood spots near me?
+          </div>
+          <div class="ot-ai-chip" onclick="handleAiPrompt('business')">
+            <span>💼</span> What are the top choices for a business lunch?
+          </div>
+          <div class="ot-ai-chip ot-ai-chip-outline" onclick="openAiCustomModal()">
+            <span>✨</span> Describe your ideal spot
+          </div>
+        </div>
+      </div>
+
+      <!-- Screenshot 3: OpenTable Icons Section & Carousel -->
+      <div class="ot-icons-section">
+        <div class="ot-icons-header">
+          <div>
+            <h2 class="ot-icons-title">OpenTable Icons</h2>
+            <div class="ot-icons-subtitle">Book this year's award-winners, hot newcomers, and hard-to-get tables.</div>
+          </div>
+          <div style="display:flex; gap:0.75rem; align-items:center;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="openHotelOsModal(currentRestId)" style="border-color:#10b981; color:#34d399;">
+              🏨 Open Hotel OS Console
+            </button>
+            <button type="button" class="btn-explore-icons" onclick="toggleAllIconsGrid()">
+              Explore Icon restaurants (<span id="icon-count-badge">10</span>)
+            </button>
+          </div>
+        </div>
+
+        <div class="ot-carousel-wrapper">
+          <button type="button" class="ot-carousel-btn ot-carousel-prev" onclick="scrollCarousel(-1)">‹</button>
+          <div id="ot-icons-carousel" class="ot-carousel">
+            <!-- 10 Real Restaurants rendered dynamically -->
+          </div>
+          <button type="button" class="ot-carousel-btn ot-carousel-next" onclick="scrollCarousel(1)">›</button>
+        </div>
+
+        <!-- Sapphire Reserve Exclusive Tables Banner (Screenshot 3) -->
+        <div class="ot-sapphire-banner">
+          <div class="ot-sapphire-content">
+            <span style="display:flex; align-items:center; gap:6px;">
+              <span style="color:#da3743; font-size:1.25rem;">●</span>
+              <span style="color:#60a5fa; font-weight:800; font-size:0.9rem; letter-spacing:0.05em;">✕ SAPPHIRE RESERVE</span>
+            </span>
+            <div>
+              <div class="ot-sapphire-title">Sapphire Reserve Exclusive Tables</div>
+              <div class="ot-sapphire-sub">Prime evening tables held every night for Chase Sapphire Reserve cardholders across Seattle & Eastside icons.</div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="alert('Chase Sapphire Reserve exclusive access active for your session.')">
+            Cardholder Access Active
+          </button>
+        </div>
+      </div>
+
       <!-- OpenTable 5-Photo Mosaic Hero Gallery -->
       <div class="ot-hero-gallery">
         <div class="ot-gallery-item main-feature">
@@ -1928,6 +2714,127 @@
         </div>
       </div>
     </section>
+  
+    <!-- Real Hotel Operating System Console Modal -->
+    <div id="hotel-os-modal" class="hotel-os-modal" style="display:none;" onclick="if(event.target===this)closeHotelOsModal()">
+      <div class="hotel-os-container">
+        <div class="hotel-os-header">
+          <div class="hotel-os-title">
+            <span>🏨</span> <span id="hotel-os-venue-name">Venue Hotel Operating System</span>
+            <span class="sim-chip" style="background:rgba(16,185,129,0.2); color:#34d399; margin-left:0.5rem;">PMS Live 1000Hz</span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeHotelOsModal()" style="font-size:1.1rem; line-height:1; padding:0.25rem 0.6rem;">✕</button>
+        </div>
+        <div class="hotel-os-body">
+          <!-- Top Row: Hotel Concierge & PMS Guest Folio -->
+          <div class="hotel-pms-grid">
+            <div class="hotel-pms-box">
+              <div class="hotel-pms-title"><span>🛎️</span> Luxury Hotel Concierge Line</div>
+              <div style="font-size:0.875rem; color:#cbd5e1; margin-bottom:0.75rem;">
+                Affiliated Hotel: <strong id="hotel-pms-partner" style="color:#ffffff;">Hyatt Regency Bellevue & The Westin</strong>
+              </div>
+              <div style="font-size:0.825rem; color:#94a3b8; line-height:1.5;">
+                • Dedicated VIP House Seats: 4 Reserved Tables<br>
+                • Complimentary Valet Validation: Enabled<br>
+                • Welcome Champagne Amenity: Active
+              </div>
+            </div>
+
+            <div class="hotel-pms-box">
+              <div class="hotel-pms-title"><span>💳</span> Hotel Guest Folio & Room Billing</div>
+              <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem;">
+                  <input type="text" id="pms-room-input" placeholder="Room / Suite #" value="Suite 1402" style="padding:0.4rem 0.6rem; font-size:0.85rem; border-radius:6px; background:#090d16; border:1px solid #334155; color:#fff;">
+                  <input type="text" id="pms-guest-input" placeholder="Guest Name" value="Harrison Ford" style="padding:0.4rem 0.6rem; font-size:0.85rem; border-radius:6px; background:#090d16; border:1px solid #334155; color:#fff;">
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="authorizeHotelRoomCharge()" style="padding:0.4rem 0.8rem; font-size:0.85rem;">
+                  Authorize Table Deposit to Room Folio
+                </button>
+                <div id="pms-auth-status" style="font-size:0.8rem; color:#34d399; font-weight:600;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Row: Live Table Floorplan & Status Matrix -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <h4 style="color:#ffffff; font-size:1.05rem; display:flex; align-items:center; gap:6px;">
+                <span>🍽️</span> Real Table Status Matrix & Pacing
+              </h4>
+              <div style="display:flex; gap:0.75rem; font-size:0.75rem;">
+                <span style="color:#10b981;">● Vacant</span>
+                <span style="color:#ef4444;">● Seated</span>
+                <span style="color:#f59e0b;">● Reserved</span>
+                <span style="color:#a855f7;">● Bill Dropped</span>
+              </div>
+            </div>
+            <div id="hotel-table-matrix" class="hotel-table-matrix">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Bottom Row: Kitchen Rail & Service Operations -->
+          <div class="hotel-pms-grid">
+            <div class="hotel-pms-box">
+              <div class="hotel-pms-title"><span>🍳</span> Live Kitchen POS Ticket Rail</div>
+              <div id="hotel-pos-tickets" style="font-family:monospace; font-size:0.8rem; color:#cbd5e1; display:flex; flex-direction:column; gap:0.4rem;">
+                <div style="background:#090d16; padding:0.4rem 0.6rem; border-radius:6px; border-left:3px solid #ef4444;">
+                  [Ticket #142] Table 3: 2x Prime Ribeye (Medium), 1x Truffle Ravioli • Firing Mains
+                </div>
+                <div style="background:#090d16; padding:0.4rem 0.6rem; border-radius:6px; border-left:3px solid #f59e0b;">
+                  [Ticket #143] Table 1: 1x Salmon Crispy Rice, 2x Joey Manhattan • Expedited
+                </div>
+                <div style="background:#090d16; padding:0.4rem 0.6rem; border-radius:6px; border-left:3px solid #10b981;">
+                  [Ticket #144] Table 5: 4x Oysters on Half Shell, 1x Grand Cru Chablis • Drinks Placed
+                </div>
+              </div>
+            </div>
+
+            <div class="hotel-pms-box">
+              <div class="hotel-pms-title"><span>📊</span> Service Turn & Pacing Metrics</div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem; text-align:center;">
+                <div style="background:#090d16; padding:0.6rem; border-radius:8px;">
+                  <div style="font-size:1.35rem; font-weight:800; color:#38bdf8;" id="hotel-occupancy-val">84%</div>
+                  <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Dining Capacity</div>
+                </div>
+                <div style="background:#090d16; padding:0.6rem; border-radius:8px;">
+                  <div style="font-size:1.35rem; font-weight:800; color:#34d399;">88 min</div>
+                  <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Avg Turn Time</div>
+                </div>
+              </div>
+              <div style="margin-top:0.75rem; font-size:0.8rem; color:#94a3b8; line-height:1.4;">
+                • Concierge VIP Priority: High<br>
+                • Solo Rock Atomic Invariant Engine: Operational (0ns sync)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Custom Mood Recommendation Modal -->
+    <div id="ai-custom-modal" class="ai-modal" style="display:none;" onclick="if(event.target===this)closeAiCustomModal()">
+      <div class="ai-modal-box">
+        <div style="padding:1.25rem 1.5rem; border-bottom:1px solid #1e293b; display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="color:#ffffff; font-size:1.2rem; display:flex; align-items:center; gap:6px;">
+            <span>✨</span> Describe Your Ideal Dining Experience
+          </h3>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeAiCustomModal()">✕</button>
+        </div>
+        <div style="padding:1.5rem;">
+          <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:1rem;">
+            Tell our AI dining concierge what you are looking for (e.g. "intimate date night with handmade pasta", "panoramic 31st floor steakhouse", or "fresh oysters by the waterfront").
+          </p>
+          <textarea id="ai-custom-prompt-input" rows="3" placeholder="e.g. romantic candlelit Italian with authentic tajarin and rare wine..." style="width:100%; padding:0.75rem; border-radius:8px; background:#1e293b; border:1px solid #334155; color:#ffffff; font-size:0.95rem; resize:none;"></textarea>
+          <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1rem;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="closeAiCustomModal()">Cancel</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="submitAiCustomPrompt()">Find Matching Spots</button>
+          </div>
+          <div id="ai-match-result" style="margin-top:1rem;"></div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <script>
@@ -1936,6 +2843,772 @@
     let currentRestaurant = null;
     let currentSearchSeq = 0;
     let activeBooking = null; // Holds current selected slot and idempotency key
+
+    // --- 10 REAL OPERATING RESTAURANTS (HOTEL OS & OPENTABLE DATA) ---
+    const RESTAURANTS_DATA = {
+      'r_spinasse': {
+        id: 'r_spinasse',
+        name: 'Spinasse',
+        tagline: 'Piedmontese Artisan Trattoria & Hand-Cut Tajarin',
+        region: 'Seattle',
+        neighborhood: 'Capitol Hill / First Hill',
+        cuisine: 'Italian, Piedmontese',
+        price: '$$$$',
+        rating: '★ 4.9',
+        reviews_count: '4,118 reviews',
+        booked_today: 'Booked 34 times today',
+        hero_img: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1621996346565-e3d5d628169f?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Renowned for artisanal, hand-cut tajarin pasta and authentic Piedmontese traditions, Spinasse offers an intimate, candlelit trattoria experience with an open pasta kitchen in Capitol Hill.',
+        hotel_partner: 'Hotel Sorrento & Silver Cloud Broadway',
+        dishes: [
+          { name: 'Tajarin al Burro e Salvia', desc: 'Legendary hand-cut egg pasta with rich mountain butter and crispy sage.', price: '$28.00', tag: 'Signature' },
+          { name: 'Cotechino con Lenticchie', desc: 'Traditional house-made Piedmontese pork sausage with braised castelluccio lentils.', price: '$24.00', tag: 'Classic' },
+          { name: 'Brasato al Barolo', desc: 'Tender beef shank braised slowly in Barolo wine with creamy polenta.', price: '$42.00', tag: 'Chef Choice' },
+          { name: 'Barolo & Nebbiolo Flight', desc: 'Curated sommelier flight of rare Piedmontese vintages.', price: '$32.00', tag: 'Wine Pairing' }
+        ],
+        tables: [
+          { id: 'sp_1', label: 'Pasta Bar 1', cap: 2, zone: 'Bar Counter' },
+          { id: 'sp_2', label: 'Rustic Table 2', cap: 2, zone: 'Main Room' },
+          { id: 'sp_3', label: 'Cantina 3', cap: 4, zone: 'Wine Vault' },
+          { id: 'sp_4', label: 'Cantina 4', cap: 4, zone: 'Wine Vault' },
+          { id: 'sp_5', label: 'Wine Table 5', cap: 6, zone: 'Chef Salon' },
+          { id: 'sp_6', label: 'Piedmontese Room 6', cap: 8, zone: 'Private Suite' }
+        ],
+        policies: [
+          'Seating Duration: 90 minutes for parties up to 4; 2 hours for larger parties.',
+          'Cancellation Cutoff: 2 hours prior to reservation.',
+          'Dress Code: Smart Casual.',
+          'Affiliated Hotel Valet Parking available.'
+        ]
+      },
+      'r_kashiba': {
+        id: 'r_kashiba',
+        name: 'Sushi Kashiba',
+        tagline: 'Master Shiro Kashiba\'s Legendary Elliott Bay Sanctuary',
+        region: 'Seattle',
+        neighborhood: 'Belltown / Pike Place Market',
+        cuisine: 'Sushi, Japanese Omakase',
+        price: '$$$$',
+        rating: '★ 4.9',
+        reviews_count: '1,340 reviews',
+        booked_today: 'Booked 45 times today',
+        hero_img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Founded by legendary Master Shiro Kashiba — apprentice of Jiro Ono — Sushi Kashiba is Seattle\'s premier sushi sanctuary overlooking Elliott Bay.',
+        hotel_partner: 'Thompson Seattle & Inn at the Market',
+        dishes: [
+          { name: 'Chef Shiro Omakase Nigiri', desc: '12-piece chef counter selection of wild Pacific and Tsukiji market seasonal catch.', price: '$145.00', tag: 'Omakase' },
+          { name: 'King Salmon Toro & Caviar', desc: 'Seared Alaskan king salmon belly topped with imperial Ossetra caviar.', price: '$34.00', tag: 'Signature' },
+          { name: 'Hokkaido Uni Gunkan', desc: 'Sweet, creamy sea urchin imported directly from Hokkaido, Japan.', price: '$28.00', tag: 'Rare' },
+          { name: 'Dassai 23 Junmai Daiginjo', desc: 'Ultra-refined Japanese sake with delicate melon and peach aromas.', price: '$38.00', tag: 'Sake Flight' }
+        ],
+        tables: [
+          { id: 'sk_1', label: 'Omakase Bar 1', cap: 2, zone: 'Master Counter' },
+          { id: 'sk_2', label: 'Omakase Bar 2', cap: 2, zone: 'Master Counter' },
+          { id: 'sk_3', label: 'Elliott Bay 3', cap: 4, zone: 'Bay View' },
+          { id: 'sk_4', label: 'Elliott Bay 4', cap: 4, zone: 'Bay View' },
+          { id: 'sk_5', label: 'Shiro Salon 5', cap: 6, zone: 'Dining Room' },
+          { id: 'sk_6', label: 'Courtyard Table 6', cap: 8, zone: 'Courtyard' }
+        ],
+        policies: [
+          'Seating Duration: 2 hours for Omakase experience.',
+          'Cancellation Cutoff: 4 hours prior.',
+          'Omakase Counter seats are non-transferable.'
+        ]
+      },
+      'r_communion': {
+        id: 'r_communion',
+        name: 'COMMUNION',
+        tagline: 'Chef Kristi Brown\'s Award-Winning Seattle Soul',
+        region: 'Seattle',
+        neighborhood: 'Central District',
+        cuisine: 'Contemporary Southern, Seattle Soul',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '503 reviews',
+        booked_today: 'Booked 45 times today',
+        hero_img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Named one of the Best New Restaurants in the World, Chef Kristi Brown\'s COMMUNION crafts soulful, vibrant cuisine celebrating Seattle culture.',
+        hotel_partner: 'Renaissance Seattle & The Maxwell',
+        dishes: [
+          { name: 'Hoodo Herb Catfish', desc: 'Crispy herb-crusted catfish with red beans, jasmine rice, and smoked tomato gravy.', price: '$32.00', tag: 'Award Winner' },
+          { name: 'Slow-Smoked Pork Belly Musubi', desc: 'Ginger hoisin glaze, sushi rice, toasted nori, and spicy scallion aioli.', price: '$18.50', tag: 'Fan Favorite' },
+          { name: 'Cast Iron Skillet Cornbread', desc: 'Served steaming hot with lavender honey butter and sea salt.', price: '$14.00', tag: 'Comfort' },
+          { name: 'Central District Spiced Punch', desc: 'Uncle Nearest whiskey, spiced hibiscus tea, fresh citrus, aromatic bitters.', price: '$16.50', tag: 'Cocktail' }
+        ],
+        tables: [
+          { id: 'cm_1', label: 'Soul Booth 1', cap: 2, zone: 'Front Lounge' },
+          { id: 'cm_2', label: 'Soul Booth 2', cap: 2, zone: 'Front Lounge' },
+          { id: 'cm_3', label: 'Central Table 3', cap: 4, zone: 'Dining Room' },
+          { id: 'cm_4', label: 'Central Table 4', cap: 4, zone: 'Dining Room' },
+          { id: 'cm_5', label: 'Kristi Family Table 5', cap: 6, zone: 'Chef Table' },
+          { id: 'cm_6', label: 'Community Table 6', cap: 8, zone: 'Communal' }
+        ],
+        policies: [
+          'Seating Duration: 90 minutes.',
+          'Cancellation Cutoff: 1 hour prior.',
+          'Smart casual attire encouraged.'
+        ]
+      },
+      'r_pinkdoor': {
+        id: 'r_pinkdoor',
+        name: 'The Pink Door',
+        tagline: 'Iconic Post Alley Cabaret, Trapeze & Italian Dining',
+        region: 'Seattle',
+        neighborhood: 'Belltown / Pike Place / Post Alley',
+        cuisine: 'Italian, Seafood',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '10,368 reviews',
+        booked_today: 'Booked 203 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'A whimsical Seattle legend nestled in Post Alley featuring classic Italian dining, trapeze entertainment, burlesque cabaret, and an expansive rooftop deck overlooking Puget Sound.',
+        hotel_partner: 'Hotel Ändra & Seattle Waterfront Luxury Suites',
+        dishes: [
+          { name: 'Pink Door Cioppino', desc: 'Local Dungeness crab, clams, mussels, wild prawns, and rockfish in spicy tomato saffron broth.', price: '$46.00', tag: 'Signature' },
+          { name: 'Lasagna Pasticciata', desc: 'Fresh pasta, bolognese ragù, creamy béchamel, and melted parmigiano-reggiano.', price: '$29.00', tag: 'Classic' },
+          { name: 'Dungeness Crab Linguine', desc: 'Fresh crab, garlic, white wine, chili flakes, and meyer lemon.', price: '$36.00', tag: 'Chef Choice' },
+          { name: 'Prosecco Trapeze Spritz', desc: 'Venetian aperitivo with elderflower, mint, fresh pink grapefruit, and prosecco.', price: '$17.00', tag: 'Cabaret Drink' }
+        ],
+        tables: [
+          { id: 'pd_1', label: 'Cabaret Front 1', cap: 2, zone: 'Stage View' },
+          { id: 'pd_2', label: 'Trapeze View 2', cap: 2, zone: 'Stage View' },
+          { id: 'pd_3', label: 'Post Alley Deck 3', cap: 4, zone: 'Deck Terrace' },
+          { id: 'pd_4', label: 'Post Alley Deck 4', cap: 4, zone: 'Deck Terrace' },
+          { id: 'pd_5', label: 'Wine Cellar 5', cap: 6, zone: 'Cellar Vault' },
+          { id: 'pd_6', label: 'Piazza Table 6', cap: 8, zone: 'Main Piazza' }
+        ],
+        policies: [
+          'Seating Duration: 2 hours.',
+          'Deck seating is subject to weather.',
+          'Trapeze performances run Wed-Sun evenings.'
+        ]
+      },
+      'r_palace': {
+        id: 'r_palace',
+        name: 'Palace Kitchen',
+        tagline: 'Tom Douglas\'s Wood-Fired Hearth & Late-Night Salon',
+        region: 'Seattle',
+        neighborhood: 'Belltown / Pike Place',
+        cuisine: 'American, Wood-Fired Hearth',
+        price: '$$$$',
+        rating: '★ 4.7',
+        reviews_count: '767 reviews',
+        booked_today: 'Booked 22 times today',
+        hero_img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1621996346565-e3d5d628169f?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Tom Douglas\'s quintessential Belltown salon revolving around an applewood rotisserie and horseshoe bar, serving iconic burgers and craft cocktails until midnight.',
+        hotel_partner: 'Kimpton Palladian & Warwick Hotel',
+        dishes: [
+          { name: 'Palace Burger Royale', desc: 'Local natural beef, bacon shallot jam, Oregon blue cheese, and hand-cut fries.', price: '$26.00', tag: 'Legendary' },
+          { name: 'Rotisserie Half Chicken', desc: 'Applewood spit-roasted chicken with herbed pan dripping jus and roasted root vegetables.', price: '$34.00', tag: 'Hearth Roasted' },
+          { name: 'Goat Cheese Lavender Ravioli', desc: 'Handcrafted ravioli with wild thyme brown butter and toasted pine nuts.', price: '$28.00', tag: 'Signature' },
+          { name: 'Tom\'s Hearth Old Fashioned', desc: 'Small-batch rye, grilled orange bitters, smoked demerara, luxardo cherry.', price: '$18.00', tag: 'Craft Cocktail' }
+        ],
+        tables: [
+          { id: 'pk_1', label: 'Horseshoe Bar 1', cap: 2, zone: 'Horseshoe Bar' },
+          { id: 'pk_2', label: 'Hearth Table 2', cap: 2, zone: 'Wood Hearth' },
+          { id: 'pk_3', label: 'Rotisserie Table 3', cap: 4, zone: 'Dining Room' },
+          { id: 'pk_4', label: 'Rotisserie Table 4', cap: 4, zone: 'Dining Room' },
+          { id: 'pk_5', label: 'Belltown Salon 5', cap: 6, zone: 'Salon Room' },
+          { id: 'pk_6', label: 'Captain Table 6', cap: 8, zone: 'Executive Booth' }
+        ],
+        policies: [
+          'Kitchen serves full menu until midnight.',
+          'Seating Duration: 90 minutes.',
+          'Bar seating is first-come, first-served.'
+        ]
+      },
+      'r_anker': {
+        id: 'r_anker',
+        name: 'JOEY Bellevue',
+        tagline: 'Featuring Zum Anker (Tablekeeper Dark Factory Engine)',
+        region: 'Eastside',
+        neighborhood: 'Bellevue Downtown (Lincoln Square)',
+        cuisine: 'American, Steakhouse, Pan-Asian',
+        price: '$$$$',
+        rating: '★ 4.9',
+        reviews_count: '2,842 reviews',
+        booked_today: 'Booked 184 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'JOEY Bellevue delivers a polished-casual dining experience featuring soaring industrial architecture, an expansive central island bar, ambient dining booths, and an all-season heated outdoor patio.',
+        hotel_partner: 'Hyatt Regency Bellevue & The Westin',
+        dishes: [
+          { name: 'USDA Prime Ribeye Steak', desc: '16oz hand-cut prime beef, roasted wild forest mushrooms, truffle butter, yukon gold purée.', price: '$56.50', tag: 'Top Rated' },
+          { name: 'Pan-Seared Salmon & Crispy Rice', desc: 'Fresh Atlantic salmon, sweet soy glaze, avocado, chili aioli, toasted sesame seeds.', price: '$39.00', tag: 'Chef Choice' },
+          { name: 'Truffle Ravioli Bianco', desc: 'Handmade ricotta ravioli, white truffle cream sauce, toasted hazelnuts, crispy garden sage.', price: '$29.50', tag: 'Vegetarian' },
+          { name: 'The Joey Smoked Manhattan', desc: 'Woodford Reserve Bourbon, carpano antica vermouth, aromatic bitters, smoked brandied cherry.', price: '$18.00', tag: 'Signature' }
+        ],
+        tables: [
+          { id: 't_1', label: 'Patio Booth 1', cap: 2, zone: 'Heated Patio' },
+          { id: 't_2', label: 'Patio Booth 2', cap: 2, zone: 'Heated Patio' },
+          { id: 't_3', label: 'Main Dining 3', cap: 4, zone: 'Main Dining' },
+          { id: 't_4', label: 'Main Dining 4', cap: 4, zone: 'Main Dining' },
+          { id: 't_5', label: 'Lounge Table 5', cap: 6, zone: 'Lounge Bar' },
+          { id: 't_6', label: 'Sommelier Table 6', cap: 8, zone: 'Private Wine' },
+          { id: 't_7', label: 'Window Table 7', cap: 2, zone: 'Window' },
+          { id: 't_8', label: 'Chef Counter 8', cap: 4, zone: 'Chef Rail' }
+        ],
+        policies: [
+          'Seating Duration: 2 hours.',
+          'Grace Period: 15 minutes past reservation time.',
+          'Cancellation Cutoff: 1 hour prior.',
+          'Dress Code: Smart Casual.'
+        ]
+      },
+      'r_canlis': {
+        id: 'r_canlis',
+        name: 'Canlis',
+        tagline: 'Iconic Pacific Northwest Fine Dining Landmark Since 1950',
+        region: 'Seattle',
+        neighborhood: 'Queen Anne / Lake Union',
+        cuisine: 'Pacific Northwest Fine Dining',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '5,820 reviews',
+        booked_today: 'Booked 98 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'An iconic landmark of Pacific Northwest fine dining since 1950, Canlis features mid-century architectural elegance, panoramic Lake Union views, live piano, and a world-renowned cellar.',
+        hotel_partner: 'The Fairmont Olympic & Four Seasons Seattle',
+        dishes: [
+          { name: 'Dry-Aged Peter Canlis Steak', desc: '28-day dry aged tenderloin served over marrow bone jus and charred alliums.', price: '$85.00', tag: 'Historic Icon' },
+          { name: 'Canlis Salad Tableside', desc: 'Crisp romaine, fresh bacon, romano cheese, lemon, mint, and seasoned croutons tossed tableside.', price: '$22.00', tag: 'Tableside Tradition' },
+          { name: 'Spot Prawn & Uni Tartare', desc: 'Pacific northwest spot prawns, citrus gelee, uni emulsion, and sea fennel.', price: '$38.00', tag: 'Seafood' },
+          { name: 'Grand Cru Burgundy Selection', desc: 'Rare vintage poured from Canlis\'s Grand Award-winning wine cellar.', price: '$45.00', tag: 'Sommelier Pick' }
+        ],
+        tables: [
+          { id: 'cn_1', label: 'Lake Union Panorama 1', cap: 2, zone: 'Panoramic Window' },
+          { id: 'cn_2', label: 'Cascade View 2', cap: 2, zone: 'Panoramic Window' },
+          { id: 'cn_3', label: 'Mid-Century Hearth 3', cap: 4, zone: 'Hearth Center' },
+          { id: 'cn_4', label: 'Piano Salon 4', cap: 4, zone: 'Live Piano Lounge' },
+          { id: 'cn_5', label: 'Peter Canlis Room 5', cap: 6, zone: 'Private Salon' },
+          { id: 'cn_6', label: 'Wine Vault 6', cap: 8, zone: 'Grand Cellar' }
+        ],
+        policies: [
+          'Dress Code: Elegant Evening Attire (jackets recommended for gentlemen).',
+          'Seating Duration: 2.5 hours multi-course experience.',
+          'Cancellation Cutoff: 24 hours prior.'
+        ]
+      },
+      'r_ascend': {
+        id: 'r_ascend',
+        name: 'Ascend Prime Steak & Sushi',
+        tagline: '31st Floor Penthouse Steakhouse & Contemporary Robata',
+        region: 'Eastside',
+        neighborhood: 'Bellevue Downtown (31st Floor Lincoln Square)',
+        cuisine: 'Steakhouse, Contemporary Sushi',
+        price: '$$$$$',
+        rating: '★ 4.8',
+        reviews_count: '3,640 reviews',
+        booked_today: 'Booked 152 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Perched on the 31st floor of Lincoln Square South, Ascend merges a 360-degree Pacific Northwest view with wood-fired prime steaks, elevated robata, and contemporary sushi artistry.',
+        hotel_partner: 'W Bellevue & Hyatt Regency',
+        dishes: [
+          { name: 'A5 Miyazaki Wagyu Tenderloin', desc: '4oz Japanese Miyazaki A5 wagyu, smoked Maldon salt, fresh wasabi.', price: '$110.00', tag: 'A5 Japanese' },
+          { name: 'Magic Mushroom Sushi Roll', desc: 'Tempura king oyster mushroom, black truffle, asparagus, sweet unagi drizzle.', price: '$26.00', tag: 'Ascend Original' },
+          { name: 'Hamachi Truffle Crudo', desc: 'Yellowtail sashimi, white truffle ponzu, pickled serrano, garlic crisp.', price: '$32.00', tag: 'Robata Raw' },
+          { name: 'Cloud 31 Smoked Cocktail', desc: 'Hibiki Harmony Japanese whisky, smoked cherrywood, maple bitters.', price: '$24.00', tag: 'Penthouse Sip' }
+        ],
+        tables: [
+          { id: 'as_1', label: '31st Skyline 1', cap: 2, zone: 'Skyline Window' },
+          { id: 'as_2', label: 'Mt. Rainier View 2', cap: 2, zone: 'Rainier Window' },
+          { id: 'as_3', label: 'Robata Counter 3', cap: 4, zone: 'Robata Rail' },
+          { id: 'as_4', label: 'Penthouse Booth 4', cap: 4, zone: 'Sky Salon' },
+          { id: 'as_5', label: 'Sky Lounge 5', cap: 6, zone: 'Executive Lounge' },
+          { id: 'as_6', label: 'Presidential Suite 6', cap: 8, zone: 'VIP Penthouse' }
+        ],
+        policies: [
+          'Seating Duration: 2 hours.',
+          'Cancellation Cutoff: 2 hours prior.',
+          'Complimentary high-speed elevator transfer from Bellevue Lincoln Square.'
+        ]
+      },
+      'r_elgaucho': {
+        id: 'r_elgaucho',
+        name: 'El Gaucho Seattle',
+        tagline: 'Vintage Charcoal Grill Steakhouse & Live Steinway Piano',
+        region: 'Seattle',
+        neighborhood: 'Belltown',
+        cuisine: 'Classic Steakhouse',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '2,910 reviews',
+        booked_today: 'Booked 71 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Step back into the golden age of fine dining with low ambient lighting, live Steinway jazz piano, tableside Caesar preparation, and certified 28-day dry-aged steaks over open charcoal embers.',
+        hotel_partner: 'The Westin Seattle & Four Seasons',
+        dishes: [
+          { name: 'Tableside Tenderloin Diablo', desc: 'Tenderloin medallions flamed tableside with spicy diablo demi-glace and cognac.', price: '$68.00', tag: 'Tableside Flambé' },
+          { name: 'Tableside Tossed Caesar', desc: 'Romaine hearts, fresh egg emulsion, imported white anchovies, parmigiano, garlic croutons.', price: '$20.00', tag: 'El Gaucho Icon' },
+          { name: 'Certified Angus Bone-In Ribeye', desc: '20oz charcoal-grilled over glowing mesquite hardwood embers.', price: '$78.00', tag: 'Charcoal Grill' },
+          { name: 'Walla Walla Valley Cabernet', desc: 'Full-bodied Washington estate vintage with dark blackberry and cedar notes.', price: '$26.00', tag: 'Wine Selection' }
+        ],
+        tables: [
+          { id: 'eg_1', label: 'Charcoal Grill 1', cap: 2, zone: 'Grill Room' },
+          { id: 'eg_2', label: 'Steinway Piano 2', cap: 2, zone: 'Piano Stage' },
+          { id: 'eg_3', label: 'Captain Table 3', cap: 4, zone: 'Dining Room' },
+          { id: 'eg_4', label: 'Vintage Booth 4', cap: 4, zone: 'Dining Room' },
+          { id: 'eg_5', label: 'Sommelier Vault 5', cap: 6, zone: 'Wine Vault' },
+          { id: 'eg_6', label: 'Pampas Salon 6', cap: 8, zone: 'Pampas Salon' }
+        ],
+        policies: [
+          'Seating Duration: 2 hours.',
+          'Live Steinway piano performances begin nightly at 6:30 PM.',
+          'Smart casual attire required.'
+        ]
+      },
+      'r_walrus': {
+        id: 'r_walrus',
+        name: 'The Walrus and the Carpenter',
+        tagline: 'Renee Erickson\'s Acclaimed Oyster Bar & Seafood Tavern',
+        region: 'Seattle',
+        neighborhood: 'Ballard',
+        cuisine: 'Oyster Bar, Seafood Tavern',
+        price: '$$$$',
+        rating: '★ 4.9',
+        reviews_count: '4,520 reviews',
+        booked_today: 'Booked 115 times today',
+        hero_img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'James Beard Award-winning Chef Renee Erickson\'s beloved Ballard institution featuring freshly harvested Pacific Northwest oysters on the half-shell, grilled sardines, and sparkling wines.',
+        hotel_partner: 'Hotel Ballard & Ballard Inn Suites',
+        dishes: [
+          { name: 'Pacific Northwest Oysters (Dozen)', desc: 'Freshly shucked Kumamoto, Hama Hama, and Totten Inlet with champagne mignonette.', price: '$44.00', tag: 'Raw Bar' },
+          { name: 'Fried Pacific Oysters', desc: 'Cornmeal crusted oysters with cilantro aioli and fresh lemon.', price: '$22.00', tag: 'Warm Appetizer' },
+          { name: 'Grilled Sardines with Walnut Pesto', desc: 'Whole grilled wild sardines, parsley walnut pesto, shallot vinaigrette.', price: '$19.00', tag: 'Chef Favorite' },
+          { name: 'Muscadet Sèvre-et-Maine', desc: 'Crisp, mineral French sparkling white wine — the ultimate oyster companion.', price: '$16.00', tag: 'Pairing' }
+        ],
+        tables: [
+          { id: 'wc_1', label: 'Zinc Oyster Bar 1', cap: 2, zone: 'Zinc Bar' },
+          { id: 'wc_2', label: 'Zinc Oyster Bar 2', cap: 2, zone: 'Zinc Bar' },
+          { id: 'wc_3', label: 'Maritime Table 3', cap: 4, zone: 'Dining Room' },
+          { id: 'wc_4', label: 'Ballard Courtyard 4', cap: 4, zone: 'Courtyard' },
+          { id: 'wc_5', label: 'Fisherman Table 5', cap: 6, zone: 'Dining Room' },
+          { id: 'wc_6', label: 'Harbor Banquette 6', cap: 8, zone: 'Harbor Banquette' }
+        ],
+        policies: [
+          'Seating Duration: 75 minutes.',
+          'Oyster varieties updated daily based on Puget Sound tide harvests.',
+          'Casual maritime attire.'
+        ]
+      }
+    };
+
+    let currentRestId = 'r_anker';
+    let activeRegionFilter = 'All';
+    let searchQuery = '';
+
+    // Metro modal toggling (Screenshot 1)
+    function toggleMetroModal(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById('ot-metro-modal');
+      if (!modal) return;
+      modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
+    }
+
+    document.addEventListener('click', (e) => {
+      const modal = document.getElementById('ot-metro-modal');
+      const btn = document.getElementById('ot-location-btn');
+      if (modal && modal.style.display !== 'none' && !modal.contains(e.target) && !btn.contains(e.target)) {
+        modal.style.display = 'none';
+      }
+    });
+
+    function selectMetro(metroName) {
+      document.querySelectorAll('.ot-metro-item').forEach(el => el.classList.remove('active'));
+      const clicked = Array.from(document.querySelectorAll('.ot-metro-item')).find(el => el.textContent.includes(metroName));
+      if (clicked) clicked.classList.add('active');
+    }
+
+    function selectRegion(regionLabel, filterKey) {
+      document.getElementById('header-location-name').textContent = regionLabel;
+      activeRegionFilter = filterKey;
+      document.querySelectorAll('.ot-region-item').forEach(el => el.classList.remove('selected'));
+      const clicked = Array.from(document.querySelectorAll('.ot-region-item')).find(el => el.textContent.includes(regionLabel));
+      if (clicked) clicked.classList.add('selected');
+
+      const modal = document.getElementById('ot-metro-modal');
+      if (modal) modal.style.display = 'none';
+
+      renderIconsCarousel();
+    }
+
+    function getUserLocation() {
+      selectRegion('Seattle', 'Seattle');
+      alert('Location updated to Seattle, WA. Showing 8 premier downtown Seattle dining destinations.');
+    }
+
+    // Top Search Bar inputs (Screenshot 2)
+    function handleTopSearchInput(q) {
+      searchQuery = q.toLowerCase().trim();
+      renderIconsCarousel();
+    }
+
+    function handleLetsGoClick() {
+      // If search query matched a restaurant, select it!
+      const keys = Object.keys(RESTAURANTS_DATA);
+      const matched = keys.find(k => {
+        const r = RESTAURANTS_DATA[k];
+        return r.name.toLowerCase().includes(searchQuery) || r.cuisine.toLowerCase().includes(searchQuery) || r.neighborhood.toLowerCase().includes(searchQuery);
+      });
+      if (matched) {
+        selectRestaurant(matched);
+      }
+      performSearch();
+      const widget = document.querySelector('.ot-sticky-widget');
+      if (widget) widget.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // AI prompt chips (Screenshot 2)
+    function handleAiPrompt(type) {
+      if (type === 'sushi') {
+        selectRestaurant('r_kashiba');
+        alert('🍣 AI Concierge Selected: Sushi Kashiba — Shiro Kashiba\'s master omakase sanctuary at Pike Place Market.');
+      } else if (type === 'seafood') {
+        selectRestaurant('r_walrus');
+        alert('🦪 AI Concierge Selected: The Walrus and the Carpenter — Renee Erickson\'s award-winning Ballard oyster tavern.');
+      } else if (type === 'business') {
+        selectRestaurant('r_ascend');
+        alert('💼 AI Concierge Selected: Ascend Prime Steak & Sushi — 31st floor Bellevue penthouse skyline dining.');
+      }
+      performSearch();
+    }
+
+    function openAiCustomModal() {
+      document.getElementById('ai-custom-modal').style.display = 'flex';
+      document.getElementById('ai-match-result').innerHTML = '';
+      setTimeout(() => document.getElementById('ai-custom-prompt-input').focus(), 100);
+    }
+
+    function closeAiCustomModal() {
+      document.getElementById('ai-custom-modal').style.display = 'none';
+    }
+
+    function submitAiCustomPrompt() {
+      const txt = document.getElementById('ai-custom-prompt-input').value.toLowerCase();
+      let matchedId = 'r_pinkdoor';
+      if (txt.includes('sushi') || txt.includes('japanese') || txt.includes('omakase')) matchedId = 'r_kashiba';
+      else if (txt.includes('pasta') || txt.includes('tajarin') || txt.includes('rustic') || txt.includes('wine')) matchedId = 'r_spinasse';
+      else if (txt.includes('steak') || txt.includes('view') || txt.includes('skyline') || txt.includes('penthouse')) matchedId = 'r_ascend';
+      else if (txt.includes('soul') || txt.includes('southern') || txt.includes('catfish')) matchedId = 'r_communion';
+      else if (txt.includes('oyster') || txt.includes('seafood') || txt.includes('ballard')) matchedId = 'r_walrus';
+      else if (txt.includes('piano') || txt.includes('caesar') || txt.includes('classic') || txt.includes('charcoal')) matchedId = 'r_elgaucho';
+      else if (txt.includes('fine dining') || txt.includes('mid-century') || txt.includes('luxury')) matchedId = 'r_canlis';
+      else if (txt.includes('burger') || txt.includes('late') || txt.includes('hearth')) matchedId = 'r_palace';
+      else if (txt.includes('lounge') || txt.includes('patio') || txt.includes('bellevue')) matchedId = 'r_anker';
+
+      const rest = RESTAURANTS_DATA[matchedId];
+      document.getElementById('ai-match-result').innerHTML = `
+        <div style="background:#1e293b; border:1px solid #10b981; border-radius:10px; padding:1rem; margin-top:0.75rem;">
+          <div style="font-weight:700; color:#34d399; margin-bottom:0.25rem;">✨ Best Match: ${rest.name} (${rest.cuisine})</div>
+          <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:0.75rem;">${rest.overview}</div>
+          <button type="button" class="btn btn-primary btn-sm" onclick="selectRestaurant('${matchedId}'); closeAiCustomModal(); performSearch();">
+            Book Table at ${rest.name}
+          </button>
+        </div>
+      `;
+    }
+
+    // Carousel Scrolling (Screenshot 3)
+    function scrollCarousel(dir) {
+      const carousel = document.getElementById('ot-icons-carousel');
+      if (carousel) carousel.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    }
+
+    function toggleAllIconsGrid() {
+      const carousel = document.getElementById('ot-icons-carousel');
+      if (carousel.style.flexWrap === 'wrap') {
+        carousel.style.flexWrap = 'nowrap';
+        carousel.style.overflowX = 'auto';
+      } else {
+        carousel.style.flexWrap = 'wrap';
+        carousel.style.overflowX = 'visible';
+      }
+    }
+
+    // Render OpenTable Icons Cards (Screenshot 3)
+    function renderIconsCarousel() {
+      const container = document.getElementById('ot-icons-carousel');
+      if (!container) return;
+
+      const keys = Object.keys(RESTAURANTS_DATA);
+      let filtered = keys;
+
+      if (activeRegionFilter === 'Eastside') {
+        filtered = filtered.filter(k => RESTAURANTS_DATA[k].region === 'Eastside');
+      } else if (activeRegionFilter === 'Seattle') {
+        filtered = filtered.filter(k => RESTAURANTS_DATA[k].region === 'Seattle');
+      }
+
+      if (searchQuery) {
+        filtered = filtered.filter(k => {
+          const r = RESTAURANTS_DATA[k];
+          return r.name.toLowerCase().includes(searchQuery) ||
+                 r.cuisine.toLowerCase().includes(searchQuery) ||
+                 r.neighborhood.toLowerCase().includes(searchQuery);
+        });
+      }
+
+      document.getElementById('icon-count-badge').textContent = filtered.length;
+
+      container.innerHTML = filtered.map(k => {
+        const r = RESTAURANTS_DATA[k];
+        const isSelected = (r.id === currentRestId);
+        return `
+          <div class="ot-icon-card ${isSelected ? 'selected' : ''}" onclick="selectRestaurant('${r.id}')">
+            <div class="ot-card-img-wrap">
+              <img class="ot-card-img" src="${r.hero_img}" alt="${r.name}">
+              <div class="ot-card-badge">
+                <span style="color:#da3743; font-size:0.8rem;">●</span> Icon
+              </div>
+              <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Saved ${r.name} to your OpenTable bookmarks!')">
+                🔖
+              </div>
+            </div>
+            <div class="ot-card-body">
+              <div>
+                <div class="ot-card-name" title="${r.name}">${r.name}</div>
+                <div class="ot-card-stars-row">
+                  <span class="ot-stars-red">★★★★★</span>
+                  <span class="ot-card-reviews">${r.reviews_count}</span>
+                </div>
+                <div class="ot-card-meta">${r.cuisine} • ${r.price} • ${r.neighborhood}</div>
+                <div class="ot-card-booked">
+                  <span>📈</span> ${r.booked_today}
+                </div>
+              </div>
+              <div class="ot-card-actions">
+                <button type="button" class="btn-find-next" onclick="event.stopPropagation(); selectRestaurant('${r.id}'); performSearch();">
+                  Find next available
+                </button>
+                <button type="button" class="btn-card-hotel-os" onclick="event.stopPropagation(); openHotelOsModal('${r.id}')">
+                  🏨 Hotel OS Console
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Switch selected restaurant and update all page elements
+    function selectRestaurant(id) {
+      if (!RESTAURANTS_DATA[id]) return;
+      currentRestId = id;
+      const r = RESTAURANTS_DATA[id];
+
+      // 1. Sync dropdown <select id="restaurant-select"> (critical for tests!)
+      const select = document.getElementById('restaurant-select');
+      if (select) {
+        let opt = Array.from(select.options).find(o => o.value === id);
+        if (!opt) {
+          const newOpt = document.createElement('option');
+          newOpt.value = id;
+          newOpt.textContent = r.name;
+          select.appendChild(newOpt);
+        }
+        select.value = id;
+      }
+
+      // 2. Update Hero 5-Photo Gallery
+      const galleryItems = document.querySelectorAll('.ot-hero-gallery .ot-gallery-item img');
+      if (galleryItems.length >= 5 && r.gallery && r.gallery.length >= 5) {
+        galleryItems[0].src = r.gallery[0];
+        galleryItems[1].src = r.gallery[1];
+        galleryItems[2].src = r.gallery[2];
+        galleryItems[3].src = r.gallery[3];
+        galleryItems[4].src = r.gallery[4];
+      }
+
+      // 3. Update Title, Tagline, Tags, Meta Pills
+      const nameEl = document.querySelector('.ot-rest-name');
+      if (nameEl) nameEl.textContent = r.name;
+
+      const taglineEl = document.querySelector('.ot-rest-tagline');
+      if (taglineEl) taglineEl.textContent = r.tagline;
+
+      const metaPillsEl = document.querySelector('.ot-meta-pills');
+      if (metaPillsEl) {
+        metaPillsEl.innerHTML = `
+          <span class="ot-stars">${r.rating}</span>
+          <span>(${r.reviews_count} OpenTable Reviews)</span>
+          <span>•</span>
+          <span>${r.price}</span>
+          <span>•</span>
+          <span>${r.cuisine}</span>
+          <span>•</span>
+          <span>${r.neighborhood}</span>
+        `;
+      }
+
+      // 4. Update Overview text
+      const overviewTitle = document.querySelector('#overview h2');
+      if (overviewTitle) overviewTitle.textContent = `About ${r.name}`;
+
+      const overviewTexts = document.querySelectorAll('#overview .ot-overview-text');
+      if (overviewTexts.length > 0) overviewTexts[0].textContent = r.overview;
+
+      // 5. Update Popular Dishes
+      const dishesContainer = document.querySelector('.ot-dishes-grid');
+      if (dishesContainer && r.dishes) {
+        dishesContainer.innerHTML = r.dishes.map((d, idx) => `
+          <div class="ot-dish-card">
+            <img class="ot-dish-img" src="${r.gallery[(idx + 1) % r.gallery.length]}" alt="${d.name}">
+            <div class="ot-dish-body">
+              <div class="ot-dish-title">${d.name}</div>
+              <div class="ot-dish-desc">${d.desc}</div>
+              <div class="ot-dish-footer">
+                <span class="ot-dish-price">${d.price}</span>
+                <span style="font-size:0.75rem; color:#94a3b8;">★ ${d.tag}</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // 6. Update Floor Plan / Tables
+      const tablesContainer = document.querySelector('#tables .card > div');
+      if (tablesContainer && r.tables) {
+        tablesContainer.innerHTML = r.tables.slice(0, 3).map((t, idx) => {
+          const colors = ['var(--ot-gold)', '#38bdf8', '#34d399'];
+          return `
+            <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid ${colors[idx % 3]};">
+              <div style="font-weight:700; color:#fff;">${t.label} (${t.id})</div>
+              <div style="font-size:0.85rem; color:#94a3b8;">${t.zone} • Capacity: ${t.cap} Guests</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 7. Update Policies
+      const policiesContainer = document.querySelector('#policies .card');
+      if (policiesContainer && r.policies) {
+        policiesContainer.innerHTML = r.policies.map(p => `<div>• <strong>Policy:</strong> ${p}</div>`).join('');
+      }
+
+      // Re-render carousel highlighting
+      renderIconsCarousel();
+    }
+
+    // Hotel Operating System Modal (PMS & Real Operations)
+    function openHotelOsModal(id) {
+      const restId = id || currentRestId;
+      const r = RESTAURANTS_DATA[restId] || RESTAURANTS_DATA['r_anker'];
+      document.getElementById('hotel-os-venue-name').textContent = `${r.name} Hotel Operating System`;
+      document.getElementById('hotel-pms-partner').textContent = r.hotel_partner;
+      document.getElementById('pms-auth-status').textContent = '';
+
+      // Generate Table Status Matrix for this venue
+      const matrixContainer = document.getElementById('hotel-table-matrix');
+      const statuses = ['vacant', 'seated', 'reserved', 'checkout'];
+      const statusLabels = { vacant: '🟢 Available', seated: '🔴 Seated (Entrée)', reserved: '🟡 Reserved', checkout: '🟣 Settle / Bill' };
+
+      const tablesList = r.tables || [
+        { id: 'T1', label: 'Table 1', cap: 2 },
+        { id: 'T2', label: 'Table 2', cap: 4 },
+        { id: 'T3', label: 'Table 3', cap: 4 },
+        { id: 'T4', label: 'Table 4', cap: 6 }
+      ];
+
+      matrixContainer.innerHTML = tablesList.map((t, idx) => {
+        const st = statuses[idx % statuses.length];
+        return `
+          <div class="hotel-table-cell ${st}">
+            <div style="font-weight:700; color:#ffffff; font-size:0.85rem;">${t.label}</div>
+            <div style="font-size:0.75rem; color:#94a3b8;">Cap: ${t.cap} Seats</div>
+            <div style="font-size:0.7rem; margin-top:0.25rem; font-weight:600;">${statusLabels[st]}</div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('hotel-os-modal').style.display = 'flex';
+    }
+
+    function closeHotelOsModal() {
+      document.getElementById('hotel-os-modal').style.display = 'none';
+    }
+
+    function authorizeHotelRoomCharge() {
+      const room = document.getElementById('pms-room-input').value.trim();
+      const guest = document.getElementById('pms-guest-input').value.trim();
+      const status = document.getElementById('pms-auth-status');
+      if (!room || !guest) {
+        status.style.color = '#ef4444';
+        status.textContent = 'Please enter room number and guest name.';
+        return;
+      }
+      status.style.color = '#34d399';
+      status.textContent = `✓ Authorized: $50.00 Table Hold charged to ${room} (${guest}) at affiliated hotel.`;
+    }
+
 
     // Initialize application
     window.addEventListener('DOMContentLoaded', () => {
@@ -1947,6 +3620,8 @@
       loadSession();
       loadRestaurants();
       initRoute();
+      renderIconsCarousel();
+      selectRestaurant('r_anker');
     });
 
     window.addEventListener('popstate', () => {

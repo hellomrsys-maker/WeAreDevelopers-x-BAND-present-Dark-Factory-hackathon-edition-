@@ -42,7 +42,15 @@ func NewStore(dbPath string) (*Store, error) {
 		return nil, fmt.Errorf("failed to init schema: %w", err)
 	}
 
-	return &Store{db: db}, nil
+	st := &Store{db: db}
+
+	var count int
+	_ = db.QueryRow("SELECT count(*) FROM restaurants").Scan(&count)
+	if count == 0 {
+		_ = st.SeedDefaultRestaurants(context.Background())
+	}
+
+	return st, nil
 }
 
 func (s *Store) DB() *sql.DB {
@@ -683,6 +691,211 @@ func (s *Store) SaveIdempotency(ctx context.Context, item *contracts.Idempotency
 		response_body = excluded.response_body`,
 		item.UserID, item.Key, item.Method, item.Path, item.BodyHash, item.StatusCode, item.ResponseBody, time.Now().Unix())
 	return err
+}
+
+func (s *Store) SeedDefaultRestaurants(ctx context.Context) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	tx, err := s.db.BeginTx(ctx, &sql.TxOptions{})
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	// 1. Seed default user Ada if not exists
+	_, _ = tx.ExecContext(ctx, `INSERT OR IGNORE INTO users(id, email, password_hash, display_name) VALUES('u_ada', 'ada@example.com', 'correct horse', 'Ada Lovelace')`)
+
+	type seedTable struct {
+		id       string
+		label    string
+		capacity int
+	}
+	type seedRest struct {
+		id       string
+		name     string
+		timezone string
+		slotMin  int
+		durMin   int
+		cutMin   int
+		opens    string
+		closes   string
+		tables   []seedTable
+		comb     [][]string
+	}
+
+	rests := []seedRest{
+		{
+			id: "r_anker", name: "JOEY Bellevue", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "11:00", closes: "23:30",
+			tables: []seedTable{
+				{"t_1", "Patio Booth 1", 2},
+				{"t_2", "Patio Booth 2", 2},
+				{"t_3", "Main Dining 3", 4},
+				{"t_4", "Main Dining 4", 4},
+				{"t_5", "Lounge Table 5", 6},
+				{"t_6", "Sommelier Table 6", 8},
+				{"t_7", "Window Table 7", 2},
+				{"t_8", "Chef Counter 8", 4},
+			},
+			comb: [][]string{{"t_1", "t_2"}, {"t_3", "t_4"}},
+		},
+		{
+			id: "r_spinasse", name: "Spinasse", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 120, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"sp_1", "Pasta Bar 1", 2},
+				{"sp_2", "Rustic Table 2", 2},
+				{"sp_3", "Cantina 3", 4},
+				{"sp_4", "Cantina 4", 4},
+				{"sp_5", "Wine Table 5", 6},
+				{"sp_6", "Piedmontese Room 6", 8},
+			},
+			comb: [][]string{{"sp_3", "sp_4"}},
+		},
+		{
+			id: "r_kashiba", name: "Sushi Kashiba", timezone: "America/Los_Angeles", slotMin: 30, durMin: 120, cutMin: 240, opens: "17:00", closes: "22:00",
+			tables: []seedTable{
+				{"sk_1", "Omakase Bar 1", 2},
+				{"sk_2", "Omakase Bar 2", 2},
+				{"sk_3", "Elliott Bay 3", 4},
+				{"sk_4", "Elliott Bay 4", 4},
+				{"sk_5", "Master Shiro Salon 5", 6},
+				{"sk_6", "Courtyard Table 6", 8},
+			},
+			comb: [][]string{{"sk_3", "sk_4"}},
+		},
+		{
+			id: "r_communion", name: "COMMUNION Restaurant & Bar", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:30", closes: "22:00",
+			tables: []seedTable{
+				{"cm_1", "Soul Booth 1", 2},
+				{"cm_2", "Soul Booth 2", 2},
+				{"cm_3", "Central Table 3", 4},
+				{"cm_4", "Central Table 4", 4},
+				{"cm_5", "Kristi Family Table 5", 6},
+				{"cm_6", "Community Table 6", 8},
+			},
+			comb: [][]string{{"cm_3", "cm_4"}},
+		},
+		{
+			id: "r_pinkdoor", name: "The Pink Door", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "11:30", closes: "23:00",
+			tables: []seedTable{
+				{"pd_1", "Cabaret Front 1", 2},
+				{"pd_2", "Trapeze View 2", 2},
+				{"pd_3", "Post Alley Deck 3", 4},
+				{"pd_4", "Post Alley Deck 4", 4},
+				{"pd_5", "Wine Cellar 5", 6},
+				{"pd_6", "Piazza Table 6", 8},
+			},
+			comb: [][]string{{"pd_3", "pd_4"}},
+		},
+		{
+			id: "r_palace", name: "Palace Kitchen", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:00", closes: "23:59",
+			tables: []seedTable{
+				{"pk_1", "Horseshoe Bar 1", 2},
+				{"pk_2", "Hearth Table 2", 2},
+				{"pk_3", "Rotisserie Table 3", 4},
+				{"pk_4", "Rotisserie Table 4", 4},
+				{"pk_5", "Belltown Salon 5", 6},
+				{"pk_6", "Captain Table 6", 8},
+			},
+			comb: [][]string{{"pk_3", "pk_4"}},
+		},
+		{
+			id: "r_canlis", name: "Canlis", timezone: "America/Los_Angeles", slotMin: 30, durMin: 150, cutMin: 1440, opens: "17:00", closes: "23:00",
+			tables: []seedTable{
+				{"cn_1", "Lake Union View 1", 2},
+				{"cn_2", "Cascade View 2", 2},
+				{"cn_3", "Mid-Century Hearth 3", 4},
+				{"cn_4", "Piano Salon 4", 4},
+				{"cn_5", "Peter Canlis Room 5", 6},
+				{"cn_6", "Wine Vault 6", 8},
+			},
+			comb: [][]string{{"cn_3", "cn_4"}},
+		},
+		{
+			id: "r_ascend", name: "Ascend Prime Steak & Sushi", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "16:30", closes: "23:00",
+			tables: []seedTable{
+				{"as_1", "31st Skyline 1", 2},
+				{"as_2", "Mt. Rainier View 2", 2},
+				{"as_3", "Robata Counter 3", 4},
+				{"as_4", "Penthouse Booth 4", 4},
+				{"as_5", "Sky Lounge 5", 6},
+				{"as_6", "Presidential Suite 6", 8},
+			},
+			comb: [][]string{{"as_3", "as_4"}},
+		},
+		{
+			id: "r_elgaucho", name: "El Gaucho Seattle", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"eg_1", "Charcoal Grill 1", 2},
+				{"eg_2", "Steinway Piano 2", 2},
+				{"eg_3", "Captain Table 3", 4},
+				{"eg_4", "Vintage Booth 4", 4},
+				{"eg_5", "Sommelier Vault 5", 6},
+				{"eg_6", "Pampas Salon 6", 8},
+			},
+			comb: [][]string{{"eg_3", "eg_4"}},
+		},
+		{
+			id: "r_walrus", name: "The Walrus and the Carpenter", timezone: "America/Los_Angeles", slotMin: 15, durMin: 75, cutMin: 60, opens: "16:00", closes: "22:00",
+			tables: []seedTable{
+				{"wc_1", "Zinc Oyster Bar 1", 2},
+				{"wc_2", "Zinc Oyster Bar 2", 2},
+				{"wc_3", "Maritime Table 3", 4},
+				{"wc_4", "Ballard Courtyard 4", 4},
+				{"wc_5", "Fisherman Table 5", 6},
+				{"wc_6", "Harbor Banquette 6", 8},
+			},
+			comb: [][]string{{"wc_3", "wc_4"}},
+		},
+	}
+
+	weekdays := []string{"mon", "tue", "wed", "thu", "fri", "sat", "sun"}
+
+	for _, r := range rests {
+		_, err := tx.ExecContext(ctx, `INSERT OR REPLACE INTO restaurants(id, name, timezone, slot_minutes, reservation_duration_minutes, cancellation_cutoff_minutes, revision) VALUES(?, ?, ?, ?, ?, ?, 0)`,
+			r.id, r.name, r.timezone, r.slotMin, r.durMin, r.cutMin)
+		if err != nil {
+			return err
+		}
+		_, _ = tx.ExecContext(ctx, `INSERT OR IGNORE INTO restaurant_managers(restaurant_id, user_id) VALUES(?, 'u_ada')`, r.id)
+
+		_, _ = tx.ExecContext(ctx, `DELETE FROM opening_hours WHERE restaurant_id = ?`, r.id)
+		_, _ = tx.ExecContext(ctx, `DELETE FROM tables WHERE restaurant_id = ?`, r.id)
+		_, _ = tx.ExecContext(ctx, `DELETE FROM combinable_tables WHERE restaurant_id = ?`, r.id)
+
+		var openHours []contracts.OpeningHour
+		for _, w := range weekdays {
+			_, err := tx.ExecContext(ctx, `INSERT INTO opening_hours(restaurant_id, weekday, opens, closes) VALUES(?, ?, ?, ?)`, r.id, w, r.opens, r.closes)
+			if err != nil {
+				return err
+			}
+			openHours = append(openHours, contracts.OpeningHour{Weekday: w, Opens: r.opens, Closes: r.closes})
+		}
+
+		caps := make(map[string]int)
+		for idx, t := range r.tables {
+			_, err := tx.ExecContext(ctx, `INSERT INTO tables(id, restaurant_id, label, capacity, sort_order) VALUES(?, ?, ?, ?, ?)`, t.id, r.id, t.label, t.capacity, idx)
+			if err != nil {
+				return err
+			}
+			caps[t.id] = t.capacity
+		}
+
+		for idx, pair := range r.comb {
+			if len(pair) == 2 {
+				_, _ = tx.ExecContext(ctx, `INSERT INTO combinable_tables(restaurant_id, table_a, table_b, sort_order) VALUES(?, ?, ?, ?)`, r.id, pair[0], pair[1], idx)
+			}
+		}
+
+		// Policy 0
+		hoursJSON, _ := json.Marshal(openHours)
+		capsJSON, _ := json.Marshal(caps)
+		_, _ = tx.ExecContext(ctx, `INSERT OR REPLACE INTO policies(restaurant_id, policy_version, effective_from, slot_minutes, reservation_duration_minutes, cancellation_cutoff_minutes, opening_hours_json, capacities_json, created_at)
+			VALUES(?, 0, '1970-01-01', ?, ?, ?, ?, ?, ?)`,
+			r.id, r.slotMin, r.durMin, r.cutMin, string(hoursJSON), string(capsJSON), time.Now().Unix())
+	}
+
+	return tx.Commit()
 }
 
 const SchemaSQL = `
