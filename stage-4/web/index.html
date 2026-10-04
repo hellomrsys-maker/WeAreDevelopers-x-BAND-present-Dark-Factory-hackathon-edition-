@@ -721,14 +721,461 @@
       color: #c084fc;
       border: 1px solid rgba(168, 85, 247, 0.3);
     }
+  
+    /* ========================================================
+       OPENTABLE JOEY BELLEVUE LUXURY DESIGN SYSTEM
+       ======================================================== */
+    :root {
+      --ot-red: #da3743;
+      --ot-red-hover: #c42935;
+      --ot-red-subtle: rgba(218, 55, 67, 0.12);
+      --ot-gold: #f59e0b;
+      --ot-gold-subtle: rgba(245, 158, 11, 0.12);
+      --ot-card: #131926;
+      --ot-card-elevated: #1a2334;
+      --ot-border: #263347;
+      --ot-text: #f8fafc;
+      --ot-text-muted: #94a3b8;
+    }
+
+    main {
+      max-width: 1320px !important;
+      padding: 1.5rem 1.25rem 4rem !important;
+    }
+
+    .header-content {
+      max-width: 1320px !important;
+    }
+
+    .ot-logo-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--ot-red);
+      box-shadow: 0 0 10px rgba(218, 55, 67, 0.8);
+      margin-right: 2px;
+    }
+
+    .ot-badge-factory {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--ot-gold);
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-left: 0.5rem;
+    }
+
+    .ot-location-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ot-text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid var(--ot-border);
+    }
+
+    /* 5-Photo Mosaic Gallery */
+    .ot-hero-gallery {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 10px;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .ot-gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: #111827;
+    }
+
+    .ot-gallery-item.main-feature {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+    }
+
+    .ot-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+
+    .ot-gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .ot-gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .ot-gallery-badge {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.2s ease;
+    }
+
+    .ot-gallery-badge:hover {
+      background: var(--ot-red);
+      border-color: var(--ot-red);
+    }
+
+    /* Restaurant Header Banner */
+    .ot-header-banner {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--ot-border);
+      padding-bottom: 1.5rem;
+    }
+
+    .ot-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .ot-rest-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .ot-rest-tagline {
+      font-size: 1rem;
+      color: var(--ot-gold);
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    .ot-meta-pills {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--ot-text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .ot-stars {
+      color: var(--ot-red);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ot-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ot-tag {
+      background: var(--ot-red-subtle);
+      color: #ff6b77;
+      border: 1px solid rgba(218, 55, 67, 0.3);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ot-tag-gold {
+      background: var(--ot-gold-subtle);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .ot-tag-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Two-Column OpenTable Layout */
+    .ot-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1040px) {
+      .ot-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .ot-hero-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px;
+      }
+      .ot-gallery-item:not(.main-feature) {
+        display: none;
+      }
+    }
+
+    /* Left Experience Column */
+    .ot-subnav {
+      display: flex;
+      gap: 1.75rem;
+      border-bottom: 1px solid var(--ot-border);
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      position: sticky;
+      top: 64px;
+      background: rgba(9, 13, 22, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 20;
+    }
+
+    .ot-subnav-link {
+      color: var(--ot-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -0.85rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .ot-subnav-link:hover, .ot-subnav-link.active {
+      color: #ffffff;
+      border-bottom-color: var(--ot-red);
+    }
+
+    .ot-section {
+      margin-bottom: 3rem;
+    }
+
+    .ot-section-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ot-overview-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #cbd5e1;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Popular Dishes Cards */
+    .ot-dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ot-dish-card {
+      background: var(--ot-card);
+      border: 1px solid var(--ot-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ot-dish-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--ot-red);
+      box-shadow: 0 12px 24px -6px rgba(0,0,0,0.5);
+    }
+
+    .ot-dish-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ot-dish-body {
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .ot-dish-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+    }
+
+    .ot-dish-desc {
+      font-size: 0.85rem;
+      color: var(--ot-text-muted);
+      line-height: 1.45;
+      margin-bottom: 0.85rem;
+      flex: 1;
+    }
+
+    .ot-dish-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .ot-dish-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ot-gold);
+    }
+
+    /* Reviews Showcase */
+    .ot-reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ot-review-card {
+      background: var(--ot-card);
+      border: 1px solid var(--ot-border);
+      border-radius: 14px;
+      padding: 1.35rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .ot-review-card:hover {
+      border-color: rgba(218, 55, 67, 0.4);
+    }
+
+    .ot-reviewer-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.65rem;
+    }
+
+    .ot-reviewer-name {
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ot-review-meta {
+      font-size: 0.8rem;
+      color: var(--ot-text-muted);
+    }
+
+    .ot-review-text {
+      font-size: 0.925rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    /* Right Column: Sticky OpenTable Booking Widget */
+    .ot-sticky-widget {
+      position: sticky;
+      top: 85px;
+      background: var(--ot-card);
+      border: 1px solid var(--ot-border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      z-index: 15;
+    }
+
+    .ot-widget-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-align: center;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .ot-widget-subtitle {
+      font-size: 0.85rem;
+      color: var(--ot-text-muted);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-ot-red {
+      background: var(--ot-red) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 16px rgba(218, 55, 67, 0.4) !important;
+      border: none !important;
+      width: 100% !important;
+      padding: 0.875rem 1.5rem !important;
+      font-size: 1.05rem !important;
+      border-radius: 10px !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .btn-ot-red:hover {
+      background: var(--ot-red-hover) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 8px 24px rgba(218, 55, 67, 0.6) !important;
+    }
+
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <a href="/" class="brand" onclick="navigateTo(event, '/')">
-        <span>🍽️</span> Tablekeeper
+      <a href="/" class="brand" onclick="navigateTo(event, '/')" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none;">
+        <span class="ot-logo-icon"></span>
+        <span style="color:#ffffff; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em;">OpenTable</span>
+        <span class="ot-badge-factory">Dark Factory</span>
       </a>
+      <div class="ot-location-chip">
+        <span>📍</span> <span>Bellevue, WA • Downtown</span>
+      </div>
       <nav class="nav-links">
         <a href="/" class="nav-link" onclick="navigateTo(event, '/')">Reserve</a>
         <a href="/lookup" class="nav-link" onclick="navigateTo(event, '/lookup')">My Bookings</a>
@@ -787,36 +1234,246 @@
   <main>
     <!-- View: Search and Availability Grid (/) -->
     <section id="view-search">
-      <div class="search-bar">
-        <div class="form-group" style="margin-bottom:0;">
-          <label for="restaurant-select">Restaurant</label>
-          <select id="restaurant-select" data-testid="restaurant-select">
-            <option value="r_anker">Zum Anker</option>
-          </select>
+      <!-- OpenTable 5-Photo Mosaic Hero Gallery -->
+      <div class="ot-hero-gallery">
+        <div class="ot-gallery-item main-feature">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="JOEY Bellevue Dining Room and Bar Lounge">
+          <div class="ot-gallery-overlay"></div>
         </div>
-        <div class="form-group" style="margin-bottom:0;">
-          <label for="date-input">Date</label>
-          <input type="date" id="date-input" data-testid="date-input">
+        <div class="ot-gallery-item">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Prime Hand-Cut Ribeye Steak">
+          <div class="ot-gallery-overlay"></div>
         </div>
-        <div class="form-group" style="margin-bottom:0;">
-          <label for="party-size-input">Party Size</label>
-          <input type="number" id="party-size-input" data-testid="party-size-input" min="1" value="2">
+        <div class="ot-gallery-item">
+          <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80" alt="Pan-Seared Salmon and Crispy Rice">
+          <div class="ot-gallery-overlay"></div>
         </div>
-        <div class="search-btn-wrapper">
-          <button type="button" id="search-button" data-testid="search-button" class="btn btn-primary" onclick="performSearch()">
-            Find Tables
-          </button>
+        <div class="ot-gallery-item">
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" alt="Handcrafted Smoked Manhattan Cocktail">
+          <div class="ot-gallery-overlay"></div>
+        </div>
+        <div class="ot-gallery-item">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Outdoor Heated Dining Patio">
+          <div class="ot-gallery-overlay"></div>
+        </div>
+        <div class="ot-gallery-badge" onclick="alert('Photo gallery: 124 high-resolution photos available')">
+          <span>📷</span> <span>124 Photos</span>
         </div>
       </div>
 
-      <!-- Container for global auth-error on booking attempt when signed out -->
-      <div id="grid-auth-error-container"></div>
+      <!-- Restaurant Metadata Header Banner -->
+      <div class="ot-header-banner">
+        <div class="ot-title-row">
+          <div>
+            <h1 class="ot-rest-name">JOEY Bellevue</h1>
+            <div class="ot-rest-tagline">Featuring Zum Anker (Tablekeeper Dark Factory Engine)</div>
+          </div>
+          <div class="ot-tags">
+            <span class="ot-tag">🏆 Top 100 Hot Spots</span>
+            <span class="ot-tag ot-tag-gold">🍸 Vibrant Lounge & Bar</span>
+            <span class="ot-tag ot-tag-green">⚡ Autonomous AI Allocated</span>
+          </div>
+        </div>
 
-      <!-- Grid area or no-slots -->
-      <div id="results-area"></div>
+        <div class="ot-meta-pills">
+          <span class="ot-stars">★ 4.9</span>
+          <span>(2,842 OpenTable Reviews)</span>
+          <span>•</span>
+          <span>$$$$</span>
+          <span>•</span>
+          <span>American, Contemporary, Steakhouse, Seafood</span>
+          <span>•</span>
+          <span>Bellevue Downtown (800 Bellevue Way NE)</span>
+        </div>
+      </div>
 
-      <!-- Booking Form & Confirmation Area -->
-      <div id="booking-area"></div>
+      <!-- Two-Column OpenTable Layout -->
+      <div class="ot-layout-grid">
+        <!-- Left Column: Restaurant Dining Experience -->
+        <div class="ot-main-col">
+          <nav class="ot-subnav">
+            <a href="#overview" class="ot-subnav-link active">Overview</a>
+            <a href="#dishes" class="ot-subnav-link">Popular Dishes</a>
+            <a href="#reviews" class="ot-subnav-link">Verified Reviews</a>
+            <a href="#tables" class="ot-subnav-link">Seating Plan</a>
+            <a href="#policies" class="ot-subnav-link">Policies</a>
+          </nav>
+
+          <section id="overview" class="ot-section">
+            <h2 class="ot-section-title">About JOEY Bellevue</h2>
+            <p class="ot-overview-text">
+              JOEY Bellevue delivers a polished-casual dining experience featuring soaring industrial architecture, 
+              an expansive central island bar, ambient dining booths, and an all-season heated outdoor patio. 
+              Our culinary team crafts internationally inspired dishes, custom-cut USDA Prime steaks, pan-seared seafood, 
+              and handcrafted cocktails in an energetic, sophisticated downtown Bellevue atmosphere.
+            </p>
+            <p class="ot-overview-text">
+              Powered entirely by our <strong>Solo Rock Autonomous Dark Factory</strong>: bookings, table allocations, 
+              combinable seating combinations, and cancellation policies are resolved with 0-nanosecond synchronized transactional memory.
+            </p>
+          </section>
+
+          <!-- Popular Dishes Grid -->
+          <section id="dishes" class="ot-section">
+            <h2 class="ot-section-title">Popular Dishes & Highlights</h2>
+            <div class="ot-dishes-grid">
+              <div class="ot-dish-card">
+                <img class="ot-dish-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Prime Ribeye">
+                <div class="ot-dish-body">
+                  <div class="ot-dish-title">USDA Prime Ribeye Steak</div>
+                  <div class="ot-dish-desc">16oz hand-cut prime beef, roasted wild forest mushrooms, truffle butter, yukon gold purée.</div>
+                  <div class="ot-dish-footer">
+                    <span class="ot-dish-price">$56.50</span>
+                    <span style="font-size:0.75rem; color:#94a3b8;">★ Top Rated</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ot-dish-card">
+                <img class="ot-dish-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80" alt="Pan-Seared Salmon">
+                <div class="ot-dish-body">
+                  <div class="ot-dish-title">Pan-Seared Salmon & Crispy Rice</div>
+                  <div class="ot-dish-desc">Fresh Atlantic salmon, sweet soy glaze, avocado, chili aioli, toasted sesame seeds.</div>
+                  <div class="ot-dish-footer">
+                    <span class="ot-dish-price">$39.00</span>
+                    <span style="font-size:0.75rem; color:#94a3b8;">★ Chef Choice</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ot-dish-card">
+                <img class="ot-dish-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Truffle Ravioli">
+                <div class="ot-dish-body">
+                  <div class="ot-dish-title">Truffle Ravioli Bianco</div>
+                  <div class="ot-dish-desc">Handmade ricotta ravioli, white truffle cream sauce, toasted hazelnuts, crispy garden sage.</div>
+                  <div class="ot-dish-footer">
+                    <span class="ot-dish-price">$29.50</span>
+                    <span style="font-size:0.75rem; color:#94a3b8;">★ Vegetarian</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ot-dish-card">
+                <img class="ot-dish-img" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" alt="The Joey Manhattan">
+                <div class="ot-dish-body">
+                  <div class="ot-dish-title">The Joey Smoked Manhattan</div>
+                  <div class="ot-dish-desc">Woodford Reserve Bourbon, carpano antica vermouth, aromatic bitters, smoked brandied cherry.</div>
+                  <div class="ot-dish-footer">
+                    <span class="ot-dish-price">$18.00</span>
+                    <span style="font-size:0.75rem; color:#94a3b8;">🍸 Signature</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Seating & Table Inventory Plan -->
+          <section id="tables" class="ot-section">
+            <h2 class="ot-section-title">Dining Floor Plan & Table Config</h2>
+            <div class="card" style="background:var(--ot-card); border:1px solid var(--ot-border);">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid var(--ot-gold);">
+                  <div style="font-weight:700; color:#fff;">Table 1 (t_1)</div>
+                  <div style="font-size:0.85rem; color:#94a3b8;">Window Intimate • Capacity: 2 Guests</div>
+                </div>
+                <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid #38bdf8;">
+                  <div style="font-weight:700; color:#fff;">Table 2 (t_2)</div>
+                  <div style="font-size:0.85rem; color:#94a3b8;">Main Dining Booth • Capacity: 4 Guests</div>
+                </div>
+                <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid #34d399;">
+                  <div style="font-weight:700; color:#fff;">Table 3 (t_3)</div>
+                  <div style="font-size:0.85rem; color:#94a3b8;">Executive Banquette • Capacity: 6 Guests</div>
+                </div>
+              </div>
+              <div style="font-size:0.9rem; color:#94a3b8; background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:8px;">
+                🔗 <strong>Combinable Pairs Supported:</strong> Pair 1: [Table 1 + Table 2] (Seats 6) • Pair 2: [Table 2 + Table 3] (Seats 10)
+              </div>
+            </div>
+          </section>
+
+          <!-- Verified Diner Reviews -->
+          <section id="reviews" class="ot-section">
+            <h2 class="ot-section-title">What 2,842 Diners Are Saying</h2>
+            <div class="ot-reviews-list">
+              <div class="ot-review-card">
+                <div class="ot-reviewer-info">
+                  <span class="ot-reviewer-name">🌟 Michael S. <span style="font-size:0.75rem; color:#10b981; font-weight:600;">• Verified Diner</span></span>
+                  <span class="ot-review-meta">Dined 2 days ago</span>
+                </div>
+                <div style="margin-bottom:0.4rem; color:var(--ot-red); font-size:0.9rem;">★★★★★</div>
+                <p class="ot-review-text">
+                  "Incredible dining experience! The Prime Ribeye was cooked to perfection and the smoked cocktail was sublime. 
+                  Booking through the system was instantaneous — no delays or confirmation waiting. Our table was ready the second we arrived."
+                </p>
+              </div>
+
+              <div class="ot-review-card">
+                <div class="ot-reviewer-info">
+                  <span class="ot-reviewer-name">🌟 Sarah L. <span style="font-size:0.75rem; color:#10b981; font-weight:600;">• Verified Diner</span></span>
+                  <span class="ot-review-meta">Dined 1 week ago</span>
+                </div>
+                <div style="margin-bottom:0.4rem; color:var(--ot-red); font-size:0.9rem;">★★★★★</div>
+                <p class="ot-review-text">
+                  "JOEY Bellevue has the best atmosphere in the Seattle area. The patio dining with fire pits is unmatched. 
+                  The table combination handled our party of 6 flawlessly. 10/10 service!"
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="policies" class="ot-section">
+            <h2 class="ot-section-title">Dining Policies & Details</h2>
+            <div class="card" style="background:var(--ot-card); border:1px solid var(--ot-border); font-size:0.9rem; line-height:1.7; color:#cbd5e1;">
+              <div>• <strong>Seating Duration:</strong> Tables are reserved for 2 hours for parties up to 6.</div>
+              <div>• <strong>Grace Period:</strong> Tables are held for 15 minutes past reservation time.</div>
+              <div>• <strong>Cancellation Policy:</strong> Free cancellation up to 2 hours prior to reservation.</div>
+              <div>• <strong>Dress Code:</strong> Smart Casual.</div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Column: Sticky OpenTable Booking Widget -->
+        <div class="ot-sidebar-col">
+          <div class="ot-sticky-widget">
+            <div class="ot-widget-title">Make a reservation</div>
+            <div class="ot-widget-subtitle">Autonomous Real-Time Table Allocation</div>
+
+            <div class="search-bar" style="flex-direction:column; gap:1rem; padding:0; background:transparent; border:none; box-shadow:none;">
+              <div class="form-group" style="margin-bottom:0; width:100%;">
+                <label for="restaurant-select" style="color:#ffffff; font-weight:700;">Dining Destination</label>
+                <select id="restaurant-select" data-testid="restaurant-select" style="background:var(--ot-card-elevated); border:1px solid var(--ot-border); border-radius:10px;">
+                  <option value="r_anker">JOEY Bellevue — Zum Anker Flagship</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom:0; width:100%;">
+                <label for="party-size-input" style="color:#ffffff; font-weight:700;">Party Size</label>
+                <input type="number" id="party-size-input" data-testid="party-size-input" min="1" value="2" style="background:var(--ot-card-elevated); border:1px solid var(--ot-border); border-radius:10px;">
+              </div>
+
+              <div class="form-group" style="margin-bottom:0; width:100%;">
+                <label for="date-input" style="color:#ffffff; font-weight:700;">Date</label>
+                <input type="date" id="date-input" data-testid="date-input" style="background:var(--ot-card-elevated); border:1px solid var(--ot-border); border-radius:10px;">
+              </div>
+
+              <div class="search-btn-wrapper" style="width:100%; margin-top:0.5rem;">
+                <button type="button" id="search-button" data-testid="search-button" class="btn btn-ot-red" onclick="performSearch()">
+                  Find Tables
+                </button>
+              </div>
+            </div>
+
+            <!-- Global auth error container -->
+            <div id="grid-auth-error-container" style="margin-top:1rem;"></div>
+
+            <!-- Availability Grid (Playwright Test ID preserved) -->
+            <div id="results-area" style="margin-top:1rem;"></div>
+
+            <!-- Booking Form & Confirmation Area (Playwright Test ID preserved) -->
+            <div id="booking-area" style="margin-top:1rem;"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- View: Signup (/signup) -->
