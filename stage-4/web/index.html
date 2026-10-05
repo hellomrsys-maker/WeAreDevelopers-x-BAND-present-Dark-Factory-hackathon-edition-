@@ -2837,6 +2837,233 @@
       line-height: 1.5;
     }
 
+  
+    /* ==========================================================================
+       OPENTABLE REWARDS HUB STYLES (PDF AUTHENTIC REPLICA)
+       ========================================================================== */
+    .ot-rewards-hub-wrapper {
+      max-width: 1080px;
+      margin: 2.5rem auto 4.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .ot-rewards-hub-header {
+      margin-bottom: 2rem;
+    }
+
+    .ot-rewards-hub-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+    }
+
+    .ot-rewards-hub-subtitle {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+    }
+
+    .ot-rewards-hub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 880px) {
+      .ot-rewards-hub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ot-hub-box {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .ot-hub-box-head {
+      margin-bottom: 1.5rem;
+    }
+
+    .ot-hub-box-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .ot-hub-box-sub {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    /* Fan cards visual graphic */
+    .ot-hub-fan-cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.25rem 0 1.75rem;
+      padding: 1.25rem 0;
+    }
+
+    .ot-fan-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .ot-fan-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(218, 55, 67, 0.6);
+    }
+
+    .fan-card-1 { transform: rotate(-5deg); }
+    .fan-card-2 { transform: translateY(-8px); z-index: 2; border-color: rgba(218, 55, 67, 0.5); }
+    .fan-card-3 { transform: rotate(5deg); }
+
+    .ot-fan-card-val {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .ot-fan-card-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+    }
+
+    /* Checklist */
+    .ot-hub-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ot-hub-check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    .ot-check-ico {
+      font-size: 1.2rem;
+    }
+
+    .ot-info-pill {
+      font-size: 0.75rem;
+      color: #64748b;
+      cursor: help;
+      margin-left: 4px;
+    }
+
+    .ot-hub-legal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.825rem;
+    }
+
+    .ot-hub-restrictions {
+      color: #64748b;
+    }
+
+    .ot-hub-learn-more {
+      color: #da3743;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .ot-hub-learn-more:hover {
+      text-decoration: underline;
+    }
+
+    /* Partner benefits list */
+    .ot-partner-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .ot-partner-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .ot-partner-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .ot-partner-badge {
+      width: 76px;
+      height: 54px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sapphire-badge {
+      background: #0f172a;
+      border: 1px solid #1e3a8a;
+    }
+
+    .uber-badge {
+      background: #000000;
+      border: 1px solid #334155;
+    }
+
+    .visa-badge {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+    }
+
+    .ot-partner-info {
+      flex-grow: 1;
+    }
+
+    .ot-partner-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .ot-partner-desc {
+      font-size: 0.825rem;
+      color: #94a3b8;
+      margin-top: 0.2rem;
+      line-height: 1.4;
+    }
+
   </style>
 </head>
 <body>
@@ -3168,12 +3395,12 @@
       <div class="ot-regulars-section">
         <div class="ot-regulars-header">
           <div>
-            <div class="ot-regulars-title">
+            <div class="ot-regulars-title" style="cursor:pointer;" onclick="navigateTo(event, '/rewards')">
               <span>🎟️</span> OpenTable Regulars
             </div>
             <div class="ot-regulars-sub">You’re leaving rewards on the table, enroll today.</div>
           </div>
-          <button type="button" class="btn btn-ot-red" onclick="alert('Enrolled in OpenTable Regulars rewards program! Earn 100 bonus points on your next reservation.')" style="padding:0.6rem 1.5rem; font-weight:700;">
+          <button type="button" class="btn btn-ot-red" onclick="navigateTo(event, '/rewards')" style="padding:0.6rem 1.5rem; font-weight:700;">
             Enroll to start earning
           </button>
         </div>
@@ -4587,7 +4814,203 @@
         </div>
       </div>
     </section>
-  
+
+    <!-- View: Rewards Hub (/rewards) - Replicated from OpenTable Reference PDF -->
+    <section id="view-rewards" class="hidden">
+      <div class="ot-rewards-hub-wrapper">
+        <div class="ot-rewards-hub-header">
+          <h1 class="ot-rewards-hub-title">Rewards Hub</h1>
+          <p class="ot-rewards-hub-subtitle">All of your rewards and benefits in one place.</p>
+        </div>
+
+        <div class="ot-rewards-hub-grid">
+          <!-- Left Column: OpenTable Regulars -->
+          <div class="ot-hub-box">
+            <div>
+              <div class="ot-hub-box-head">
+                <h2 class="ot-hub-box-title">OpenTable Regulars</h2>
+                <p class="ot-hub-box-sub">Dine to earn points and Gold status benefits with OpenTable's loyalty program.</p>
+              </div>
+
+              <!-- Rewards Cards Visual Fan Graphic -->
+              <div class="ot-hub-fan-cards" onclick="openRewardsTiersModal()">
+                <div class="ot-fan-card fan-card-1">
+                  <div class="ot-fan-card-val">🎟️ 1,000 pts</div>
+                  <div class="ot-fan-card-label">Experience credit</div>
+                </div>
+                <div class="ot-fan-card fan-card-2">
+                  <div class="ot-fan-card-val">🍽️ 2,000 pts</div>
+                  <div class="ot-fan-card-label">Dining credit ($20)</div>
+                </div>
+                <div class="ot-fan-card fan-card-3">
+                  <div class="ot-fan-card-val">🎁 2,000 pts</div>
+                  <div class="ot-fan-card-label">Amazon Gift Card</div>
+                </div>
+              </div>
+
+              <!-- Features Checklist -->
+              <div class="ot-hub-checklist">
+                <div class="ot-hub-check-item">
+                  <span class="ot-check-ico">🎟️</span>
+                  <span>Earn points towards rewards</span>
+                </div>
+                <div class="ot-hub-check-item">
+                  <span class="ot-check-ico">🔔</span>
+                  <span>Priority notify when tables open up</span>
+                </div>
+                <div class="ot-hub-check-item">
+                  <span class="ot-check-ico">🍽️</span>
+                  <span>Access to Gold Exclusive Tables</span>
+                </div>
+                <div class="ot-hub-check-item">
+                  <span class="ot-check-ico">🚗</span>
+                  <span>6 months of Uber One for free <span class="ot-info-pill" title="Subject to partner eligibility">ℹ️</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <!-- Dynamic Member State CTA -->
+              <div id="ot-rewards-auth-cta" style="margin-top:1.5rem;">
+                <button type="button" class="btn btn-ot-red" onclick="openAuthModal('phone')" style="width:100%; padding:0.75rem 1.5rem; font-weight:700; font-size:1rem; text-align:center;">
+                  Sign in to join
+                </button>
+              </div>
+
+              <div class="ot-hub-legal-footer">
+                <span class="ot-hub-restrictions">Restrictions apply. Terms and conditions.</span>
+                <a class="ot-hub-learn-more" onclick="openRewardsTiersModal()">Learn more ›</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Unlock partner benefits -->
+          <div class="ot-hub-box">
+            <div>
+              <div class="ot-hub-box-head">
+                <h2 class="ot-hub-box-title">Unlock partner benefits</h2>
+                <p class="ot-hub-box-sub">Connect your account with partners to enjoy primetime tables, special events and more.</p>
+              </div>
+
+              <div class="ot-partner-cards-list">
+                <!-- Partner 1: Chase Sapphire Reserve -->
+                <div class="ot-partner-card">
+                  <div class="ot-partner-badge sapphire-badge">
+                    <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.05em; color:#93c5fd;">● SAPPHIRE</div>
+                    <div style="font-size:0.65rem; color:#60a5fa; font-weight:700;">RESERVE</div>
+                  </div>
+                  <div class="ot-partner-info">
+                    <div class="ot-partner-title">Sapphire Reserve Exclusive Tables</div>
+                    <div class="ot-partner-desc">Enjoy primetime tables and a $300 statement credit.</div>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-partner-sapphire" onclick="togglePartnerLink('sapphire')" style="white-space:nowrap;">
+                    Link card
+                  </button>
+                </div>
+
+                <!-- Partner 2: Uber One -->
+                <div class="ot-partner-card">
+                  <div class="ot-partner-badge uber-badge">
+                    <div style="font-size:0.85rem; font-weight:900; color:#fff;">Uber</div>
+                    <div style="font-size:0.65rem; color:#facc15; font-weight:700;">One</div>
+                  </div>
+                  <div class="ot-partner-info">
+                    <div class="ot-partner-title">Uber One Exclusive Tables</div>
+                    <div class="ot-partner-desc">Unlock primetime tables with Uber One.</div>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-partner-uber" onclick="togglePartnerLink('uber')" style="white-space:nowrap;">
+                    Link account
+                  </button>
+                </div>
+
+                <!-- Partner 3: Visa Dining Collection -->
+                <div class="ot-partner-card">
+                  <div class="ot-partner-badge visa-badge">
+                    <div style="font-size:0.95rem; font-weight:900; color:#1e40af; letter-spacing:-0.05em;">VISA</div>
+                  </div>
+                  <div class="ot-partner-info">
+                    <div class="ot-partner-title">Visa Dining Collection</div>
+                    <div class="ot-partner-desc">Book primetime tables and special events.</div>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-partner-visa" onclick="togglePartnerLink('visa')" style="white-space:nowrap;">
+                    Link card
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Partner Perks Summary -->
+            <div style="margin-top:1.5rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:0.875rem 1rem; font-size:0.825rem; color:#94a3b8; display:flex; align-items:center; gap:8px;">
+              <span>✨</span>
+              <span>Partner benefits automatically stack with OpenTable loyalty points and status.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rewards Tiers & Redemption Modal -->
+    <div id="rewards-tiers-modal" class="hotel-os-modal" style="display:none;" onclick="if(event.target===this)closeRewardsTiersModal()">
+      <div class="hotel-os-container" style="max-width:620px;">
+        <div class="hotel-os-header">
+          <div class="hotel-os-title">
+            <span>🎟️</span> <span>OpenTable Regulars Member Privileges</span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeRewardsTiersModal()" style="font-size:1.1rem; line-height:1; padding:0.25rem 0.6rem;">✕</button>
+        </div>
+        <div class="hotel-os-body">
+          <div style="background:#090d16; border-radius:12px; padding:1.25rem; margin-bottom:1.25rem; border:1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:0.8rem; color:#34d399; font-weight:700; text-transform:uppercase;">● Current Member Tier</div>
+                <div style="font-size:1.4rem; font-weight:800; color:#fff;" id="modal-member-tier">Gold Regular</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:0.8rem; color:#94a3b8;">Available Balance</div>
+                <div style="font-size:1.4rem; font-weight:800; color:#f59e0b;" id="modal-points-balance">2,450 pts</div>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="color:#fff; font-size:1.05rem; margin-bottom:0.75rem;">Available Redemptions</h4>
+          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;">
+            <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-weight:700; color:#fff;">$20 Dining Credit</div>
+                <div style="font-size:0.8rem; color:#94a3b8;">Valid across all Seattle & Eastside OpenTable restaurants</div>
+              </div>
+              <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('$20 Dining Credit', 2000)">
+                Redeem 2,000 pts
+              </button>
+            </div>
+
+            <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-weight:700; color:#fff;">$20 Amazon Gift Card</div>
+                <div style="font-size:0.8rem; color:#94a3b8;">Instant digital voucher code delivered to your account</div>
+              </div>
+              <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('$20 Amazon Gift Card', 2000)">
+                Redeem 2,000 pts
+              </button>
+            </div>
+
+            <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-weight:700; color:#fff;">Experience Credit ($10 off)</div>
+                <div style="font-size:0.8rem; color:#94a3b8;">Applicable towards any chef tasting menu or course experience</div>
+              </div>
+              <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('Experience Pass ($10)', 1000)">
+                Redeem 1,000 pts
+              </button>
+            </div>
+          </div>
+
+          <div id="redemption-success-notice" style="display:none; background:rgba(16,185,129,0.15); border:1px solid #10b981; border-radius:8px; padding:0.875rem; color:#34d399; font-size:0.9rem;">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Real Hotel Operating System Console Modal -->
     <div id="hotel-os-modal" class="hotel-os-modal" style="display:none;" onclick="if(event.target===this)closeHotelOsModal()">
       <div class="hotel-os-container">
@@ -4850,7 +5273,7 @@
         <div>
           <div class="ot-footer-col-title">Discover</div>
           <ul class="ot-footer-links-list">
-            <li><a class="ot-footer-link">Dining Rewards</a></li>
+            <li><a class="ot-footer-link" onclick="navigateTo(event, '/rewards')">Dining Rewards</a></li>
             <li><a class="ot-footer-link">Private Dining</a></li>
             <li><a class="ot-footer-link">OpenTable Icons</a></li>
             <li><a class="ot-footer-link">Top 100 Restaurants</a></li>
@@ -5892,6 +6315,7 @@
       document.getElementById('view-admin').classList.add('hidden');
       document.getElementById('view-agents').classList.add('hidden');
       document.getElementById('view-factory').classList.add('hidden');
+      if (document.getElementById('view-rewards')) document.getElementById('view-rewards').classList.add('hidden');
 
       // Update active nav-link highlighting
       document.querySelectorAll('.nav-link').forEach(link => {
@@ -5905,7 +6329,10 @@
       // Clear volatile auth errors on navigation
       clearAuthErrors();
 
-      if (path === '/signup') {
+      if (path === '/rewards') {
+        document.getElementById('view-rewards').classList.remove('hidden');
+        updateRewardsUserState();
+      } else if (path === '/signup') {
         document.getElementById('view-signup').classList.remove('hidden');
       } else if (path === '/login') {
         document.getElementById('view-login').classList.remove('hidden');
@@ -5960,10 +6387,11 @@
         `;
       } else {
         container.innerHTML = `
-          <button type="button" class="btn btn-secondary btn-sm" onclick="openAuthModal('phone')">Join rewards</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo(event, '/rewards')">Join rewards</button>
           <button type="button" class="btn btn-primary btn-sm" style="background:#0f172a; border:1px solid #334155;" onclick="openAuthModal('phone')">Sign In</button>
         `;
       }
+      if (typeof updateRewardsUserState === 'function') updateRewardsUserState();
     }
 
     function handleLogout() {
@@ -5972,6 +6400,7 @@
       localStorage.removeItem('tablekeeper_email');
       currentUser = null;
       renderAuthBar();
+      if (typeof updateRewardsUserState === 'function') updateRewardsUserState();
       const bookingArea = document.getElementById('booking-area');
       if (bookingArea) bookingArea.innerHTML = '';
     }
@@ -8211,6 +8640,87 @@
       const widget = document.querySelector('.ot-sticky-widget');
       if (widget) {
         widget.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+  
+    // Rewards Hub State & Interactions
+    let userRewardPoints = 2450;
+    const partnerLinks = { sapphire: false, uber: false, visa: false };
+
+    function updateRewardsUserState() {
+      const ctaEl = document.getElementById('ot-rewards-auth-cta');
+      if (!ctaEl) return;
+      if (currentUser) {
+        ctaEl.innerHTML = `
+          <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:1.15rem; margin-bottom:0.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:0.8rem; color:#34d399; font-weight:700; text-transform:uppercase;">● Active Member: Gold Regular</div>
+                <div style="font-size:1.35rem; font-weight:800; color:#fff; margin-top:2px;">${userRewardPoints.toLocaleString()} pts available</div>
+              </div>
+              <button type="button" class="btn btn-ot-red btn-sm" onclick="openRewardsTiersModal()" style="font-weight:700;">Redeem Rewards</button>
+            </div>
+          </div>
+        `;
+      } else {
+        ctaEl.innerHTML = `
+          <button type="button" class="btn btn-ot-red" onclick="openAuthModal('phone')" style="width:100%; padding:0.75rem 1.5rem; font-weight:700; font-size:1rem; text-align:center;">
+            Sign in to join
+          </button>
+        `;
+      }
+    }
+
+    function togglePartnerLink(partner) {
+      partnerLinks[partner] = !partnerLinks[partner];
+      const btn = document.getElementById('btn-partner-' + partner);
+      if (btn) {
+        if (partnerLinks[partner]) {
+          btn.textContent = 'Linked ✓';
+          btn.style.borderColor = '#10b981';
+          btn.style.color = '#34d399';
+          showNotice(`Partner benefit activated for ${partner.toUpperCase()}! Exclusive tables unlocked.`, 'success');
+        } else {
+          btn.textContent = partner === 'uber' ? 'Link account' : 'Link card';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+          showNotice(`Partner link removed for ${partner.toUpperCase()}.`, 'info');
+        }
+      }
+    }
+
+    function openRewardsTiersModal() {
+      const modal = document.getElementById('rewards-tiers-modal');
+      const ptsEl = document.getElementById('modal-points-balance');
+      const tierEl = document.getElementById('modal-member-tier');
+      if (ptsEl) ptsEl.textContent = userRewardPoints.toLocaleString() + ' pts';
+      if (tierEl) tierEl.textContent = currentUser ? 'Gold Regular (' + currentUser.name + ')' : 'Guest Member (Gold Eligible)';
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeRewardsTiersModal() {
+      const modal = document.getElementById('rewards-tiers-modal');
+      if (modal) modal.style.display = 'none';
+      const notice = document.getElementById('redemption-success-notice');
+      if (notice) notice.style.display = 'none';
+    }
+
+    function redeemRewardReward(title, cost) {
+      if (userRewardPoints < cost) {
+        alert('Insufficient points balance to redeem ' + title);
+        return;
+      }
+      userRewardPoints -= cost;
+      const ptsEl = document.getElementById('modal-points-balance');
+      if (ptsEl) ptsEl.textContent = userRewardPoints.toLocaleString() + ' pts';
+      updateRewardsUserState();
+
+      const voucher = 'OT-' + Math.random().toString(36).substring(2, 6).toUpperCase() + '-SEATTLE';
+      const notice = document.getElementById('redemption-success-notice');
+      if (notice) {
+        notice.style.display = 'block';
+        notice.innerHTML = `<strong>🎉 Redemption Confirmed!</strong><br>Reward: <em>${title}</em><br>Voucher Code: <code style="background:#090d16; padding:2px 6px; border-radius:4px; font-weight:800; color:#38bdf8;">${voucher}</code><br><span style="font-size:0.8rem; color:#cbd5e1;">Present this code during your next dining visit or apply at checkout.</span>`;
       }
     }
 
