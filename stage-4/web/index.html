@@ -2071,6 +2071,772 @@
       transform: scale(1.03);
     }
 
+  
+    /* ==========================================================================
+       OPENTABLE AUTHENTIC SEATTLE DISCOVERY & EXPERIENCES SYSTEM (PAGE 1 & 2)
+       ========================================================================== */
+
+    /* Section Headers */
+    .ot-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+    }
+
+    .ot-section-title-wrap h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .ot-section-title-wrap .ot-section-sub {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+    }
+
+    .ot-view-all-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #da3743;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .ot-view-all-link:hover {
+      color: #f87171;
+      text-decoration: underline;
+    }
+
+    /* OpenTable Regulars Rewards Section */
+    .ot-regulars-section {
+      background: linear-gradient(135deg, rgba(218, 55, 67, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+      border: 1px solid rgba(218, 55, 67, 0.25);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ot-regulars-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .ot-regulars-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ot-regulars-sub {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+
+    .ot-regulars-legal {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .ot-regulars-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ot-reward-card {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .ot-reward-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(218, 55, 67, 0.5);
+    }
+
+    .ot-reward-icon {
+      font-size: 2rem;
+      background: rgba(218, 55, 67, 0.15);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .ot-reward-points {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .ot-reward-label {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    /* Diners' Choice Awards Section */
+    .ot-diners-choice-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .ot-diners-choice-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ot-featured-choice-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease;
+    }
+
+    .ot-featured-choice-card:hover {
+      border-color: rgba(218, 55, 67, 0.5);
+    }
+
+    .ot-featured-choice-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .ot-featured-choice-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .ot-top-pick-badge {
+      display: inline-block;
+      background: rgba(218, 55, 67, 0.15);
+      color: #da3743;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      margin-bottom: 0.5rem;
+    }
+
+    .ot-choice-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ot-choice-mini-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .ot-choice-mini-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Outdoor Dining Carousel */
+    .ot-outdoor-carousel {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: #334155 transparent;
+    }
+
+    /* Verified Diner Rave Reviews Grid */
+    .ot-locals-rave-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .ot-rave-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .ot-rave-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .ot-rave-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #da3743, #f59e0b);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ot-rave-user {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .ot-rave-meta {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .ot-rave-quote {
+      font-size: 0.925rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+      font-style: italic;
+      margin-bottom: 1.25rem;
+    }
+
+    .ot-rave-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .ot-rave-rest-name {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* Trending Dishes 9-Photo Gallery */
+    .ot-dishes-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .ot-dish-showcase-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .ot-dish-showcase-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(218, 55, 67, 0.6);
+    }
+
+    .ot-dish-showcase-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .ot-dish-showcase-body {
+      padding: 0.875rem 1rem;
+    }
+
+    .ot-dish-showcase-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ot-dish-showcase-rest {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Trending Experiences Grid */
+    .ot-experiences-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .ot-experience-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .ot-experience-card:hover {
+      border-color: rgba(218, 55, 67, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .ot-experience-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .ot-experience-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .ot-experience-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .ot-experience-venue {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+    }
+
+    .ot-experience-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 0.75rem;
+    }
+
+    .ot-experience-price-sub {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .btn-reserve-exp {
+      background: #da3743;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.85rem;
+      width: 100%;
+      text-align: center;
+      transition: background 0.15s ease;
+    }
+
+    .btn-reserve-exp:hover {
+      background: #b91c1c;
+    }
+
+    /* Private Dining Grid */
+    .ot-private-dining-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .ot-private-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ot-private-img-wrap {
+      position: relative;
+    }
+
+    .ot-private-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .ot-instant-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(16, 185, 129, 0.9);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ot-private-body {
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* Editorial Articles Grid */
+    .ot-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .ot-article-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .ot-article-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .ot-article-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .ot-article-body {
+      padding: 1.25rem;
+    }
+
+    .ot-article-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .ot-article-desc {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .ot-article-date {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.75rem;
+    }
+
+    /* FAQ Section */
+    .ot-faq-container {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .ot-faq-intro {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 1.25rem;
+    }
+
+    .ot-faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .ot-faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .ot-faq-q {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .ot-faq-q:hover {
+      color: #fca5a5;
+    }
+
+    .ot-faq-a {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      padding-bottom: 1.25rem;
+      display: none;
+    }
+
+    .ot-faq-a.open {
+      display: block;
+    }
+
+    /* Cities Directory Section */
+    .ot-cities-tabs {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .ot-city-tab {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #94a3b8;
+      padding-bottom: 0.75rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .ot-city-tab.active {
+      color: #da3743;
+      border-color: #da3743;
+    }
+
+    .ot-cities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .ot-cities-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ot-city-link {
+      font-size: 0.875rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .ot-city-link:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* Restaurateurs Platform Banner */
+    .ot-restaurateurs-banner {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .ot-restaurateurs-content h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .ot-restaurateurs-content p {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      max-width: 550px;
+      line-height: 1.5;
+    }
+
+    .ot-restaurateurs-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Comprehensive Authentic OpenTable Footer */
+    .ot-footer {
+      background: #090d16;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 3.5rem 2rem 2.5rem;
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .ot-footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ot-footer-policy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .ot-footer-policy-link {
+      color: #cbd5e1;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .ot-footer-policy-link:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .ot-footer-cols {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .ot-footer-cols {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ot-footer-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ot-footer-col-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .ot-footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .ot-footer-link {
+      color: #94a3b8;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .ot-footer-link:hover {
+      color: #ffffff;
+    }
+
+    .ot-footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .ot-footer-socials {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .ot-footer-copy {
+      font-size: 0.775rem;
+      color: #64748b;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
   </style>
 </head>
 <body>
@@ -2391,6 +3157,738 @@
             </div>
           </div>
           <button type="button" class="ot-carousel-btn ot-carousel-next" onclick="document.getElementById('ot-lunch-carousel').scrollBy({left:300, behavior:'smooth'})">›</button>
+        </div>
+      </div>
+
+
+      
+      <!-- ===================================================================== -->
+      <!-- SECTION 5: OPENTABLE REGULARS REWARDS (PDF PAGE 1)                    -->
+      <!-- ===================================================================== -->
+      <div class="ot-regulars-section">
+        <div class="ot-regulars-header">
+          <div>
+            <div class="ot-regulars-title">
+              <span>🎟️</span> OpenTable Regulars
+            </div>
+            <div class="ot-regulars-sub">You’re leaving rewards on the table, enroll today.</div>
+          </div>
+          <button type="button" class="btn btn-ot-red" onclick="alert('Enrolled in OpenTable Regulars rewards program! Earn 100 bonus points on your next reservation.')" style="padding:0.6rem 1.5rem; font-weight:700;">
+            Enroll to start earning
+          </button>
+        </div>
+        <div class="ot-regulars-cards">
+          <div class="ot-reward-card">
+            <div class="ot-reward-icon">🎟️</div>
+            <div>
+              <div class="ot-reward-points">1,000 pts</div>
+              <div class="ot-reward-label">Experience credit</div>
+            </div>
+          </div>
+          <div class="ot-reward-card">
+            <div class="ot-reward-icon">🍽️</div>
+            <div>
+              <div class="ot-reward-points">2,000 pts</div>
+              <div class="ot-reward-label">Dining credit ($20)</div>
+            </div>
+          </div>
+          <div class="ot-reward-card">
+            <div class="ot-reward-icon">🎁</div>
+            <div>
+              <div class="ot-reward-points">2,000 pts</div>
+              <div class="ot-reward-label">Amazon Gift Card ($20)</div>
+            </div>
+          </div>
+        </div>
+        <div class="ot-regulars-legal">Restrictions apply. Terms and conditions.</div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 6: DINERS' CHOICE AWARDS (PDF PAGE 1)                          -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>Check out diners' favorite restaurants in Seattle / Eastern Washington</h2>
+            <div class="ot-section-sub">
+              <span style="color:#da3743; font-weight:600;">Updated on 9/5/2026</span> • Diners’ Choice Awards are based on where your fellow diners book, dine, and review. Only verified diners get to review restaurants on OpenTable, so our data doesn’t lie.
+            </div>
+          </div>
+        </div>
+
+        <div class="ot-diners-choice-grid">
+          <!-- Featured Large Card: Westcott Bay Shellfish Co -->
+          <div class="ot-featured-choice-card">
+            <img class="ot-featured-choice-img" src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=900&q=80" alt="Westcott Bay Shellfish Co">
+            <div class="ot-featured-choice-body">
+              <div>
+                <span class="ot-top-pick-badge">Diners' top pick</span>
+                <h3 style="font-size:1.35rem; color:#fff; font-weight:700; margin-bottom:0.25rem;">Westcott Bay Shellfish Co</h3>
+                <div style="color:#da3743; font-size:0.9rem; margin-bottom:0.75rem;">★★★★★ <span style="color:#94a3b8;">5.0 (1,217 reviews) • Seafood • $$$$</span></div>
+                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.6; margin-bottom:1rem;">
+                  Growers of clams, mussels, and oysters, we highlight the splendors of the sea, with the seasonal crops of the islands, to bring you a taste of our island community. Reservations are available May - September for The Tide Tables restaurant.
+                </p>
+              </div>
+              <button type="button" class="btn btn-ot-red" onclick="selectRestaurant('r_walrus'); handleLunchSlotClick('r_walrus', '6:00 PM')" style="align-self:flex-start; padding:0.5rem 1.25rem;">
+                Find next available
+              </button>
+            </div>
+          </div>
+
+          <!-- Side Stack Cards -->
+          <div class="ot-choice-side-stack">
+            <!-- Mini Card 1: Ambrosia Bistro & Wine Bar -->
+            <div class="ot-choice-mini-card">
+              <div>
+                <h4 style="font-size:1.1rem; color:#fff; font-weight:700;">Ambrosia Bistro & Wine Bar</h4>
+                <div style="color:#da3743; font-size:0.85rem; margin:0.25rem 0;">★★★★★ <span style="color:#94a3b8;">5.0 (394 reviews) • Bistro • $$$$</span></div>
+                <p style="color:#94a3b8; font-size:0.85rem; line-height:1.5;">
+                  Ambrosia Bistro was conceived by Scott and Kara to offer elevated Pacific Northwest culinary warmth paired with curated regional wines.
+                </p>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="selectRestaurant('r_spinasse'); handleLunchSlotClick('r_spinasse', '6:30 PM')" style="align-self:flex-start; margin-top:0.5rem;">
+                Find next available
+              </button>
+            </div>
+
+            <!-- Mini Card 2: Radiator Whiskey (21 and over) -->
+            <div class="ot-choice-mini-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <h4 style="font-size:1.1rem; color:#fff; font-weight:700;">Radiator Whiskey (21 and over)</h4>
+                  <span style="font-size:0.7rem; background:#334155; color:#cbd5e1; padding:0.15rem 0.4rem; border-radius:4px;">21+</span>
+                </div>
+                <div style="color:#da3743; font-size:0.85rem; margin:0.25rem 0;">★★★★★ <span style="color:#94a3b8;">4.9 (497 reviews) • Comfort Food • $$$$</span></div>
+                <p style="color:#94a3b8; font-size:0.85rem; line-height:1.5;">
+                  In the heart of Pike Place Market, Radiator Whiskey delivers house-smoked meats, bespoke craft cocktails, and authentic market spirit.
+                </p>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="selectRestaurant('r_palace'); handleLunchSlotClick('r_palace', '7:00 PM')" style="align-self:flex-start; margin-top:0.5rem;">
+                Find next available
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 7: OUTDOOR DINING CAROUSEL (PDF PAGE 1)                       -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>Outdoor dining</h2>
+            <div class="ot-section-sub">Patio seating, rooftop views, and al fresco dining across Seattle & Eastside</div>
+          </div>
+          <a class="ot-view-all-link" onclick="alert('Viewing all 38 Seattle outdoor dining patios')">View all</a>
+        </div>
+
+        <div class="ot-carousel-wrapper">
+          <button type="button" class="ot-carousel-btn ot-carousel-prev" onclick="document.getElementById('ot-outdoor-carousel').scrollBy({left:-300, behavior:'smooth'})">‹</button>
+          <div id="ot-outdoor-carousel" class="ot-outdoor-carousel">
+
+            <!-- Outdoor 1: Terra Plata -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_communion')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Terra Plata">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked Terra Plata')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">Terra Plata</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">4,497 reviews</span></div>
+                  <div class="ot-lunch-meta">Farm-to-table • $$$$ • Capitol Hill</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 31 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_communion', '12:45 PM')">12:45 PM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_communion', '1:00 PM')">1:00 PM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Outdoor 2: Elephant & Castle - Seattle -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_anker')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Elephant & Castle">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked Elephant & Castle')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">Elephant & Castle - Se...</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">570 reviews</span></div>
+                  <div class="ot-lunch-meta">American • $$$$ • Downtown</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 31 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_anker', '12:45 PM')">12:45 PM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_anker', '1:00 PM')">1:00 PM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Outdoor 3: COMMUNION -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_communion')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="COMMUNION">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked COMMUNION')">🔖</div>
+                <div style="position:absolute; bottom:8px; left:8px; background:rgba(218,55,67,0.9); color:#fff; font-size:0.7rem; font-weight:700; padding:2px 6px; border-radius:4px;">Icon</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">COMMUNION</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">503 reviews</span></div>
+                  <div class="ot-lunch-meta">Contemporary Southern • $$$$ • Central</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 51 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_communion', '12:45 PM')">12:45 PM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_communion', '1:00 PM')">1:00 PM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Outdoor 4: Single Shot -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_pinkdoor')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt="Single Shot">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked Single Shot')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">Single Shot</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">1,567 reviews</span></div>
+                  <div class="ot-lunch-meta">Contemporary American • $$$$ • Capitol Hill</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 21 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_pinkdoor', '12:45 PM')">12:45 PM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_pinkdoor', '1:00 PM')">1:00 PM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Outdoor 5: Le Coin -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_palace')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Le Coin">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked Le Coin')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">Le Coin</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">122 reviews</span></div>
+                  <div class="ot-lunch-meta">French • $$$$ • Fremont</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 39 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_palace', '12:45 PM')">12:45 PM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_palace', '1:00 PM')">1:00 PM</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <button type="button" class="ot-carousel-btn ot-carousel-next" onclick="document.getElementById('ot-outdoor-carousel').scrollBy({left:300, behavior:'smooth'})">›</button>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 8: SEE WHAT LOCALS RAVE ABOUT (PDF PAGE 1)                    -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>See what locals rave about in Seattle / Eastern Washington</h2>
+            <div class="ot-section-sub">From verified diners like you</div>
+          </div>
+        </div>
+
+        <div class="ot-locals-rave-grid">
+          <!-- Review 1: Tamara -->
+          <div class="ot-rave-card">
+            <div>
+              <div class="ot-rave-header">
+                <div class="ot-rave-avatar">T</div>
+                <div>
+                  <div class="ot-rave-user">Tamara</div>
+                  <div class="ot-rave-meta">Seattle / Eastern Washington • 18 reviews • Dined 1 day ago</div>
+                </div>
+              </div>
+              <p class="ot-rave-quote">
+                "As always, food, service, ambience, everything top-notch! We always enjoy ourselves at Carmine’s and look forward to our next visit! Thanks for such a great evening."
+              </p>
+            </div>
+            <div class="ot-rave-footer">
+              <div>
+                <div class="ot-rave-rest-name">Carmine's 5th Ave</div>
+                <div style="font-size:0.75rem; color:#94a3b8;">$$$$ • Italian • Downtown • ★ 4.8</div>
+              </div>
+              <a class="ot-view-all-link" onclick="selectRestaurant('r_spinasse')">More info ›</a>
+            </div>
+          </div>
+
+          <!-- Review 2: Aiden -->
+          <div class="ot-rave-card">
+            <div>
+              <div class="ot-rave-header">
+                <div class="ot-rave-avatar" style="background:linear-gradient(135deg,#3b82f6,#10b981);">A</div>
+                <div>
+                  <div class="ot-rave-user">Aiden</div>
+                  <div class="ot-rave-meta">New Orleans / Louisiana • 1 review • Dined 5 days ago</div>
+                </div>
+              </div>
+              <p class="ot-rave-quote">
+                "Our rating says it all. The Ambiance was perfect decor excellent all the staff were so friendly and efficient and the food that we had was excellent. We couldn't have made a better choice to spend my wife's birthday."
+              </p>
+            </div>
+            <div class="ot-rave-footer">
+              <div>
+                <div class="ot-rave-rest-name">The George</div>
+                <div style="font-size:0.75rem; color:#94a3b8;">$$$$ • Contemporary American • Downtown • ★ 4.5</div>
+              </div>
+              <a class="ot-view-all-link" onclick="selectRestaurant('r_canlis')">More info ›</a>
+            </div>
+          </div>
+
+          <!-- Review 3: Cordell -->
+          <div class="ot-rave-card">
+            <div>
+              <div class="ot-rave-header">
+                <div class="ot-rave-avatar" style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">C</div>
+                <div>
+                  <div class="ot-rave-user">Cordell</div>
+                  <div class="ot-rave-meta">Vancouver / British Columbia • 1 review • Dined on Sep 26, 2026</div>
+                </div>
+              </div>
+              <p class="ot-rave-quote">
+                "It was an amazing experience visiting from Canada and most definitely top 10 of the list of places I’ve eaten at definitely worth returning and taking the time to dine there."
+              </p>
+            </div>
+            <div class="ot-rave-footer">
+              <div>
+                <div class="ot-rave-rest-name">Seattle Rooftop Next Level Lounge</div>
+                <div style="font-size:0.75rem; color:#94a3b8;">$$$$ • Steakhouse • Downtown • ★ 4.0</div>
+              </div>
+              <a class="ot-view-all-link" onclick="selectRestaurant('r_ascend')">More info ›</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 9: TRENDING DISHES IN SEATTLE (PDF PAGE 1)                    -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>Trending dishes in Seattle / Eastern Washington</h2>
+            <div class="ot-section-sub">Explore dishes that diners are raving about</div>
+          </div>
+        </div>
+
+        <div class="ot-dishes-showcase-grid">
+          <!-- Dish 1 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_spinasse')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" alt="Short Rib Lasagna">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Short Rib Lasagna</div>
+              <div class="ot-dish-showcase-rest"><span>Messina</span> <span style="color:#da3743; font-weight:700;">★ 4.8</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 2 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_anker')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80" alt="Salmon">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Salmon</div>
+              <div class="ot-dish-showcase-rest"><span>Shaker + Spear</span> <span style="color:#da3743; font-weight:700;">★ 4.5</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 3 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_palace')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Buttermilk Fried Chicken">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Buttermilk Fried Chicken</div>
+              <div class="ot-dish-showcase-rest"><span>Ben Paris</span> <span style="color:#da3743; font-weight:700;">★ 4.4</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 4 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_walrus')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=500&q=80" alt="Baked Oysters">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Baked Oysters</div>
+              <div class="ot-dish-showcase-rest"><span>Shuckers</span> <span style="color:#da3743; font-weight:700;">★ 4.8</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 5 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_pinkdoor')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=500&q=80" alt="Spaghetti Marinara">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Spaghetti Marinara</div>
+              <div class="ot-dish-showcase-rest"><span>Buca di Beppo - Seattle</span> <span style="color:#da3743; font-weight:700;">★ 4.1</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 6 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_kashiba')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80" alt="Uni Spaghetti">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Uni Spaghetti</div>
+              <div class="ot-dish-showcase-rest"><span>Neb</span> <span style="color:#da3743; font-weight:700;">★ 4.8</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 7 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_canlis')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=500&q=80" alt="Seafood Chowder">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Seafood Chowder</div>
+              <div class="ot-dish-showcase-rest"><span>Salty's on Alki Beach</span> <span style="color:#da3743; font-weight:700;">★ 4.7</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 8 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_spinasse')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80" alt="Lasagna">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Lasagna</div>
+              <div class="ot-dish-showcase-rest"><span>Mondello Ristorante It...</span> <span style="color:#da3743; font-weight:700;">★ 4.8</span></div>
+            </div>
+          </div>
+
+          <!-- Dish 9 -->
+          <div class="ot-dish-showcase-card" onclick="selectRestaurant('r_elgaucho')">
+            <img class="ot-dish-showcase-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Fish & Chips">
+            <div class="ot-dish-showcase-body">
+              <div class="ot-dish-showcase-name">Fish & Chips</div>
+              <div class="ot-dish-showcase-rest"><span>Duke's Seafood - Belle...</span> <span style="color:#da3743; font-weight:700;">★ 4.6</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 10: EXPERIENCES TRENDING IN SEATTLE (PDF PAGE 2)              -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>Experiences trending in Seattle / Eastern Washington</h2>
+            <div class="ot-section-sub">Tasting menus, exclusive omakase counters, and curated multi-course pairings</div>
+          </div>
+          <a class="ot-view-all-link" onclick="alert('Viewing all 24 curated Seattle culinary experiences')">View all</a>
+        </div>
+
+        <div class="ot-experiences-grid">
+          <!-- Exp 1: Kaiseki Course -->
+          <div class="ot-experience-card">
+            <img class="ot-experience-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80" alt="Seasonal Kaiseki">
+            <div class="ot-experience-body">
+              <div>
+                <div class="ot-experience-title">Table: Seasonal Kaiseki Co...</div>
+                <div class="ot-experience-venue">Migaku • Ballard</div>
+                <div class="ot-experience-price">$130.00 <span class="ot-experience-price-sub">per person</span></div>
+              </div>
+              <button type="button" class="btn-reserve-exp" onclick="handleExperienceReserve('Seasonal Kaiseki Course', '$130.00', 'r_kashiba')">
+                Reserve
+              </button>
+            </div>
+          </div>
+
+          <!-- Exp 2: Chef's Choice Vendemmia -->
+          <div class="ot-experience-card">
+            <img class="ot-experience-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80" alt="Chef's Choice Vendemmia">
+            <div class="ot-experience-body">
+              <div>
+                <div class="ot-experience-title">Chef's Choice Tasting Menu</div>
+                <div class="ot-experience-venue">Vendemmia • Leschi / Madrona / ...</div>
+                <div class="ot-experience-price">$97.00 <span class="ot-experience-price-sub">per person</span></div>
+              </div>
+              <button type="button" class="btn-reserve-exp" onclick="handleExperienceReserve('Chef's Choice Tasting Menu', '$97.00', 'r_spinasse')">
+                Reserve
+              </button>
+            </div>
+          </div>
+
+          <!-- Exp 3: Haerfest Tasting Menu -->
+          <div class="ot-experience-card">
+            <img class="ot-experience-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" alt="Haerfest Tasting Menu">
+            <div class="ot-experience-body">
+              <div>
+                <div class="ot-experience-title">Chef's Choice Tasting Menu</div>
+                <div class="ot-experience-venue">Haerfest • Wallingford</div>
+                <div class="ot-experience-price">$89.00 <span class="ot-experience-price-sub">per person</span></div>
+              </div>
+              <button type="button" class="btn-reserve-exp" onclick="handleExperienceReserve('Haerfest Tasting Menu', '$89.00', 'r_palace')">
+                Reserve
+              </button>
+            </div>
+          </div>
+
+          <!-- Exp 4: Sunday Brunch Buffet -->
+          <div class="ot-experience-card">
+            <img class="ot-experience-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Sunday Brunch Buffet">
+            <div class="ot-experience-body">
+              <div>
+                <div class="ot-experience-title">Sunday Brunch Buffet</div>
+                <div class="ot-experience-venue">Goldfinch Tavern at Four Seasons ...</div>
+                <div class="ot-experience-price">$42.00 - $85.00 <span class="ot-experience-price-sub">per person</span></div>
+              </div>
+              <button type="button" class="btn-reserve-exp" onclick="handleExperienceReserve('Sunday Brunch Buffet', '$85.00', 'r_canlis')">
+                Reserve
+              </button>
+            </div>
+          </div>
+
+          <!-- Exp 5: Little Ben's Rooftop Bar -->
+          <div class="ot-experience-card">
+            <img class="ot-experience-img" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=500&q=80" alt="Little Ben's Rooftop">
+            <div class="ot-experience-body">
+              <div>
+                <div class="ot-experience-title">Little Ben's Rooftop Bar</div>
+                <div class="ot-experience-venue">Ben Paris • Downtown</div>
+                <div class="ot-experience-price">$15.00 <span class="ot-experience-price-sub">per person</span></div>
+              </div>
+              <button type="button" class="btn-reserve-exp" onclick="handleExperienceReserve('Little Ben's Rooftop Experience', '$15.00', 'r_anker')">
+                Reserve
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 11: PRIVATE DINING (PDF PAGE 2)                               -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>Private Dining</h2>
+            <div class="ot-section-sub">Find the perfect place for your next party or group dining event.</div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="alert('Exploring 50+ private dining rooms across Seattle')" style="border-color:#10b981; color:#34d399;">
+            Explore private dining ›
+          </button>
+        </div>
+
+        <div class="ot-private-dining-grid">
+          <!-- Private 1: Sparrow Kirkland -->
+          <div class="ot-private-card">
+            <div class="ot-private-img-wrap">
+              <img class="ot-private-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Sparrow Kirkland">
+              <div class="ot-instant-badge">⚡ Instant book</div>
+            </div>
+            <div class="ot-private-body">
+              <h4 style="color:#fff; font-size:1.05rem; font-weight:700;">Sparrow - Kirkland</h4>
+              <div style="font-size:0.8rem; color:#94a3b8;">American • $$$$ • Kirkland</div>
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.25rem;">
+                <span style="color:#da3743; font-weight:700;">★ 4.6</span>
+                <span style="color:#cbd5e1;">👥 10 - 500 people</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Private 2: Old Spaghetti Factory Lynnwood -->
+          <div class="ot-private-card">
+            <div class="ot-private-img-wrap">
+              <img class="ot-private-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="The Old Spaghetti Factory">
+              <div class="ot-instant-badge">⚡ Instant book</div>
+            </div>
+            <div class="ot-private-body">
+              <h4 style="color:#fff; font-size:1.05rem; font-weight:700;">The Old Spaghetti Factory - Lyn...</h4>
+              <div style="font-size:0.8rem; color:#94a3b8;">Italian • $$$$ • Lynnwood</div>
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.25rem;">
+                <span style="color:#da3743; font-weight:700;">★ 4.5</span>
+                <span style="color:#cbd5e1;">👥 15 - 150 people</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Private 3: Old Spaghetti Factory Tacoma -->
+          <div class="ot-private-card">
+            <div class="ot-private-img-wrap">
+              <img class="ot-private-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="The Old Spaghetti Factory Tacoma">
+              <div class="ot-instant-badge">⚡ Instant book</div>
+            </div>
+            <div class="ot-private-body">
+              <h4 style="color:#fff; font-size:1.05rem; font-weight:700;">The Old Spaghetti Factory - Tac...</h4>
+              <div style="font-size:0.8rem; color:#94a3b8;">Italian • $$$$ • Tacoma</div>
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.25rem;">
+                <span style="color:#da3743; font-weight:700;">★ 4.4</span>
+                <span style="color:#cbd5e1;">👥 12 - 110 people</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 12: EDITORIAL INSPIRATION (PDF PAGE 2)                        -->
+      <!-- ===================================================================== -->
+      <div>
+        <div class="ot-section-header">
+          <div class="ot-section-title-wrap">
+            <h2>Get inspired by our collections of the top restaurants in Seattle / Eastern Washington</h2>
+            <div class="ot-section-sub">Hand-curated dining guides from OpenTable's Pacific Northwest culinary editors</div>
+          </div>
+        </div>
+
+        <div class="ot-articles-grid">
+          <!-- Article 1 -->
+          <div class="ot-article-card" onclick="alert('Viewing OpenTable Editorial: The best restaurants in Seattle for 2026')">
+            <img class="ot-article-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Best Restaurants">
+            <div class="ot-article-body">
+              <div class="ot-article-title">The best restaurants in Seattle for 2026</div>
+              <div class="ot-article-desc">The best restaurants in Seattle: a legendary sushi counter, James Beard awardees, and hard-to-get neighborhood gems that define Pacific Northwest excellence.</div>
+              <div class="ot-article-date">May 27, 2026 • 6 min read</div>
+            </div>
+          </div>
+
+          <!-- Article 2 -->
+          <div class="ot-article-card" onclick="alert('Viewing OpenTable Editorial: Where soccer fans should visit in Seattle this summer')">
+            <img class="ot-article-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" alt="Soccer Fans Summer Guide">
+            <div class="ot-article-body">
+              <div class="ot-article-title">Where soccer fans should visit in Seattle this summer</div>
+              <div class="ot-article-desc">Planning to watch the 2026 summer of soccer in Seattle? Find the best pre-match dining, craft breweries, and lively outdoor fan lounges near the stadium district.</div>
+              <div class="ot-article-date">May 8, 2026 • 4 min read</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 13: FREQUENTLY ASKED QUESTIONS ABOUT OPENTABLE (PDF PAGE 2)   -->
+      <!-- ===================================================================== -->
+      <div class="ot-faq-container">
+        <h2 style="font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:0.5rem;">Frequently asked questions about OpenTable</h2>
+        <div class="ot-faq-intro">
+          OpenTable helps you discover the best restaurants for every occasion. Through the website and app, you can explore over 70,000 restaurants worldwide and instantly see what’s available nearby. Quickly narrow down your choices by filtering for new restaurants, hidden culinary gems, local favorites, and more. Whether you’re looking to book top restaurants near you or MICHELIN-Starred restaurants around the world, OpenTable has you covered.
+        </div>
+
+        <div class="ot-faq-item">
+          <div class="ot-faq-q" onclick="toggleFaq(this)">
+            <span>How does OpenTable work?</span>
+            <span class="ot-faq-arrow">▼</span>
+          </div>
+          <div class="ot-faq-a">
+            With over 70,000+ restaurants worldwide, the OpenTable website and app offer a one-stop-shop to discover and book restaurants. Search by date, time, and location to see what’s available, and then narrow down your options using filters like outdoor seating, price range or dietary restrictions.
+          </div>
+        </div>
+
+        <div class="ot-faq-item">
+          <div class="ot-faq-q" onclick="toggleFaq(this)">
+            <span>Why should I use OpenTable to find restaurants?</span>
+            <span class="ot-faq-arrow">▼</span>
+          </div>
+          <div class="ot-faq-a">
+            OpenTable provides direct, verified access to real-time table inventory. Unlike third-party aggregators, OpenTable coordinates directly with restaurant reservation management systems, ensuring your reservation is instantly held and verified by the host stand. You can browse authentic diner reviews, view photos of popular dishes, and earn loyalty reward points on qualifying dining visits.
+          </div>
+        </div>
+
+        <div class="ot-faq-item">
+          <div class="ot-faq-q" onclick="toggleFaq(this)">
+            <span>Can I read or leave a restaurant review on OpenTable?</span>
+            <span class="ot-faq-arrow">▼</span>
+          </div>
+          <div class="ot-faq-a">
+            Yes! Restaurant profiles feature reviews from verified diners who have actually visited the restaurant so that you know you’re getting an accurate account. And you can join in—after you dine, you’ll be prompted to leave a review of your experience.
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 14: FIND THE PERFECT RESTAURANTS NEAR YOU (PDF PAGE 2)        -->
+      <!-- ===================================================================== -->
+      <div style="margin-top:3.5rem;">
+        <h2 style="font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:1rem;">Find the Perfect Restaurants Near You</h2>
+        
+        <div class="ot-cities-tabs">
+          <div id="tab-cities-us" class="ot-city-tab active" onclick="toggleCityTab('us')">
+            Most popular cities in the United States
+          </div>
+          <div id="tab-cities-global" class="ot-city-tab" onclick="toggleCityTab('global')">
+            Most popular global cities
+          </div>
+        </div>
+
+        <!-- US Cities Directory Grid -->
+        <div id="grid-cities-us" class="ot-cities-grid">
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <a class="ot-city-link" onclick="selectMetro('New York City')">New York City</a>
+            <a class="ot-city-link" onclick="selectMetro('Chicago')">Chicago / Illinois</a>
+            <a class="ot-city-link" onclick="selectMetro('Washington, D.C. Area')">Washington, D.C. Area</a>
+            <a class="ot-city-link" onclick="selectMetro('Austin')">Austin</a>
+            <a class="ot-city-link" onclick="selectMetro('Cincinnati')">Cincinnati / Dayton</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <a class="ot-city-link" onclick="selectMetro('Los Angeles')">Los Angeles</a>
+            <a class="ot-city-link" onclick="selectMetro('Las Vegas')">Las Vegas</a>
+            <a class="ot-city-link" onclick="selectMetro('Houston')">Houston</a>
+            <a class="ot-city-link" onclick="selectMetro('Atlanta')">Atlanta</a>
+            <a class="ot-city-link" onclick="selectMetro('Denver')">Denver / Colorado</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <a class="ot-city-link" onclick="selectMetro('San Francisco Bay Area')">San Francisco Bay Area</a>
+            <a class="ot-city-link" onclick="selectMetro('Dallas - Fort Worth')">Dallas - Fort Worth</a>
+            <a class="ot-city-link" onclick="selectMetro('Nashville')">Nashville</a>
+            <a class="ot-city-link" onclick="selectMetro('San Diego')">San Diego</a>
+            <a class="ot-city-link" onclick="selectMetro('Miami - Dade')">Miami - Dade</a>
+          </div>
+        </div>
+
+        <!-- Global Cities Directory Grid -->
+        <div id="grid-cities-global" class="ot-cities-grid" style="display:none;">
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <a class="ot-city-link" onclick="alert('Viewing London premier restaurants')">London, UK</a>
+            <a class="ot-city-link" onclick="alert('Viewing Paris premier restaurants')">Paris, France</a>
+            <a class="ot-city-link" onclick="alert('Viewing Tokyo premier restaurants')">Tokyo, Japan</a>
+            <a class="ot-city-link" onclick="alert('Viewing Sydney premier restaurants')">Sydney, Australia</a>
+            <a class="ot-city-link" onclick="alert('Viewing Toronto premier restaurants')">Toronto, Canada</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <a class="ot-city-link" onclick="alert('Viewing Rome premier restaurants')">Rome, Italy</a>
+            <a class="ot-city-link" onclick="alert('Viewing Berlin premier restaurants')">Berlin, Germany</a>
+            <a class="ot-city-link" onclick="alert('Viewing Madrid premier restaurants')">Madrid, Spain</a>
+            <a class="ot-city-link" onclick="alert('Viewing Dubai premier restaurants')">Dubai, UAE</a>
+            <a class="ot-city-link" onclick="alert('Viewing Singapore premier restaurants')">Singapore</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <a class="ot-city-link" onclick="alert('Viewing Hong Kong premier restaurants')">Hong Kong</a>
+            <a class="ot-city-link" onclick="alert('Viewing Amsterdam premier restaurants')">Amsterdam, Netherlands</a>
+            <a class="ot-city-link" onclick="alert('Viewing Barcelona premier restaurants')">Barcelona, Spain</a>
+            <a class="ot-city-link" onclick="alert('Viewing Dublin premier restaurants')">Dublin, Ireland</a>
+            <a class="ot-city-link" onclick="alert('Viewing Montreal premier restaurants')">Montreal, Canada</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 15: RESTAURATEURS PLATFORM BANNER (PDF PAGE 2)                -->
+      <!-- ===================================================================== -->
+      <div class="ot-restaurateurs-banner">
+        <div class="ot-restaurateurs-content">
+          <h2>Restaurateurs: Dig into the world's most complete restaurant platform</h2>
+          <p>
+            Connect with high-intent diners, optimize your dining room flow with real-time AI table allocation, integrate directly with your hotel PMS, and drive repeat visits with OpenTable's host operating systems.
+          </p>
+          <div style="margin-top:1.25rem;" class="ot-restaurateurs-actions">
+            <button type="button" class="btn btn-ot-red" onclick="openHotelOsModal(currentRestId)">
+              🏨 Launch Hotel OS Console
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="alert('Navigating to OpenTable Restaurant Solutions & Pricing')">
+              View plans and pricing
+            </button>
+          </div>
+          <div style="font-size:0.8rem; color:#64748b; margin-top:1rem;">
+            Favorite restaurant not yet on OpenTable? <a style="color:#cbd5e1; text-decoration:underline; cursor:pointer;" onclick="alert('Thank you for suggesting a restaurant to our curation team!')">Suggest a restaurant.</a>
+          </div>
+        </div>
+        <div style="font-size:4.5rem; opacity:0.85; display:flex; align-items:center; gap:12px;">
+          <span>💻</span><span>📱</span><span>⌚</span>
         </div>
       </div>
 
@@ -3330,6 +4828,105 @@
     </div>
 
   </main>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 16: COMPREHENSIVE AUTHENTIC OPENTABLE FOOTER (PDF PAGE 2)     -->
+  <!-- ===================================================================== -->
+  <footer class="ot-footer">
+    <div class="ot-footer-container">
+      <!-- Policies & Legal Row -->
+      <div class="ot-footer-policy-row">
+        <a class="ot-footer-policy-link">Privacy Policy</a>
+        <a class="ot-footer-policy-link">Terms of Use</a>
+        <a class="ot-footer-policy-link">Cookies and Interest-Based Ads</a>
+        <a class="ot-footer-policy-link">Do Not Sell or Share My Personal Information</a>
+        <a class="ot-footer-policy-link">Accessibility Statement</a>
+        <a class="ot-footer-policy-link">Cookie Preferences</a>
+      </div>
+
+      <!-- 5-Column Navigation Matrix -->
+      <div class="ot-footer-cols">
+        <!-- Col 1: DISCOVER -->
+        <div>
+          <div class="ot-footer-col-title">Discover</div>
+          <ul class="ot-footer-links-list">
+            <li><a class="ot-footer-link">Dining Rewards</a></li>
+            <li><a class="ot-footer-link">Private Dining</a></li>
+            <li><a class="ot-footer-link">OpenTable Icons</a></li>
+            <li><a class="ot-footer-link">Top 100 Restaurants</a></li>
+            <li><a class="ot-footer-link">Reserve for Others</a></li>
+            <li><a class="ot-footer-link">Restaurants Near Me</a></li>
+            <li><a class="ot-footer-link">Restaurants Open Now</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: OPENTABLE -->
+        <div>
+          <div class="ot-footer-col-title">OpenTable</div>
+          <ul class="ot-footer-links-list">
+            <li><a class="ot-footer-link">About Us</a></li>
+            <li><a class="ot-footer-link">Blog</a></li>
+            <li><a class="ot-footer-link">Careers</a></li>
+            <li><a class="ot-footer-link">Press</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: MORE -->
+        <div>
+          <div class="ot-footer-col-title">More</div>
+          <ul class="ot-footer-links-list">
+            <li><a class="ot-footer-link">OpenTable for iOS</a></li>
+            <li><a class="ot-footer-link">OpenTable for Android</a></li>
+            <li><a class="ot-footer-link">Affiliate Program</a></li>
+            <li><a class="ot-footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: OUR SITES -->
+        <div>
+          <div class="ot-footer-col-title">Our Sites</div>
+          <ul class="ot-footer-links-list">
+            <li><a class="ot-footer-link">OpenTable.jp</a></li>
+            <li><a class="ot-footer-link">OpenTable.de</a></li>
+            <li><a class="ot-footer-link">OpenTable.es</a></li>
+            <li><a class="ot-footer-link">OpenTable.ca</a></li>
+            <li><a class="ot-footer-link">OpenTable.hk</a></li>
+            <li><a class="ot-footer-link">OpenTable.co.uk</a></li>
+            <li><a class="ot-footer-link">OpenTable.com.au</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: BUSINESSES -->
+        <div>
+          <div class="ot-footer-col-title">Businesses</div>
+          <ul class="ot-footer-links-list">
+            <li><a class="ot-footer-link">Restaurant Management Solutions</a></li>
+            <li><a class="ot-footer-link">Restaurant Reservation Software</a></li>
+            <li><a class="ot-footer-link">Restaurant Marketing Software</a></li>
+            <li><a class="ot-footer-link">Restaurant Event Software</a></li>
+            <li><a class="ot-footer-link">OpenTable For Restaurants</a></li>
+            <li><a class="ot-footer-link">Restaurant Resources</a></li>
+            <li><a class="ot-footer-link">OpenTable Pricing & Plans</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Disclaimer & Socials -->
+      <div class="ot-footer-bottom">
+        <div class="ot-footer-copy">
+          Copyright © 2026 OpenTable, Inc. 425 Market St Ste 1200, San Francisco CA 94105 - All rights reserved. OpenTable is part of Booking Holdings, the world leader in online travel and related services.
+        </div>
+        <div class="ot-footer-socials">
+          <span style="cursor:pointer;" title="Facebook">📘</span>
+          <span style="cursor:pointer;" title="Twitter">🐦</span>
+          <span style="cursor:pointer;" title="Instagram">📸</span>
+          <span style="cursor:pointer;" title="LinkedIn">💼</span>
+          <span style="cursor:pointer;" title="Pinterest">📌</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 
   <script>
     // State management
@@ -6571,6 +8168,52 @@
 
       factoryAnimId = requestAnimationFrame(animateFactory);
     }
+  
+    // FAQ Accordion Toggle
+    function toggleFaq(el) {
+      const answer = el.nextElementSibling;
+      const arrow = el.querySelector('.ot-faq-arrow');
+      if (answer.classList.contains('open')) {
+        answer.classList.remove('open');
+        if (arrow) arrow.textContent = '▼';
+      } else {
+        answer.classList.add('open');
+        if (arrow) arrow.textContent = '▲';
+      }
+    }
+
+    // City Directory Tab Switcher
+    function toggleCityTab(tab) {
+      const tabUs = document.getElementById('tab-cities-us');
+      const tabGlobal = document.getElementById('tab-cities-global');
+      const gridUs = document.getElementById('grid-cities-us');
+      const gridGlobal = document.getElementById('grid-cities-global');
+
+      if (tab === 'us') {
+        if (tabUs) tabUs.classList.add('active');
+        if (tabGlobal) tabGlobal.classList.remove('active');
+        if (gridUs) gridUs.style.display = 'grid';
+        if (gridGlobal) gridGlobal.style.display = 'none';
+      } else {
+        if (tabUs) tabUs.classList.remove('active');
+        if (tabGlobal) tabGlobal.classList.add('active');
+        if (gridUs) gridUs.style.display = 'none';
+        if (gridGlobal) gridGlobal.style.display = 'grid';
+      }
+    }
+
+    // Experience Reservation Trigger
+    function handleExperienceReserve(expTitle, price, venueId) {
+      if (venueId) {
+        selectRestaurant(venueId);
+      }
+      showNotice(`Experience selected: ${expTitle} (${price}). Select your party and time below to complete booking!`, 'success');
+      const widget = document.querySelector('.ot-sticky-widget');
+      if (widget) {
+        widget.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
   </script>
 </body>
 </html>
