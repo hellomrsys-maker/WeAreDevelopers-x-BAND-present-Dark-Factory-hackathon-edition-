@@ -725,352 +725,742 @@ func (s *Store) SeedDefaultRestaurants(ctx context.Context) error {
 	}
 
 	rests := []seedRest{
+		// =========================================================================
+		// 1. JOEY Bellevue (Flagship Pacific NW Multi-Zone Social Venue - MAX 25 TABLES, 8,500 sq ft)
+		// =========================================================================
 		{
 			id: "r_anker", name: "JOEY Bellevue", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "11:00", closes: "23:30",
 			tables: []seedTable{
-				{"t_1", "Patio Booth 1", 2},
-				{"t_2", "Patio Booth 2", 2},
-				{"t_3", "Main Dining 3", 4},
-				{"t_4", "Main Dining 4", 4},
-				{"t_5", "Lounge Table 5", 6},
-				{"t_6", "Sommelier Table 6", 8},
-				{"t_7", "Window Table 7", 2},
-				{"t_8", "Chef Counter 8", 4},
+				{"t_1", "Heated Patio Booth 1", 2},
+				{"t_2", "Heated Patio Booth 2", 2},
+				{"t_3", "Main Dining Salon 3", 4},
+				{"t_4", "Main Dining Salon 4", 4},
+				{"t_5", "Main Dining Salon 5", 4},
+				{"t_6", "Main Dining Salon 6", 4},
+				{"t_7", "Panoramic Window 7", 2},
+				{"t_8", "Panoramic Window 8", 2},
+				{"t_9", "Fire Pit Booth 9", 4},
+				{"t_10", "Fire Pit Booth 10", 4},
+				{"t_11", "VIP Diamond Table 11", 8},
+				{"t_12", "Executive 2-Top 12", 2},
+				{"t_13", "Executive 2-Top 13", 2},
+				{"t_14", "Cobalt Curved Booth 14", 4},
+				{"t_15", "Grand Amber Banquet 15", 8},
+				{"t_16", "Center Circle Table 16", 8},
+				{"t_17", "Cyan Octagon Table 17", 6},
+				{"t_18", "Sommelier Reserve 18", 6},
+				{"t_19", "Lounge Velvet Booth 19", 4},
+				{"t_20", "Lounge Velvet Booth 20", 4},
+				{"t_21", "Chef Exhibition Rail 21", 2},
+				{"t_22", "High-Top Bar Stool 22", 2},
+				{"t_23", "High-Top Bar Stool 23", 2},
+				{"t_24", "High-Top Bar Stool 24", 2},
+				{"t_25", "High-Top Bar Stool 25", 2},
 			},
-			comb: [][]string{{"t_1", "t_2"}, {"t_3", "t_4"}},
+			comb: [][]string{{"t_1", "t_2"}, {"t_3", "t_4"}, {"t_9", "t_10"}, {"t_19", "t_20"}},
 		},
-		{
-			id: "r_spinasse", name: "Spinasse", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 120, opens: "17:00", closes: "22:30",
-			tables: []seedTable{
-				{"sp_1", "Pasta Bar 1", 2},
-				{"sp_2", "Rustic Table 2", 2},
-				{"sp_3", "Cantina 3", 4},
-				{"sp_4", "Cantina 4", 4},
-				{"sp_5", "Wine Table 5", 6},
-				{"sp_6", "Piedmontese Room 6", 8},
-			},
-			comb: [][]string{{"sp_3", "sp_4"}},
-		},
-		{
-			id: "r_kashiba", name: "Sushi Kashiba", timezone: "America/Los_Angeles", slotMin: 30, durMin: 120, cutMin: 240, opens: "17:00", closes: "22:00",
-			tables: []seedTable{
-				{"sk_1", "Omakase Bar 1", 2},
-				{"sk_2", "Omakase Bar 2", 2},
-				{"sk_3", "Elliott Bay 3", 4},
-				{"sk_4", "Elliott Bay 4", 4},
-				{"sk_5", "Master Shiro Salon 5", 6},
-				{"sk_6", "Courtyard Table 6", 8},
-			},
-			comb: [][]string{{"sk_3", "sk_4"}},
-		},
-		{
-			id: "r_communion", name: "COMMUNION Restaurant & Bar", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:30", closes: "22:00",
-			tables: []seedTable{
-				{"cm_1", "Soul Booth 1", 2},
-				{"cm_2", "Soul Booth 2", 2},
-				{"cm_3", "Central Table 3", 4},
-				{"cm_4", "Central Table 4", 4},
-				{"cm_5", "Kristi Family Table 5", 6},
-				{"cm_6", "Community Table 6", 8},
-			},
-			comb: [][]string{{"cm_3", "cm_4"}},
-		},
-		{
-			id: "r_pinkdoor", name: "The Pink Door", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "11:30", closes: "23:00",
-			tables: []seedTable{
-				{"pd_1", "Cabaret Front 1", 2},
-				{"pd_2", "Trapeze View 2", 2},
-				{"pd_3", "Post Alley Deck 3", 4},
-				{"pd_4", "Post Alley Deck 4", 4},
-				{"pd_5", "Wine Cellar 5", 6},
-				{"pd_6", "Piazza Table 6", 8},
-			},
-			comb: [][]string{{"pd_3", "pd_4"}},
-		},
-		{
-			id: "r_palace", name: "Palace Kitchen", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:00", closes: "23:59",
-			tables: []seedTable{
-				{"pk_1", "Horseshoe Bar 1", 2},
-				{"pk_2", "Hearth Table 2", 2},
-				{"pk_3", "Rotisserie Table 3", 4},
-				{"pk_4", "Rotisserie Table 4", 4},
-				{"pk_5", "Belltown Salon 5", 6},
-				{"pk_6", "Captain Table 6", 8},
-			},
-			comb: [][]string{{"pk_3", "pk_4"}},
-		},
-		{
-			id: "r_canlis", name: "Canlis", timezone: "America/Los_Angeles", slotMin: 30, durMin: 150, cutMin: 1440, opens: "17:00", closes: "23:00",
-			tables: []seedTable{
-				{"cn_1", "Lake Union View 1", 2},
-				{"cn_2", "Cascade View 2", 2},
-				{"cn_3", "Mid-Century Hearth 3", 4},
-				{"cn_4", "Piano Salon 4", 4},
-				{"cn_5", "Peter Canlis Room 5", 6},
-				{"cn_6", "Wine Vault 6", 8},
-			},
-			comb: [][]string{{"cn_3", "cn_4"}},
-		},
-		{
-			id: "r_ascend", name: "Ascend Prime Steak & Sushi", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "16:30", closes: "23:00",
-			tables: []seedTable{
-				{"as_1", "31st Skyline 1", 2},
-				{"as_2", "Mt. Rainier View 2", 2},
-				{"as_3", "Robata Counter 3", 4},
-				{"as_4", "Penthouse Booth 4", 4},
-				{"as_5", "Sky Lounge 5", 6},
-				{"as_6", "Presidential Suite 6", 8},
-			},
-			comb: [][]string{{"as_3", "as_4"}},
-		},
-		{
-			id: "r_elgaucho", name: "El Gaucho Seattle", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "17:00", closes: "22:30",
-			tables: []seedTable{
-				{"eg_1", "Charcoal Grill 1", 2},
-				{"eg_2", "Steinway Piano 2", 2},
-				{"eg_3", "Captain Table 3", 4},
-				{"eg_4", "Vintage Booth 4", 4},
-				{"eg_5", "Sommelier Vault 5", 6},
-				{"eg_6", "Pampas Salon 6", 8},
-			},
-			comb: [][]string{{"eg_3", "eg_4"}},
-		},
-		{
-			id: "r_walrus", name: "The Walrus and the Carpenter", timezone: "America/Los_Angeles", slotMin: 15, durMin: 75, cutMin: 60, opens: "16:00", closes: "22:00",
-			tables: []seedTable{
-				{"wc_1", "Zinc Oyster Bar 1", 2},
-				{"wc_2", "Zinc Oyster Bar 2", 2},
-				{"wc_3", "Maritime Table 3", 4},
-				{"wc_4", "Ballard Courtyard 4", 4},
-				{"wc_5", "Fisherman Table 5", 6},
-				{"wc_6", "Harbor Banquette 6", 8},
-			},
-			comb: [][]string{{"wc_3", "wc_4"}},
-		},
-		// --- San Francisco Bay Area ---
-		{
-			id: "r_frenchlaundry", name: "The French Laundry", timezone: "America/Los_Angeles", slotMin: 30, durMin: 180, cutMin: 1440, opens: "16:30", closes: "23:00",
-			tables: []seedTable{
-				{"fl_1", "Garden Table 1", 2},
-				{"fl_2", "Garden Table 2", 2},
-				{"fl_3", "Salon Table 3", 4},
-				{"fl_4", "Courtyard Salon 4", 4},
-				{"fl_5", "Wine Room 5", 6},
-				{"fl_6", "Keller Private Dining 6", 8},
-			},
-			comb: [][]string{{"fl_3", "fl_4"}},
-		},
-		{
-			id: "r_garydanko", name: "Gary Danko", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "17:00", closes: "22:30",
-			tables: []seedTable{
-				{"gd_1", "Wharf Window 1", 2},
-				{"gd_2", "Sommelier Booth 2", 2},
-				{"gd_3", "Main Salon 3", 4},
-				{"gd_4", "Main Salon 4", 4},
-				{"gd_5", "Cellar Table 5", 6},
-				{"gd_6", "Chef Table 6", 8},
-			},
-			comb: [][]string{{"gd_3", "gd_4"}},
-		},
-		{
-			id: "r_hopr", name: "House of Prime Rib", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "16:30", closes: "22:30",
-			tables: []seedTable{
-				{"hp_1", "Carving Station 1", 2},
-				{"hp_2", "English Booth 2", 2},
-				{"hp_3", "Fireplace Banquette 3", 4},
-				{"hp_4", "Fireplace Banquette 4", 4},
-				{"hp_5", "Lords Table 5", 6},
-				{"hp_6", "Grand Hall 6", 8},
-			},
-			comb: [][]string{{"hp_3", "hp_4"}},
-		},
-		// --- New York City ---
-		{
-			id: "r_carbone", name: "Carbone NYC", timezone: "America/New_York", slotMin: 15, durMin: 90, cutMin: 120, opens: "17:00", closes: "23:59",
-			tables: []seedTable{
-				{"cb_1", "Thompson St Window 1", 2},
-				{"cb_2", "Captain Booth 2", 2},
-				{"cb_3", "Tuxedo Table 3", 4},
-				{"cb_4", "Tuxedo Table 4", 4},
-				{"cb_5", "Spicy Rigatoni Salon 5", 6},
-				{"cb_6", "Godfather Banquet 6", 8},
-			},
-			comb: [][]string{{"cb_3", "cb_4"}},
-		},
-		{
-			id: "r_lebernardin", name: "Le Bernardin", timezone: "America/New_York", slotMin: 30, durMin: 150, cutMin: 1440, opens: "17:00", closes: "22:30",
-			tables: []seedTable{
-				{"lb_1", "Seafood Salon 1", 2},
-				{"lb_2", "Sommelier Banquette 2", 2},
-				{"lb_3", "Ripert Table 3", 4},
-				{"lb_4", "Ripert Table 4", 4},
-				{"lb_5", "Midtown Grand 5", 6},
-				{"lb_6", "Presidential Salon 6", 8},
-			},
-			comb: [][]string{{"lb_3", "lb_4"}},
-		},
-		{
-			id: "r_gramercy", name: "Gramercy Tavern", timezone: "America/New_York", slotMin: 15, durMin: 90, cutMin: 60, opens: "12:00", closes: "23:00",
-			tables: []seedTable{
-				{"gt_1", "Tavern Front 1", 2},
-				{"gt_2", "Wood Hearth 2", 2},
-				{"gt_3", "Dining Room 3", 4},
-				{"gt_4", "Dining Room 4", 4},
-				{"gt_5", "Floral Salon 5", 6},
-				{"gt_6", "Danny Meyer Table 6", 8},
-			},
-			comb: [][]string{{"gt_3", "gt_4"}},
-		},
-		// --- Chicago / Illinois ---
-		{
-			id: "r_alinea", name: "Alinea", timezone: "America/Chicago", slotMin: 30, durMin: 180, cutMin: 1440, opens: "17:00", closes: "22:30",
-			tables: []seedTable{
-				{"al_1", "Gallery Table 1", 2},
-				{"al_2", "Gallery Table 2", 2},
-				{"al_3", "Salon Table 3", 4},
-				{"al_4", "Salon Table 4", 4},
-				{"al_5", "Achatz Lab 5", 6},
-				{"al_6", "Culinary Vault 6", 8},
-			},
-			comb: [][]string{{"al_3", "al_4"}},
-		},
-		{
-			id: "r_girlgoat", name: "Girl & the Goat", timezone: "America/Chicago", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:30", closes: "23:00",
-			tables: []seedTable{
-				{"gg_1", "West Loop Bar 1", 2},
-				{"gg_2", "Kitchen Counter 2", 2},
-				{"gg_3", "Rustic Booth 3", 4},
-				{"gg_4", "Rustic Booth 4", 4},
-				{"gg_5", "Family Table 5", 6},
-				{"gg_6", "Goat Lounge 6", 8},
-			},
-			comb: [][]string{{"gg_3", "gg_4"}},
-		},
-		// --- Los Angeles ---
-		{
-			id: "r_nobumalibu", name: "Nobu Malibu", timezone: "America/Los_Angeles", slotMin: 15, durMin: 105, cutMin: 120, opens: "12:00", closes: "22:30",
-			tables: []seedTable{
-				{"nb_1", "Pacific Deck 1", 2},
-				{"nb_2", "Oceanfront Booth 2", 2},
-				{"nb_3", "Sushi Pavilion 3", 4},
-				{"nb_4", "Sushi Pavilion 4", 4},
-				{"nb_5", "Malibu Sunset 5", 6},
-				{"nb_6", "Matsuhisa Salon 6", 8},
-			},
-			comb: [][]string{{"nb_3", "nb_4"}},
-		},
-		{
-			id: "r_bestia", name: "Bestia DTLA", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "17:00", closes: "23:00",
-			tables: []seedTable{
-				{"bs_1", "Charcuterie Counter 1", 2},
-				{"bs_2", "Industrial Booth 2", 2},
-				{"bs_3", "Arts District Hall 3", 4},
-				{"bs_4", "Arts District Hall 4", 4},
-				{"bs_5", "Pork Feast Table 5", 6},
-				{"bs_6", "Butcher Salon 6", 8},
-			},
-			comb: [][]string{{"bs_3", "bs_4"}},
-		},
-		// --- London (UK) ---
-		{
-			id: "r_dishoom", name: "Dishoom Covent Garden", timezone: "Europe/London", slotMin: 15, durMin: 90, cutMin: 60, opens: "08:00", closes: "23:00",
-			tables: []seedTable{
-				{"ds_1", "Irani Cafe Table 1", 2},
-				{"ds_2", "Verandah Booth 2", 2},
-				{"ds_3", "Bombay Room 3", 4},
-				{"ds_4", "Bombay Room 4", 4},
-				{"ds_5", "Family Thali Table 5", 6},
-				{"ds_6", "Governor Banquet 6", 8},
-			},
-			comb: [][]string{{"ds_3", "ds_4"}},
-		},
-		{
-			id: "r_ledbury", name: "The Ledbury", timezone: "Europe/London", slotMin: 30, durMin: 150, cutMin: 1440, opens: "18:00", closes: "22:30",
-			tables: []seedTable{
-				{"ld_1", "Notting Hill Salon 1", 2},
-				{"ld_2", "Wine Library 2", 2},
-				{"ld_3", "Tasting Room 3", 4},
-				{"ld_4", "Tasting Room 4", 4},
-				{"ld_5", "Brett Graham Table 5", 6},
-				{"ld_6", "Conservatory 6", 8},
-			},
-			comb: [][]string{{"ld_3", "ld_4"}},
-		},
-		// --- Tokyo (Japan) ---
+
+		// =========================================================================
+		// 2. Sukiyabashi Jiro (Tokyo Ginza - STRICTLY 10 COUNTER SEATS ONLY, 450 sq ft)
+		// =========================================================================
 		{
 			id: "r_jiro", name: "Sukiyabashi Jiro", timezone: "Asia/Tokyo", slotMin: 30, durMin: 60, cutMin: 2880, opens: "11:30", closes: "20:30",
 			tables: []seedTable{
-				{"jr_1", "Ginza Master Counter 1", 2},
-				{"jr_2", "Ginza Master Counter 2", 2},
-				{"jr_3", "Artisan Table 3", 4},
-				{"jr_4", "Artisan Table 4", 4},
-				{"jr_5", "Edomae Salon 5", 6},
-				{"jr_6", "Honored Guest Table 6", 8},
+				{"jr_1", "Hinoki Master Counter 1", 1},
+				{"jr_2", "Hinoki Master Counter 2", 1},
+				{"jr_3", "Hinoki Master Counter 3", 1},
+				{"jr_4", "Hinoki Master Counter 4", 1},
+				{"jr_5", "Center Omakase Seat 5", 1},
+				{"jr_6", "Center Omakase Seat 6", 1},
+				{"jr_7", "Edomae Craft Seat 7", 1},
+				{"jr_8", "Edomae Craft Seat 8", 1},
+				{"jr_9", "Sake Pairing Seat 9", 1},
+				{"jr_10", "Apprentice Station 10", 1},
 			},
-			comb: [][]string{{"jr_3", "jr_4"}},
+			comb: [][]string{{"jr_1", "jr_2"}, {"jr_3", "jr_4"}, {"jr_5", "jr_6"}, {"jr_7", "jr_8"}},
 		},
+
+		// =========================================================================
+		// 3. The French Laundry (Yountville, Napa Valley - STRICTLY 12 TABLES, 2,400 sq ft)
+		// =========================================================================
+		{
+			id: "r_frenchlaundry", name: "The French Laundry", timezone: "America/Los_Angeles", slotMin: 30, durMin: 180, cutMin: 1440, opens: "16:30", closes: "23:00",
+			tables: []seedTable{
+				{"fl_1", "Keller Garden Courtyard 1", 2},
+				{"fl_2", "Keller Garden Courtyard 2", 2},
+				{"fl_3", "Stone Wall Arbor 3", 4},
+				{"fl_4", "Stone Wall Arbor 4", 4},
+				{"fl_5", "Historic Main Salon 5", 2},
+				{"fl_6", "Historic Main Salon 6", 2},
+				{"fl_7", "Salon Velvet Banquette 7", 4},
+				{"fl_8", "Salon Velvet Banquette 8", 4},
+				{"fl_9", "Clothespin Signature Table 9", 4},
+				{"fl_10", "Sommelier Reserve 10", 6},
+				{"fl_11", "Historic Wine Vault 11", 6},
+				{"fl_12", "Keller Private Dining Salon 12", 8},
+			},
+			comb: [][]string{{"fl_1", "fl_2"}, {"fl_7", "fl_8"}},
+		},
+
+		// =========================================================================
+		// 4. Spinasse (Seattle Capitol Hill - STRICTLY 11 TABLES, 1,600 sq ft)
+		// =========================================================================
+		{
+			id: "r_spinasse", name: "Spinasse", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 120, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"sp_1", "Hand-Cut Pasta Bar 1", 2},
+				{"sp_2", "Hand-Cut Pasta Bar 2", 2},
+				{"sp_3", "Hand-Cut Pasta Bar 3", 2},
+				{"sp_4", "Rustic Trattoria 4", 2},
+				{"sp_5", "Rustic Trattoria 5", 2},
+				{"sp_6", "Piedmont Wood Table 6", 4},
+				{"sp_7", "Piedmont Wood Table 7", 4},
+				{"sp_8", "Fireplace Nook 8", 4},
+				{"sp_9", "Cantina Wine Alcove 9", 4},
+				{"sp_10", "Barolo Tasting Room 10", 6},
+				{"sp_11", "Chef Family Table 11", 6},
+			},
+			comb: [][]string{{"sp_4", "sp_5"}, {"sp_6", "sp_7"}},
+		},
+
+		// =========================================================================
+		// 5. Den Tokyo (Shibuya Kaiseki - STRICTLY 10 TABLES, 950 sq ft)
+		// =========================================================================
 		{
 			id: "r_den", name: "Den Tokyo", timezone: "Asia/Tokyo", slotMin: 30, durMin: 120, cutMin: 1440, opens: "18:00", closes: "22:30",
 			tables: []seedTable{
 				{"dn_1", "Kaiseki Counter 1", 2},
 				{"dn_2", "Kaiseki Counter 2", 2},
-				{"dn_3", "Shibuya Pavilion 3", 4},
-				{"dn_4", "Shibuya Pavilion 4", 4},
-				{"dn_5", "Omotenashi Room 5", 6},
-				{"dn_6", "Zashiki Table 6", 8},
+				{"dn_3", "Chef Hasegawa Seat 3", 2},
+				{"dn_4", "Chef Hasegawa Seat 4", 2},
+				{"dn_5", "Shibuya Garden 5", 4},
+				{"dn_6", "Shibuya Garden 6", 4},
+				{"dn_7", "Omotenashi Salon 7", 4},
+				{"dn_8", "Omotenashi Salon 8", 4},
+				{"dn_9", "Zashiki Tatami Room 9", 4},
+				{"dn_10", "Private Dining Room 10", 6},
 			},
-			comb: [][]string{{"dn_3", "dn_4"}},
+			comb: [][]string{{"dn_1", "dn_2"}, {"dn_5", "dn_6"}},
 		},
-		// --- Berlin (Germany) ---
-		{
-			id: "r_berlin_anker", name: "Zum Anker Historic", timezone: "Europe/Berlin", slotMin: 30, durMin: 90, cutMin: 120, opens: "18:00", closes: "23:00",
-			tables: []seedTable{
-				{"ba_1", "Spree View 1", 2},
-				{"ba_2", "Spree View 2", 2},
-				{"ba_3", "Mitte Gaststube 3", 4},
-				{"ba_4", "Mitte Gaststube 4", 4},
-				{"ba_5", "Brauhaus Table 5", 6},
-				{"ba_6", "Alt-Berlin Hall 6", 8},
-			},
-			comb: [][]string{{"ba_3", "ba_4"}},
-		},
-		{
-			id: "r_timraue", name: "Restaurant Tim Raue", timezone: "Europe/Berlin", slotMin: 30, durMin: 120, cutMin: 1440, opens: "18:00", closes: "23:00",
-			tables: []seedTable{
-				{"tr_1", "Checkpoint Charlie Salon 1", 2},
-				{"tr_2", "Asian Fusion Booth 2", 2},
-				{"tr_3", "Kreuzberg Gallery 3", 4},
-				{"tr_4", "Kreuzberg Gallery 4", 4},
-				{"tr_5", "Wasabi Room 5", 6},
-				{"tr_6", "Chef Tim Raue Table 6", 8},
-			},
-			comb: [][]string{{"tr_3", "tr_4"}},
-		},
-		// --- Paris (France) ---
+
+		// =========================================================================
+		// 6. Le Gabriel - La Réserve (Paris - STRICTLY 12 TABLES, 1,800 sq ft)
+		// =========================================================================
 		{
 			id: "r_legabriel", name: "Le Gabriel - La Réserve", timezone: "Europe/Paris", slotMin: 30, durMin: 150, cutMin: 1440, opens: "19:00", closes: "23:00",
 			tables: []seedTable{
 				{"lg_1", "Napoléon III Salon 1", 2},
-				{"lg_2", "Palais-Royal Booth 2", 2},
-				{"lg_3", "Champs-Élysées Table 3", 4},
-				{"lg_4", "Champs-Élysées Table 4", 4},
-				{"lg_5", "Haussmann Hall 5", 6},
-				{"lg_6", "Salon Impérial 6", 8},
+				{"lg_2", "Napoléon III Salon 2", 2},
+				{"lg_3", "Palais-Royal Booth 3", 2},
+				{"lg_4", "Palais-Royal Booth 4", 2},
+				{"lg_5", "Champs-Élysées Salon 5", 4},
+				{"lg_6", "Champs-Élysées Salon 6", 4},
+				{"lg_7", "Gold Leaf Table 7", 4},
+				{"lg_8", "Gold Leaf Table 8", 4},
+				{"lg_9", "Gabriel Banquette 9", 4},
+				{"lg_10", "Haussmann Hall 10", 6},
+				{"lg_11", "Grand Cru Salon 11", 6},
+				{"lg_12", "Salon Impérial 12", 8},
 			},
-			comb: [][]string{{"lg_3", "lg_4"}},
+			comb: [][]string{{"lg_1", "lg_2"}, {"lg_5", "lg_6"}},
 		},
-		// --- Dubai (UAE) ---
+
+		// =========================================================================
+		// 7. Sushi Kashiba (Seattle Pike Place - STRICTLY 12 TABLES, 1,900 sq ft)
+		// =========================================================================
+		{
+			id: "r_kashiba", name: "Sushi Kashiba", timezone: "America/Los_Angeles", slotMin: 30, durMin: 120, cutMin: 240, opens: "17:00", closes: "22:00",
+			tables: []seedTable{
+				{"sk_1", "Shiro Master Counter 1", 2},
+				{"sk_2", "Shiro Master Counter 2", 2},
+				{"sk_3", "Shiro Master Counter 3", 2},
+				{"sk_4", "Shiro Master Counter 4", 2},
+				{"sk_5", "Elliott Bay Window 5", 4},
+				{"sk_6", "Elliott Bay Window 6", 4},
+				{"sk_7", "Elliott Bay Window 7", 4},
+				{"sk_8", "Courtyard View 8", 4},
+				{"sk_9", "Pike Place Dining 9", 4},
+				{"sk_10", "Sake Vault 10", 6},
+				{"sk_11", "Master Shiro Salon 11", 6},
+				{"sk_12", "Honorary Guest Room 12", 8},
+			},
+			comb: [][]string{{"sk_1", "sk_2"}, {"sk_5", "sk_6"}},
+		},
+
+		// =========================================================================
+		// 8. The Walrus and the Carpenter (Seattle Ballard - STRICTLY 12 TABLES, 1,500 sq ft)
+		// =========================================================================
+		{
+			id: "r_walrus", name: "The Walrus and the Carpenter", timezone: "America/Los_Angeles", slotMin: 15, durMin: 75, cutMin: 60, opens: "16:00", closes: "22:00",
+			tables: []seedTable{
+				{"wc_1", "Zinc Oyster Bar 1", 2},
+				{"wc_2", "Zinc Oyster Bar 2", 2},
+				{"wc_3", "Zinc Oyster Bar 3", 2},
+				{"wc_4", "Zinc Oyster Bar 4", 2},
+				{"wc_5", "Ballard Courtyard 5", 4},
+				{"wc_6", "Ballard Courtyard 6", 4},
+				{"wc_7", "Maritime Table 7", 4},
+				{"wc_8", "Maritime Table 8", 4},
+				{"wc_9", "Oysterman Banquette 9", 4},
+				{"wc_10", "Fisherman Feast 10", 6},
+				{"wc_11", "Harbor Vault 11", 6},
+				{"wc_12", "Captain Quarters 12", 8},
+			},
+			comb: [][]string{{"wc_1", "wc_2"}, {"wc_5", "wc_6"}},
+		},
+
+		// =========================================================================
+		// 9. Alinea (Chicago Lincoln Park - STRICTLY 14 TABLES, 3,200 sq ft)
+		// =========================================================================
+		{
+			id: "r_alinea", name: "Alinea", timezone: "America/Chicago", slotMin: 30, durMin: 180, cutMin: 1440, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"al_1", "The Gallery Front 1", 2},
+				{"al_2", "The Gallery Front 2", 2},
+				{"al_3", "The Gallery Center 3", 4},
+				{"al_4", "The Gallery Center 4", 4},
+				{"al_5", "Salon Mirrored Table 5", 2},
+				{"al_6", "Salon Mirrored Table 6", 2},
+				{"al_7", "Salon Banquette 7", 4},
+				{"al_8", "Salon Banquette 8", 4},
+				{"al_9", "Sensory Lab Table 9", 4},
+				{"al_10", "Floating Balloon Table 10", 4},
+				{"al_11", "Achatz Kitchen Experience 11", 6},
+				{"al_12", "Achatz Kitchen Experience 12", 6},
+				{"al_13", "Molecular Vault 13", 6},
+				{"al_14", "Culinary Grand Table 14", 8},
+			},
+			comb: [][]string{{"al_1", "al_2"}, {"al_3", "al_4"}, {"al_7", "al_8"}},
+		},
+
+		// =========================================================================
+		// 10. Gary Danko (San Francisco Wharf - STRICTLY 14 TABLES, 2,600 sq ft)
+		// =========================================================================
+		{
+			id: "r_garydanko", name: "Gary Danko", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"gd_1", "Wharf Window 1", 2},
+				{"gd_2", "Wharf Window 2", 2},
+				{"gd_3", "Sommelier Booth 3", 2},
+				{"gd_4", "Sommelier Booth 4", 2},
+				{"gd_5", "Main Salon 5", 4},
+				{"gd_6", "Main Salon 6", 4},
+				{"gd_7", "Main Salon 7", 4},
+				{"gd_8", "Cheese Cart Alcove 8", 4},
+				{"gd_9", "Flambé Banquette 9", 4},
+				{"gd_10", "Cellar Alcove 10", 4},
+				{"gd_11", "Reserve Wine Table 11", 6},
+				{"gd_12", "Reserve Wine Table 12", 6},
+				{"gd_13", "Chef Danko Table 13", 6},
+				{"gd_14", "Grand Feast Salon 14", 8},
+			},
+			comb: [][]string{{"gd_1", "gd_2"}, {"gd_5", "gd_6"}},
+		},
+
+		// =========================================================================
+		// 11. Restaurant Tim Raue (Berlin Kreuzberg - STRICTLY 14 TABLES, 2,500 sq ft)
+		// =========================================================================
+		{
+			id: "r_timraue", name: "Restaurant Tim Raue", timezone: "Europe/Berlin", slotMin: 30, durMin: 120, cutMin: 1440, opens: "18:00", closes: "23:00",
+			tables: []seedTable{
+				{"tr_1", "Checkpoint Charlie Salon 1", 2},
+				{"tr_2", "Checkpoint Charlie Salon 2", 2},
+				{"tr_3", "Asian Fusion Booth 3", 2},
+				{"tr_4", "Asian Fusion Booth 4", 2},
+				{"tr_5", "Kreuzberg Gallery 5", 4},
+				{"tr_6", "Kreuzberg Gallery 6", 4},
+				{"tr_7", "Wasabi Table 7", 4},
+				{"tr_8", "Wasabi Table 8", 4},
+				{"tr_9", "Peking Duck Alcove 9", 4},
+				{"tr_10", "Dim Sum Station 10", 4},
+				{"tr_11", "Chef Tim Raue Table 11", 6},
+				{"tr_12", "Chef Tim Raue Table 12", 6},
+				{"tr_13", "Berlin Wall Reserve 13", 6},
+				{"tr_14", "Imperial Jade Room 14", 8},
+			},
+			comb: [][]string{{"tr_1", "tr_2"}, {"tr_5", "tr_6"}},
+		},
+
+		// =========================================================================
+		// 12. The Ledbury (London Notting Hill - STRICTLY 14 TABLES, 2,700 sq ft)
+		// =========================================================================
+		{
+			id: "r_ledbury", name: "The Ledbury", timezone: "Europe/London", slotMin: 30, durMin: 150, cutMin: 1440, opens: "18:00", closes: "22:30",
+			tables: []seedTable{
+				{"ld_1", "Notting Hill Salon 1", 2},
+				{"ld_2", "Notting Hill Salon 2", 2},
+				{"ld_3", "Wine Library Booth 3", 2},
+				{"ld_4", "Wine Library Booth 4", 2},
+				{"ld_5", "Tasting Room 5", 4},
+				{"ld_6", "Tasting Room 6", 4},
+				{"ld_7", "Garden Terrace Table 7", 4},
+				{"ld_8", "Garden Terrace Table 8", 4},
+				{"ld_9", "English Truffle Table 9", 4},
+				{"ld_10", "Conservatory Alcove 10", 4},
+				{"ld_11", "Brett Graham Table 11", 6},
+				{"ld_12", "Venison Salon 12", 6},
+				{"ld_13", "Cellar Master Suite 13", 6},
+				{"ld_14", "Conservatory Grand 14", 8},
+			},
+			comb: [][]string{{"ld_1", "ld_2"}, {"ld_5", "ld_6"}},
+		},
+
+		// =========================================================================
+		// 13. COMMUNION Restaurant & Bar (Seattle Central District - STRICTLY 14 TABLES, 2,800 sq ft)
+		// =========================================================================
+		{
+			id: "r_communion", name: "COMMUNION Restaurant & Bar", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:30", closes: "22:00",
+			tables: []seedTable{
+				{"cm_1", "Soul Booth 1", 2},
+				{"cm_2", "Soul Booth 2", 2},
+				{"cm_3", "Soul Booth 3", 2},
+				{"cm_4", "Soul Booth 4", 2},
+				{"cm_5", "Central District Table 5", 4},
+				{"cm_6", "Central District Table 6", 4},
+				{"cm_7", "Central District Table 7", 4},
+				{"cm_8", "Kristi Family Table 8", 4},
+				{"cm_9", "Catfish Corner 9", 4},
+				{"cm_10", "Po' Boy Banquette 10", 4},
+				{"cm_11", "Sweet Potato Salon 11", 6},
+				{"cm_12", "Reverence Vault 12", 6},
+				{"cm_13", "Community Table 13", 6},
+				{"cm_14", "Central Grand Hall 14", 8},
+			},
+			comb: [][]string{{"cm_1", "cm_2"}, {"cm_5", "cm_6"}},
+		},
+
+		// =========================================================================
+		// 14. Palace Kitchen (Seattle Belltown - STRICTLY 15 TABLES, 3,000 sq ft)
+		// =========================================================================
+		{
+			id: "r_palace", name: "Palace Kitchen", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:00", closes: "23:59",
+			tables: []seedTable{
+				{"pk_1", "Horseshoe Bar 1", 2},
+				{"pk_2", "Horseshoe Bar 2", 2},
+				{"pk_3", "Horseshoe Bar 3", 2},
+				{"pk_4", "Hearth Table 4", 2},
+				{"pk_5", "Hearth Table 5", 2},
+				{"pk_6", "Rotisserie Table 6", 4},
+				{"pk_7", "Rotisserie Table 7", 4},
+				{"pk_8", "Rotisserie Table 8", 4},
+				{"pk_9", "Belltown Booth 9", 4},
+				{"pk_10", "Belltown Booth 10", 4},
+				{"pk_11", "Applewood Grill 11", 4},
+				{"pk_12", "Tom Douglas Salon 12", 6},
+				{"pk_13", "Goat Cheese Fondue Table 13", 6},
+				{"pk_14", "Captain Table 14", 6},
+				{"pk_15", "Palace Feast Table 15", 8},
+			},
+			comb: [][]string{{"pk_1", "pk_2"}, {"pk_6", "pk_7"}, {"pk_9", "pk_10"}},
+		},
+
+		// =========================================================================
+		// 15. Carbone NYC (Greenwich Village - STRICTLY 16 TABLES, 2,800 sq ft)
+		// =========================================================================
+		{
+			id: "r_carbone", name: "Carbone NYC", timezone: "America/New_York", slotMin: 15, durMin: 90, cutMin: 120, opens: "17:00", closes: "23:59",
+			tables: []seedTable{
+				{"cb_1", "Thompson St Window 1", 2},
+				{"cb_2", "Thompson St Window 2", 2},
+				{"cb_3", "Tuxedo Velvet Banquette 3", 4},
+				{"cb_4", "Tuxedo Velvet Banquette 4", 4},
+				{"cb_5", "Tuxedo Velvet Banquette 5", 4},
+				{"cb_6", "Tuxedo Velvet Banquette 6", 4},
+				{"cb_7", "Greenwich Village Salon 7", 2},
+				{"cb_8", "Greenwich Village Salon 8", 2},
+				{"cb_9", "Spicy Rigatoni Table 9", 4},
+				{"cb_10", "Spicy Rigatoni Table 10", 4},
+				{"cb_11", "Veal Parmigiana Nook 11", 4},
+				{"cb_12", "Mario Carbone Table 12", 4},
+				{"cb_13", "Capo Corner Booth 13", 6},
+				{"cb_14", "Capo Corner Booth 14", 6},
+				{"cb_15", "Godfather Banquet 15", 6},
+				{"cb_16", "Grand Mafioso Table 16", 8},
+			},
+			comb: [][]string{{"cb_1", "cb_2"}, {"cb_3", "cb_4"}, {"cb_9", "cb_10"}},
+		},
+
+		// =========================================================================
+		// 16. Le Bernardin (New York Midtown - STRICTLY 16 TABLES, 3,400 sq ft)
+		// =========================================================================
+		{
+			id: "r_lebernardin", name: "Le Bernardin", timezone: "America/New_York", slotMin: 30, durMin: 150, cutMin: 1440, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"lb_1", "Midtown Window 1", 2},
+				{"lb_2", "Midtown Window 2", 2},
+				{"lb_3", "Sommelier Banquette 3", 2},
+				{"lb_4", "Sommelier Banquette 4", 2},
+				{"lb_5", "Seafood Salon 5", 4},
+				{"lb_6", "Seafood Salon 6", 4},
+				{"lb_7", "Seafood Salon 7", 4},
+				{"lb_8", "Caviar Tasting Table 8", 4},
+				{"lb_9", "Ripert Signature Table 9", 4},
+				{"lb_10", "Ripert Signature Table 10", 4},
+				{"lb_11", "Midtown Grand 11", 4},
+				{"lb_12", "Midtown Grand 12", 4},
+				{"lb_13", "Bluefin Tuna Salon 13", 6},
+				{"lb_14", "Le Bernardin Vault 14", 6},
+				{"lb_15", "Presidential Salon 15", 6},
+				{"lb_16", "Sommelier Grand Cru 16", 8},
+			},
+			comb: [][]string{{"lb_1", "lb_2"}, {"lb_5", "lb_6"}, {"lb_9", "lb_10"}},
+		},
+
+		// =========================================================================
+		// 17. The Pink Door (Seattle Post Alley - STRICTLY 16 TABLES, 3,200 sq ft)
+		// =========================================================================
+		{
+			id: "r_pinkdoor", name: "The Pink Door", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "11:30", closes: "23:00",
+			tables: []seedTable{
+				{"pd_1", "Post Alley Entrance 1", 2},
+				{"pd_2", "Post Alley Entrance 2", 2},
+				{"pd_3", "Cabaret Front 3", 2},
+				{"pd_4", "Cabaret Front 4", 2},
+				{"pd_5", "Trapeze View Booth 5", 4},
+				{"pd_6", "Trapeze View Booth 6", 4},
+				{"pd_7", "Post Alley Deck 7", 4},
+				{"pd_8", "Post Alley Deck 8", 4},
+				{"pd_9", "Elliott Bay Sunset 9", 4},
+				{"pd_10", "Elliott Bay Sunset 10", 4},
+				{"pd_11", "Wine Cellar 11", 4},
+				{"pd_12", "Tarot Reader Nook 12", 4},
+				{"pd_13", "Piazza Table 13", 6},
+				{"pd_14", "Jacopo Family Table 14", 6},
+				{"pd_15", "Burlesque Banquette 15", 6},
+				{"pd_16", "Grand Cabaret Table 16", 8},
+			},
+			comb: [][]string{{"pd_1", "pd_2"}, {"pd_5", "pd_6"}, {"pd_7", "pd_8"}},
+		},
+
+		// =========================================================================
+		// 18. Canlis (Seattle Queen Anne - STRICTLY 18 TABLES, 4,800 sq ft)
+		// =========================================================================
+		{
+			id: "r_canlis", name: "Canlis", timezone: "America/Los_Angeles", slotMin: 30, durMin: 150, cutMin: 1440, opens: "17:00", closes: "23:00",
+			tables: []seedTable{
+				{"cn_1", "Lake Union Window Rail 1", 2},
+				{"cn_2", "Lake Union Window Rail 2", 2},
+				{"cn_3", "Lake Union Window Rail 3", 2},
+				{"cn_4", "Cascade View 4", 2},
+				{"cn_5", "Cascade View 5", 2},
+				{"cn_6", "Copper Hearth Center 6", 4},
+				{"cn_7", "Copper Hearth Center 7", 4},
+				{"cn_8", "Copper Hearth Center 8", 4},
+				{"cn_9", "Mid-Century Beam 9", 4},
+				{"cn_10", "Mid-Century Beam 10", 4},
+				{"cn_11", "Steinway Piano Lounge 11", 4},
+				{"cn_12", "Steinway Piano Lounge 12", 4},
+				{"cn_13", "Sommelier Cellar 13", 4},
+				{"cn_14", "Mark Canlis Salon 14", 6},
+				{"cn_15", "Peter Canlis Penthouse 15", 6},
+				{"cn_16", "Wine Vault 16", 6},
+				{"cn_17", "Terrace Sunset 17", 6},
+				{"cn_18", "Grand Cascade Hall 18", 8},
+			},
+			comb: [][]string{{"cn_1", "cn_2"}, {"cn_6", "cn_7"}, {"cn_11", "cn_12"}},
+		},
+
+		// =========================================================================
+		// 19. El Gaucho Seattle (Belltown - STRICTLY 18 TABLES, 4,500 sq ft)
+		// =========================================================================
+		{
+			id: "r_elgaucho", name: "El Gaucho Seattle", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"eg_1", "Charcoal Grill Rail 1", 2},
+				{"eg_2", "Charcoal Grill Rail 2", 2},
+				{"eg_3", "Steinway Piano Booth 3", 2},
+				{"eg_4", "Steinway Piano Booth 4", 2},
+				{"eg_5", "Captain Booth 5", 4},
+				{"eg_6", "Captain Booth 6", 4},
+				{"eg_7", "Vintage Leather Booth 7", 4},
+				{"eg_8", "Vintage Leather Booth 8", 4},
+				{"eg_9", "Flaming Sword Station 9", 4},
+				{"eg_10", "Tableside Caesar 10", 4},
+				{"eg_11", "Cigar Lounge Nook 11", 4},
+				{"eg_12", "Wine Cellar 12", 4},
+				{"eg_13", "Pampas Salon 13", 6},
+				{"eg_14", "Sommelier Vault 14", 6},
+				{"eg_15", "Gaucho Executive 15", 6},
+				{"eg_16", "Belltown Boardroom 16", 6},
+				{"eg_17", "Gaucho Master Suite 17", 8},
+				{"eg_18", "Presidential Steakhouse 18", 8},
+			},
+			comb: [][]string{{"eg_1", "eg_2"}, {"eg_5", "eg_6"}, {"eg_7", "eg_8"}},
+		},
+
+		// =========================================================================
+		// 20. Bestia DTLA (Los Angeles Arts District - STRICTLY 18 TABLES, 4,400 sq ft)
+		// =========================================================================
+		{
+			id: "r_bestia", name: "Bestia DTLA", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "17:00", closes: "23:00",
+			tables: []seedTable{
+				{"bs_1", "Charcuterie Counter 1", 2},
+				{"bs_2", "Charcuterie Counter 2", 2},
+				{"bs_3", "Charcuterie Counter 3", 2},
+				{"bs_4", "Wood Fire Oven 4", 2},
+				{"bs_5", "Industrial Booth 5", 4},
+				{"bs_6", "Industrial Booth 6", 4},
+				{"bs_7", "Arts District Hall 7", 4},
+				{"bs_8", "Arts District Hall 8", 4},
+				{"bs_9", "Arts District Hall 9", 4},
+				{"bs_10", "Bone Marrow Table 10", 4},
+				{"bs_11", "Cavatelli Nook 11", 4},
+				{"bs_12", "Raw Bar Rail 12", 4},
+				{"bs_13", "Pork Feast Table 13", 6},
+				{"bs_14", "Pork Feast Table 14", 6},
+				{"bs_15", "Butcher Salon 15", 6},
+				{"bs_16", "Warehouse Vault 16", 6},
+				{"bs_17", "Ori Menashe Table 17", 8},
+				{"bs_18", "Industrial Grand 18", 8},
+			},
+			comb: [][]string{{"bs_1", "bs_2"}, {"bs_5", "bs_6"}, {"bs_7", "bs_8"}},
+		},
+
+		// =========================================================================
+		// 21. Gramercy Tavern (New York Flatiron - STRICTLY 18 TABLES, 4,600 sq ft)
+		// =========================================================================
+		{
+			id: "r_gramercy", name: "Gramercy Tavern", timezone: "America/New_York", slotMin: 15, durMin: 90, cutMin: 60, opens: "12:00", closes: "23:00",
+			tables: []seedTable{
+				{"gt_1", "Tavern Front 1", 2},
+				{"gt_2", "Tavern Front 2", 2},
+				{"gt_3", "Wood Hearth 3", 2},
+				{"gt_4", "Wood Hearth 4", 2},
+				{"gt_5", "Dining Room Hall 5", 4},
+				{"gt_6", "Dining Room Hall 6", 4},
+				{"gt_7", "Dining Room Hall 7", 4},
+				{"gt_8", "Dining Room Hall 8", 4},
+				{"gt_9", "Floral Salon 9", 4},
+				{"gt_10", "Floral Salon 10", 4},
+				{"gt_11", "Mural Wall 11", 4},
+				{"gt_12", "Flatiron Nook 12", 4},
+				{"gt_13", "Danny Meyer Table 13", 6},
+				{"gt_14", "Danny Meyer Table 14", 6},
+				{"gt_15", "Sommelier Reserve 15", 6},
+				{"gt_16", "Farm to Table 16", 6},
+				{"gt_17", "Gramercy Grand 17", 8},
+				{"gt_18", "Founders Banquet 18", 8},
+			},
+			comb: [][]string{{"gt_1", "gt_2"}, {"gt_5", "gt_6"}, {"gt_9", "gt_10"}},
+		},
+
+		// =========================================================================
+		// 22. Ascend Prime Steak & Sushi (Bellevue 31st Floor - STRICTLY 20 TABLES, 5,600 sq ft)
+		// =========================================================================
+		{
+			id: "r_ascend", name: "Ascend Prime Steak & Sushi", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "16:30", closes: "23:00",
+			tables: []seedTable{
+				{"as_1", "31st Skyline Window 1", 2},
+				{"as_2", "31st Skyline Window 2", 2},
+				{"as_3", "Mt. Rainier View 3", 2},
+				{"as_4", "Mt. Rainier View 4", 2},
+				{"as_5", "Robata Counter 5", 4},
+				{"as_6", "Robata Counter 6", 4},
+				{"as_7", "Penthouse Booth 7", 4},
+				{"as_8", "Penthouse Booth 8", 4},
+				{"as_9", "Bellevue Towers 9", 4},
+				{"as_10", "Bellevue Towers 10", 4},
+				{"as_11", "Sushi Pavilion 11", 4},
+				{"as_12", "Sushi Pavilion 12", 4},
+				{"as_13", "Sky Lounge 13", 6},
+				{"as_14", "Sky Lounge 14", 6},
+				{"as_15", "Woodfire Hearth 15", 6},
+				{"as_16", "Woodfire Hearth 16", 6},
+				{"as_17", "Ascend VIP Booth 17", 6},
+				{"as_18", "Rainier Penthouse 18", 6},
+				{"as_19", "Presidential Suite 19", 8},
+				{"as_20", "Cloud 31 Grand 20", 8},
+			},
+			comb: [][]string{{"as_1", "as_2"}, {"as_7", "as_8"}, {"as_13", "as_14"}},
+		},
+
+		// =========================================================================
+		// 23. Girl & the Goat (Chicago West Loop - STRICTLY 20 TABLES, 5,200 sq ft)
+		// =========================================================================
+		{
+			id: "r_girlgoat", name: "Girl & the Goat", timezone: "America/Chicago", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:30", closes: "23:00",
+			tables: []seedTable{
+				{"gg_1", "West Loop Bar 1", 2},
+				{"gg_2", "West Loop Bar 2", 2},
+				{"gg_3", "Kitchen Counter 3", 2},
+				{"gg_4", "Kitchen Counter 4", 2},
+				{"gg_5", "Rustic Booth 5", 4},
+				{"gg_6", "Rustic Booth 6", 4},
+				{"gg_7", "Rustic Booth 7", 4},
+				{"gg_8", "Rustic Booth 8", 4},
+				{"gg_9", "Wood Beam Dining 9", 4},
+				{"gg_10", "Wood Beam Dining 10", 4},
+				{"gg_11", "Goat Empanada Table 11", 4},
+				{"gg_12", "Stephanie Izard Nook 12", 4},
+				{"gg_13", "Family Table 13", 6},
+				{"gg_14", "Family Table 14", 6},
+				{"gg_15", "Goat Lounge 15", 6},
+				{"gg_16", "Goat Lounge 16", 6},
+				{"gg_17", "Randolph Street 17", 6},
+				{"gg_18", "West Loop Feast 18", 6},
+				{"gg_19", "Grand Goat Salon 19", 8},
+				{"gg_20", "Izard Banquet 20", 8},
+			},
+			comb: [][]string{{"gg_1", "gg_2"}, {"gg_5", "gg_6"}, {"gg_13", "gg_14"}},
+		},
+
+		// =========================================================================
+		// 24. Dishoom Covent Garden (London - STRICTLY 20 TABLES, 5,400 sq ft)
+		// =========================================================================
+		{
+			id: "r_dishoom", name: "Dishoom Covent Garden", timezone: "Europe/London", slotMin: 15, durMin: 90, cutMin: 60, opens: "08:00", closes: "23:00",
+			tables: []seedTable{
+				{"ds_1", "Irani Cafe Verandah 1", 2},
+				{"ds_2", "Irani Cafe Verandah 2", 2},
+				{"ds_3", "Irani Cafe Verandah 3", 2},
+				{"ds_4", "Permit Room Bar 4", 2},
+				{"ds_5", "Bombay Dining Room 5", 4},
+				{"ds_6", "Bombay Dining Room 6", 4},
+				{"ds_7", "Bombay Dining Room 7", 4},
+				{"ds_8", "Bombay Dining Room 8", 4},
+				{"ds_9", "House Black Daal 9", 4},
+				{"ds_10", "Chai Wallah Nook 10", 4},
+				{"ds_11", "Old Bombay Alcove 11", 4},
+				{"ds_12", "Bespoke Booth 12", 4},
+				{"ds_13", "Family Thali Table 13", 6},
+				{"ds_14", "Family Thali Table 14", 6},
+				{"ds_15", "Victoria Terminus 15", 6},
+				{"ds_16", "Marine Drive 16", 6},
+				{"ds_17", "Governor Banquet 17", 6},
+				{"ds_18", "Governor Banquet 18", 6},
+				{"ds_19", "Colaba Grand Hall 19", 8},
+				{"ds_20", "Willingdon Suite 20", 8},
+			},
+			comb: [][]string{{"ds_1", "ds_2"}, {"ds_5", "ds_6"}, {"ds_13", "ds_14"}},
+		},
+
+		// =========================================================================
+		// 25. Zum Anker Historic (Berlin Spree - STRICTLY 20 TABLES, 5,000 sq ft)
+		// =========================================================================
+		{
+			id: "r_berlin_anker", name: "Zum Anker Historic", timezone: "Europe/Berlin", slotMin: 30, durMin: 90, cutMin: 120, opens: "18:00", closes: "23:00",
+			tables: []seedTable{
+				{"ba_1", "Spree River View 1", 2},
+				{"ba_2", "Spree River View 2", 2},
+				{"ba_3", "Spree River View 3", 2},
+				{"ba_4", "Spree River View 4", 2},
+				{"ba_5", "Mitte Gaststube 5", 4},
+				{"ba_6", "Mitte Gaststube 6", 4},
+				{"ba_7", "Mitte Gaststube 7", 4},
+				{"ba_8", "Mitte Gaststube 8", 4},
+				{"ba_9", "Eichenholz Nook 9", 4},
+				{"ba_10", "Eichenholz Nook 10", 4},
+				{"ba_11", "Kupfer Brauhaus 11", 4},
+				{"ba_12", "Kupfer Brauhaus 12", 4},
+				{"ba_13", "Brauhaus Table 13", 6},
+				{"ba_14", "Brauhaus Table 14", 6},
+				{"ba_15", "Fasskeller Suite 15", 6},
+				{"ba_16", "Fasskeller Suite 16", 6},
+				{"ba_17", "Historischer Tisch 17", 6},
+				{"ba_18", "Spreeufer Lounge 18", 6},
+				{"ba_19", "Alt-Berlin Hall 19", 8},
+				{"ba_20", "Kaiserliche Loge 20", 8},
+			},
+			comb: [][]string{{"ba_1", "ba_2"}, {"ba_5", "ba_6"}, {"ba_13", "ba_14"}},
+		},
+
+		// =========================================================================
+		// 26. House of Prime Rib (San Francisco Van Ness - STRICTLY 22 TABLES, 5,800 sq ft)
+		// =========================================================================
+		{
+			id: "r_hopr", name: "House of Prime Rib", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "16:30", closes: "22:30",
+			tables: []seedTable{
+				{"hp_1", "Carving Cart Rail 1", 2},
+				{"hp_2", "Carving Cart Rail 2", 2},
+				{"hp_3", "English Booth 3", 2},
+				{"hp_4", "English Booth 4", 2},
+				{"hp_5", "Fireplace Banquette 5", 4},
+				{"hp_6", "Fireplace Banquette 6", 4},
+				{"hp_7", "Fireplace Banquette 7", 4},
+				{"hp_8", "Fireplace Banquette 8", 4},
+				{"hp_9", "City Cut Nook 9", 4},
+				{"hp_10", "King Henry VIII 10", 4},
+				{"hp_11", "Yorkshire Pudding Table 11", 4},
+				{"hp_12", "Creamed Spinach Booth 12", 4},
+				{"hp_13", "Lords Dining Table 13", 6},
+				{"hp_14", "Lords Dining Table 14", 6},
+				{"hp_15", "Zeppelin Cart Suite 15", 6},
+				{"hp_16", "Sommelier Cellar 16", 6},
+				{"hp_17", "Van Ness Alcove 17", 6},
+				{"hp_18", "Master Carver Suite 18", 6},
+				{"hp_19", "Grand Dining Hall 19", 8},
+				{"hp_20", "Grand Dining Hall 20", 8},
+				{"hp_21", "English Bar Stool 21", 2},
+				{"hp_22", "English Bar Stool 22", 2},
+			},
+			comb: [][]string{{"hp_1", "hp_2"}, {"hp_5", "hp_6"}, {"hp_13", "hp_14"}},
+		},
+
+		// =========================================================================
+		// 27. Nobu Malibu (Pacific Coast Highway - STRICTLY 22 TABLES, 6,500 sq ft)
+		// =========================================================================
+		{
+			id: "r_nobumalibu", name: "Nobu Malibu", timezone: "America/Los_Angeles", slotMin: 15, durMin: 105, cutMin: 120, opens: "12:00", closes: "22:30",
+			tables: []seedTable{
+				{"nb_1", "Pacific Deck Surf 1", 2},
+				{"nb_2", "Pacific Deck Surf 2", 2},
+				{"nb_3", "Pacific Deck Surf 3", 2},
+				{"nb_4", "Pacific Deck Surf 4", 2},
+				{"nb_5", "Oceanfront Booth 5", 4},
+				{"nb_6", "Oceanfront Booth 6", 4},
+				{"nb_7", "Oceanfront Booth 7", 4},
+				{"nb_8", "Oceanfront Booth 8", 4},
+				{"nb_9", "Robata Grill Rail 9", 2},
+				{"nb_10", "Robata Grill Rail 10", 2},
+				{"nb_11", "Sushi Pavilion 11", 4},
+				{"nb_12", "Sushi Pavilion 12", 4},
+				{"nb_13", "Black Cod Table 13", 4},
+				{"nb_14", "Yellowtail Jalapeno Nook 14", 4},
+				{"nb_15", "Malibu Sunset Salon 15", 6},
+				{"nb_16", "Malibu Sunset Salon 16", 6},
+				{"nb_17", "Teak Pavilion 17", 6},
+				{"nb_18", "Teak Pavilion 18", 6},
+				{"nb_19", "Matsuhisa VIP Terrace 19", 6},
+				{"nb_20", "Matsuhisa VIP Terrace 20", 6},
+				{"nb_21", "Celebrity Ocean Grand 21", 8},
+				{"nb_22", "Pacific Penthouse 22", 8},
+			},
+			comb: [][]string{{"nb_1", "nb_2"}, {"nb_5", "nb_6"}, {"nb_15", "nb_16"}},
+		},
+
+		// =========================================================================
+		// 28. Zuma Dubai (DIFC Gate Village - FLAGSHIP ULTRA-LUXURY MAX 25 TABLES, 9,200 sq ft)
+		// =========================================================================
 		{
 			id: "r_zuma_dubai", name: "Zuma Dubai DIFC", timezone: "Asia/Dubai", slotMin: 15, durMin: 120, cutMin: 120, opens: "12:00", closes: "23:59",
 			tables: []seedTable{
-				{"zm_1", "Robata Grill Counter 1", 2},
-				{"zm_2", "DIFC Skyline Booth 2", 2},
-				{"zm_3", "Sake Lounge 3", 4},
-				{"zm_4", "Sake Lounge 4", 4},
-				{"zm_5", "Burj View Table 5", 6},
-				{"zm_6", "Royal Palm Suite 6", 8},
+				{"zm_1", "DIFC Gate Lounge 1", 2},
+				{"zm_2", "DIFC Gate Lounge 2", 2},
+				{"zm_3", "DIFC Gate Lounge 3", 2},
+				{"zm_4", "Robata Grill Counter 4", 2},
+				{"zm_5", "Robata Grill Counter 5", 2},
+				{"zm_6", "Sushi Exhibition Rail 6", 2},
+				{"zm_7", "Skyline Glass Booth 7", 4},
+				{"zm_8", "Skyline Glass Booth 8", 4},
+				{"zm_9", "Main Hall Pavilion 9", 4},
+				{"zm_10", "Main Hall Pavilion 10", 4},
+				{"zm_11", "Main Hall Pavilion 11", 4},
+				{"zm_12", "Main Hall Pavilion 12", 4},
+				{"zm_13", "Sake Sommelier Lounge 13", 4},
+				{"zm_14", "Sake Sommelier Lounge 14", 4},
+				{"zm_15", "Burj Khalifa Vista 15", 6},
+				{"zm_16", "Burj Khalifa Vista 16", 6},
+				{"zm_17", "Granite Spiral Nook 17", 6},
+				{"zm_18", "Granite Spiral Nook 18", 6},
+				{"zm_19", "Mezzanine VIP Pod 19", 6},
+				{"zm_20", "Mezzanine VIP Pod 20", 6},
+				{"zm_21", "Royal Palm Suite 21", 8},
+				{"zm_22", "Royal Palm Suite 22", 8},
+				{"zm_23", "Emirates High-Top Stool 23", 2},
+				{"zm_24", "Emirates High-Top Stool 24", 2},
+				{"zm_25", "Emirates High-Top Stool 25", 2},
 			},
-			comb: [][]string{{"zm_3", "zm_4"}},
+			comb: [][]string{{"zm_1", "zm_2"}, {"zm_7", "zm_8"}, {"zm_15", "zm_16"}},
 		},
 	}
 

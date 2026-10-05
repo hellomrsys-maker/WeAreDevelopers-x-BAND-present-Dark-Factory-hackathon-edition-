@@ -6505,18 +6505,28 @@
             </div>
             <!-- Restaurant Switcher (10 Real Restaurants) -->
             <select id="host-rest-select" class="host-venue-select" onchange="switchHostRestaurant(this.value)">
-              <option value="r_anker">JOEY Bellevue (Bellevue, WA)</option>
-              <option value="r_spinasse">Spinasse (Capitol Hill, Seattle)</option>
-              <option value="r_canlis">Canlis (Queen Anne, Seattle)</option>
-              <option value="r_pinkdoor">The Pink Door (Pike Place Market)</option>
-              <option value="r_anker_de">Zum Anker (Düsseldorf, Altstadt)</option>
-              <option value="r_carmines">Carmine's (Pioneer Square, Seattle)</option>
-              <option value="r_wildginger">Wild Ginger (Downtown Seattle)</option>
-              <option value="r_campagne">Cafe Campagne (Post Alley, Seattle)</option>
-              <option value="r_saltys">Salty's on Alki Beach (West Seattle)</option>
-              <option value="r_metropolitan">Metropolitan Grill (Seattle Financial)</option>
-              <option value="r_ascend">Ascend Prime Steak & Sushi (Bellevue)</option>
-            </select>
+              <option value="r_anker">JOEY Bellevue — Max 25 Tables (8,500 sq ft Flagship)</option>
+              <option value="r_jiro">Sukiyabashi Jiro — Strict 10 Counter Seats (450 sq ft Ginza)</option>
+              <option value="r_frenchlaundry">The French Laundry — Strict 12 Tables (2,400 sq ft Keller Garden)</option>
+              <option value="r_spinasse">Spinasse — Strict 11 Tables (1,600 sq ft Hand-Cut Pasta Bar)</option>
+              <option value="r_carbone">Carbone NYC — Strict 16 Tables (2,800 sq ft Tuxedo Banquettes)</option>
+              <option value="r_alinea">Alinea Chicago — Strict 14 Tables (3,200 sq ft Theatrical Salon)</option>
+              <option value="r_canlis">Canlis Seattle — Strict 18 Tables (4,800 sq ft Cantilevered Lounge)</option>
+              <option value="r_nobumalibu">Nobu Malibu — Strict 22 Tables (6,500 sq ft Oceanfront Deck)</option>
+              <option value="r_dishoom">Dishoom Covent Garden — Strict 20 Tables (5,400 sq ft Irani Cafe)</option>
+              <option value="r_zuma_dubai">Zuma Dubai DIFC — Max 25 Tables (9,200 sq ft Multi-Level Luxury)</option>
+              <option value="r_kashiba">Sushi Kashiba — Strict 12 Tables (1,900 sq ft Elliott Bay)</option>
+              <option value="r_walrus">The Walrus and the Carpenter — Strict 12 Tables (1,500 sq ft)</option>
+              <option value="r_communion">COMMUNION Restaurant — Strict 14 Tables (2,800 sq ft Soul Lounge)</option>
+              <option value="r_palace">Palace Kitchen — Strict 15 Tables (3,000 sq ft Belltown Hearth)</option>
+              <option value="r_pinkdoor">The Pink Door — Strict 16 Tables (3,200 sq ft Post Alley Cabaret)</option>
+              <option value="r_ascend">Ascend Prime Steak & Sushi — Strict 20 Tables (5,600 sq ft 31st Fl)</option>
+              <option value="r_hopr">House of Prime Rib — Strict 22 Tables (5,800 sq ft Carving Cart)</option>
+              <option value="r_legabriel">Le Gabriel Paris — Strict 12 Tables (1,800 sq ft Champs-Élysées)</option>
+              <option value="r_den">Den Tokyo — Strict 10 Tables (950 sq ft Modern Kaiseki)</option>
+              <option value="r_timraue">Restaurant Tim Raue Berlin — Strict 14 Tables (2,500 sq ft)</option>
+              <option value="r_berlin_anker">Zum Anker Historic Berlin — Strict 20 Tables (5,000 sq ft)</option>
+    </select>
           </div>
 
           <!-- Device Mode Switcher Tabs -->
@@ -6749,6 +6759,21 @@
 
               <!-- Right: Graphical Dining Room Floor Plan Canvas -->
               <div class="ipad-floor-area">
+                <!-- Dynamic Spatial Limitation & Architectural Spec Banner -->
+                <div id="host-spatial-limit-bar" style="background:#131d2a; border-bottom:1px solid #243347; padding:8px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.1rem;" id="host-venue-icon">🏛️</span>
+                    <div>
+                      <div style="font-size:0.85rem; font-weight:800; color:#ffffff;" id="host-venue-spatial-name">JOEY Bellevue — Flagship Multi-Zone Dining</div>
+                      <div style="font-size:0.75rem; color:#38bdf8; font-weight:600;" id="host-venue-spatial-spec">MAX 25 TABLES • 8,500 SQ FT • HEATED PATIO, MAIN DINING, SOMMELIER VAULT</div>
+                    </div>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <span class="badge" style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); font-size:0.75rem; padding:3px 8px;" id="host-table-count-badge">25 Tables Configured</span>
+                    <span class="badge" style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; padding:3px 8px;">0ns Sync Invariant</span>
+                  </div>
+                </div>
+
                 <div class="floor-canvas-blueprint" id="ipad-floor-canvas">
                   <!-- VIP Diamond Table 11 -->
                   <div class="host-table shape-diamond" id="host-tbl-T11" style="top:25px; left:30px;" onclick="selectHostTable('T11')" title="Table 11: VIP Diamond Table (Cap 8)">
@@ -9103,46 +9128,379 @@
     let hostSeatedCount = 23;
 
     // Floor Tables State Database
-    const HOST_TABLES_STATE = {
-      'T11': { id: 'T11', label: 'Table 11', type: 'VIP Diamond Table', cap: 8, status: 'reserved', guest: 'House VIP Seat', time: '55m' },
-      'T12': { id: 'T12', label: 'Table 12', type: 'Square 2-Top', cap: 2, status: 'seated', guest: 'Bruce Cuevas (Party of 2)', time: '12m' },
-      'T13a': { id: 'T13a', label: 'Table 13a', type: 'Square 2-Top', cap: 2, status: 'vacant', guest: 'Available', time: '0m' },
-      'T13b': { id: 'T13b', label: 'Table 13b', type: 'Square 2-Top', cap: 2, status: 'vacant', guest: 'Available', time: '0m' },
-      'T14': { id: 'T14', label: 'Table 14', type: 'Sapphire Booth', cap: 4, status: 'reserved', guest: 'Laura Young (Party of 3)', time: '15m' },
-      'T15': { id: 'T15', label: 'Table 15', type: 'Banquet 8-Top', cap: 8, status: 'seated', guest: 'Tech Founders (Party of 6)', time: '38m' },
-      'T21': { id: 'T21', label: 'Table 21', type: 'Emerald 4-Top', cap: 4, status: 'seated', guest: 'Bruce Hardage (Party of 5 ⭐)', time: '22m' },
-      'T22': { id: 'T22', label: 'Table 22', type: 'Magenta Booth', cap: 4, status: 'seated', guest: 'Irene Rodriguez (Party of 4 🏠)', time: '41m' },
-      'T23': { id: 'T23', label: 'Table 23', type: 'Cyan 4-Top', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T24': { id: 'T24', label: 'Table 24', type: 'Sapphire 4-Top', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T25': { id: 'T25', label: 'Table 25', type: 'Tangerine 4-Top', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T31': { id: 'T31', label: 'Table 31', type: 'Center Octagon 8-Top', cap: 8, status: 'vacant', guest: 'Available for Large Party', time: '0m' },
-      'T32': { id: 'T32', label: 'Table 32', type: 'Center Circle 8-Top', cap: 8, status: 'seated', guest: 'Thomas Mink (Party of 4)', time: '14m' },
-      'T41': { id: 'T41', label: 'Table 41', type: 'Cyan 2-Top', cap: 2, status: 'vacant', guest: 'Available', time: '0m' },
-      'T42': { id: 'T42', label: 'Table 42', type: 'Emerald 2-Top', cap: 2, status: 'seated', guest: 'Walk-in Diner (Party of 2)', time: '18m' },
-      'T43': { id: 'T43', label: 'Table 43', type: 'Amber 2-Top', cap: 2, status: 'bill_dropped', guest: 'Private Diner (Bill Dropped)', time: '74m' },
-      'T44': { id: 'T44', label: 'Table 44', type: 'Emerald 2-Top', cap: 2, status: 'vacant', guest: 'Available', time: '0m' },
-      'T51': { id: 'T51', label: 'Table 51', type: 'Lavender Booth', cap: 4, status: 'reserved', guest: 'Special Anniversary (Party of 2)', time: '20m' },
-      'T52': { id: 'T52', label: 'Table 52', type: 'Blue Booth', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T53': { id: 'T53', label: 'Table 53', type: 'Cyan Booth', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T54': { id: 'T54', label: 'Table 54', type: 'Magenta Booth', cap: 4, status: 'seated', guest: 'Executive Lunch (Party of 4)', time: '28m' },
-      'T55': { id: 'T55', label: 'Table 55', type: 'Blue Booth', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T61': { id: 'T61', label: 'Stool 61', type: 'High-Top Stool', cap: 1, status: 'seated', guest: 'Solo Guest (B. Irani)', time: '30m' },
-      'T62': { id: 'T62', label: 'Stool 62', type: 'High-Top Stool', cap: 1, status: 'seated', guest: 'Solo Guest', time: '15m' },
-      'T63': { id: 'T63', label: 'Stool 63', type: 'High-Top Stool', cap: 1, status: 'vacant', guest: 'Available', time: '0m' },
-      'T64': { id: 'T64', label: 'Stool 64', type: 'High-Top Stool', cap: 1, status: 'vacant', guest: 'Available', time: '0m' },
-      'T65': { id: 'T65', label: 'Stool 65', type: 'High-Top Stool', cap: 1, status: 'vacant', guest: 'Available', time: '0m' },
-      'T66': { id: 'T66', label: 'Stool 66', type: 'High-Top Stool', cap: 1, status: 'vacant', guest: 'Available', time: '0m' },
-      'B1': { id: 'B1', label: 'Bar 1', type: 'Cocktail Bar Stool', cap: 1, status: 'seated', guest: 'Diner at Bar', time: '10m' },
-      'B2': { id: 'B2', label: 'Bar 2', type: 'Cocktail Bar Stool', cap: 1, status: 'seated', guest: 'Diner at Bar', time: '10m' },
-      'B3': { id: 'B3', label: 'Bar 3', type: 'Cocktail Bar Stool', cap: 1, status: 'vacant', guest: 'Available', time: '0m' },
-      'L1': { id: 'L1', label: 'Patio L1', type: 'Lounge Low Table', cap: 4, status: 'vacant', guest: 'Available', time: '0m' },
-      'T19': { id: 'T19', label: 'Table 19', type: 'Mobile Booth', cap: 4, status: 'seated', guest: 'Harrison Ford', time: '25m' },
-      'T5': { id: 'T5', label: 'Table 5', type: 'Mobile 3-Top', cap: 3, status: 'vacant', guest: 'Available', time: '0m' },
-      'T6': { id: 'T6', label: 'Table 6', type: 'Mobile 4-Top', cap: 4, status: 'reserved', guest: 'VIP Guest', time: '10m' },
-      'T7': { id: 'T7', label: 'Table 7', type: 'Mobile 2-Top', cap: 2, status: 'vacant', guest: 'Available', time: '0m' }
+    let HOST_TABLES_STATE = {};
+    // =========================================================================
+    // RESTAURANT-SPECIFIC ARCHITECTURAL SPATIAL LAYOUTS & HOST STAND OS ENGINE
+    // Authentic reproduction of spatial limitations, table counts, and geometries
+    // =========================================================================
+
+    const REST_HOST_LAYOUTS = {
+      // 1. JOEY Bellevue (Flagship Pacific NW Multi-Zone Social Venue - MAX 25 TABLES, 8,500 sq ft)
+      'r_anker': {
+        name: 'JOEY Bellevue',
+        icon: '👑',
+        spec: 'MAX 25 TABLES • 8,500 SQ FT • HEATED PATIO, MAIN SALON, SOMMELIER VAULT',
+        room: 'Main Room & Heated Patio ▾',
+        turnTime: '90 min',
+        stats: { seated: 29, chairs: 68, waitlist: 4 },
+        reservations: [
+          { party: 4, name: 'Thomas Mink', time: '11:44 am • 4m', pill: '32', pillColor: 'magenta', tableId: 't_16' },
+          { party: 2, name: 'Bruce Cuevas', time: '11:45 am', pill: '12', pillColor: 'green', tableId: 't_12' },
+          { party: 5, name: 'Bruce Hardage', time: '11:45 am • 10:45 am', isVip: true, pill: '21', pillColor: 'green', tableId: 't_21' },
+          { party: 5, name: 'June Ortiz', time: '11:45 am', pill: '14', pillColor: 'blue', tableId: 't_14' },
+          { party: 4, name: 'Irene Rodriguez', time: '11:45 am • 10:47 am', isHouse: true, pill: '22', pillColor: 'lavender', tableId: 't_22' },
+          { party: 3, name: 'Laura Young', time: '12:00 pm • 10:47 am', pill: '14', pillColor: 'lavender', tableId: 't_14' }
+        ],
+        tables: [
+          // Table 11: VIP Diamond
+          { id: 't_11', label: '11', sub: 'VIP', type: 'VIP Diamond Table', cap: 8, shape: 'shape-diamond', top: '25px', left: '30px', status: 'reserved', guest: 'House VIP Seat', isDiamond: true },
+          // Top Row: 12, 13a, 13b, 14, 15
+          { id: 't_12', label: '12', sub: '2', type: 'Square 2-Top', cap: 2, shape: 'shape-square-green', top: '35px', left: '140px', status: 'seated', guest: 'Bruce Cuevas' },
+          { id: 't_1', label: '13a', sub: '2', type: 'Patio Booth 1', cap: 2, shape: 'shape-square-green', top: '35px', left: '205px', status: 'vacant', guest: 'Available' },
+          { id: 't_2', label: '13b', sub: '2', type: 'Patio Booth 2', cap: 2, shape: 'shape-square-green', top: '35px', left: '270px', status: 'vacant', guest: 'Available' },
+          { id: 't_14', label: '14', sub: 'Booth', type: 'Cobalt Curved Booth', cap: 4, shape: 'shape-booth-blue', top: '28px', left: '340px', status: 'reserved', guest: 'Laura Young' },
+          { id: 't_15', label: '15', sub: 'Banquet', type: 'Grand Amber Banquet', cap: 8, shape: 'shape-banquet-orange', top: '28px', left: '430px', status: 'seated', guest: 'Tech Founders' },
+          // Left Column: 21-25
+          { id: 't_21', label: '21', sub: 'Seated', type: 'Emerald 4-Top', cap: 4, shape: 'shape-rect-green', top: '135px', left: '40px', status: 'seated', guest: 'Bruce Hardage ⭐' },
+          { id: 't_22', label: '22', sub: 'Booth', type: 'Magenta Booth', cap: 4, shape: 'shape-rect-magenta', top: '215px', left: '40px', status: 'seated', guest: 'Irene Rodriguez 🏠' },
+          { id: 't_23', label: '23', sub: '4', type: 'Cyan 4-Top', cap: 4, shape: 'shape-rect-cyan', top: '295px', left: '40px', status: 'vacant', guest: 'Available' },
+          { id: 't_24', label: '24', sub: '4', type: 'Sapphire 4-Top', cap: 4, shape: 'shape-rect-blue', top: '375px', left: '40px', status: 'vacant', guest: 'Available' },
+          { id: 't_25', label: '25', sub: '4', type: 'Tangerine 4-Top', cap: 4, shape: 'shape-rect-orange', top: '455px', left: '40px', status: 'vacant', guest: 'Available' },
+          // Centerpieces: 31 & 32
+          { id: 't_17', label: '31', sub: 'Octagon', type: 'Cyan Octagon Table', cap: 6, shape: 'shape-octagon-cyan', top: '140px', left: '160px', status: 'vacant', guest: 'Available for Showcase' },
+          { id: 't_16', label: '32', sub: 'Thomas M.', type: 'Center Circle Table', cap: 8, shape: 'shape-circle-magenta', top: '285px', left: '158px', status: 'seated', guest: 'Thomas Mink (Party of 4)' },
+          // Column 41-44
+          { id: 't_3', label: '41', sub: 'Main 3', type: 'Main Dining 3', cap: 4, shape: 'shape-rect-sm-cyan', top: '135px', left: '325px', status: 'vacant', guest: 'Available' },
+          { id: 't_4', label: '42', sub: 'Main 4', type: 'Main Dining 4', cap: 4, shape: 'shape-rect-sm-green', top: '195px', left: '325px', status: 'seated', guest: 'Walk-in Party' },
+          { id: 't_5', label: '43', sub: 'Main 5', type: 'Main Dining 5', cap: 4, shape: 'shape-rect-sm-yellow', top: '255px', left: '325px', status: 'bill_dropped', guest: 'Private Diner (Bill Dropped)' },
+          { id: 't_6', label: '44', sub: 'Main 6', type: 'Main Dining 6', cap: 4, shape: 'shape-rect-sm-green', top: '315px', left: '325px', status: 'vacant', guest: 'Available' },
+          // Column 51-55
+          { id: 't_7', label: '51', sub: 'Vault', type: 'Panoramic Window 7', cap: 2, shape: 'shape-booth-lavender', top: '135px', left: '435px', status: 'reserved', guest: 'Special Occasion' },
+          { id: 't_8', label: '52', sub: 'Vault', type: 'Panoramic Window 8', cap: 2, shape: 'shape-booth-blue', top: '205px', left: '435px', status: 'vacant', guest: 'Available' },
+          { id: 't_9', label: '53', sub: 'Hearth', type: 'Fire Pit Booth 9', cap: 4, shape: 'shape-booth-blue', top: '275px', left: '435px', status: 'vacant', guest: 'Available' },
+          { id: 't_10', label: '54', sub: 'Hearth', type: 'Fire Pit Booth 10', cap: 4, shape: 'shape-booth-lavender', top: '345px', left: '435px', status: 'vacant', guest: 'Available' },
+          { id: 't_18', label: '55', sub: 'Vault', type: 'Sommelier Reserve 18', cap: 6, shape: 'shape-booth-blue', top: '415px', left: '435px', status: 'vacant', guest: 'Available' },
+          // High-Top Stools 61-66
+          { id: 't_19', label: '61', sub: 'Lounge', type: 'Lounge Booth 19', cap: 4, shape: 'shape-high-top', top: '140px', left: '540px', status: 'seated', guest: 'Cocktail Guests' },
+          { id: 't_20', label: '62', sub: 'Lounge', type: 'Lounge Booth 20', cap: 4, shape: 'shape-high-top', top: '195px', left: '540px', status: 'seated', guest: 'Lounge Party' },
+          { id: 't_13', label: '63', sub: 'Bar', type: 'High-Top 13', cap: 2, shape: 'shape-high-top', top: '250px', left: '540px', status: 'vacant', guest: 'Available' },
+          { id: 't_22', label: '64', sub: 'Bar', type: 'High-Top Stool 22', cap: 2, shape: 'shape-high-top', top: '305px', left: '540px', status: 'vacant', guest: 'Available' }
+        ]
+      },
+
+      // 2. Sukiyabashi Jiro (Tokyo Ginza - STRICTLY 10 COUNTER SEATS ONLY, 450 sq ft)
+      'r_jiro': {
+        name: 'Sukiyabashi Jiro',
+        icon: '🍣',
+        spec: 'STRICT LIMIT: 10 COUNTER SEATS ONLY • 450 SQ FT GINZA BASEMENT SANCTUARY • NO BOOTHS OR BANQUET SPACE',
+        room: '檜 Hinoki Master Counter (10 Seats Max) ▾',
+        turnTime: '60 min',
+        stats: { seated: 7, chairs: 10, waitlist: 2 },
+        reservations: [
+          { party: 1, name: 'Kenji Takahashi', time: '11:30 am', pill: '1', pillColor: 'green', tableId: 'jr_1' },
+          { party: 1, name: 'Dr. Maya Lin', time: '11:30 am', isVip: true, pill: '2', pillColor: 'magenta', tableId: 'jr_2' },
+          { party: 2, name: 'Hiroshi & Akiko Sato', time: '12:00 pm', pill: '3-4', pillColor: 'green', tableId: 'jr_3' },
+          { party: 2, name: 'Amb. James Vance', time: '12:30 pm', isVip: true, pill: '5-6', pillColor: 'lavender', tableId: 'jr_5' },
+          { party: 1, name: 'Takashi Ono', time: '12:30 pm', pill: '8', pillColor: 'blue', tableId: 'jr_8' }
+        ],
+        tables: [
+          { id: 'jr_1', label: '1', sub: 'Hinoki', type: 'Hinoki Master Counter 1', cap: 1, shape: 'shape-bar-stool', top: '165px', left: '45px', status: 'seated', guest: 'Kenji Takahashi (Omakase)' },
+          { id: 'jr_2', label: '2', sub: 'Hinoki', type: 'Hinoki Master Counter 2', cap: 1, shape: 'shape-bar-stool', top: '150px', left: '98px', status: 'seated', guest: 'Dr. Maya Lin ⭐ (Omakase)' },
+          { id: 'jr_3', label: '3', sub: 'Hinoki', type: 'Hinoki Master Counter 3', cap: 1, shape: 'shape-bar-stool', top: '138px', left: '155px', status: 'seated', guest: 'Hiroshi Sato' },
+          { id: 'jr_4', label: '4', sub: 'Hinoki', type: 'Hinoki Master Counter 4', cap: 1, shape: 'shape-bar-stool', top: '132px', left: '215px', status: 'seated', guest: 'Akiko Sato' },
+          { id: 'jr_5', label: '5', sub: 'Center', type: 'Center Omakase Seat 5', cap: 1, shape: 'shape-bar-stool', top: '130px', left: '275px', status: 'seated', guest: 'Amb. James Vance ⭐' },
+          { id: 'jr_6', label: '6', sub: 'Center', type: 'Center Omakase Seat 6', cap: 1, shape: 'shape-bar-stool', top: '132px', left: '335px', status: 'seated', guest: 'Lady Eleanor Vance' },
+          { id: 'jr_7', label: '7', sub: 'Craft', type: 'Edomae Craft Seat 7', cap: 1, shape: 'shape-bar-stool', top: '138px', left: '395px', status: 'seated', guest: 'Guest of Honor' },
+          { id: 'jr_8', label: '8', sub: 'Craft', type: 'Edomae Craft Seat 8', cap: 1, shape: 'shape-bar-stool', top: '150px', left: '452px', status: 'reserved', guest: 'Takashi Ono (12:30 pm)' },
+          { id: 'jr_9', label: '9', sub: 'Sake', type: 'Sake Pairing Seat 9', cap: 1, shape: 'shape-bar-stool', top: '165px', left: '505px', status: 'vacant', guest: 'Available for 1:00 pm' },
+          { id: 'jr_10', label: '10', sub: 'Appr.', type: 'Apprentice Station 10', cap: 1, shape: 'shape-bar-stool', top: '185px', left: '555px', status: 'vacant', guest: 'Available for 1:00 pm' }
+        ],
+        customElements: `
+          <!-- Master Jiro Preparation Stage -->
+          <div style="position:absolute; top:25px; left:160px; width:280px; height:80px; background:linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(180,83,9,0.2) 100%); border:2px solid #f59e0b; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 0 20px rgba(245,158,11,0.25);">
+            <div style="font-size:0.95rem; font-weight:900; color:#fde68a; letter-spacing:0.05em;">すきやばし次郎 • JIRO PREPARATION</div>
+            <div style="font-size:0.75rem; color:#fcd34d; margin-top:2px;">Edomae Nigiri Master Cutting Board</div>
+            <div style="font-size:0.68rem; color:#94a3b8; margin-top:3px; font-family:monospace;">Zero Delay Hardware Sync: 0ns AMSV</div>
+          </div>
+          <div style="position:absolute; top:250px; left:130px; width:340px; height:120px; background:rgba(15,23,42,0.6); border:1px dashed #334155; border-radius:10px; padding:12px; font-size:0.8rem; color:#94a3b8; text-align:center;">
+            <div style="font-weight:700; color:#cbd5e1; margin-bottom:4px;">Ginza Subway Basement Footprint Limits</div>
+            <div>Strict architectural constraint: 450 sq ft single continuous counter. No room for tables or booths. Maximum occupancy: 10 diners per session.</div>
+          </div>
+        `
+      },
+
+      // 3. The French Laundry (Napa Valley - STRICTLY 12 TABLES, 2,400 sq ft)
+      'r_frenchlaundry': {
+        name: 'The French Laundry',
+        icon: '🌿',
+        spec: 'STRICT LIMIT: 12 CURATED TABLES • 2,400 SQ FT HISTORIC STONE COTTAGE • KELLER GARDEN & WINE VAULT',
+        room: 'Keller Historic Cottage & Garden ▾',
+        turnTime: '180 min',
+        stats: { seated: 18, chairs: 42, waitlist: 3 },
+        reservations: [
+          { party: 2, name: 'Arthur & Claire Morgan', time: '5:00 pm', pill: 'FL-1', pillColor: 'green', tableId: 'fl_1' },
+          { party: 4, name: 'Silicon Valley Guild', time: '5:30 pm', isVip: true, pill: 'FL-3', pillColor: 'magenta', tableId: 'fl_3' },
+          { party: 4, name: 'Evelyn Vance', time: '6:00 pm', isVip: true, pill: 'FL-7', pillColor: 'lavender', tableId: 'fl_7' },
+          { party: 6, name: 'Sommelier Reserve Party', time: '6:30 pm', pill: 'FL-10', pillColor: 'blue', tableId: 'fl_10' }
+        ],
+        tables: [
+          // Garden Courtyard (4 tables)
+          { id: 'fl_1', label: 'FL-1', sub: 'Garden', type: 'Garden Courtyard 1', cap: 2, shape: 'shape-square-green', top: '55px', left: '40px', status: 'seated', guest: 'Arthur & Claire' },
+          { id: 'fl_2', label: 'FL-2', sub: 'Garden', type: 'Garden Courtyard 2', cap: 2, shape: 'shape-square-green', top: '55px', left: '120px', status: 'vacant', guest: 'Available' },
+          { id: 'fl_3', label: 'FL-3', sub: 'Arbor', type: 'Stone Wall Arbor 3', cap: 4, shape: 'shape-booth-blue', top: '48px', left: '210px', status: 'reserved', guest: 'Silicon Valley Guild ⭐' },
+          { id: 'fl_4', label: 'FL-4', sub: 'Arbor', type: 'Stone Wall Arbor 4', cap: 4, shape: 'shape-booth-blue', top: '48px', left: '310px', status: 'vacant', guest: 'Available' },
+          // Main Historic Salon (6 tables)
+          { id: 'fl_5', label: 'FL-5', sub: 'Salon', type: 'Historic Main Salon 5', cap: 2, shape: 'shape-rect-sm-green', top: '190px', left: '40px', status: 'seated', guest: 'Diner Pair' },
+          { id: 'fl_6', label: 'FL-6', sub: 'Salon', type: 'Historic Main Salon 6', cap: 2, shape: 'shape-rect-sm-green', top: '190px', left: '120px', status: 'seated', guest: 'Diner Pair' },
+          { id: 'fl_7', label: 'FL-7', sub: 'Velvet', type: 'Salon Velvet Banquette 7', cap: 4, shape: 'shape-rect-magenta', top: '180px', left: '210px', status: 'seated', guest: 'Evelyn Vance ⭐' },
+          { id: 'fl_8', label: 'FL-8', sub: 'Velvet', type: 'Salon Velvet Banquette 8', cap: 4, shape: 'shape-rect-cyan', top: '180px', left: '290px', status: 'seated', guest: 'Private Party' },
+          { id: 'fl_9', label: 'FL-9', sub: 'Peg', type: 'Clothespin Signature 9', cap: 4, shape: 'shape-diamond', top: '180px', left: '385px', status: 'vacant', guest: 'Available', isDiamond: true },
+          { id: 'fl_10', label: 'FL-10', sub: 'Somm.', type: 'Sommelier Reserve 10', cap: 6, shape: 'shape-octagon-cyan', top: '170px', left: '485px', status: 'reserved', guest: 'Sommelier Guild' },
+          // Wine Cellar (2 tables)
+          { id: 'fl_11', label: 'FL-11', sub: 'Vault', type: 'Historic Wine Vault 11', cap: 6, shape: 'shape-banquet-orange', top: '340px', left: '80px', status: 'vacant', guest: 'Available' },
+          { id: 'fl_12', label: 'FL-12', sub: 'Keller', type: 'Keller Private Dining 12', cap: 8, shape: 'shape-circle-magenta', top: '320px', left: '280px', status: 'reserved', guest: 'Keller Patron Banquet' }
+        ],
+        customElements: `
+          <div style="position:absolute; top:18px; left:40px; font-size:0.75rem; font-weight:800; color:#34d399; letter-spacing:0.05em;">🌿 ZONE A: KELLER GARDEN ARBOR (OUTDOOR PATIO)</div>
+          <div style="position:absolute; top:150px; left:40px; font-size:0.75rem; font-weight:800; color:#38bdf8; letter-spacing:0.05em;">🏛️ ZONE B: HISTORIC STONE SALON (GROUND LEVEL)</div>
+          <div style="position:absolute; top:300px; left:40px; font-size:0.75rem; font-weight:800; color:#fb923c; letter-spacing:0.05em;">🍷 ZONE C: WINE CELLAR & PRIVATE SALON (RESERVE VAULT)</div>
+        `
+      },
+
+      // 4. Spinasse (Seattle Capitol Hill - STRICTLY 11 TABLES, 1,600 sq ft)
+      'r_spinasse': {
+        name: 'Spinasse',
+        icon: '🍝',
+        spec: 'STRICT LIMIT: 11 RUSTIC TABLES • 1,600 SQ FT INTIMATE CAPITOL HILL TRATTORIA • PASTA BAR RAIL',
+        room: 'Pasta Kitchen & Trattoria ▾',
+        turnTime: '90 min',
+        stats: { seated: 14, chairs: 36, waitlist: 2 },
+        reservations: [
+          { party: 2, name: 'Marco & Julia Rossi', time: '5:30 pm', pill: 'SP-1', pillColor: 'green', tableId: 'sp_1' },
+          { party: 4, name: 'Piedmontese Wine Lovers', time: '6:00 pm', isVip: true, pill: 'SP-6', pillColor: 'magenta', tableId: 'sp_6' },
+          { party: 6, name: 'Chef Tajarin Family Table', time: '6:30 pm', pill: 'SP-11', pillColor: 'blue', tableId: 'sp_11' }
+        ],
+        tables: [
+          // Hand-Cut Pasta Bar Rail (3 stools)
+          { id: 'sp_1', label: 'SP-1', sub: 'Pasta', type: 'Hand-Cut Pasta Bar 1', cap: 2, shape: 'shape-square-green', top: '55px', left: '40px', status: 'seated', guest: 'Marco & Julia' },
+          { id: 'sp_2', label: 'SP-2', sub: 'Pasta', type: 'Hand-Cut Pasta Bar 2', cap: 2, shape: 'shape-square-green', top: '55px', left: '120px', status: 'vacant', guest: 'Available' },
+          { id: 'sp_3', label: 'SP-3', sub: 'Pasta', type: 'Hand-Cut Pasta Bar 3', cap: 2, shape: 'shape-square-green', top: '55px', left: '200px', status: 'vacant', guest: 'Available' },
+          // Rustic Trattoria Hall (5 tables)
+          { id: 'sp_4', label: 'SP-4', sub: 'Rustic', type: 'Rustic Trattoria 4', cap: 2, shape: 'shape-rect-sm-green', top: '180px', left: '40px', status: 'seated', guest: 'Diner Pair' },
+          { id: 'sp_5', label: 'SP-5', sub: 'Rustic', type: 'Rustic Trattoria 5', cap: 2, shape: 'shape-rect-sm-green', top: '180px', left: '120px', status: 'vacant', guest: 'Available' },
+          { id: 'sp_6', label: 'SP-6', sub: 'Wood', type: 'Piedmont Wood Table 6', cap: 4, shape: 'shape-rect-magenta', top: '170px', left: '210px', status: 'seated', guest: 'Wine Lovers ⭐' },
+          { id: 'sp_7', label: 'SP-7', sub: 'Wood', type: 'Piedmont Wood Table 7', cap: 4, shape: 'shape-rect-cyan', top: '170px', left: '290px', status: 'vacant', guest: 'Available' },
+          { id: 'sp_8', label: 'SP-8', sub: 'Nook', type: 'Fireplace Nook 8', cap: 4, shape: 'shape-booth-blue', top: '165px', left: '380px', status: 'seated', guest: 'Capitol Hill Pair' },
+          // Cantina Wine Alcove (3 tables)
+          { id: 'sp_9', label: 'SP-9', sub: 'Cantina', type: 'Cantina Wine Alcove 9', cap: 4, shape: 'shape-booth-lavender', top: '320px', left: '60px', status: 'vacant', guest: 'Available' },
+          { id: 'sp_10', label: 'SP-10', sub: 'Barolo', type: 'Barolo Tasting Room 10', cap: 6, shape: 'shape-octagon-cyan', top: '300px', left: '180px', status: 'reserved', guest: 'Barolo Tasting Flight' },
+          { id: 'sp_11', label: 'SP-11', sub: 'Chef', type: 'Chef Family Table 11', cap: 6, shape: 'shape-banquet-orange', top: '310px', left: '330px', status: 'reserved', guest: 'Family Table' }
+        ],
+        customElements: `
+          <div style="position:absolute; top:20px; left:40px; font-size:0.75rem; font-weight:800; color:#fbbf24; letter-spacing:0.05em;">🍝 OPEN PASTA STATION: HAND-CUT TAJARIN RAIL</div>
+          <div style="position:absolute; top:140px; left:40px; font-size:0.75rem; font-weight:800; color:#38bdf8; letter-spacing:0.05em;">🕯️ MAIN RUSTIC DINING ROOM & FIREPLACE NOOK</div>
+          <div style="position:absolute; top:280px; left:40px; font-size:0.75rem; font-weight:800; color:#c084fc; letter-spacing:0.05em;">🍷 CANTINA & BAROLO VINTAGE CELLAR</div>
+        `
+      },
+
+      // 5. Carbone NYC (Greenwich Village - STRICTLY 16 TABLES, 2,800 sq ft)
+      'r_carbone': {
+        name: 'Carbone NYC',
+        icon: '🍷',
+        spec: 'STRICT LIMIT: 16 TABLES • 2,800 SQ FT GREENWICH VILLAGE • TUXEDO RED VELVET BANQUETTES',
+        room: 'Tuxedo Banquette Salon ▾',
+        turnTime: '90 min',
+        stats: { seated: 22, chairs: 58, waitlist: 6 },
+        reservations: [
+          { party: 2, name: 'Thompson St Diners', time: '6:00 pm', pill: 'CB-1', pillColor: 'green', tableId: 'cb_1' },
+          { party: 4, name: 'Mario & Connie Corleone', time: '6:30 pm', isVip: true, pill: 'CB-3', pillColor: 'magenta', tableId: 'cb_3' },
+          { party: 4, name: 'Spicy Rigatoni Table', time: '7:00 pm', pill: 'CB-9', pillColor: 'blue', tableId: 'cb_9' },
+          { party: 6, name: 'Capo Corner VIP', time: '7:30 pm', isHouse: true, pill: 'CB-13', pillColor: 'lavender', tableId: 'cb_13' }
+        ],
+        tables: [
+          { id: 'cb_1', label: 'CB-1', sub: 'Window', type: 'Thompson St Window 1', cap: 2, shape: 'shape-square-green', top: '45px', left: '40px', status: 'seated', guest: 'Diners' },
+          { id: 'cb_2', label: 'CB-2', sub: 'Window', type: 'Thompson St Window 2', cap: 2, shape: 'shape-square-green', top: '45px', left: '110px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_3', label: 'CB-3', sub: 'Tuxedo', type: 'Tuxedo Velvet Banquette 3', cap: 4, shape: 'shape-rect-magenta', top: '40px', left: '190px', status: 'seated', guest: 'Mario Corleone ⭐' },
+          { id: 'cb_4', label: 'CB-4', sub: 'Tuxedo', type: 'Tuxedo Velvet Banquette 4', cap: 4, shape: 'shape-rect-magenta', top: '40px', left: '265px', status: 'seated', guest: 'Wall St Pair' },
+          { id: 'cb_5', label: 'CB-5', sub: 'Tuxedo', type: 'Tuxedo Velvet Banquette 5', cap: 4, shape: 'shape-rect-magenta', top: '40px', left: '340px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_6', label: 'CB-6', sub: 'Tuxedo', type: 'Tuxedo Velvet Banquette 6', cap: 4, shape: 'shape-rect-magenta', top: '40px', left: '415px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_7', label: 'CB-7', sub: 'Salon', type: 'Greenwich Village Salon 7', cap: 2, shape: 'shape-rect-sm-green', top: '170px', left: '40px', status: 'seated', guest: 'Diners' },
+          { id: 'cb_8', label: 'CB-8', sub: 'Salon', type: 'Greenwich Village Salon 8', cap: 2, shape: 'shape-rect-sm-green', top: '170px', left: '110px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_9', label: 'CB-9', sub: 'Pasta', type: 'Spicy Rigatoni Table 9', cap: 4, shape: 'shape-rect-cyan', top: '160px', left: '190px', status: 'seated', guest: 'Rigatoni Table' },
+          { id: 'cb_10', label: 'CB-10', sub: 'Pasta', type: 'Spicy Rigatoni Table 10', cap: 4, shape: 'shape-rect-cyan', top: '160px', left: '265px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_11', label: 'CB-11', sub: 'Veal', type: 'Veal Parmigiana Nook 11', cap: 4, shape: 'shape-rect-blue', top: '160px', left: '340px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_12', label: 'CB-12', sub: 'Mario', type: 'Mario Carbone Table 12', cap: 4, shape: 'shape-diamond', top: '160px', left: '425px', status: 'reserved', guest: 'VIP Guests', isDiamond: true },
+          { id: 'cb_13', label: 'CB-13', sub: 'Capo', type: 'Capo Corner Booth 13', cap: 6, shape: 'shape-booth-lavender', top: '290px', left: '40px', status: 'seated', guest: 'Capo Corner VIP 🏠' },
+          { id: 'cb_14', label: 'CB-14', sub: 'Capo', type: 'Capo Corner Booth 14', cap: 6, shape: 'shape-booth-lavender', top: '290px', left: '160px', status: 'vacant', guest: 'Available' },
+          { id: 'cb_15', label: 'CB-15', sub: 'Banquet', type: 'Godfather Banquet 15', cap: 6, shape: 'shape-banquet-orange', top: '290px', left: '280px', status: 'reserved', guest: 'Godfather Party' },
+          { id: 'cb_16', label: 'CB-16', sub: 'Grand', type: 'Grand Mafioso Table 16', cap: 8, shape: 'shape-circle-magenta', top: '275px', left: '440px', status: 'reserved', guest: 'Executive Feast' }
+        ],
+        customElements: `
+          <div style="position:absolute; top:15px; left:40px; font-size:0.75rem; font-weight:800; color:#ef4444; letter-spacing:0.05em;">🎩 TUXEDO RED VELVET BANQUETTES (THOMPSON ST FRONT)</div>
+          <div style="position:absolute; top:135px; left:40px; font-size:0.75rem; font-weight:800; color:#38bdf8; letter-spacing:0.05em;">🍝 MAIN GREENWICH DINING HALL & MARIO'S TABLE</div>
+          <div style="position:absolute; top:260px; left:40px; font-size:0.75rem; font-weight:800; color:#c084fc; letter-spacing:0.05em;">👑 CAPO GODFATHER CORNER BOOTHS & BANQUETS</div>
+        `
+      },
+
+      // 6. Zuma Dubai (DIFC Gate Village - FLAGSHIP ULTRA-LUXURY MAX 25 TABLES, 9,200 sq ft)
+      'r_zuma_dubai': {
+        name: 'Zuma Dubai DIFC',
+        icon: '✨',
+        spec: 'MAX 25 TABLES • 9,200 SQ FT MULTI-LEVEL ULTRA-LUXURY FLAGSHIP • BURJ KHALIFA VISTA',
+        room: 'DIFC Gate Lounge & Robata ▾',
+        turnTime: '120 min',
+        stats: { seated: 38, chairs: 104, waitlist: 8 },
+        reservations: [
+          { party: 4, name: 'Sheikh Al-Maktoum Guests', time: '8:00 pm', isVip: true, pill: 'ZM-21', pillColor: 'magenta', tableId: 'zm_21' },
+          { party: 2, name: 'DIFC Financial Bankers', time: '8:15 pm', pill: 'ZM-1', pillColor: 'green', tableId: 'zm_1' },
+          { party: 6, name: 'Burj Khalifa Vista VIP', time: '8:30 pm', isHouse: true, pill: 'ZM-15', pillColor: 'lavender', tableId: 'zm_15' },
+          { party: 4, name: 'Robata Grill Connoisseurs', time: '9:00 pm', pill: 'ZM-7', pillColor: 'blue', tableId: 'zm_7' }
+        ],
+        tables: [
+          { id: 'zm_1', label: 'ZM-1', sub: 'Lounge', type: 'DIFC Gate Lounge 1', cap: 2, shape: 'shape-square-green', top: '35px', left: '40px', status: 'seated', guest: 'DIFC Bankers' },
+          { id: 'zm_2', label: 'ZM-2', sub: 'Lounge', type: 'DIFC Gate Lounge 2', cap: 2, shape: 'shape-square-green', top: '35px', left: '110px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_3', label: 'ZM-3', sub: 'Lounge', type: 'DIFC Gate Lounge 3', cap: 2, shape: 'shape-square-green', top: '35px', left: '180px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_4', label: 'ZM-4', sub: 'Robata', type: 'Robata Grill Counter 4', cap: 2, shape: 'shape-bar-stool', top: '35px', left: '260px', status: 'seated', guest: 'Robata Dining' },
+          { id: 'zm_5', label: 'ZM-5', sub: 'Robata', type: 'Robata Grill Counter 5', cap: 2, shape: 'shape-bar-stool', top: '35px', left: '315px', status: 'seated', guest: 'Robata Dining' },
+          { id: 'zm_6', label: 'ZM-6', sub: 'Sushi', type: 'Sushi Exhibition Rail 6', cap: 2, shape: 'shape-bar-stool', top: '35px', left: '370px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_7', label: 'ZM-7', sub: 'Booth', type: 'Skyline Glass Booth 7', cap: 4, shape: 'shape-booth-blue', top: '28px', left: '430px', status: 'seated', guest: 'Connoisseurs' },
+          { id: 'zm_8', label: 'ZM-8', sub: 'Booth', type: 'Skyline Glass Booth 8', cap: 4, shape: 'shape-booth-blue', top: '28px', left: '510px', status: 'vacant', guest: 'Available' },
+          // Main Hall Pavilion
+          { id: 'zm_9', label: 'ZM-9', sub: 'Pavilion', type: 'Main Hall Pavilion 9', cap: 4, shape: 'shape-rect-cyan', top: '150px', left: '40px', status: 'seated', guest: 'Hall Diners' },
+          { id: 'zm_10', label: 'ZM-10', sub: 'Pavilion', type: 'Main Hall Pavilion 10', cap: 4, shape: 'shape-rect-cyan', top: '150px', left: '120px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_11', label: 'ZM-11', sub: 'Pavilion', type: 'Main Hall Pavilion 11', cap: 4, shape: 'shape-rect-cyan', top: '150px', left: '200px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_12', label: 'ZM-12', sub: 'Pavilion', type: 'Main Hall Pavilion 12', cap: 4, shape: 'shape-rect-cyan', top: '150px', left: '280px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_13', label: 'ZM-13', sub: 'Sake', type: 'Sake Sommelier Lounge 13', cap: 4, shape: 'shape-rect-blue', top: '150px', left: '360px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_14', label: 'ZM-14', sub: 'Sake', type: 'Sake Sommelier Lounge 14', cap: 4, shape: 'shape-rect-blue', top: '150px', left: '440px', status: 'vacant', guest: 'Available' },
+          // Burj Vista & Granite Spiral
+          { id: 'zm_15', label: 'ZM-15', sub: 'Burj', type: 'Burj Khalifa Vista 15', cap: 6, shape: 'shape-diamond', top: '270px', left: '40px', status: 'seated', guest: 'Burj Vista VIP ⭐', isDiamond: true },
+          { id: 'zm_16', label: 'ZM-16', sub: 'Burj', type: 'Burj Khalifa Vista 16', cap: 6, shape: 'shape-diamond', top: '270px', left: '140px', status: 'vacant', guest: 'Available', isDiamond: true },
+          { id: 'zm_17', label: 'ZM-17', sub: 'Spiral', type: 'Granite Spiral Nook 17', cap: 6, shape: 'shape-octagon-cyan', top: '260px', left: '240px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_18', label: 'ZM-18', sub: 'Spiral', type: 'Granite Spiral Nook 18', cap: 6, shape: 'shape-octagon-cyan', top: '260px', left: '345px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_19', label: 'ZM-19', sub: 'Mezzanine', type: 'Mezzanine VIP Pod 19', cap: 6, shape: 'shape-booth-lavender', top: '260px', left: '450px', status: 'seated', guest: 'Mezzanine VIP' },
+          { id: 'zm_20', label: 'ZM-20', sub: 'Mezzanine', type: 'Mezzanine VIP Pod 20', cap: 6, shape: 'shape-booth-lavender', top: '260px', left: '525px', status: 'vacant', guest: 'Available' },
+          // Royal Suites & Stools
+          { id: 'zm_21', label: 'ZM-21', sub: 'Royal', type: 'Royal Palm Suite 21', cap: 8, shape: 'shape-circle-magenta', top: '390px', left: '60px', status: 'seated', guest: 'Sheikh Al-Maktoum ⭐' },
+          { id: 'zm_22', label: 'ZM-22', sub: 'Royal', type: 'Royal Palm Suite 22', cap: 8, shape: 'shape-banquet-orange', top: '390px', left: '220px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_23', label: 'ZM-23', sub: 'Stool', type: 'Emirates Stool 23', cap: 2, shape: 'shape-high-top', top: '400px', left: '410px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_24', label: 'ZM-24', sub: 'Stool', type: 'Emirates Stool 24', cap: 2, shape: 'shape-high-top', top: '400px', left: '470px', status: 'vacant', guest: 'Available' },
+          { id: 'zm_25', label: 'ZM-25', sub: 'Stool', type: 'Emirates Stool 25', cap: 2, shape: 'shape-high-top', top: '400px', left: '530px', status: 'vacant', guest: 'Available' }
+        ]
+      }
     };
 
+    // Dynamic Floor Plan Renderer
+    function renderHostFloorPlan(restId) {
+      const layout = REST_HOST_LAYOUTS[restId] || REST_HOST_LAYOUTS['r_anker'];
+      
+      // Update top spec banner
+      const nameEl = document.getElementById('host-venue-spatial-name');
+      const specEl = document.getElementById('host-venue-spatial-spec');
+      const badgeEl = document.getElementById('host-table-count-badge');
+      const iconEl = document.getElementById('host-venue-icon');
+      if (nameEl) nameEl.textContent = `${layout.name} — Spatial Plan`;
+      if (specEl) specEl.textContent = layout.spec;
+      if (badgeEl) badgeEl.textContent = `${layout.tables.length} Tables Configured`;
+      if (iconEl) iconEl.textContent = layout.icon || '🏛️';
+
+      // Update room indicator in canvas toolbar
+      const roomPill = document.querySelector('.room-selector-pill strong');
+      if (roomPill) roomPill.textContent = layout.room;
+
+      // Update Turn Time
+      const turnSpan = document.querySelector('.canvas-bottom-bar span strong');
+      if (turnSpan) turnSpan.textContent = layout.turnTime || '90 min';
+
+      // Update Seated & Chair Counters
+      const seatedVal = document.getElementById('seated-count-val');
+      if (seatedVal) seatedVal.textContent = layout.stats.seated;
+      const chairBadgeGroup = document.querySelector('.queue-badge-group');
+      if (chairBadgeGroup) {
+        chairBadgeGroup.innerHTML = `
+          <span>👥 <strong id="seated-count-val">${layout.stats.seated}</strong></span>
+          <span>🪑 <strong>${layout.stats.chairs}</strong></span>
+          <span style="cursor:pointer;">⌵</span>
+        `;
+      }
+
+      // Update Left Sidebar Reservations List
+      const resListEl = document.getElementById('ipad-res-list');
+      if (resListEl && layout.reservations) {
+        let resHtml = '';
+        layout.reservations.forEach(r => {
+          const vipIcon = r.isVip ? '<span style="color:#eab308; margin-right:4px;">⭐</span>' : '';
+          const houseIcon = r.isHouse ? '<span style="color:#c084fc; margin-right:4px;">🏠</span>' : '';
+          resHtml += `
+            <div class="host-res-card" onclick="selectHostTable('${r.tableId}')">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div class="res-party-size">${vipIcon}${houseIcon}${r.party}</div>
+                <div>
+                  <div class="res-guest-name">${r.name}</div>
+                  <div class="res-meta-line"><span>🕒 ${r.time}</span></div>
+                </div>
+              </div>
+              <div class="res-table-pill ${r.pillColor}">${r.pill}</div>
+            </div>`;
+        });
+        resListEl.innerHTML = resHtml;
+      }
+
+      // Update HOST_TABLES_STATE for instant drawer interactions
+      HOST_TABLES_STATE = {};
+      layout.tables.forEach(t => {
+        HOST_TABLES_STATE[t.id] = {
+          id: t.id,
+          label: t.label,
+          type: t.type,
+          cap: t.cap,
+          status: t.status,
+          guest: t.guest,
+          time: t.status === 'seated' ? '25m' : (t.status === 'reserved' ? '10m' : '0m')
+        };
+      });
+
+      // Render Dynamic Floor Canvas Blueprint
+      const canvasEl = document.getElementById('ipad-floor-canvas');
+      if (canvasEl) {
+        let canvasHtml = '';
+
+        // Add custom architectural zone tags if defined
+        if (layout.customElements) {
+          canvasHtml += layout.customElements;
+        }
+
+        // Render each table
+        layout.tables.forEach(t => {
+          let innerContent = '';
+          if (t.isDiamond) {
+            innerContent = `
+              <div class="diamond-inner">
+                <span class="host-table-label">${t.label}</span>
+                <span class="host-table-sub" style="color:#c084fc;">${t.sub || 'VIP'}</span>
+              </div>`;
+          } else {
+            innerContent = `
+              <span class="host-table-label">${t.label}</span>
+              <span class="host-table-sub">${t.sub || ''}</span>`;
+          }
+
+          canvasHtml += `
+            <div class="host-table ${t.shape}" id="host-tbl-${t.id}"
+                 style="top:${t.top}; left:${t.left}; cursor:pointer;"
+                 onclick="selectHostTable('${t.id}')"
+                 title="${t.type} (Cap ${t.cap}) • Status: ${t.status}">
+              ${innerContent}
+            </div>`;
+        });
+
+        canvasEl.innerHTML = canvasHtml;
+      }
+    }
+
+
     function openHotelOsModal(id) {
+      hostActiveRestId = id || currentRestId || 'r_anker';
+      renderHostFloorPlan(hostActiveRestId);
       hostActiveRestId = id || currentRestId || 'r_anker';
       const r = RESTAURANTS_DATA[hostActiveRestId] || RESTAURANTS_DATA['r_anker'];
       
@@ -9181,6 +9539,7 @@
     }
 
     function switchHostRestaurant(restId) {
+      renderHostFloorPlan(restId);
       hostActiveRestId = restId;
       const r = RESTAURANTS_DATA[restId] || RESTAURANTS_DATA['r_anker'];
       
@@ -11205,7 +11564,7 @@
     let activeHoveredTable = null;
 
     // Real Restaurant Tables (Official Zum Anker Fixtures & Declared Combinations)
-    const REAL_TABLES = [
+    let REAL_TABLES = [
       {
         id: "t_1",
         label: "Table 1",
@@ -12660,28 +13019,175 @@ ${err.message}`;
 
     let active3DRestId = 'r_anker';
 
+    
+    function buildRestaurant3DTables(restId) {
+      const layout = REST_HOST_LAYOUTS[restId] || REST_HOST_LAYOUTS['r_anker'];
+      const energy = REST_3D_ENERGY[restId] || REST_3D_ENERGY['r_anker'];
+      const tables = [];
+
+      if (restId === 'r_jiro') {
+        // Sukiyabashi Jiro: Exactly 10 counter stools along a curved Hinoki counter
+        for (let i = 0; i < 10; i++) {
+          const angle = -Math.PI * 0.75 + (i / 9) * (Math.PI * 0.5);
+          const rad = 140;
+          const tx = Math.cos(angle) * rad;
+          const ty = Math.sin(angle) * rad + 50;
+          tables.push({
+            id: `jr_${i+1}`,
+            label: `Counter Seat ${i+1}`,
+            capacity: 1,
+            x: tx, y: ty, z: 0,
+            width: 36, depth: 36, height: 38,
+            color: energy.tableWood,
+            edgeColor: "#d97706",
+            pairLabel: (i % 2 === 0) ? `Pair with Seat ${i+2}` : `Pair with Seat ${i}`,
+            combinableWith: (i % 2 === 0) ? [`jr_${i+2}`] : [`jr_${i}`],
+            chairs: [{ x: tx * 1.25, y: ty * 1.25, rot: angle + Math.PI }],
+            placeSettings: [{ x: tx, y: ty }]
+          });
+        }
+        return tables;
+      } else if (restId === 'r_frenchlaundry') {
+        // French Laundry: Exactly 12 tables across Garden & Stone Salon
+        for (let i = 0; i < 12; i++) {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const tx = -150 + col * 100;
+          const ty = -100 + row * 110;
+          const cap = (i >= 10) ? 6 : (i % 2 === 0 ? 2 : 4);
+          tables.push({
+            id: `fl_${i+1}`,
+            label: `Keller Table ${i+1}`,
+            capacity: cap,
+            x: tx, y: ty, z: 0,
+            width: cap >= 6 ? 90 : 54, depth: 54, height: 38,
+            color: energy.tableWood,
+            edgeColor: "#475569",
+            pairLabel: `Salon Reserve Pair ${i+1}`,
+            combinableWith: (i % 2 === 0) ? [`fl_${i+2}`] : [],
+            chairs: [{ x: tx, y: ty - 35, rot: 0 }, { x: tx, y: ty + 35, rot: Math.PI }],
+            placeSettings: [{ x: tx, y: ty }]
+          });
+        }
+        return tables;
+      } else if (restId === 'r_spinasse') {
+        // Spinasse: Exactly 11 tables
+        for (let i = 0; i < 11; i++) {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const tx = -140 + col * 90;
+          const ty = -90 + row * 100;
+          const cap = (i >= 9) ? 6 : (i % 2 === 0 ? 2 : 4);
+          tables.push({
+            id: `sp_${i+1}`,
+            label: `Trattoria Table ${i+1}`,
+            capacity: cap,
+            x: tx, y: ty, z: 0,
+            width: cap >= 6 ? 85 : 52, depth: 52, height: 38,
+            color: energy.tableWood,
+            edgeColor: "#78350f",
+            pairLabel: `Piedmontese Pair ${i+1}`,
+            combinableWith: (i % 2 === 0) ? [`sp_${i+2}`] : [],
+            chairs: [{ x: tx, y: ty - 32, rot: 0 }, { x: tx, y: ty + 32, rot: Math.PI }],
+            placeSettings: [{ x: tx, y: ty }]
+          });
+        }
+        return tables;
+      } else if (restId === 'r_carbone') {
+        // Carbone: Exactly 16 tables
+        for (let i = 0; i < 16; i++) {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const tx = -150 + col * 100;
+          const ty = -130 + row * 90;
+          const cap = (i >= 12) ? 6 : (i % 2 === 0 ? 2 : 4);
+          tables.push({
+            id: `cb_${i+1}`,
+            label: `Tuxedo Table ${i+1}`,
+            capacity: cap,
+            x: tx, y: ty, z: 0,
+            width: cap >= 6 ? 90 : 54, depth: 54, height: 38,
+            color: energy.tableWood,
+            edgeColor: "#991b1b",
+            pairLabel: `Village Banquette ${i+1}`,
+            combinableWith: (i % 2 === 0) ? [`cb_${i+2}`] : [],
+            chairs: [{ x: tx, y: ty - 35, rot: 0 }, { x: tx, y: ty + 35, rot: Math.PI }],
+            placeSettings: [{ x: tx, y: ty }]
+          });
+        }
+        return tables;
+      } else if (restId === 'r_zuma_dubai' || restId === 'r_anker') {
+        // Maximum 25 tables
+        const prefix = (restId === 'r_zuma_dubai') ? 'zm_' : 't_';
+        for (let i = 0; i < 25; i++) {
+          const row = Math.floor(i / 5);
+          const col = i % 5;
+          const tx = -180 + col * 90;
+          const ty = -160 + row * 80;
+          const cap = (i === 10 || i === 14 || i === 15) ? 8 : (i >= 16 ? 4 : (i % 2 === 0 ? 2 : 4));
+          tables.push({
+            id: `${prefix}${i+1}`,
+            label: `Table ${i+1}`,
+            capacity: cap,
+            x: tx, y: ty, z: 0,
+            width: cap >= 8 ? 80 : 48, depth: 48, height: 38,
+            color: energy.tableWood,
+            edgeColor: "#d97706",
+            pairLabel: (i === 0) ? "Pair 1 (with Table 2)" : (i === 1 ? "Pair 1 (with Table 1)" : `Table ${i+1}`),
+            combinableWith: (i === 0) ? [`${prefix}2`] : (i === 1 ? [`${prefix}1`] : []),
+            chairs: [{ x: tx, y: ty - 30, rot: 0 }, { x: tx, y: ty + 30, rot: Math.PI }],
+            placeSettings: [{ x: tx, y: ty }]
+          });
+        }
+        return tables;
+      } else {
+        // Fallback realistic layout matching table count
+        const count = layout.tables.length || 14;
+        for (let i = 0; i < count; i++) {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const tx = -140 + col * 90;
+          const ty = -100 + row * 90;
+          const cap = (i >= count - 2) ? 6 : (i % 2 === 0 ? 2 : 4);
+          const tId = layout.tables[i] ? layout.tables[i].id : `tbl_${i+1}`;
+          tables.push({
+            id: tId,
+            label: layout.tables[i] ? layout.tables[i].label : `Table ${i+1}`,
+            capacity: cap,
+            x: tx, y: ty, z: 0,
+            width: cap >= 6 ? 80 : 50, depth: 50, height: 38,
+            color: energy.tableWood,
+            edgeColor: "#475569",
+            pairLabel: `Table Pair ${i+1}`,
+            combinableWith: [],
+            chairs: [{ x: tx, y: ty - 32, rot: 0 }, { x: tx, y: ty + 32, rot: Math.PI }],
+            placeSettings: [{ x: tx, y: ty }]
+          });
+        }
+        return tables;
+      }
+    }
+
     function changeFactoryRestaurant(restId) {
       active3DRestId = restId;
       const energy = REST_3D_ENERGY[restId] || REST_3D_ENERGY['r_anker'];
+      const layout = REST_HOST_LAYOUTS[restId] || REST_HOST_LAYOUTS['r_anker'];
+      
       const titleEl = document.getElementById('factory-title');
       const descEl = document.getElementById('factory-desc-text');
       const hudTitle = document.getElementById('hud-main-title');
-      if (titleEl) titleEl.textContent = energy.title;
-      if (descEl) descEl.textContent = energy.desc;
-      if (hudTitle) hudTitle.textContent = `🍽️ ${energy.name.toUpperCase()} FLOOR TELEMETRY`;
+      const hudStatus = document.getElementById('hud-status-text');
 
-      // Update REAL_TABLES styling & label according to restaurant data
-      const rData = RESTAURANTS_DATA[restId];
-      if (rData && rData.tables && rData.tables.length > 0) {
-        REAL_TABLES.forEach((t, i) => {
-          if (rData.tables[i]) {
-            t.label = rData.tables[i].label;
-            t.capacity = rData.tables[i].cap;
-            t.color = energy.tableWood;
-          }
-        });
+      if (titleEl) titleEl.textContent = energy.title;
+      if (descEl) descEl.textContent = `${energy.desc} • ${layout.spec}`;
+      if (hudTitle) hudTitle.textContent = `🍽️ ${energy.name.toUpperCase()} (${layout.tables.length} TABLES • SPATIAL MATRIX)`;
+      if (hudStatus) hudStatus.innerHTML = `<span style="color:#10b981; font-weight:bold;">${layout.tables.length} Tables Active (${layout.stats.seated} Seated / ${layout.stats.chairs} Chairs)</span>`;
+
+      // Rebuild 3D tables matching this restaurant's authentic spatial limits
+      REAL_TABLES = buildRestaurant3DTables(restId);
+      if (REAL_TABLES.length > 0) {
+        selectDiningTable(REAL_TABLES[0]);
       }
-      selectDiningTable(REAL_TABLES[0]);
     }
 
     // Real-Time Instant 3D Table Booking
