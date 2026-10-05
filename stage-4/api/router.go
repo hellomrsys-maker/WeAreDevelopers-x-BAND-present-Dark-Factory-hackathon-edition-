@@ -15,18 +15,20 @@ type Router struct {
 	testH        *TestHandler
 	restH        *RestaurantsHandler
 	resH         *ReservationsHandler
+	agentH       *AgentHandler
 	mux          *http.ServeMux
 	handlerStack http.Handler
 }
 
 func NewRouter(s *store.Store, c contracts.CalendarEngine, b contracts.BookingEngine) *Router {
 	r := &Router{
-		store: s,
-		authH: NewAuthHandler(s),
-		testH: NewTestHandler(s, c),
-		restH: NewRestaurantsHandler(s, b, c),
-		resH:  NewReservationsHandler(b, c),
-		mux:   http.NewServeMux(),
+		store:  s,
+		authH:  NewAuthHandler(s),
+		testH:  NewTestHandler(s, c),
+		restH:  NewRestaurantsHandler(s, b, c),
+		resH:   NewReservationsHandler(b, c),
+		agentH: NewAgentHandler(s, b, c),
+		mux:    http.NewServeMux(),
 	}
 	r.setupRoutes()
 	return r
@@ -45,7 +47,7 @@ func (r *Router) setupRoutes() {
 
 	// Web UI Screen routes
 	r.mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" && req.URL.Path != "/host" && req.URL.Path != "/shifts" {
+		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" && req.URL.Path != "/host" && req.URL.Path != "/shifts" && req.URL.Path != "/agent-api" {
 			WriteError(w, http.StatusNotFound, "not_found", "not found")
 			return
 		}
@@ -61,6 +63,12 @@ func (r *Router) setupRoutes() {
 	r.mux.HandleFunc("/rewards", serveHTML)
 	r.mux.HandleFunc("/host", serveHTML)
 	r.mux.HandleFunc("/shifts", serveHTML)
+	r.mux.HandleFunc("/agent-api", serveHTML)
+
+	// Autonomous Band Agent API (Single Endpoint)
+	r.mux.Handle("/api/agent/v1", r.agentH)
+	r.mux.Handle("/api/agent/v1/", r.agentH)
+	r.mux.Handle("/api/agent", r.agentH)
 	r.mux.HandleFunc("/lookup", func(w http.ResponseWriter, req *http.Request) {
 		if req.Method != http.MethodGet {
 			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
@@ -115,7 +123,8 @@ func (r *Router) setupRoutes() {
 			WriteError(w, http.StatusInternalServerError, "internal_error", err.Error())
 			return
 		}
-		WriteJSON(w, http.StatusOK, map[string]interface{}{"status": "ok", "seeded": 10})
+		rests, _ := r.store.ListRestaurants(req.Context())
+		WriteJSON(w, http.StatusOK, map[string]interface{}{"status": "ok", "seeded": len(rests)})
 	})
 
 	// Auth endpoints

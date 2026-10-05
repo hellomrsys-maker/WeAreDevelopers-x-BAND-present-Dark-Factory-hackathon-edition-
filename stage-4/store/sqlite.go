@@ -847,6 +847,231 @@ func (s *Store) SeedDefaultRestaurants(ctx context.Context) error {
 			},
 			comb: [][]string{{"wc_3", "wc_4"}},
 		},
+		// --- San Francisco Bay Area ---
+		{
+			id: "r_frenchlaundry", name: "The French Laundry", timezone: "America/Los_Angeles", slotMin: 30, durMin: 180, cutMin: 1440, opens: "16:30", closes: "23:00",
+			tables: []seedTable{
+				{"fl_1", "Garden Table 1", 2},
+				{"fl_2", "Garden Table 2", 2},
+				{"fl_3", "Salon Table 3", 4},
+				{"fl_4", "Courtyard Salon 4", 4},
+				{"fl_5", "Wine Room 5", 6},
+				{"fl_6", "Keller Private Dining 6", 8},
+			},
+			comb: [][]string{{"fl_3", "fl_4"}},
+		},
+		{
+			id: "r_garydanko", name: "Gary Danko", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"gd_1", "Wharf Window 1", 2},
+				{"gd_2", "Sommelier Booth 2", 2},
+				{"gd_3", "Main Salon 3", 4},
+				{"gd_4", "Main Salon 4", 4},
+				{"gd_5", "Cellar Table 5", 6},
+				{"gd_6", "Chef Table 6", 8},
+			},
+			comb: [][]string{{"gd_3", "gd_4"}},
+		},
+		{
+			id: "r_hopr", name: "House of Prime Rib", timezone: "America/Los_Angeles", slotMin: 15, durMin: 120, cutMin: 120, opens: "16:30", closes: "22:30",
+			tables: []seedTable{
+				{"hp_1", "Carving Station 1", 2},
+				{"hp_2", "English Booth 2", 2},
+				{"hp_3", "Fireplace Banquette 3", 4},
+				{"hp_4", "Fireplace Banquette 4", 4},
+				{"hp_5", "Lords Table 5", 6},
+				{"hp_6", "Grand Hall 6", 8},
+			},
+			comb: [][]string{{"hp_3", "hp_4"}},
+		},
+		// --- New York City ---
+		{
+			id: "r_carbone", name: "Carbone NYC", timezone: "America/New_York", slotMin: 15, durMin: 90, cutMin: 120, opens: "17:00", closes: "23:59",
+			tables: []seedTable{
+				{"cb_1", "Thompson St Window 1", 2},
+				{"cb_2", "Captain Booth 2", 2},
+				{"cb_3", "Tuxedo Table 3", 4},
+				{"cb_4", "Tuxedo Table 4", 4},
+				{"cb_5", "Spicy Rigatoni Salon 5", 6},
+				{"cb_6", "Godfather Banquet 6", 8},
+			},
+			comb: [][]string{{"cb_3", "cb_4"}},
+		},
+		{
+			id: "r_lebernardin", name: "Le Bernardin", timezone: "America/New_York", slotMin: 30, durMin: 150, cutMin: 1440, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"lb_1", "Seafood Salon 1", 2},
+				{"lb_2", "Sommelier Banquette 2", 2},
+				{"lb_3", "Ripert Table 3", 4},
+				{"lb_4", "Ripert Table 4", 4},
+				{"lb_5", "Midtown Grand 5", 6},
+				{"lb_6", "Presidential Salon 6", 8},
+			},
+			comb: [][]string{{"lb_3", "lb_4"}},
+		},
+		{
+			id: "r_gramercy", name: "Gramercy Tavern", timezone: "America/New_York", slotMin: 15, durMin: 90, cutMin: 60, opens: "12:00", closes: "23:00",
+			tables: []seedTable{
+				{"gt_1", "Tavern Front 1", 2},
+				{"gt_2", "Wood Hearth 2", 2},
+				{"gt_3", "Dining Room 3", 4},
+				{"gt_4", "Dining Room 4", 4},
+				{"gt_5", "Floral Salon 5", 6},
+				{"gt_6", "Danny Meyer Table 6", 8},
+			},
+			comb: [][]string{{"gt_3", "gt_4"}},
+		},
+		// --- Chicago / Illinois ---
+		{
+			id: "r_alinea", name: "Alinea", timezone: "America/Chicago", slotMin: 30, durMin: 180, cutMin: 1440, opens: "17:00", closes: "22:30",
+			tables: []seedTable{
+				{"al_1", "Gallery Table 1", 2},
+				{"al_2", "Gallery Table 2", 2},
+				{"al_3", "Salon Table 3", 4},
+				{"al_4", "Salon Table 4", 4},
+				{"al_5", "Achatz Lab 5", 6},
+				{"al_6", "Culinary Vault 6", 8},
+			},
+			comb: [][]string{{"al_3", "al_4"}},
+		},
+		{
+			id: "r_girlgoat", name: "Girl & the Goat", timezone: "America/Chicago", slotMin: 15, durMin: 90, cutMin: 60, opens: "16:30", closes: "23:00",
+			tables: []seedTable{
+				{"gg_1", "West Loop Bar 1", 2},
+				{"gg_2", "Kitchen Counter 2", 2},
+				{"gg_3", "Rustic Booth 3", 4},
+				{"gg_4", "Rustic Booth 4", 4},
+				{"gg_5", "Family Table 5", 6},
+				{"gg_6", "Goat Lounge 6", 8},
+			},
+			comb: [][]string{{"gg_3", "gg_4"}},
+		},
+		// --- Los Angeles ---
+		{
+			id: "r_nobumalibu", name: "Nobu Malibu", timezone: "America/Los_Angeles", slotMin: 15, durMin: 105, cutMin: 120, opens: "12:00", closes: "22:30",
+			tables: []seedTable{
+				{"nb_1", "Pacific Deck 1", 2},
+				{"nb_2", "Oceanfront Booth 2", 2},
+				{"nb_3", "Sushi Pavilion 3", 4},
+				{"nb_4", "Sushi Pavilion 4", 4},
+				{"nb_5", "Malibu Sunset 5", 6},
+				{"nb_6", "Matsuhisa Salon 6", 8},
+			},
+			comb: [][]string{{"nb_3", "nb_4"}},
+		},
+		{
+			id: "r_bestia", name: "Bestia DTLA", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "17:00", closes: "23:00",
+			tables: []seedTable{
+				{"bs_1", "Charcuterie Counter 1", 2},
+				{"bs_2", "Industrial Booth 2", 2},
+				{"bs_3", "Arts District Hall 3", 4},
+				{"bs_4", "Arts District Hall 4", 4},
+				{"bs_5", "Pork Feast Table 5", 6},
+				{"bs_6", "Butcher Salon 6", 8},
+			},
+			comb: [][]string{{"bs_3", "bs_4"}},
+		},
+		// --- London (UK) ---
+		{
+			id: "r_dishoom", name: "Dishoom Covent Garden", timezone: "Europe/London", slotMin: 15, durMin: 90, cutMin: 60, opens: "08:00", closes: "23:00",
+			tables: []seedTable{
+				{"ds_1", "Irani Cafe Table 1", 2},
+				{"ds_2", "Verandah Booth 2", 2},
+				{"ds_3", "Bombay Room 3", 4},
+				{"ds_4", "Bombay Room 4", 4},
+				{"ds_5", "Family Thali Table 5", 6},
+				{"ds_6", "Governor Banquet 6", 8},
+			},
+			comb: [][]string{{"ds_3", "ds_4"}},
+		},
+		{
+			id: "r_ledbury", name: "The Ledbury", timezone: "Europe/London", slotMin: 30, durMin: 150, cutMin: 1440, opens: "18:00", closes: "22:30",
+			tables: []seedTable{
+				{"ld_1", "Notting Hill Salon 1", 2},
+				{"ld_2", "Wine Library 2", 2},
+				{"ld_3", "Tasting Room 3", 4},
+				{"ld_4", "Tasting Room 4", 4},
+				{"ld_5", "Brett Graham Table 5", 6},
+				{"ld_6", "Conservatory 6", 8},
+			},
+			comb: [][]string{{"ld_3", "ld_4"}},
+		},
+		// --- Tokyo (Japan) ---
+		{
+			id: "r_jiro", name: "Sukiyabashi Jiro", timezone: "Asia/Tokyo", slotMin: 30, durMin: 60, cutMin: 2880, opens: "11:30", closes: "20:30",
+			tables: []seedTable{
+				{"jr_1", "Ginza Master Counter 1", 2},
+				{"jr_2", "Ginza Master Counter 2", 2},
+				{"jr_3", "Artisan Table 3", 4},
+				{"jr_4", "Artisan Table 4", 4},
+				{"jr_5", "Edomae Salon 5", 6},
+				{"jr_6", "Honored Guest Table 6", 8},
+			},
+			comb: [][]string{{"jr_3", "jr_4"}},
+		},
+		{
+			id: "r_den", name: "Den Tokyo", timezone: "Asia/Tokyo", slotMin: 30, durMin: 120, cutMin: 1440, opens: "18:00", closes: "22:30",
+			tables: []seedTable{
+				{"dn_1", "Kaiseki Counter 1", 2},
+				{"dn_2", "Kaiseki Counter 2", 2},
+				{"dn_3", "Shibuya Pavilion 3", 4},
+				{"dn_4", "Shibuya Pavilion 4", 4},
+				{"dn_5", "Omotenashi Room 5", 6},
+				{"dn_6", "Zashiki Table 6", 8},
+			},
+			comb: [][]string{{"dn_3", "dn_4"}},
+		},
+		// --- Berlin (Germany) ---
+		{
+			id: "r_berlin_anker", name: "Zum Anker Historic", timezone: "Europe/Berlin", slotMin: 30, durMin: 90, cutMin: 120, opens: "18:00", closes: "23:00",
+			tables: []seedTable{
+				{"ba_1", "Spree View 1", 2},
+				{"ba_2", "Spree View 2", 2},
+				{"ba_3", "Mitte Gaststube 3", 4},
+				{"ba_4", "Mitte Gaststube 4", 4},
+				{"ba_5", "Brauhaus Table 5", 6},
+				{"ba_6", "Alt-Berlin Hall 6", 8},
+			},
+			comb: [][]string{{"ba_3", "ba_4"}},
+		},
+		{
+			id: "r_timraue", name: "Restaurant Tim Raue", timezone: "Europe/Berlin", slotMin: 30, durMin: 120, cutMin: 1440, opens: "18:00", closes: "23:00",
+			tables: []seedTable{
+				{"tr_1", "Checkpoint Charlie Salon 1", 2},
+				{"tr_2", "Asian Fusion Booth 2", 2},
+				{"tr_3", "Kreuzberg Gallery 3", 4},
+				{"tr_4", "Kreuzberg Gallery 4", 4},
+				{"tr_5", "Wasabi Room 5", 6},
+				{"tr_6", "Chef Tim Raue Table 6", 8},
+			},
+			comb: [][]string{{"tr_3", "tr_4"}},
+		},
+		// --- Paris (France) ---
+		{
+			id: "r_legabriel", name: "Le Gabriel - La Réserve", timezone: "Europe/Paris", slotMin: 30, durMin: 150, cutMin: 1440, opens: "19:00", closes: "23:00",
+			tables: []seedTable{
+				{"lg_1", "Napoléon III Salon 1", 2},
+				{"lg_2", "Palais-Royal Booth 2", 2},
+				{"lg_3", "Champs-Élysées Table 3", 4},
+				{"lg_4", "Champs-Élysées Table 4", 4},
+				{"lg_5", "Haussmann Hall 5", 6},
+				{"lg_6", "Salon Impérial 6", 8},
+			},
+			comb: [][]string{{"lg_3", "lg_4"}},
+		},
+		// --- Dubai (UAE) ---
+		{
+			id: "r_zuma_dubai", name: "Zuma Dubai DIFC", timezone: "Asia/Dubai", slotMin: 15, durMin: 120, cutMin: 120, opens: "12:00", closes: "23:59",
+			tables: []seedTable{
+				{"zm_1", "Robata Grill Counter 1", 2},
+				{"zm_2", "DIFC Skyline Booth 2", 2},
+				{"zm_3", "Sake Lounge 3", 4},
+				{"zm_4", "Sake Lounge 4", 4},
+				{"zm_5", "Burj View Table 5", 6},
+				{"zm_6", "Royal Palm Suite 6", 8},
+			},
+			comb: [][]string{{"zm_3", "zm_4"}},
+		},
 	}
 
 	weekdays := []string{"mon", "tue", "wed", "thu", "fri", "sat", "sun"}

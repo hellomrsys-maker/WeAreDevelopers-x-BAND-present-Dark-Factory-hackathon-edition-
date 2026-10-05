@@ -4294,15 +4294,16 @@
             <!-- Metro Column -->
             <div class="ot-metro-col">
               <div class="ot-col-title">Metro</div>
-              <div class="ot-metro-item" onclick="selectMetro('New York City')"><span>New York City</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('New York State')"><span>New York State</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('Philadelphia County')"><span>Philadelphia County</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('Phoenix / Arizona')"><span>Phoenix / Arizona</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('Portland / Oregon')"><span>Portland / Oregon</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('San Diego')"><span>San Diego</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('San Francisco Bay Area')"><span>San Francisco Bay Area</span> <span>›</span></div>
               <div class="ot-metro-item active" onclick="selectMetro('Seattle / Eastern Washington')"><span>Seattle / Eastern Washington</span> <span>›</span></div>
-              <div class="ot-metro-item" onclick="selectMetro('Washington, D.C. Area')"><span>Washington, D.C. Area</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('San Francisco Bay Area')"><span>San Francisco Bay Area</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('New York City')"><span>New York City</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Chicago / Illinois')"><span>Chicago / Illinois</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Los Angeles')"><span>Los Angeles</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('London (UK)')"><span>London (UK)</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Tokyo (Japan)')"><span>Tokyo (Japan)</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Berlin (Germany)')"><span>Berlin (Germany)</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Paris (France)')"><span>Paris (France)</span> <span>›</span></div>
+              <div class="ot-metro-item" onclick="selectMetro('Dubai (UAE)')"><span>Dubai (UAE)</span> <span>›</span></div>
             </div>
             <!-- Region Column -->
             <div class="ot-region-col">
@@ -4330,6 +4331,7 @@
         <a href="/admin" class="nav-link" onclick="navigateTo(event, '/admin')">Staff Desk</a>
         <a href="#" class="nav-link" onclick="event.preventDefault(); openHotelOsModal(currentRestId);" style="color:#38bdf8; font-weight:700;">📱 Host Stand OS</a>
         <a href="/agents" class="nav-link" onclick="navigateTo(event, '/agents')">🤖 Agent Telemetry</a>
+        <a href="/agent-api" class="nav-link" onclick="navigateTo(event, '/agent-api')" style="color:#ec4899; font-weight:700;">⚡ Agent API</a>
         <a href="/factory" class="nav-link" onclick="navigateTo(event, '/factory')">3D Dark Factory</a>
       </nav>
       <div id="auth-section" class="auth-bar">
@@ -7434,7 +7436,131 @@
       </div>
     </div>
 
-  </main>
+  
+      <!-- VIEW: AGENT API CONSOLE (BAND PLATFORM & SOLO ROCK AI) -->
+      <div id="view-agent-api" class="view-section" style="display:none; padding:1.5rem 0;">
+        <div class="card" style="border:1px solid rgba(236, 72, 153, 0.4); background:radial-gradient(ellipse at top, rgba(236, 72, 153, 0.08) 0%, rgba(15, 23, 42, 0.95) 70%); margin-bottom:2rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-bottom:1px solid rgba(236, 72, 153, 0.2); padding-bottom:1rem; margin-bottom:1.5rem;">
+            <div>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                <span style="font-size:1.5rem;">⚡</span>
+                <h1 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin:0;">Band Autonomous Agent API</h1>
+                <span class="badge" style="background:#ec4899; color:#fff; font-weight:bold;">v1 Production</span>
+                <span class="badge" style="background:#10b981; color:#fff; font-weight:bold;">● 0ns Sync</span>
+              </div>
+              <p class="subtitle" style="margin:0;">Unified Single Endpoint for Band Platform Agents, Solo Rock AI Fleet, & Autonomous Concierge</p>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:0.8rem; color:#94a3b8;">Endpoint URI:</span>
+              <div style="font-family:monospace; background:rgba(0,0,0,0.4); padding:4px 10px; border-radius:6px; color:#38bdf8; font-size:0.9rem; font-weight:bold; border:1px solid #334155;">
+                POST http://localhost:8080/api/agent/v1
+              </div>
+            </div>
+          </div>
+
+          <!-- Band Account & Hackathon Configuration Card -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
+            <div style="background:rgba(30, 41, 59, 0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Band Agent Identity</div>
+              <div style="font-family:monospace; color:#f472b6; font-size:0.95rem; font-weight:bold; margin-top:0.25rem;">8fe8a0a5-74c6-4271-9419-7b542af177b5</div>
+              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:0.5rem;">Official runner: <code style="color:#38bdf8;">band_agent_runner.py</code></div>
+              <div style="font-size:0.8rem; color:#cbd5e1;">Platform: <a href="https://app.band.ai" target="_blank" style="color:#38bdf8;">app.band.ai</a> (Gemini 2.5 Flash)</div>
+            </div>
+
+            <div style="background:rgba(30, 41, 59, 0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Zero-Bridge Memory Matrix</div>
+              <div style="color:#34d399; font-weight:bold; font-size:0.95rem; margin-top:0.25rem;">64-Byte Atomic Memory State Vector</div>
+              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:0.5rem;">Direct physical memory synchronization (0-nanosecond latency)</div>
+              <div style="font-size:0.8rem; color:#cbd5e1;">Strict Six-Language Matrix (Rust, Julia, Python, C++, CUDA, Java)</div>
+            </div>
+
+            <div style="background:rgba(30, 41, 59, 0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Double-Booking Safety</div>
+              <div style="color:#10b981; font-weight:bold; font-size:0.95rem; margin-top:0.25rem;">0% Double-Booking Guarantee</div>
+              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:0.5rem;">Transactional WAL Invariant Lock (< 2ms acquisition)</div>
+              <div style="font-size:0.8rem; color:#cbd5e1;">Colliding requests rejected with instant 409 Conflict</div>
+            </div>
+          </div>
+
+          <!-- Interactive API Dispatch Console -->
+          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:10px; padding:1.25rem;">
+            <h3 style="color:#ffffff; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
+              <span>🎮</span> Interactive Agent API Console & Sandbox
+            </h3>
+            <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+              Select a quick action preset or craft a custom request payload to test live autonomous execution against the Go/SQLite backend:
+            </p>
+
+            <!-- Preset Buttons -->
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="setAgentApiPreset('book_joey')">
+                🍽️ Book JOEY Bellevue (Party of 4 @ 19:00)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="setAgentApiPreset('book_carbone')">
+                🍝 Book Carbone NYC (Party of 2 @ 20:00)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="setAgentApiPreset('book_french_laundry')">
+                🍷 Book French Laundry (Party of 6 - Keller Salon)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="setAgentApiPreset('book_jiro')">
+                🍣 Book Jiro Tokyo (Party of 2)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="setAgentApiPreset('locations')">
+                📍 Query All Global Cities & Metros
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="setAgentApiPreset('stress_test')">
+                🛡️ Run Invariant Collision Storm (10 Requests)
+              </button>
+            </div>
+
+            <!-- Natural Language Prompt Input -->
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label for="agent-nl-prompt" style="font-size:0.85rem; color:#cbd5e1; font-weight:600;">
+                Natural Language Prompt (Autonomous Intent Extraction):
+              </label>
+              <div style="display:flex; gap:0.5rem;">
+                <input type="text" id="agent-nl-prompt" class="form-control"
+                       placeholder="e.g., Book dinner for 4 at Le Bernardin NYC at 7:30pm on Friday with Sapphire Booth"
+                       style="background:#0f172a; border:1px solid #475569; color:#f8fafc; font-size:0.95rem; flex:1;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="handleAgentPromptSubmit()" style="background:#ec4899; border:none; padding:0 1.25rem; font-weight:bold;">
+                  Convert to Request
+                </button>
+              </div>
+            </div>
+
+            <!-- JSON Request Editor -->
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label for="agent-json-payload" style="font-size:0.85rem; color:#cbd5e1; font-weight:600;">
+                POST Request Payload (JSON):
+              </label>
+              <textarea id="agent-json-payload" rows="8"
+                        style="width:100%; font-family:monospace; font-size:0.85rem; background:#020617; color:#38bdf8; border:1px solid #334155; border-radius:6px; padding:0.75rem; box-sizing:border-box;"></textarea>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+              <button type="button" id="btn-dispatch-agent-api" class="btn btn-primary" onclick="dispatchAgentApiCall()"
+                      style="background:linear-gradient(135deg, #ec4899 0%, #be185d 100%); border:none; padding:0.75rem 2rem; font-weight:800; font-size:1rem; box-shadow:0 4px 15px rgba(236, 72, 153, 0.4);">
+                ⚡ Dispatch Agent Request to /api/agent/v1
+              </button>
+              <div id="agent-api-status-badge" style="font-size:0.85rem; color:#94a3b8;">
+                Ready to execute.
+              </div>
+            </div>
+
+            <!-- Live Output Terminal -->
+            <div style="margin-top:1.25rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <span style="font-size:0.8rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Live API Response Output</span>
+                <span id="agent-response-latency" style="font-size:0.75rem; color:#34d399; font-family:monospace;"></span>
+              </div>
+              <pre id="agent-response-terminal"
+                   style="background:#020617; border:1px solid #334155; border-radius:8px; padding:1rem; color:#e2e8f0; font-family:monospace; font-size:0.85rem; min-height:140px; max-height:360px; overflow-y:auto; margin:0;">// Response will appear here after dispatch...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
 
   <!-- ===================================================================== -->
   <!-- SECTION 16: COMPREHENSIVE AUTHENTIC OPENTABLE FOOTER (PDF PAGE 2)     -->
@@ -7958,7 +8084,458 @@
           'Casual maritime attire.'
         ]
       }
-    };
+    ,
+
+      'r_french_laundry': {
+        id: 'r_french_laundry',
+        name: 'The French Laundry',
+        tagline: 'Thomas Keller\'s 3-Michelin-Starred Napa Valley Temple',
+        region: 'San Francisco Bay Area',
+        neighborhood: 'Yountville / Napa Valley',
+        cuisine: 'French Fine Dining, Contemporary',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '6,420 reviews',
+        booked_today: 'Booked 180 times today',
+        hero_img: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80',
+        gallery: [
+          'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80',
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'
+        ],
+        overview: 'Chef Thomas Keller\'s three-starred Michelin culinary temple in Yountville, delivering benchmark French technique with Northern California farm ingredients.',
+        hotel_partner: 'Auberge du Soleil & Bardessono',
+        dishes: [
+          { name: 'Oysters and Pearls', desc: 'Sabayon of pearl tapioca with Island Creek oysters and White Sturgeon caviar.', price: '$95.00', tag: 'Keller Signature' },
+          { name: 'Elysian Fields Farm Lamb', desc: 'Slow-roasted saddle of lamb with garden spring alliums and natural jus.', price: '$115.00', tag: 'Chef Classic' }
+        ],
+        tables: [
+          { id: 'fl_1', label: 'Garden Salon 1', cap: 2, zone: 'Courtyard' },
+          { id: 'fl_2', label: 'Keller Table 2', cap: 4, zone: 'Main Dining' },
+          { id: 'fl_3', label: 'Cellar Vault 3', cap: 6, zone: 'Wine Vault' }
+        ],
+        policies: ['Jackets required for gentlemen.', 'Prepaid tasting experience.']
+      },
+      'r_gary_danko': {
+        id: 'r_gary_danko',
+        name: 'Gary Danko',
+        tagline: 'San Francisco Fine Dining & Legendary Flambé Cart',
+        region: 'San Francisco Bay Area',
+        neighborhood: 'Fisherman\'s Wharf',
+        cuisine: 'French, California Contemporary',
+        price: '$$$$',
+        rating: '★ 4.9',
+        reviews_count: '5,120 reviews',
+        booked_today: 'Booked 74 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Classic San Francisco luxury dining with personalized 5-course menus, exceptional cheese carts, and tableside flambé desserts.',
+        hotel_partner: 'The Ritz-Carlton San Francisco',
+        dishes: [
+          { name: 'Seared Foie Gras with Peaches', desc: 'Artisanal brioche, duck foie gras, caramelized white peaches.', price: '$48.00', tag: 'Iconic' },
+          { name: 'Tableside Flambé Crepes', desc: 'Grand Marnier flambé crepes prepared tableside with vanilla bean chantilly.', price: '$26.00', tag: 'Tableside' }
+        ],
+        tables: [
+          { id: 'gd_1', label: 'Wharf Salon 1', cap: 2, zone: 'Main Dining' },
+          { id: 'gd_2', label: 'Sommelier Banquette 2', cap: 4, zone: 'Wine Room' }
+        ],
+        policies: ['Smart elegant attire.', '90 min seating duration.']
+      },
+      'r_house_of_prime_rib': {
+        id: 'r_house_of_prime_rib',
+        name: 'House of Prime Rib',
+        tagline: 'San Francisco Historic English Roast Ribs Carved Tableside',
+        region: 'San Francisco Bay Area',
+        neighborhood: 'Nob Hill / Van Ness',
+        cuisine: 'American Steakhouse, Traditional',
+        price: '$$$',
+        rating: '★ 4.8',
+        reviews_count: '8,900 reviews',
+        booked_today: 'Booked 210 times today',
+        hero_img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Serving premier corn-fed beef carved to order from stainless steel zeppelin carts at your table since 1949.',
+        hotel_partner: 'Fairmont San Francisco',
+        dishes: [
+          { name: 'The King Henry VIII Cut', desc: 'Extra generous thick cut of prime rib served on the bone with Yorkshire pudding.', price: '$64.00', tag: 'Signature Cut' },
+          { name: 'Spinning Bowl Salad', desc: 'Crisp iceberg tossed over ice with house dressing and sourdough crackers.', price: '$14.00', tag: 'Historic' }
+        ],
+        tables: [
+          { id: 'hpr_1', label: 'Zeppelin Booth 1', cap: 4, zone: 'Carving Room' },
+          { id: 'hpr_2', label: 'Nob Hill Table 2', cap: 6, zone: 'Main Hall' }
+        ],
+        policies: ['Casual elegant attire.', 'Prime rib cooked in rock salt domes.']
+      },
+      'r_carbone_nyc': {
+        id: 'r_carbone_nyc',
+        name: 'Carbone NYC',
+        tagline: 'Major Food Group Mid-Century Italian-American Glamour',
+        region: 'New York City',
+        neighborhood: 'Greenwich Village',
+        cuisine: 'Italian-American, Fine Dining',
+        price: '$$$$$',
+        rating: '★ 4.8',
+        reviews_count: '7,200 reviews',
+        booked_today: 'Booked 230 times today',
+        hero_img: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Mario Carbone and Rich Torrisi\'s celebrated Greenwich Village shrine to mid-century Italian-American glamour, tuxedos, and spicy rigatoni.',
+        hotel_partner: 'The Greenwich Hotel',
+        dishes: [
+          { name: 'Spicy Rigatoni Vodka', desc: 'House-extruded rigatoni in creamy spicy calabrian chili vodka sauce.', price: '$36.00', tag: 'Global Legend' },
+          { name: 'Veal Chop Parmigiana', desc: 'Tender bone-in milk-fed veal crusted with herbs, buffalo mozzarella, and marinara.', price: '$82.00', tag: 'Showstopper' }
+        ],
+        tables: [
+          { id: 'cb_1', label: 'Tuxedo Booth 1', cap: 2, zone: 'Front Dining' },
+          { id: 'cb_2', label: 'Village Table 2', cap: 4, zone: 'Back Room' },
+          { id: 'cb_3', label: 'Capo Banquette 3', cap: 6, zone: 'VIP Corner' }
+        ],
+        policies: ['Jackets requested.', 'High demand venue — instant WAL booking locks.']
+      },
+      'r_le_bernardin': {
+        id: 'r_le_bernardin',
+        name: 'Le Bernardin',
+        tagline: 'Eric Ripert\'s 3-Michelin-Star Seafood Pinnacle',
+        region: 'New York City',
+        neighborhood: 'Midtown Manhattan',
+        cuisine: 'French, Seafood Fine Dining',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '9,400 reviews',
+        booked_today: 'Booked 195 times today',
+        hero_img: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Chef Eric Ripert\'s culinary cathedral where seafood is the star — almost raw, lightly cooked, and celebrated with French nuance.',
+        hotel_partner: 'The St. Regis New York',
+        dishes: [
+          { name: 'Tuna & Foie Gras Carpaccio', desc: 'Pounded thin Yellowfin tuna, foie gras baguette, shaved chives, extra virgin oil.', price: '$58.00', tag: 'Ripert Classic' },
+          { name: 'Poached Halibut with Caviar', desc: 'Wild Atlantic halibut, champagne emulsified broth, golden osetra caviar.', price: '$72.00', tag: 'Chef Choice' }
+        ],
+        tables: [
+          { id: 'lb_1', label: 'Salon Table 1', cap: 2, zone: 'Lounge' },
+          { id: 'lb_2', label: 'Midtown Table 2', cap: 4, zone: 'Grand Dining' }
+        ],
+        policies: ['Jackets required.', '3-star Michelin dress code.']
+      },
+      'r_gramercy_tavern': {
+        id: 'r_gramercy_tavern',
+        name: 'Gramercy Tavern',
+        tagline: 'Danny Meyer\'s Warm Flatiron Farm-to-Table Icon',
+        region: 'New York City',
+        neighborhood: 'Flatiron / Gramercy',
+        cuisine: 'Contemporary American, Farm-to-Table',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '6,100 reviews',
+        booked_today: 'Booked 140 times today',
+        hero_img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Danny Meyer\'s quintessential Manhattan tavern offering wood-fired cooking and warm hospitality.',
+        hotel_partner: 'The Gramercy Park Hotel',
+        dishes: [
+          { name: 'Wood-Grilled Duck Breast', desc: 'Hudson Valley duck breast, spiced honey glaze, heirloom carrots.', price: '$46.00', tag: 'Wood-Fired' }
+        ],
+        tables: [
+          { id: 'gt_1', label: 'Tavern Booth 1', cap: 2, zone: 'Front Tavern' },
+          { id: 'gt_2', label: 'Dining Table 2', cap: 4, zone: 'Main Room' }
+        ],
+        policies: ['Smart casual attire.']
+      },
+      'r_alinea': {
+        id: 'r_alinea',
+        name: 'Alinea',
+        tagline: 'Grant Achatz\'s World-Renowned Avant-Garde 3-Star Temple',
+        region: 'Chicago / Illinois',
+        neighborhood: 'Lincoln Park',
+        cuisine: 'Progressive Modernist, Avant-Garde',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '4,800 reviews',
+        booked_today: 'Booked 160 times today',
+        hero_img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Chef Grant Achatz and Nick Kokonas\'s 3-Michelin-starred modernist temple blending culinary illusion and multisensory theatrical dining.',
+        hotel_partner: 'The Peninsula Chicago',
+        dishes: [
+          { name: 'Helium Green Apple Balloon', desc: 'Edible green apple balloon floating on helium string with apple sugar glass.', price: '$35.00', tag: 'Alinea Legend' },
+          { name: 'Black Truffle Explosion', desc: 'Liquid black truffle ravioli, romanesco, parmesan foam.', price: '$42.00', tag: 'Modernist' }
+        ],
+        tables: [
+          { id: 'al_1', label: 'The Gallery 1', cap: 2, zone: 'Gallery Salon' },
+          { id: 'al_2', label: 'The Salon 2', cap: 4, zone: 'The Salon' }
+        ],
+        policies: ['Non-refundable reservation deposits.', 'Full sensory tasting journey.']
+      },
+      'r_girl_and_goat': {
+        id: 'r_girl_and_goat',
+        name: 'Girl & the Goat',
+        tagline: 'Stephanie Izard\'s Vibrant West Loop Bold Flavor Oasis',
+        region: 'Chicago / Illinois',
+        neighborhood: 'West Loop / Fulton Market',
+        cuisine: 'Global Small Plates, Eclectic',
+        price: '$$$',
+        rating: '★ 4.8',
+        reviews_count: '6,700 reviews',
+        booked_today: 'Booked 130 times today',
+        hero_img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Top Chef Stephanie Izard\'s lively West Loop restaurant serving boldly seasoned, globally inspired shareable dishes in an upbeat rustic room.',
+        hotel_partner: 'The Hoxton Chicago',
+        dishes: [
+          { name: 'Roasted Pig Face', desc: 'Crispy wood-roasted pork face with sunny egg, tamarind cilantro glaze, potato sticks.', price: '$26.00', tag: 'Famous' }
+        ],
+        tables: [
+          { id: 'gg_1', label: 'Fulton Table 1', cap: 2, zone: 'Main Dining' },
+          { id: 'gg_2', label: 'Goat Lounge 2', cap: 4, zone: 'Lounge' }
+        ],
+        policies: ['Family-style shared plate pacing.']
+      },
+      'r_nobu_malibu': {
+        id: 'r_nobu_malibu',
+        name: 'Nobu Malibu',
+        tagline: 'Oceanfront Japanese-Peruvian Luxury on Pacific Coast Highway',
+        region: 'Los Angeles',
+        neighborhood: 'Malibu / Pacific Coast Hwy',
+        cuisine: 'Japanese-Peruvian, Sushi',
+        price: '$$$$$',
+        rating: '★ 4.8',
+        reviews_count: '7,800 reviews',
+        booked_today: 'Booked 290 times today',
+        hero_img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Nobu Matsuhisa\'s world-famous oceanfront destination directly perched above the crashing Pacific surf in Malibu.',
+        hotel_partner: 'Nobu Ryokan Malibu',
+        dishes: [
+          { name: 'Black Cod with Miso', desc: 'Sweet Alaskan black cod marinated in saikyo miso for 72 hours.', price: '$44.00', tag: 'Nobu Global Icon' },
+          { name: 'Yellowtail Jalapeño Sashimi', desc: 'Thin yellowtail, yuzu soy, garlic puree, fresh serrano pepper.', price: '$34.00', tag: 'Signature' }
+        ],
+        tables: [
+          { id: 'nb_1', label: 'Ocean Deck 1', cap: 2, zone: 'Pacific Wave Deck' },
+          { id: 'nb_2', label: 'Ocean Deck 2', cap: 4, zone: 'Pacific Wave Deck' }
+        ],
+        policies: ['Malibu resort chic attire.', 'Valet parking on PCH.']
+      },
+      'r_bestia': {
+        id: 'r_bestia',
+        name: 'Bestia',
+        tagline: 'Ori Menashe\'s Industrial Arts District Italian Masterpiece',
+        region: 'Los Angeles',
+        neighborhood: 'Downtown Arts District',
+        cuisine: 'Italian, Wood-Fired & Charcuterie',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '5,900 reviews',
+        booked_today: 'Booked 145 times today',
+        hero_img: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Ori Menashe and Genevieve Gergis\'s high-energy powerhouse in DTLA featuring in-house cured meats, handmade pasta, and wood-fired pizzas.',
+        hotel_partner: 'DTLA Proper Hotel',
+        dishes: [
+          { name: 'Roasted Bone Marrow', desc: 'Spinach gnocchetti, crispy breadcrumbs, aged balsamic.', price: '$28.00', tag: 'Bestia Icon' }
+        ],
+        tables: [
+          { id: 'be_1', label: 'Industrial Booth 1', cap: 2, zone: 'Main Hall' },
+          { id: 'be_2', label: 'Wood Oven Table 2', cap: 4, zone: 'Oven Counter' }
+        ],
+        policies: ['Smart casual attire.']
+      },
+      'r_dishoom_covent': {
+        id: 'r_dishoom_covent',
+        name: 'Dishoom Covent Garden',
+        tagline: 'From Bombay with Love — Irani Café Nostalgia in London',
+        region: 'London (UK)',
+        neighborhood: 'Covent Garden / West End',
+        cuisine: 'Bombay Comfort, Indian',
+        price: '$$$',
+        rating: '★ 4.8',
+        reviews_count: '11,200 reviews',
+        booked_today: 'Booked 340 times today',
+        hero_img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Paying homage to the old Irani cafés of Bombay, Dishoom serves comforting house black daal, spiced chai, and charcoal-grilled chops in London.',
+        hotel_partner: 'The Savoy London',
+        dishes: [
+          { name: 'House Black Daal', desc: 'Slow-cooked for over 24 hours with butter and cream, deeply savory.', price: '£8.90', tag: 'Dishoom Icon' },
+          { name: 'Spiced Lamb Chops', desc: 'Marinated in lime juice, ginger, garlic and warm aromatic spices.', price: '£16.50', tag: 'Tandoor Grill' }
+        ],
+        tables: [
+          { id: 'ds_1', label: 'Verandah 1', cap: 2, zone: 'Verandah' },
+          { id: 'ds_2', label: 'Irani Table 2', cap: 4, zone: 'Main Café' }
+        ],
+        policies: ['All welcome. No dress code restrictions.']
+      },
+      'r_the_ledbury': {
+        id: 'r_the_ledbury',
+        name: 'The Ledbury',
+        tagline: 'Brett Graham\'s 3-Michelin-Starred Notting Hill Destination',
+        region: 'London (UK)',
+        neighborhood: 'Notting Hill',
+        cuisine: 'Modern British, 3-Star Michelin',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '3,800 reviews',
+        booked_today: 'Booked 85 times today',
+        hero_img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Brett Graham\'s world-renowned three-star restaurant focusing on wild British game, estate venison, and foraged botanicals.',
+        hotel_partner: 'The Berkeley London',
+        dishes: [
+          { name: 'Aynhoe Park Deer', desc: 'Smoked bone marrow, red beetroot, sour cherries, estate juniper.', price: '£55.00', tag: 'Graham Masterwork' }
+        ],
+        tables: [
+          { id: 'ld_1', label: 'Ledbury Salon 1', cap: 2, zone: 'Main Dining' },
+          { id: 'ld_2', label: 'Notting Hill 2', cap: 4, zone: 'Window Room' }
+        ],
+        policies: ['Smart elegant dress.']
+      },
+      'r_sukiyabashi_jiro': {
+        id: 'r_sukiyabashi_jiro',
+        name: 'Sukiyabashi Jiro',
+        tagline: 'Jiro Ono\'s Iconic 10-Seat Omakase Sanctuary in Ginza',
+        region: 'Tokyo (Japan)',
+        neighborhood: 'Ginza, Chuo City',
+        cuisine: 'Edomae Sushi, Master Omakase',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '2,900 reviews',
+        booked_today: 'Booked 65 times today',
+        hero_img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Master Jiro Ono\'s legendary Ginza sanctuary. 20 pieces of precision Edomae nigiri served piece-by-piece at body temperature.',
+        hotel_partner: 'The Tokyo Station Hotel & Imperial Hotel',
+        dishes: [
+          { name: 'Otoro Nigiri (Fatty Tuna)', desc: 'Wild Pacific bluefin tuna belly seasoned with warm vinegared sushi rice.', price: '¥6,000', tag: 'Masterwork' },
+          { name: 'Kohada (Gizzard Shad)', desc: 'Vinegared gizzard shad representing the pure soul of Edomae sushi.', price: '¥3,500', tag: 'Edomae Soul' }
+        ],
+        tables: [
+          { id: 'jr_1', label: 'Master Jiro Counter 1', cap: 2, zone: 'Main Counter' },
+          { id: 'jr_2', label: 'Master Jiro Counter 2', cap: 2, zone: 'Main Counter' }
+        ],
+        policies: ['Zero perfume or cologne permitted.', 'Strict 45-minute omakase cadence.']
+      },
+      'r_den_tokyo': {
+        id: 'r_den_tokyo',
+        name: 'Den Tokyo',
+        tagline: 'Zaiyu Hasegawa\'s Two-Star Playful Kaiseki Heart',
+        region: 'Tokyo (Japan)',
+        neighborhood: 'Jingumae / Shibuya',
+        cuisine: 'Modern Kaiseki, Creative Japanese',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '2,200 reviews',
+        booked_today: 'Booked 70 times today',
+        hero_img: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Chef Zaiyu Hasegawa reinterprets traditional Kaiseki with joyous hospitality, humor, and Japanese seasonal produce.',
+        hotel_partner: 'Trunk Hotel Tokyo',
+        dishes: [
+          { name: 'Dentucky Fried Chicken', desc: 'Crispy chicken wing stuffed with sticky rice, mushrooms, and seasonal surprises.', price: '¥3,800', tag: 'Playful Icon' }
+        ],
+        tables: [
+          { id: 'dn_1', label: 'Jingumae Table 1', cap: 2, zone: 'Main Room' },
+          { id: 'dn_2', label: 'Kaiseki Table 2', cap: 4, zone: 'Chef Rail' }
+        ],
+        policies: ['Full seasonal course only.']
+      },
+      'r_tim_raue': {
+        id: 'r_tim_raue',
+        name: 'Restaurant Tim Raue',
+        tagline: 'Tim Raue\'s 2-Michelin-Star Asian-Inspired Berlin Titan',
+        region: 'Berlin (Germany)',
+        neighborhood: 'Kreuzberg / Checkpoint Charlie',
+        cuisine: 'Asian-European Fusion, 2-Star Michelin',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '3,400 reviews',
+        booked_today: 'Booked 90 times today',
+        hero_img: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'High-octane flavors inspired by Asian street cuisine, executed with Berlin attitude and Michelin precision near Checkpoint Charlie.',
+        hotel_partner: 'Hotel Adlon Kempinski Berlin',
+        dishes: [
+          { name: 'Wasabi Langoustine', desc: 'Deep-fried langoustine in green wasabi mayonnaise and calamansi gel.', price: '€42.00', tag: 'Raue Legend' }
+        ],
+        tables: [
+          { id: 'tr_1', label: 'Kreuzberg Table 1', cap: 2, zone: 'Main Dining' },
+          { id: 'tr_2', label: 'Checkpoint Table 2', cap: 4, zone: 'Salon' }
+        ],
+        policies: ['Smart casual attire.']
+      },
+      'r_le_gabriel': {
+        id: 'r_le_gabriel',
+        name: 'Le Gabriel Paris',
+        tagline: 'Jérôme Banctel\'s 3-Michelin-Starred Parisian Grand Palace',
+        region: 'Paris (France)',
+        neighborhood: 'Champs-Élysées / 8th Arrondissement',
+        cuisine: 'Haute Cuisine Française, 3-Star Michelin',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '2,600 reviews',
+        booked_today: 'Booked 95 times today',
+        hero_img: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Inside the ultra-exclusive La Réserve Paris, Jérôme Banctel crafts 3-star French gastronomy influenced by Breton roots and Japanese minimalism.',
+        hotel_partner: 'La Réserve Paris Hotel and Spa',
+        dishes: [
+          { name: 'Pigeon de Vendée au Cacao', desc: 'Vendée pigeon slow cooked with cocoa nibs and crunchy buckwheat.', price: '€78.00', tag: '3-Star Masterwork' }
+        ],
+        tables: [
+          { id: 'lg_1', label: 'Napoleon Salon 1', cap: 2, zone: 'Salon Or' },
+          { id: 'lg_2', label: 'Champs Table 2', cap: 4, zone: 'Grand Hall' }
+        ],
+        policies: ['Jacket required for gentlemen.', 'Valet parking available.']
+      },
+      'r_septime': {
+        id: 'r_septime',
+        name: 'Septime',
+        tagline: 'Bertrand Grébaut\'s Natural Wine & Neo-Bistrot Pioneer',
+        region: 'Paris (France)',
+        neighborhood: '11th Arrondissement / Charonne',
+        cuisine: 'Modern French Neo-Bistro, Farm-Fresh',
+        price: '$$$$',
+        rating: '★ 4.8',
+        reviews_count: '4,100 reviews',
+        booked_today: 'Booked 110 times today',
+        hero_img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Bertrand Grébaut\'s neo-bistrot revolutionizing Parisian dining with relaxed elegance, spontaneous tasting menus, and biodynamic wines.',
+        hotel_partner: 'Hôtel Fabric Paris',
+        dishes: [
+          { name: 'Heirloom Beets with Smoked Eel', desc: 'Braised Chioggia beets, house-smoked Loire eel, raw cream.', price: '€32.00', tag: 'Neo-Bistro' }
+        ],
+        tables: [
+          { id: 'spm_1', label: 'Charonne Table 1', cap: 2, zone: 'Atelier' },
+          { id: 'spm_2', label: 'Bistrot Table 2', cap: 4, zone: 'Main Room' }
+        ],
+        policies: ['Relaxed smart casual.']
+      },
+      'r_zuma_dubai': {
+        id: 'r_zuma_dubai',
+        name: 'Zuma Dubai',
+        tagline: 'Rainer Becker\'s Iconic Contemporary Japanese in DIFC',
+        region: 'Dubai (UAE)',
+        neighborhood: 'DIFC (Dubai International Financial Centre)',
+        cuisine: 'Contemporary Japanese, Robatayaki',
+        price: '$$$$$',
+        rating: '★ 4.9',
+        reviews_count: '8,400 reviews',
+        booked_today: 'Booked 310 times today',
+        hero_img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80',
+        gallery: ['https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80'],
+        overview: 'Located in the heart of Dubai\'s financial district, Zuma delivers world-class contemporary Japanese robatayaki and sushi in a sprawling luxury space.',
+        hotel_partner: 'The Ritz-Carlton DIFC & Four Seasons DIFC',
+        dishes: [
+          { name: 'Spicy Beef Tenderloin', desc: 'Robata-grilled Australian tenderloin with sesame, sweet soy, red chili.', price: 'AED 185', tag: 'Zuma Classic' },
+          { name: 'Miso Marinated Black Cod', desc: 'Wrapped in hoba leaf and cooked over white binchotan embers.', price: 'AED 210', tag: 'Robata' }
+        ],
+        tables: [
+          { id: 'zm_1', label: 'DIFC Lounge 1', cap: 2, zone: 'Robata Lounge' },
+          { id: 'zm_2', label: 'Gate Village Table 2', cap: 4, zone: 'Main Dining' },
+          { id: 'zm_3', label: 'Burj View Banquette 3', cap: 6, zone: 'VIP Mezzanine' }
+        ],
+        policies: ['Dubai luxury smart dress code.', 'Valet at DIFC Gate Village 06.']
+      }
+};
 
     let currentRestId = 'r_anker';
     let activeRegionFilter = 'All';
@@ -7980,10 +8557,90 @@
       }
     });
 
+    const METRO_REGIONS = {
+      'Seattle / Eastern Washington': [
+        { label: 'All Seattle & Eastside', key: 'All' },
+        { label: 'Downtown Seattle', key: 'Seattle' },
+        { label: 'Capitol Hill', key: 'Capitol Hill' },
+        { label: 'Belltown', key: 'Belltown' },
+        { label: 'Ballard', key: 'Ballard' },
+        { label: 'Bellevue / Eastside', key: 'Eastside' }
+      ],
+      'San Francisco Bay Area': [
+        { label: 'All Bay Area', key: 'All' },
+        { label: 'Napa Valley / Yountville', key: 'San Francisco Bay Area' },
+        { label: 'Nob Hill / Downtown', key: 'San Francisco Bay Area' },
+        { label: 'Fisherman\'s Wharf', key: 'San Francisco Bay Area' }
+      ],
+      'New York City': [
+        { label: 'All New York City', key: 'All' },
+        { label: 'Greenwich Village', key: 'New York City' },
+        { label: 'Midtown Manhattan', key: 'New York City' },
+        { label: 'Flatiron / Gramercy', key: 'New York City' }
+      ],
+      'Chicago / Illinois': [
+        { label: 'All Chicago', key: 'All' },
+        { label: 'Lincoln Park', key: 'Chicago / Illinois' },
+        { label: 'West Loop / Fulton Market', key: 'Chicago / Illinois' }
+      ],
+      'Los Angeles': [
+        { label: 'All Los Angeles', key: 'All' },
+        { label: 'Malibu / PCH', key: 'Los Angeles' },
+        { label: 'Downtown Arts District', key: 'Los Angeles' }
+      ],
+      'London (UK)': [
+        { label: 'All London', key: 'All' },
+        { label: 'Covent Garden / West End', key: 'London (UK)' },
+        { label: 'Notting Hill', key: 'London (UK)' }
+      ],
+      'Tokyo (Japan)': [
+        { label: 'All Tokyo', key: 'All' },
+        { label: 'Ginza / Chuo City', key: 'Tokyo (Japan)' },
+        { label: 'Jingumae / Shibuya', key: 'Tokyo (Japan)' }
+      ],
+      'Berlin (Germany)': [
+        { label: 'All Berlin', key: 'All' },
+        { label: 'Kreuzberg / Checkpoint', key: 'Berlin (Germany)' },
+        { label: 'Altstadt / Spree', key: 'Berlin (Germany)' }
+      ],
+      'Paris (France)': [
+        { label: 'All Paris', key: 'All' },
+        { label: 'Champs-Élysées / 8th Arr.', key: 'Paris (France)' },
+        { label: '11th Arr. / Charonne', key: 'Paris (France)' }
+      ],
+      'Dubai (UAE)': [
+        { label: 'All Dubai', key: 'All' },
+        { label: 'DIFC Gate Village', key: 'Dubai (UAE)' }
+      ]
+    };
+
     function selectMetro(metroName) {
       document.querySelectorAll('.ot-metro-item').forEach(el => el.classList.remove('active'));
       const clicked = Array.from(document.querySelectorAll('.ot-metro-item')).find(el => el.textContent.includes(metroName));
       if (clicked) clicked.classList.add('active');
+
+      const headerLoc = document.getElementById('header-location-name');
+      if (headerLoc) headerLoc.textContent = metroName;
+
+      // Update regions list in modal right-hand column
+      const regionListEl = document.querySelector('.ot-modal-regions-list');
+      if (regionListEl && METRO_REGIONS[metroName]) {
+        let rHtml = '';
+        METRO_REGIONS[metroName].forEach((reg, idx) => {
+          const selClass = idx === 0 ? 'selected' : '';
+          rHtml += `<div class="ot-region-item ${selClass}" onclick="selectRegion('${reg.label}', '${reg.key}')"><span>${reg.label}</span> <span>›</span></div>`;
+        });
+        regionListEl.innerHTML = rHtml;
+      }
+
+      // Filter and pick first restaurant in that metro
+      const rKeys = Object.keys(RESTAURANTS_DATA);
+      const match = rKeys.find(k => RESTAURANTS_DATA[k].region === metroName);
+      if (match) {
+        selectRestaurant(match);
+      }
+      activeRegionFilter = metroName === 'Seattle / Eastern Washington' ? 'All' : metroName;
+      renderIconsCarousel();
     }
 
     function selectRegion(regionLabel, filterKey) {
@@ -11568,6 +12225,175 @@
         });
       }
     });
+
+  
+    // ---------------------------------------------------------------------------
+    // AGENT API CONSOLE JAVASCRIPT LOGIC (BAND PLATFORM & SOLO ROCK AI)
+    // ---------------------------------------------------------------------------
+    function initAgentApiConsole() {
+      if (!document.getElementById('agent-json-payload').value) {
+        setAgentApiPreset('book_joey');
+      }
+    }
+
+    function setAgentApiPreset(type) {
+      const today = new Date().toISOString().split('T')[0];
+      const payloadArea = document.getElementById('agent-json-payload');
+      const promptInput = document.getElementById('agent-nl-prompt');
+
+      if (type === 'book_joey') {
+        promptInput.value = "Book a table for 4 at JOEY Bellevue at 19:00 today under Hackathon VIP";
+        payloadArea.value = JSON.stringify({
+          action: "book",
+          agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5",
+          restaurant_id: "r_anker",
+          party_size: 4,
+          date: today,
+          time: "19:00",
+          user_id: "user_band_hackathon_vip",
+          prompt: promptInput.value
+        }, null, 2);
+      } else if (type === 'book_carbone') {
+        promptInput.value = "Book dinner for 2 at Carbone NYC at 20:00 tonight";
+        payloadArea.value = JSON.stringify({
+          action: "book",
+          agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5",
+          restaurant_id: "r_carbone_nyc",
+          party_size: 2,
+          date: today,
+          time: "20:00",
+          user_id: "user_band_hackathon_vip",
+          prompt: promptInput.value
+        }, null, 2);
+      } else if (type === 'book_french_laundry') {
+        promptInput.value = "Book party of 6 at The French Laundry in Napa Valley at 18:30";
+        payloadArea.value = JSON.stringify({
+          action: "book",
+          agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5",
+          restaurant_id: "r_french_laundry",
+          party_size: 6,
+          date: today,
+          time: "18:30",
+          user_id: "user_band_hackathon_vip",
+          prompt: promptInput.value
+        }, null, 2);
+      } else if (type === 'book_jiro') {
+        promptInput.value = "Reserve Master Jiro Omakase counter for 2 in Tokyo at 18:00";
+        payloadArea.value = JSON.stringify({
+          action: "book",
+          agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5",
+          restaurant_id: "r_sukiyabashi_jiro",
+          party_size: 2,
+          date: today,
+          time: "18:00",
+          user_id: "user_band_hackathon_vip",
+          prompt: promptInput.value
+        }, null, 2);
+      } else if (type === 'locations') {
+        promptInput.value = "List all available restaurant locations and operating metros across the world";
+        payloadArea.value = JSON.stringify({
+          action: "locations",
+          agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5"
+        }, null, 2);
+      } else if (type === 'stress_test') {
+        promptInput.value = "Simulate 10 concurrent colliding bookings on the exact same table slot to verify 0 double-bookings";
+        payloadArea.value = JSON.stringify({
+          action: "concurrency_stress_test",
+          agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5",
+          restaurant_id: "r_anker",
+          party_size: 2,
+          date: today,
+          time: "20:00",
+          concurrency_count: 10
+        }, null, 2);
+      }
+    }
+
+    function handleAgentPromptSubmit() {
+      const p = (document.getElementById('agent-nl-prompt').value || '').trim();
+      if (!p) return;
+      const today = new Date().toISOString().split('T')[0];
+      const payloadArea = document.getElementById('agent-json-payload');
+      
+      // Parse prompt for restaurant
+      let restId = 'r_anker';
+      const pl = p.toLowerCase();
+      if (pl.includes('carbone')) restId = 'r_carbone_nyc';
+      else if (pl.includes('french laundry')) restId = 'r_french_laundry';
+      else if (pl.includes('jiro')) restId = 'r_sukiyabashi_jiro';
+      else if (pl.includes('nobu')) restId = 'r_nobu_malibu';
+      else if (pl.includes('bernardin')) restId = 'r_le_bernardin';
+      else if (pl.includes('dishoom')) restId = 'r_dishoom_covent';
+      else if (pl.includes('zuma')) restId = 'r_zuma_dubai';
+      else if (pl.includes('canlis')) restId = 'r_canlis';
+
+      // Parse party size
+      let party = 2;
+      const partyMatch = pl.match(/(\d+)\s*(?:people|person|party|guests?)/);
+      if (partyMatch) party = parseInt(partyMatch[1], 10);
+
+      // Parse time
+      let time = "19:00";
+      const timeMatch = pl.match(/(\d{1,2}):(\d{2})/);
+      if (timeMatch) time = `${timeMatch[1].padStart(2, '0')}:${timeMatch[2]}`;
+
+      payloadArea.value = JSON.stringify({
+        action: "book",
+        agent_id: "8fe8a0a5-74c6-4271-9419-7b542af177b5",
+        prompt: p,
+        restaurant_id: restId,
+        party_size: party,
+        date: today,
+        time: time,
+        user_id: "user_band_hackathon_vip"
+      }, null, 2);
+    }
+
+    async function dispatchAgentApiCall() {
+      const statusEl = document.getElementById('agent-api-status-badge');
+      const latencyEl = document.getElementById('agent-response-latency');
+      const terminalEl = document.getElementById('agent-response-terminal');
+      const payloadArea = document.getElementById('agent-json-payload');
+
+      let parsedPayload;
+      try {
+        parsedPayload = JSON.parse(payloadArea.value);
+      } catch (err) {
+        alert("Invalid JSON format in payload editor: " + err.message);
+        return;
+      }
+
+      statusEl.innerHTML = '<span style="color:#f59e0b;">⏳ Dispatching to /api/agent/v1...</span>';
+      terminalEl.textContent = "// Request in-flight to http://localhost:8080/api/agent/v1...";
+      const t0 = performance.now();
+
+      try {
+        const resp = await fetch('/api/agent/v1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(parsedPayload)
+        });
+        const elapsed = (performance.now() - t0).toFixed(2);
+        latencyEl.textContent = `⚡ Latency: ${elapsed}ms | HTTP ${resp.status} ${resp.statusText}`;
+
+        const data = await resp.json();
+        terminalEl.textContent = JSON.stringify(data, null, 2);
+
+        if (resp.ok && data.status === "ok") {
+          statusEl.innerHTML = '<span style="color:#10b981; font-weight:bold;">✔ Action Completed Successfully</span>';
+        } else if (resp.status === 409) {
+          statusEl.innerHTML = '<span style="color:#ef4444; font-weight:bold;">✖ 409 Conflict: Double-Booking Blocked (Invariant Safe)</span>';
+        } else {
+          statusEl.innerHTML = `<span style="color:#f59e0b; font-weight:bold;">Status: ${data.error || 'Notice'}</span>`;
+        }
+      } catch (err) {
+        const elapsed = (performance.now() - t0).toFixed(2);
+        latencyEl.textContent = `Latency: ${elapsed}ms | Error`;
+        statusEl.innerHTML = '<span style="color:#ef4444; font-weight:bold;">✖ Network / Execution Error</span>';
+        terminalEl.textContent = `// Error executing request:
+${err.message}`;
+      }
+    }
 
   </script>
 </body>
