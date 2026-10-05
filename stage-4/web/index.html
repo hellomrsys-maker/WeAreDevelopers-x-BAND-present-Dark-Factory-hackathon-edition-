@@ -3064,6 +3064,155 @@
       line-height: 1.4;
     }
 
+  
+    /* ==========================================================================
+       OPENTABLE DATE PICKER CALENDAR POPOVER & SEARCH SEGMENTS (SCREENSHOT REPLICA)
+       ========================================================================== */
+    .ot-calendar-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      width: 330px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.35);
+      padding: 1.25rem;
+      z-index: 1000;
+      user-select: none;
+      color: #0f172a;
+      animation: popoverFadeIn 0.15s ease-out;
+    }
+
+    @keyframes popoverFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ot-cal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+    }
+
+    .ot-cal-month-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .ot-cal-nav-btn {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 1.35rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .ot-cal-nav-btn:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .ot-cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+
+    .ot-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      row-gap: 4px;
+      column-gap: 2px;
+    }
+
+    .ot-cal-cell {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #1e293b;
+      transition: all 0.15s ease;
+    }
+
+    .ot-cal-cell:hover:not(.muted):not(.selected) {
+      background: #f1f5f9;
+    }
+
+    .ot-cal-cell.muted {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+
+    .ot-cal-cell.muted:hover {
+      background: #f8fafc;
+    }
+
+    .ot-cal-cell.selected {
+      background: #da3743 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 10px rgba(218, 55, 67, 0.4);
+    }
+
+    /* Generic Dropdown Popover (for Time & Party Size) */
+    .ot-dropdown-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 220px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 14px;
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.35);
+      padding: 0.5rem;
+      z-index: 1000;
+      max-height: 280px;
+      overflow-y: auto;
+      color: #0f172a;
+      animation: popoverFadeIn 0.15s ease-out;
+    }
+
+    .ot-dropdown-opt {
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e293b;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s ease;
+    }
+
+    .ot-dropdown-opt:hover {
+      background: #f1f5f9;
+    }
+
+    .ot-dropdown-opt.selected {
+      background: rgba(218, 55, 67, 0.08);
+      color: #da3743;
+    }
+
   </style>
 </head>
 <body>
@@ -3176,21 +3325,64 @@
       <!-- Screenshot 2: Top Reservation Search Bar -->
       <div class="ot-hero-search-container">
         <div class="ot-search-pill-wrapper">
-          <div class="ot-search-segment" onclick="document.getElementById('date-input').focus()">
+          <!-- Segment 1: Date with OpenTable Calendar Popover -->
+          <div class="ot-search-segment" id="ot-date-segment" onclick="toggleCalendarPopover(event)" style="position:relative;">
             <span>📅</span>
-            <span id="pill-date-display">Oct 4</span>
+            <span id="pill-date-display">Oct 5</span>
             <span style="font-size:0.75rem; color:#64748b;">▼</span>
+
+            <!-- Authentic OpenTable Calendar Popover Dropdown -->
+            <div id="ot-calendar-popover" class="ot-calendar-popover" style="display:none;" onclick="event.stopPropagation()">
+              <div class="ot-cal-header">
+                <button type="button" class="ot-cal-nav-btn" onclick="navCalendarMonth(-1)">‹</button>
+                <div class="ot-cal-month-title" id="ot-cal-month-label">October 2026</div>
+                <button type="button" class="ot-cal-nav-btn" onclick="navCalendarMonth(1)">›</button>
+              </div>
+              <div class="ot-cal-weekdays">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+              </div>
+              <div class="ot-cal-grid" id="ot-cal-days-grid">
+                <!-- Dynamically populated by renderCalendarGrid() -->
+              </div>
+            </div>
           </div>
-          <div class="ot-search-segment" onclick="document.getElementById('party-size-input').focus()">
+
+          <!-- Segment 2: Time with Time Picker Popover -->
+          <div class="ot-search-segment" id="ot-time-segment" onclick="toggleTimePopover(event)" style="position:relative;">
             <span>🕒</span>
             <span id="pill-time-display">7:00 PM</span>
             <span style="font-size:0.75rem; color:#64748b;">▼</span>
+
+            <!-- OpenTable Time Popover Dropdown -->
+            <div id="ot-time-popover" class="ot-dropdown-popover" style="display:none;" onclick="event.stopPropagation()">
+              <div class="ot-time-options-list" id="ot-time-options">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
           </div>
-          <div class="ot-search-segment" onclick="document.getElementById('party-size-input').focus()">
+
+          <!-- Segment 3: Party Size with Party Popover -->
+          <div class="ot-search-segment" id="ot-party-segment" onclick="togglePartyPopover(event)" style="position:relative;">
             <span>👥</span>
             <span id="pill-party-display">2 people</span>
             <span style="font-size:0.75rem; color:#64748b;">▼</span>
+
+            <!-- OpenTable Party Size Popover Dropdown -->
+            <div id="ot-party-popover" class="ot-dropdown-popover" style="display:none;" onclick="event.stopPropagation()">
+              <div class="ot-party-options-list">
+                <div class="ot-dropdown-opt" onclick="selectPartySize(1)">1 person</div>
+                <div class="ot-dropdown-opt selected" id="party-opt-2" onclick="selectPartySize(2)">2 people ✓</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(3)">3 people</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(4)">4 people</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(5)">5 people</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(6)">6 people</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(7)">7 people</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(8)">8 people</div>
+                <div class="ot-dropdown-opt" onclick="selectPartySize(10)">Larger party (10+)</div>
+              </div>
+            </div>
           </div>
+
           <div class="ot-search-input-segment">
             <span>🔍</span>
             <input type="text" id="top-search-query" placeholder="Location, Restaurant, or Cuisine" oninput="handleTopSearchInput(this.value)">
@@ -3271,6 +3463,83 @@
         </div>
       </div>
 
+
+      
+      <!-- 'Available for dinner tonight' Section (From User Screenshot Background) -->
+      <div class="ot-lunch-section" style="margin-top:2.5rem; margin-bottom:2rem;">
+        <div class="ot-lunch-header">
+          <h2 class="ot-lunch-title">Available for dinner tonight</h2>
+          <a class="ot-lunch-viewall" onclick="alert('Viewing all Seattle dinner tables available tonight')">View all</a>
+        </div>
+
+        <div class="ot-carousel-wrapper">
+          <button type="button" class="ot-carousel-btn ot-carousel-prev" onclick="document.getElementById('ot-tonight-carousel').scrollBy({left:-300, behavior:'smooth'})">‹</button>
+          <div id="ot-tonight-carousel" class="ot-lunch-carousel">
+            
+            <!-- Card 1: LOCAL Public Eatery (Screenshot Background) -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_communion')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="LOCAL Public Eatery">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked LOCAL Public Eatery')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">LOCAL Public Eatery</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">33 reviews</span></div>
+                  <div class="ot-lunch-meta">Gastro Pub • $$$$ • Capitol Hill</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 9 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_communion', '12:45 AM')">12:45 AM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_communion', '1:00 AM')">1:00 AM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Vendemmia / Le Pichet (Screenshot Background) -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_spinasse')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Le Pichet / Vendemmia">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked Vendemmia')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">Le Pichet & Vendemmia</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">1,410 reviews</span></div>
+                  <div class="ot-lunch-meta">American • $$$$ • Leschi / Madrona...</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 5 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_spinasse', '12:45 AM')">12:45 AM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_spinasse', '1:00 AM')">1:00 AM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Cascina Spinasse -->
+            <div class="ot-lunch-card" onclick="selectRestaurant('r_spinasse')">
+              <div class="ot-lunch-img-wrap">
+                <img class="ot-lunch-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt="Cascina Spinasse">
+                <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked Spinasse')">🔖</div>
+              </div>
+              <div class="ot-lunch-body">
+                <div>
+                  <div class="ot-lunch-name">Cascina Spinasse</div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">4,118 reviews</span></div>
+                  <div class="ot-lunch-meta">Italian • $$$$ • Capitol Hill</div>
+                  <div class="ot-lunch-booked"><span>📈</span> Booked 26 times today</div>
+                </div>
+                <div class="ot-lunch-slots">
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_spinasse', '12:45 AM')">12:45 AM</button>
+                  <button type="button" class="ot-slot-pill-red" onclick="event.stopPropagation(); handleLunchSlotClick('r_spinasse', '1:00 AM')">1:00 AM</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <button type="button" class="ot-carousel-btn ot-carousel-next" onclick="document.getElementById('ot-tonight-carousel').scrollBy({left:300, behavior:'smooth'})">›</button>
+        </div>
+      </div>
 
       <!-- 'Book for lunch' Carousel (Exact Replica from Screenshot Background) -->
       <div class="ot-lunch-section">
@@ -8723,6 +8992,250 @@
         notice.innerHTML = `<strong>🎉 Redemption Confirmed!</strong><br>Reward: <em>${title}</em><br>Voucher Code: <code style="background:#090d16; padding:2px 6px; border-radius:4px; font-weight:800; color:#38bdf8;">${voucher}</code><br><span style="font-size:0.8rem; color:#cbd5e1;">Present this code during your next dining visit or apply at checkout.</span>`;
       }
     }
+
+  
+    // ==========================================================================
+    // OPENTABLE INTERACTIVE CALENDAR & SEARCH POPOVER ENGINE
+    // ==========================================================================
+    let calCurrentYear = 2026;
+    let calCurrentMonth = 9; // October (0-indexed: 9 = October)
+    let calSelectedYear = 2026;
+    let calSelectedMonth = 9;
+    let calSelectedDay = 5; // Oct 5 as in user screenshot
+
+    const monthNamesFull = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const monthNamesShort = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    function toggleCalendarPopover(e) {
+      if (e) e.stopPropagation();
+      closeAllSearchPopovers('calendar');
+      const popover = document.getElementById('ot-calendar-popover');
+      if (!popover) return;
+      if (popover.style.display === 'none' || popover.style.display === '') {
+        renderCalendarGrid();
+        popover.style.display = 'block';
+      } else {
+        popover.style.display = 'none';
+      }
+    }
+
+    function toggleTimePopover(e) {
+      if (e) e.stopPropagation();
+      closeAllSearchPopovers('time');
+      const popover = document.getElementById('ot-time-popover');
+      if (!popover) return;
+      if (popover.style.display === 'none' || popover.style.display === '') {
+        populateTimeOptions();
+        popover.style.display = 'block';
+      } else {
+        popover.style.display = 'none';
+      }
+    }
+
+    function togglePartyPopover(e) {
+      if (e) e.stopPropagation();
+      closeAllSearchPopovers('party');
+      const popover = document.getElementById('ot-party-popover');
+      if (!popover) return;
+      if (popover.style.display === 'none' || popover.style.display === '') {
+        popover.style.display = 'block';
+      } else {
+        popover.style.display = 'none';
+      }
+    }
+
+    function closeAllSearchPopovers(except) {
+      if (except !== 'calendar') {
+        const cal = document.getElementById('ot-calendar-popover');
+        if (cal) cal.style.display = 'none';
+      }
+      if (except !== 'time') {
+        const time = document.getElementById('ot-time-popover');
+        if (time) time.style.display = 'none';
+      }
+      if (except !== 'party') {
+        const party = document.getElementById('ot-party-popover');
+        if (party) party.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#ot-date-segment') && !e.target.closest('#ot-time-segment') && !e.target.closest('#ot-party-segment')) {
+        closeAllSearchPopovers();
+      }
+    });
+
+    function navCalendarMonth(direction) {
+      calCurrentMonth += direction;
+      if (calCurrentMonth > 11) {
+        calCurrentMonth = 0;
+        calCurrentYear += 1;
+      } else if (calCurrentMonth < 0) {
+        calCurrentMonth = 11;
+        calCurrentYear -= 1;
+      }
+      renderCalendarGrid();
+    }
+
+    function renderCalendarGrid() {
+      const label = document.getElementById('ot-cal-month-label');
+      if (label) {
+        label.textContent = `${monthNamesFull[calCurrentMonth]} ${calCurrentYear}`;
+      }
+
+      const grid = document.getElementById('ot-cal-days-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      // First day of current month (0 = Sunday)
+      const firstDay = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
+      // Total days in current month
+      const totalDays = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
+      // Total days in previous month
+      const prevMonthTotalDays = new Date(calCurrentYear, calCurrentMonth, 0).getDate();
+
+      // Pad days from previous month
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const d = prevMonthTotalDays - i;
+        const cell = document.createElement('div');
+        cell.className = 'ot-cal-cell muted';
+        cell.textContent = d;
+        cell.onclick = (e) => {
+          e.stopPropagation();
+          selectCalendarDate(calCurrentYear, calCurrentMonth - 1, d);
+        };
+        grid.appendChild(cell);
+      }
+
+      // Current month days
+      for (let day = 1; day <= totalDays; day++) {
+        const cell = document.createElement('div');
+        cell.className = 'ot-cal-cell';
+        cell.textContent = day;
+
+        // Check if selected
+        if (calCurrentYear === calSelectedYear && calCurrentMonth === calSelectedMonth && day === calSelectedDay) {
+          cell.classList.add('selected');
+        }
+
+        cell.onclick = (e) => {
+          e.stopPropagation();
+          selectCalendarDate(calCurrentYear, calCurrentMonth, day);
+        };
+        grid.appendChild(cell);
+      }
+
+      // Pad days from next month up to 42 cells total (6 rows of 7)
+      const currentCellCount = firstDay + totalDays;
+      const nextMonthPadding = (currentCellCount <= 35) ? (35 - currentCellCount) : (42 - currentCellCount);
+      for (let nextDay = 1; nextDay <= nextMonthPadding; nextDay++) {
+        const cell = document.createElement('div');
+        cell.className = 'ot-cal-cell muted';
+        cell.textContent = nextDay;
+        cell.onclick = (e) => {
+          e.stopPropagation();
+          selectCalendarDate(calCurrentYear, calCurrentMonth + 1, nextDay);
+        };
+        grid.appendChild(cell);
+      }
+    }
+
+    function selectCalendarDate(year, month, day) {
+      // Normalize month/year rollover if clicking muted padding days
+      const dateObj = new Date(year, month, day);
+      calSelectedYear = dateObj.getFullYear();
+      calSelectedMonth = dateObj.getMonth();
+      calSelectedDay = dateObj.getDate();
+      calCurrentYear = calSelectedYear;
+      calCurrentMonth = calSelectedMonth;
+
+      // Update pill display
+      const pillDate = document.getElementById('pill-date-display');
+      if (pillDate) {
+        pillDate.textContent = `${monthNamesShort[calSelectedMonth]} ${calSelectedDay}`;
+      }
+
+      // Sync with hidden/real #date-input
+      const dateInput = document.getElementById('date-input');
+      if (dateInput) {
+        const mStr = String(calSelectedMonth + 1).padStart(2, '0');
+        const dStr = String(calSelectedDay).padStart(2, '0');
+        dateInput.value = `${calSelectedYear}-${mStr}-${dStr}`;
+        dateInput.dispatchEvent(new Event('input', { bubbles: true }));
+        dateInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      // Close popover
+      const popover = document.getElementById('ot-calendar-popover');
+      if (popover) popover.style.display = 'none';
+      renderCalendarGrid();
+    }
+
+    function populateTimeOptions() {
+      const container = document.getElementById('ot-time-options');
+      if (!container) return;
+      container.innerHTML = '';
+      const times = [
+        "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM",
+        "2:00 PM", "2:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",
+        "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM"
+      ];
+      const cur = document.getElementById('pill-time-display').textContent.trim();
+      times.forEach(t => {
+        const opt = document.createElement('div');
+        opt.className = 'ot-dropdown-opt' + (t === cur ? ' selected' : '');
+        opt.innerHTML = `<span>${t}</span> ${t === cur ? '<span>✓</span>' : ''}`;
+        opt.onclick = () => {
+          document.getElementById('pill-time-display').textContent = t;
+          closeAllSearchPopovers();
+        };
+        container.appendChild(opt);
+      });
+    }
+
+    function selectPartySize(num) {
+      const pill = document.getElementById('pill-party-display');
+      if (pill) {
+        pill.textContent = num === 1 ? '1 person' : `${num} people`;
+      }
+      const partyInput = document.getElementById('party-size-input');
+      if (partyInput) {
+        partyInput.value = num;
+        partyInput.dispatchEvent(new Event('input', { bubbles: true }));
+        partyInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      closeAllSearchPopovers();
+    }
+
+    // Sync #date-input changes with custom calendar
+    window.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('date-input');
+      if (dateInput) {
+        dateInput.addEventListener('change', () => {
+          if (dateInput.value) {
+            const parts = dateInput.value.split('-');
+            if (parts.length === 3) {
+              calSelectedYear = parseInt(parts[0], 10);
+              calSelectedMonth = parseInt(parts[1], 10) - 1;
+              calSelectedDay = parseInt(parts[2], 10);
+              calCurrentYear = calSelectedYear;
+              calCurrentMonth = calSelectedMonth;
+              const pillDate = document.getElementById('pill-date-display');
+              if (pillDate) {
+                pillDate.textContent = `${monthNamesShort[calSelectedMonth]} ${calSelectedDay}`;
+              }
+              renderCalendarGrid();
+            }
+          }
+        });
+      }
+    });
 
   </script>
 </body>
