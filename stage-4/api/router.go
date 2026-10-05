@@ -54,7 +54,7 @@ func (r *Router) setupRoutes() {
 	// Web UI Screen routes
 	r.mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		p := req.URL.Path
-		if p != "/" && p != "/login" && p != "/signup" && p != "/lookup" && p != "/admin" && p != "/factory" && p != "/agents" && p != "/telemetry" && p != "/rewards" && p != "/host" && p != "/shifts" && p != "/agent-api" && p != "/client" && p != "/payments" && p != "/payment" && p != "/trajectory" {
+		if p != "/" && p != "/login" && p != "/signup" && p != "/lookup" && p != "/admin" && p != "/factory" && p != "/agents" && p != "/telemetry" && p != "/rewards" && p != "/host" && p != "/shifts" && p != "/agent-api" && p != "/client" && p != "/clients" && p != "/users" && p != "/payments" && p != "/payment" && p != "/trajectory" {
 			WriteError(w, http.StatusNotFound, "not_found", "not found")
 			return
 		}
@@ -72,9 +72,29 @@ func (r *Router) setupRoutes() {
 	r.mux.HandleFunc("/shifts", serveHTML)
 	r.mux.HandleFunc("/agent-api", serveHTML)
 	r.mux.HandleFunc("/client", serveHTML)
+	r.mux.HandleFunc("/clients", serveHTML)
+	r.mux.HandleFunc("/users", serveHTML)
 	r.mux.HandleFunc("/payments", serveHTML)
 	r.mux.HandleFunc("/payment", serveHTML)
 	r.mux.HandleFunc("/trajectory", serveHTML)
+
+	// 100 Virtual Users Fleet & Order Placement API
+	r.mux.HandleFunc("/api/users/fleet", func(w http.ResponseWriter, req *http.Request) {
+		r.payH.ListFleetUsers(w, req)
+	})
+	r.mux.HandleFunc("/api/users/detail", func(w http.ResponseWriter, req *http.Request) {
+		r.payH.GetUserDetail(w, req)
+	})
+	r.mux.HandleFunc("/api/payment/order", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.payH.PlaceOrder(w, req)
+	})
+	r.mux.HandleFunc("/api/payment/orders", func(w http.ResponseWriter, req *http.Request) {
+		r.payH.ListUserOrders(w, req)
+	})
 
 	// Payment & Wallet API endpoints
 	r.mux.HandleFunc("/api/payment/wallet", func(w http.ResponseWriter, req *http.Request) {
