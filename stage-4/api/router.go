@@ -47,7 +47,7 @@ func (r *Router) setupRoutes() {
 
 	// Web UI Screen routes
 	r.mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" && req.URL.Path != "/host" && req.URL.Path != "/shifts" && req.URL.Path != "/agent-api" {
+		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" && req.URL.Path != "/host" && req.URL.Path != "/shifts" && req.URL.Path != "/agent-api" && req.URL.Path != "/client" {
 			WriteError(w, http.StatusNotFound, "not_found", "not found")
 			return
 		}
@@ -64,6 +64,7 @@ func (r *Router) setupRoutes() {
 	r.mux.HandleFunc("/host", serveHTML)
 	r.mux.HandleFunc("/shifts", serveHTML)
 	r.mux.HandleFunc("/agent-api", serveHTML)
+	r.mux.HandleFunc("/client", serveHTML)
 
 	// Autonomous Band Agent API (Single Endpoint)
 	r.mux.Handle("/api/agent/v1", r.agentH)
