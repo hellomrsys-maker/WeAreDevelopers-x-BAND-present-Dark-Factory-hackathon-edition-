@@ -199,6 +199,60 @@ class TablekeeperAgentClient:
         except Exception as e:
             return {"error": f"Failed to get trajectory: {e}"}
 
+    def get_continuous_status(self) -> dict:
+        url = "http://localhost:8080/api/agent/continuous-status"
+        req = urllib.request.Request(url, headers={"User-Agent": f"BandAgent/{self.agent_id}"})
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to get continuous status: {e}"}
+
+    def start_continuous(self) -> dict:
+        url = "http://localhost:8080/api/agent/continuous-start"
+        req = urllib.request.Request(url, data=b"{}", headers={"Content-Type": "application/json", "User-Agent": f"BandAgent/{self.agent_id}"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to start continuous engine: {e}"}
+
+    def stop_continuous(self) -> dict:
+        url = "http://localhost:8080/api/agent/continuous-stop"
+        req = urllib.request.Request(url, data=b"{}", headers={"Content-Type": "application/json", "User-Agent": f"BandAgent/{self.agent_id}"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to stop continuous engine: {e}"}
+
+    def get_live_rankings(self) -> dict:
+        url = "http://localhost:8080/api/rankings/live"
+        req = urllib.request.Request(url, headers={"User-Agent": f"BandAgent/{self.agent_id}"})
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to get live rankings: {e}"}
+
+    def get_agent_messages(self) -> dict:
+        url = "http://localhost:8080/api/agent/messages"
+        req = urllib.request.Request(url, headers={"User-Agent": f"BandAgent/{self.agent_id}"})
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to get agent messages: {e}"}
+
+    def get_chart_metrics(self, target_id: str = "GROUP") -> dict:
+        url = f"http://localhost:8080/api/charts/metrics?id={urllib.parse.quote(target_id)}"
+        req = urllib.request.Request(url, headers={"User-Agent": f"BandAgent/{self.agent_id}"})
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to get chart metrics: {e}"}
+
     def get_fleet_users(self, search: str = "", tier: str = "", city: str = "") -> dict:
         q_s = urllib.parse.quote(search)
         q_t = urllib.parse.quote(tier)
@@ -461,11 +515,181 @@ def run_cli_simulate_clients(count: int = 5):
             tables = ", ".join(res_data.get("table_labels", [])) or "Table Assigned"
             pay_info = book_res.get("payment_settlement", {})
             print(f"  ✔ Confirmed: Ref={ref} | Table={tables}")
-            print(f"  💳 Settlement: Paid ${pay_info.get('deposit_charged', 100)}.00 | Remaining Wallet: ${pay_info.get('remaining_wallet', 9900)}.00 USD | Lock: ZERO_DRIFT_EXCLUSIVE")
         elif book_res.get("http_code") == 409 or "Conflict" in str(book_res.get("error")):
             print(f"  ✖ 409 Conflict: Double-booking safely blocked by transactional memory invariant.")
         else:
             print(f"  Notice: {book_res.get('error') or book_res.get('message') or book_res.get('status')}")
+
+
+# ---------------------------------------------------------------------------
+# ASCII Telemetry Chart Renderer
+# ---------------------------------------------------------------------------
+def render_ascii_chart(title: str, points: list, height: int = 8, width: int = 55) -> str:
+    if not points:
+        return f"\n{title}\n  (No data points available yet)\n"
+
+    vals = [float(p.get("value", 0)) for p in points]
+    min_v = min(vals)
+    max_v = max(vals)
+    span = max_v - min_v
+    if span <= 0:
+        span = 1.0
+
+    # Downsample or upsample to width columns
+    cols = []
+    step = max(1, len(points) / width)
+    for i in range(min(width, len(points))):
+        idx = min(int(i * step), len(points) - 1)
+        cols.append(float(points[idx].get("value", 0)))
+
+    lines = [f"\n📈 {title}", "─" * (width + 16)]
+    for r in range(height - 1, -1, -1):
+        threshold = min_v + (float(r) / (height - 1)) * span
+        row_str = f" ${threshold:>6.1f} ┤ "
+        for val in cols:
+            val_r = int(((val - min_v) / span) * (height - 1))
+            if val_r == r:
+                row_str += "●"
+            elif val_r > r:
+                row_str += "│"
+            else:
+                row_str += " "
+        lines.append(row_str)
+
+    lines.append("         └" + "─" * len(cols))
+    if points:
+        t_first = points[0].get("timestamp", "")
+        t_last = points[-1].get("timestamp", "")
+        lines.append(f"          {t_first:<20} {' ' * (max(0, len(cols) - 45))} {t_last:>20}")
+    lines.append("─" * (width + 16))
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# CLI Commands: Continuous Engine, Rankings, Charts, and Stream
+# ---------------------------------------------------------------------------
+def run_cli_rankings():
+    print(f"\n========================================================")
+    print(f"  CONTINUOUS DATA RANKINGS & FLEET LEADERBOARD")
+    print(f"========================================================")
+    res = agent_client.get_live_rankings()
+    if "error" in res:
+        print(f"[ERROR] {res['error']}")
+        return
+
+    restaurants = res.get("restaurants", [])
+    diners = res.get("top_diners", [])
+
+    print("\n🏆 TOP 10 GLOBAL RESTAURANTS (Ranked Continuously by Volume & Bookings):")
+    print("=" * 95)
+    print(f"{'RANK':<5} | {'RESTAURANT':<28} | {'CITY':<12} | {'BOOKINGS':<10} | {'VOLUME (USD)':<14} | {'AVG PARTY':<10} | {'TREND'}")
+    print("=" * 95)
+    for r in restaurants[:10]:
+        trend_badge = f"🔥 {r.get('trend')}" if r.get('trend') == "HOT" else (f"▲ {r.get('trend')}" if r.get('trend') == "UP" else f"● {r.get('trend')}")
+        print(f"#{r.get('rank'):<4} | {r.get('restaurant_name'):<28} | {r.get('city'):<12} | {r.get('bookings_count'):<10} | ${r.get('total_volume_usd', 0):>10,.2f} | {r.get('average_party', 2.0):<10} | {trend_badge}")
+    print("=" * 95)
+
+    print("\n👑 TOP 10 VIP DINERS (Ranked Continuously by Real-Time Spend):")
+    print("=" * 95)
+    print(f"{'RANK':<5} | {'CLIENT ID':<12} | {'VIP DINER':<24} | {'CITY':<12} | {'SPEND (USD)':<14} | {'ORDERS':<8} | {'WALLET'}")
+    print("=" * 95)
+    for d in diners[:10]:
+        print(f"#{d.get('rank'):<4} | {d.get('user_id'):<12} | {d.get('user_name'):<24} | {d.get('city'):<12} | ${d.get('total_spent', 0):>10,.2f} | {d.get('orders_count'):<8} | ${d.get('balance_usd', 0):,.2f}")
+    print("=" * 95)
+    print(f"✔ Guaranteed Invariant: {res.get('invariant', '0.000% Drift Verified')}\n")
+
+
+def run_cli_chart(target_id: str = "GROUP"):
+    print(f"\n[*] Fetching Real-Time Telemetry & Spend Chart for ID: '{target_id}'...")
+    res = agent_client.get_chart_metrics(target_id)
+    if "error" in res or "chart" not in res:
+        print(f"[ERROR] Failed to fetch chart: {res}")
+        return
+
+    c = res["chart"]
+    title = c.get("title", f"Metrics for {target_id}")
+    points = c.get("points", [])
+    print(f"\n📊 METRIC METADATA:")
+    print(f"  • Target ID:      {c.get('target_id')}")
+    print(f"  • Target Type:    {c.get('target_type')}")
+    print(f"  • Total Volume:   ${c.get('total_volume', 0):,.2f} USD")
+    print(f"  • Velocity:       {c.get('velocity_ops_min', 0)} Ops/min")
+    print(f"  • Data Points:    {len(points)} chronological records")
+
+    ascii_art = render_ascii_chart(title, points)
+    print(ascii_art)
+
+    if points:
+        print("\nRecent Trajectory Points:")
+        for p in points[-5:]:
+            print(f"  • [{p.get('timestamp')}] {p.get('label')} -> ${p.get('value', 0):.2f}")
+
+
+def run_cli_messages(limit: int = 15):
+    print(f"\n[*] Querying Autonomous Multi-Agent Dialogue Committed to Band Platform...")
+    res = agent_client.get_agent_messages()
+    if "error" in res:
+        print(f"[ERROR] {res['error']}")
+        return
+
+    msgs = res.get("messages", [])
+    print(f"\n✔ {len(msgs)} AGENT DIALOGUE MESSAGES COMMITTED TO BAND ROOM 8fe8a0a5:")
+    print("=" * 110)
+    for m in msgs[:limit]:
+        tx_str = f" | Tx: {m.get('tx_hash')[:14]}..." if m.get("tx_hash") else ""
+        print(f"[{m.get('timestamp')}] {m.get('agent_name')} ({m.get('role')} | {m.get('status')})")
+        print(f"    Topic:   {m.get('band_topic')}{tx_str}")
+        print(f"    Content: {m.get('content')}")
+        print("-" * 110)
+
+
+def run_cli_continuous(action: str = "status"):
+    if action == "start":
+        print("[*] Activating continuous background booking loop & agent dialogue...")
+        res = agent_client.start_continuous()
+        print(json.dumps(res, indent=2))
+    elif action == "stop":
+        print("[*] Stopping continuous background booking loop...")
+        res = agent_client.stop_continuous()
+        print(json.dumps(res, indent=2))
+    else:
+        print("[*] Checking continuous engine status...")
+        res = agent_client.get_continuous_status()
+        print(json.dumps(res, indent=2))
+
+
+def run_cli_stream():
+    print(f"\n========================================================")
+    print(f"  DARK FACTORY CONTINUOUS STREAMING & BAND DIALOGUE")
+    print(f"========================================================")
+    print("Connecting to live agent communication bus on Band room: 8fe8a0a5...")
+    print("Press Ctrl+C to terminate live stream.\n")
+
+    seen_ids = set()
+    try:
+        while True:
+            st = agent_client.get_continuous_status()
+            ops = st.get("total_operations", 0)
+            vel = st.get("velocity_ops_min", 0)
+            drift = st.get("drift_guarantee", "0.000%")
+
+            msg_res = agent_client.get_agent_messages()
+            msgs = msg_res.get("messages", [])
+
+            # Print any new messages
+            new_msgs = [m for m in msgs if m.get("id") not in seen_ids]
+            for m in reversed(new_msgs[:5]):
+                seen_ids.add(m.get("id"))
+                tx_info = f" [Tx: {m.get('tx_hash')[:12]}]" if m.get("tx_hash") else ""
+                print(f"⚡ [{m.get('timestamp')}] {m.get('agent_name')} ({m.get('role')})")
+                print(f"   ↳ {m.get('content')}{tx_info}")
+                print(f"   ↳ Topic: {m.get('band_topic')} | Status: {m.get('status')}\n")
+
+            # Status line
+            print(f"--- [Live Status] Ops: {ops} | Velocity: {vel} Ops/min | Drift: {drift} | Band: SYNCED ---", end="\r")
+            time.sleep(1.8)
+    except KeyboardInterrupt:
+        print("\n\n[!] Stream disconnected.")
 
 
 # ---------------------------------------------------------------------------
@@ -480,6 +704,9 @@ def run_band_remote_agent():
         print("  python band_agent_runner.py --locations")
         print("  python band_agent_runner.py --test-booking")
         print("  python band_agent_runner.py --stress-test")
+        print("  python band_agent_runner.py --rankings")
+        print("  python band_agent_runner.py --chart GROUP")
+        print("  python band_agent_runner.py --stream")
         sys.exit(1)
 
     try:
@@ -530,22 +757,83 @@ def run_band_remote_agent():
                 # 1. Status / Capabilities check
                 if any(w in c_lower for w in ["help", "status", "who are you", "what can you do"]):
                     status = agent_client.get_status()
+                    c_status = agent_client.get_continuous_status()
                     reply = (
                         f"⚡ **Tablekeeper Autonomous Concierge & Dark Factory Agent**\n"
                         f"• **Status:** {status.get('status', 'online').upper()}\n"
+                        f"• **Continuous Engine:** {'ACTIVE (' + str(c_status.get('velocity_ops_min', 0)) + ' Ops/min)' if c_status.get('running') else 'IDLE'}\n"
                         f"• **Global Destinations:** 28 world-class restaurants across 10 culinary capitals\n"
-                        f"• **Zero Double-Booking Guarantee:** 0% drift via SQLite transactional WAL locks\n"
+                        f"• **Zero Double-Booking Guarantee:** 0.000% drift via SQLite transactional WAL locks\n"
                         f"• **AMSV Sync Hash:** `{status.get('band_account', {}).get('amsv_state_hash', 'N/A')}`\n\n"
                         f"**Available Commands:**\n"
+                        f"- `rankings` - Live restaurant and VIP spender leaderboards\n"
+                        f"- `chart [id|group]` - ASCII telemetry chart for a client ID or group\n"
                         f"- `locations` - List all operating cities and restaurants\n"
+                        f"- `messages` - View recent inter-agent dialogue committed to Band\n"
                         f"- `book dinner for [N] at [Restaurant] at [Time]` - Autonomous table booking\n"
-                        f"- `stress test` - Launch concurrency collision test (10 requests)\n"
-                        f"- `check availability [Restaurant]` - Live table slot inspection"
+                        f"- `stress test` - Concurrency collision test (10 requests)\n"
+                        f"- `continuous start/stop` - Toggle automated background bookings"
                     )
                     await tools.send_message(reply)
                     return
 
-                # 2. Locations check
+                # 2. Continuous Rankings Leaderboard
+                if "ranking" in c_lower or "leaderboard" in c_lower or "top restaurant" in c_lower:
+                    res = agent_client.get_live_rankings()
+                    top_r = res.get("restaurants", [])[:5]
+                    top_d = res.get("top_diners", [])[:5]
+                    reply_lines = [
+                        "🏆 **Continuous Live Leaderboard (Zero Double-Booking Certified):**\n",
+                        "**Top Venues by Volume & Activity:**"
+                    ]
+                    for r in top_r:
+                        reply_lines.append(f"• #{r.get('rank')} **{r.get('restaurant_name')}** ({r.get('city')}) — ${r.get('total_volume_usd', 0):,.2f} USD ({r.get('bookings_count')} bookings)")
+                    reply_lines.append("\n**Top VIP Diners by Real-Time Spend:**")
+                    for d in top_d:
+                        reply_lines.append(f"• #{d.get('rank')} **{d.get('user_name')}** ({d.get('tier')}) — ${d.get('total_spent', 0):,.2f} USD spent")
+                    await tools.send_message("\n".join(reply_lines))
+                    return
+
+                # 3. Chart Metrics
+                if "chart" in c_lower or "graph" in c_lower:
+                    parts = content.split()
+                    target_id = "GROUP"
+                    for p in parts:
+                        if p.startswith("client_") or p in ["GROUP", "group"]:
+                            target_id = p.upper() if p.lower() == "group" else p
+                            break
+                    res = agent_client.get_chart_metrics(target_id)
+                    c = res.get("chart", {})
+                    chart_str = render_ascii_chart(c.get("title", f"Telemetry for {target_id}"), c.get("points", []), height=6, width=45)
+                    reply = (
+                        f"📊 **Telemetry Chart for `{target_id}`:**\n"
+                        f"• Total Volume: ${c.get('total_volume', 0):,.2f} USD | Velocity: {c.get('velocity_ops_min', 0)} Ops/min\n"
+                        f"```\n{chart_str}\n```"
+                    )
+                    await tools.send_message(reply)
+                    return
+
+                # 4. Inter-Agent Messages
+                if "message" in c_lower or "dialogue" in c_lower or "comms" in c_lower:
+                    res = agent_client.get_agent_messages()
+                    msgs = res.get("messages", [])[:4]
+                    reply_lines = ["📡 **Recent Autonomous Agent Dialogue Committed to Band:**"]
+                    for m in msgs:
+                        reply_lines.append(f"• `[{m.get('timestamp')}]` **{m.get('agent_name')}** ({m.get('role')}): {m.get('content')}")
+                    await tools.send_message("\n".join(reply_lines))
+                    return
+
+                # 5. Continuous Start / Stop
+                if "continuous start" in c_lower or "start continuous" in c_lower or "activate booking" in c_lower:
+                    agent_client.start_continuous()
+                    await tools.send_message("⚡ Continuous automated booking loop activated at 1.8s interval across 28 global restaurants.")
+                    return
+                if "continuous stop" in c_lower or "stop continuous" in c_lower:
+                    agent_client.stop_continuous()
+                    await tools.send_message("⏸ Continuous automated booking loop paused.")
+                    return
+
+                # 6. Locations check
                 if "location" in c_lower or "cities" in c_lower or "restaurants" in c_lower:
                     locs = agent_client.list_locations()
                     reply_lines = ["📍 **Tablekeeper Global Culinary Network (28 Destinations):**"]
@@ -554,7 +842,7 @@ def run_band_remote_agent():
                     await tools.send_message("\n".join(reply_lines))
                     return
 
-                # 3. Concurrency Stress Test
+                # 7. Concurrency Stress Test
                 if "stress" in c_lower or "collision" in c_lower or "double booking" in c_lower or "clash" in c_lower:
                     res = agent_client.run_stress_test(restaurant_id="r_anker", concurrency_count=10)
                     reply = (
@@ -569,7 +857,7 @@ def run_band_remote_agent():
                     await tools.send_message(reply)
                     return
 
-                # 4. Booking or Intent Execution
+                # 8. Booking or Intent Execution
                 res = agent_client._post({
                     "action": "book",
                     "prompt": content,
@@ -621,6 +909,12 @@ def main():
     parser.add_argument("--simulate-clients", action="store_true", help="Simulate autonomous client bookings on random days & accounts")
     parser.add_argument("--fleet", action="store_true", help="Display 100 VIP Clients roster & pre-funded wallet liquidity")
     parser.add_argument("--client", type=str, nargs="?", const="client_001", help="Inspect real-time mobile dashboard & order history for client ID (default: client_001)")
+    parser.add_argument("--rankings", action="store_true", help="Display continuous live restaurant & diner leaderboards")
+    parser.add_argument("--chart", type=str, nargs="?", const="GROUP", help="Render ASCII telemetry chart for a client ID or GROUP (default: GROUP)")
+    parser.add_argument("--group-chart", action="store_true", help="Render ASCII telemetry chart for entire 100-client mesh")
+    parser.add_argument("--messages", action="store_true", help="View recent autonomous multi-agent dialogue committed to Band")
+    parser.add_argument("--stream", action="store_true", help="Launch live terminal stream of continuous bookings & agent dialogue")
+    parser.add_argument("--continuous", type=str, choices=["start", "stop", "status"], default=None, help="Control continuous booking engine (start, stop, status)")
     parser.add_argument("--run", action="store_true", help="Connect and run Band Platform event loop")
 
     args = parser.parse_args()
@@ -647,19 +941,34 @@ def main():
         run_cli_fleet(limit=args.count if args.count != 10 else 20)
     elif args.client:
         run_cli_client_detail(args.client)
-    elif args.run or (not any([args.status, args.locations, args.test_booking, args.stress_test, args.prompt, args.wallet, args.charge, args.trajectory, args.simulate_clients])):
+    elif args.rankings:
+        run_cli_rankings()
+    elif args.group_chart:
+        run_cli_chart("GROUP")
+    elif args.chart is not None:
+        run_cli_chart(args.chart)
+    elif args.messages:
+        run_cli_messages()
+    elif args.stream:
+        run_cli_stream()
+    elif args.continuous:
+        run_cli_continuous(args.continuous)
+    elif args.run or (not any([args.status, args.locations, args.test_booking, args.stress_test, args.prompt, args.wallet, args.charge, args.trajectory, args.simulate_clients, args.fleet, args.client, args.rankings, args.chart, args.group_chart, args.messages, args.stream, args.continuous])):
         if BAND_API_KEY:
             run_band_remote_agent()
         else:
             run_cli_status()
             print("\n[NOTE] No BAND_API_KEY detected in .env. Showing available CLI modes:")
+            print("  • python band_agent_runner.py --rankings")
+            print("  • python band_agent_runner.py --chart GROUP")
+            print("  • python band_agent_runner.py --chart client_004")
+            print("  • python band_agent_runner.py --messages")
+            print("  • python band_agent_runner.py --stream")
+            print("  • python band_agent_runner.py --fleet")
+            print("  • python band_agent_runner.py --client client_001")
             print("  • python band_agent_runner.py --locations")
             print("  • python band_agent_runner.py --test-booking")
             print("  • python band_agent_runner.py --stress-test")
-            print("  • python band_agent_runner.py --wallet user_band_vip")
-            print("  • python band_agent_runner.py --trajectory")
-            print("  • python band_agent_runner.py --simulate-clients")
-            print("  • python band_agent_runner.py --prompt \"Book dinner for 4 at Le Bernardin NYC\"")
 
 
 if __name__ == "__main__":

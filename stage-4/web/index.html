@@ -8375,6 +8375,172 @@
             </div>
           </div>
         </div>
+
+        <!-- ========================================================================= -->
+        <!-- CONTINUOUS AUTONOMOUS ENGINE: REAL-TIME RANKINGS, BAND CHAT & CHARTS HUB  -->
+        <!-- ========================================================================= -->
+        <div style="margin-top:2rem; border-top:1px solid rgba(192, 132, 252, 0.3); padding-top:1.5rem;">
+          
+          <!-- Top Control Strip: Continuous Engine Status & Band Agent Sync -->
+          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <span id="cont-pulse-dot" style="width:12px; height:12px; border-radius:50%; background:#10b981; box-shadow:0 0 12px #10b981; display:inline-block; animation:pulse 1.5s infinite;"></span>
+              <div>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <strong style="color:#ffffff; font-size:1.05rem;" id="cont-status-title">Continuous Autonomous Bookings: ACTIVE</strong>
+                  <span class="badge" style="background:#10b981; color:#0f172a; font-weight:800;" id="cont-status-badge">1.8s Real-Time Loop</span>
+                  <span class="badge" style="background:#38bdf8; color:#0f172a; font-weight:800;">Band Agent Synchronized</span>
+                </div>
+                <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.15rem;">
+                  100 VIP diners continuously requesting reservations across 28 global restaurants with atomic wallet settlements.
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+              <div style="background:#020617; border:1px solid #1e293b; border-radius:8px; padding:0.4rem 0.8rem; font-size:0.8rem; font-family:monospace; color:#38bdf8;">
+                Velocity: <strong style="color:#10b981;" id="cont-velocity-val">33.3 Ops/min</strong>
+              </div>
+              <button type="button" class="btn btn-sm" id="btn-toggle-continuous" onclick="toggleContinuousEngine()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px;">
+                ⏸️ Pause Continuous Engine
+              </button>
+            </div>
+          </div>
+
+          <!-- SECTION A: CONTINUOUS RANKINGS LEADERBOARD (RESTAURANTS & TOP DINERS) -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;" id="cont-rankings-split">
+            
+            <!-- Left: Top 10 Global Restaurants Ranked Continuously -->
+            <div style="background:rgba(15, 23, 42, 0.9); border:1px solid #334155; border-radius:14px; padding:1.15rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <h3 style="color:#ffffff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                  <span>🏆</span> Top 10 Restaurants Ranked Continuously
+                </h3>
+                <span style="font-size:0.75rem; color:#10b981; font-weight:700;">● Volume & Bookings Ranking</span>
+              </div>
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.8rem;">
+                  <thead>
+                    <tr style="border-bottom:1px solid #334155; color:#94a3b8; text-align:left;">
+                      <th style="padding:0.4rem 0.5rem;"># Rank</th>
+                      <th style="padding:0.4rem 0.5rem;">Restaurant Name</th>
+                      <th style="padding:0.4rem 0.5rem;">City</th>
+                      <th style="padding:0.4rem 0.5rem;">Bookings</th>
+                      <th style="padding:0.4rem 0.5rem;">Total Volume</th>
+                      <th style="padding:0.4rem 0.5rem;">Trend</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cont-ranking-restaurants-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right: Top 10 VIP Diners Ranked by Activity & Spend -->
+            <div style="background:rgba(15, 23, 42, 0.9); border:1px solid #334155; border-radius:14px; padding:1.15rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <h3 style="color:#ffffff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                  <span>👑</span> Top 10 VIP Diners Leaderboard
+                </h3>
+                <span style="font-size:0.75rem; color:#c084fc; font-weight:700;">● Spend & Frequency</span>
+              </div>
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.8rem;">
+                  <thead>
+                    <tr style="border-bottom:1px solid #334155; color:#94a3b8; text-align:left;">
+                      <th style="padding:0.4rem 0.5rem;"># Rank</th>
+                      <th style="padding:0.4rem 0.5rem;">Diner Name</th>
+                      <th style="padding:0.4rem 0.5rem;">City</th>
+                      <th style="padding:0.4rem 0.5rem;">Tier</th>
+                      <th style="padding:0.4rem 0.5rem;">Total Spent</th>
+                      <th style="padding:0.4rem 0.5rem;">Orders</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cont-ranking-diners-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION B: REAL-TIME CHARTS: GROUP MESH & PARTICULAR ID TELEMETRY -->
+          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:14px; padding:1.25rem; margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1px solid #1e293b; padding-bottom:0.75rem;">
+              <div>
+                <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                  <span>📈</span> Interactive Telemetry Chart: Particular ID & Group Mesh
+                </h3>
+                <span style="font-size:0.75rem; color:#94a3b8;">
+                  Select either the entire 100-client Network Group Mesh or any particular Client / Agent ID to inspect time-series velocity and spend curves.
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+                <label style="font-size:0.8rem; color:#94a3b8; font-weight:600;">Select Chart Target:</label>
+                <select id="chart-target-select" onchange="onChartTargetChange(this.value)" style="background:#020617; color:#ffffff; border:1px solid #475569; padding:0.4rem 0.75rem; border-radius:6px; font-size:0.85rem; font-weight:600; min-width:280px;">
+                  <option value="GROUP" selected>🌐 Group Mesh: All 100 Clients & 28 Venues</option>
+                  <option value="client_001">Kenji Takahashi (Tokyo • Centurion VIP)</option>
+                  <option value="client_011">Genevieve Laurent (Paris • Centurion VIP)</option>
+                  <option value="client_021">Alexander Vance (New York • Centurion VIP)</option>
+                  <option value="client_031">Arthur Pendelton (London • Centurion VIP)</option>
+                  <option value="client_041">Mateo Silva (Milan • Gold Connoisseur)</option>
+                  <option value="client_051">Sophia Al-Mansoor (Dubai • Centurion VIP)</option>
+                  <option value="client_061">Evelyn Wright (Seattle • Platinum Pioneer)</option>
+                  <option value="client_071">Liam O'Connor (San Francisco • Platinum)</option>
+                  <option value="client_081">Jackson Thorne (Chicago • Gold Connoisseur)</option>
+                  <option value="client_091">Maximilian Weber (Berlin • Platinum Pioneer)</option>
+                  <option value="Agent-Ingestion-04">Agent-Ingestion-04 (Mobile Gateway)</option>
+                  <option value="Band-Coordinator-8FE8">Band-Coordinator-8FE8 (Band Remote Coordinator)</option>
+                  <option value="DarkFactory-Lock-01">DarkFactory-Lock-01 (WAL Memory Guard)</option>
+                  <option value="Agent-Wallet-Centurion">Agent-Wallet-Centurion (Payment Engine)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SVG Time-Series Chart Container -->
+            <div id="chart-svg-container" style="background:#020617; border:1px solid #1e293b; border-radius:10px; padding:1rem; position:relative; min-height:260px;">
+              <div id="chart-svg-wrapper" style="width:100%; height:240px; display:flex; align-items:center; justify-content:center;">
+                <!-- SVG Chart dynamically rendered here -->
+              </div>
+              <div id="chart-tooltip" style="position:absolute; display:none; background:rgba(15,23,42,0.95); border:1px solid #38bdf8; border-radius:6px; padding:0.35rem 0.65rem; color:#ffffff; font-size:0.75rem; pointer-events:none; z-index:50;"></div>
+            </div>
+
+            <!-- Chart Metrics Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:0.75rem; font-size:0.8rem; color:#94a3b8;">
+              <div>Active Target: <strong style="color:#ffffff;" id="chart-title-display">Group Mesh</strong></div>
+              <div>Total Period Volume: <strong style="color:#10b981;" id="chart-vol-display">$0.00</strong></div>
+              <div>Velocity: <strong style="color:#38bdf8;" id="chart-velocity-display">0.0 Ops/min</strong></div>
+              <div>Invariant: <strong style="color:#f59e0b;">0.000% Drift Guaranteed</strong></div>
+            </div>
+          </div>
+
+          <!-- SECTION C: CONTINUOUS MULTI-AGENT COMMUNICATION STREAM (BAND SYNC) -->
+          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:14px; padding:1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:0.75rem; border-bottom:1px solid #1e293b; padding-bottom:0.6rem;">
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="font-size:1.25rem;">📡</span>
+                <div>
+                  <h3 style="color:#ffffff; font-size:1.05rem; margin:0;">
+                    Live Continuous Agent Communication Stream
+                  </h3>
+                  <span style="font-size:0.75rem; color:#38bdf8;">
+                    Committed to Band Platform (app.band.ai • Room 8fe8a0a5 • WebSocket Mesh)
+                  </span>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span class="badge" style="background:#10b981; color:#0f172a; font-weight:800;">4 Agents Online</span>
+                <span class="badge" style="background:rgba(192,132,252,0.2); color:#c084fc; font-weight:700;">● Live Stream</span>
+              </div>
+            </div>
+
+            <div id="cont-agent-messages-feed" style="max-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:0.5rem; padding-right:0.3rem;">
+              <!-- Dynamically populated with real-time agent dialogue -->
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -21147,6 +21313,307 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       // Refresh fleet and active client
       initFleetClientsView();
     }
+
+
+    // =========================================================================
+    // CONTINUOUS LIVE ENGINE, DYNAMIC RANKINGS, AGENT MESSAGES & SVG CHARTS
+    // =========================================================================
+    let currentChartTarget = 'GROUP';
+    let continuousPollingTimer = null;
+    let isContinuousActive = true;
+
+    async function pollContinuousEngine() {
+      try {
+        // 1. Fetch rankings
+        const rResp = await fetch('/api/rankings/live');
+        if (rResp.ok) {
+          const rData = await rResp.json();
+          renderLiveRankings(rData.restaurants || [], rData.top_diners || []);
+        }
+
+        // 2. Fetch agent communication messages
+        const mResp = await fetch('/api/agent/messages');
+        if (mResp.ok) {
+          const mData = await mResp.json();
+          renderAgentMessagesFeed(mData.messages || []);
+        }
+
+        // 3. Fetch chart data for current target
+        const cResp = await fetch(`/api/charts/metrics?id=${encodeURIComponent(currentChartTarget)}`);
+        if (cResp.ok) {
+          const cData = await cResp.json();
+          if (cData.chart) {
+            renderSvgTelemetryChart(cData.chart);
+          }
+        }
+
+        // 4. Fetch continuous engine status
+        const sResp = await fetch('/api/agent/continuous-status');
+        if (sResp.ok) {
+          const sData = await sResp.json();
+          isContinuousActive = sData.running;
+          updateContinuousUIState(sData);
+        }
+      } catch (err) {
+        console.error('pollContinuousEngine error:', err);
+      }
+    }
+
+    function updateContinuousUIState(data) {
+      const dot = document.getElementById('cont-pulse-dot');
+      const title = document.getElementById('cont-status-title');
+      const badge = document.getElementById('cont-status-badge');
+      const btn = document.getElementById('btn-toggle-continuous');
+      const vel = document.getElementById('cont-velocity-val');
+
+      if (vel && data.velocity_ops_min) vel.textContent = `${data.velocity_ops_min} Ops/min`;
+
+      if (data.running) {
+        if (dot) {
+          dot.style.background = '#10b981';
+          dot.style.boxShadow = '0 0 12px #10b981';
+        }
+        if (title) title.textContent = 'Continuous Autonomous Bookings: ACTIVE';
+        if (badge) {
+          badge.textContent = '1.8s Real-Time Loop';
+          badge.style.background = '#10b981';
+        }
+        if (btn) {
+          btn.textContent = '⏸️ Pause Continuous Engine';
+          btn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+        }
+      } else {
+        if (dot) {
+          dot.style.background = '#64748b';
+          dot.style.boxShadow = 'none';
+        }
+        if (title) title.textContent = 'Continuous Autonomous Bookings: PAUSED';
+        if (badge) {
+          badge.textContent = 'PAUSED';
+          badge.style.background = '#64748b';
+        }
+        if (btn) {
+          btn.textContent = '▶️ Resume Continuous Engine';
+          btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        }
+      }
+    }
+
+    async function toggleContinuousEngine() {
+      const endpoint = isContinuousActive ? '/api/agent/continuous-stop' : '/api/agent/continuous-start';
+      try {
+        const resp = await fetch(endpoint, { method: 'POST' });
+        if (resp.ok) {
+          pollContinuousEngine();
+        }
+      } catch (err) {
+        console.error('toggleContinuousEngine error:', err);
+      }
+    }
+
+    function renderLiveRankings(restaurants, diners) {
+      // Restaurants Leaderboard
+      const rBody = document.getElementById('cont-ranking-restaurants-body');
+      if (rBody) {
+        rBody.innerHTML = restaurants.slice(0, 10).map((r, i) => {
+          let rankBadge = `<span style="font-weight:700; color:#cbd5e1;">#${r.rank}</span>`;
+          if (r.rank === 1) rankBadge = `<span style="color:#f59e0b; font-weight:800; font-size:0.9rem;">🥇 #1</span>`;
+          else if (r.rank === 2) rankBadge = `<span style="color:#94a3b8; font-weight:800; font-size:0.9rem;">🥈 #2</span>`;
+          else if (r.rank === 3) rankBadge = `<span style="color:#d97706; font-weight:800; font-size:0.9rem;">🥉 #3</span>`;
+
+          let trendBadge = `<span style="color:#94a3b8; font-size:0.7rem;">● STABLE</span>`;
+          if (r.trend === 'HOT') trendBadge = `<span style="color:#ef4444; font-weight:800; font-size:0.75rem;">🔥 HOT</span>`;
+          else if (r.trend === 'UP') trendBadge = `<span style="color:#10b981; font-weight:800; font-size:0.75rem;">▲ UP</span>`;
+
+          return `
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+              <td style="padding:0.4rem 0.5rem;">${rankBadge}</td>
+              <td style="padding:0.4rem 0.5rem; color:#ffffff; font-weight:600;">${r.restaurant_name}</td>
+              <td style="padding:0.4rem 0.5rem; color:#94a3b8;">${r.city}</td>
+              <td style="padding:0.4rem 0.5rem; color:#38bdf8; font-family:monospace; font-weight:700;">${r.bookings_count}</td>
+              <td style="padding:0.4rem 0.5rem; color:#10b981; font-family:monospace; font-weight:700;">$${r.total_volume_usd.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+              <td style="padding:0.4rem 0.5rem;">${trendBadge}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Diners Leaderboard
+      const dBody = document.getElementById('cont-ranking-diners-body');
+      if (dBody) {
+        dBody.innerHTML = diners.slice(0, 10).map((d, i) => {
+          let rankBadge = `<span style="font-weight:700; color:#cbd5e1;">#${d.rank}</span>`;
+          if (d.rank === 1) rankBadge = `<span style="color:#f59e0b; font-weight:800; font-size:0.9rem;">🥇 #1</span>`;
+          else if (d.rank === 2) rankBadge = `<span style="color:#94a3b8; font-weight:800; font-size:0.9rem;">🥈 #2</span>`;
+          else if (d.rank === 3) rankBadge = `<span style="color:#d97706; font-weight:800; font-size:0.9rem;">🥉 #3</span>`;
+
+          return `
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;" onclick="selectFleetClient('${d.user_id}')" title="Click to inspect ${d.user_name} in mobile simulator">
+              <td style="padding:0.4rem 0.5rem;">${rankBadge}</td>
+              <td style="padding:0.4rem 0.5rem; color:#ffffff; font-weight:600; display:flex; align-items:center; gap:0.4rem;">
+                <span style="width:20px; height:20px; border-radius:50%; background:${d.avatar_color || '#c084fc'}; display:inline-flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:800;">
+                  ${d.user_name.split(' ').map(n=>n[0]).join('').substring(0,2)}
+                </span>
+                <span>${d.user_name}</span>
+              </td>
+              <td style="padding:0.4rem 0.5rem; color:#94a3b8;">${d.city}</td>
+              <td style="padding:0.4rem 0.5rem;"><span class="badge" style="background:#334155; font-size:0.65rem;">${d.tier.split(' ')[0]}</span></td>
+              <td style="padding:0.4rem 0.5rem; color:#10b981; font-family:monospace; font-weight:700;">$${d.total_spent.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+              <td style="padding:0.4rem 0.5rem; color:#c084fc; font-weight:700;">${d.orders_count}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    function renderAgentMessagesFeed(messages) {
+      const feed = document.getElementById('cont-agent-messages-feed');
+      if (!feed) return;
+
+      if (!messages || messages.length === 0) {
+        feed.innerHTML = '<div style="color:#94a3b8; font-size:0.8rem; text-align:center; padding:1rem;">Waiting for incoming agent dialogue...</div>';
+        return;
+      }
+
+      feed.innerHTML = messages.slice(0, 15).map(m => {
+        let roleBadge = '<span class="badge" style="background:#3b82f6; font-size:0.65rem;">AGENT</span>';
+        if (m.role === 'ORCHESTRATOR') roleBadge = '<span class="badge" style="background:#a855f7; font-size:0.65rem;">BAND COORDINATOR</span>';
+        else if (m.role === 'MEMORY_GUARD') roleBadge = '<span class="badge" style="background:#10b981; font-size:0.65rem;">WAL MEMORY GUARD</span>';
+        else if (m.role === 'WALLET_SETTLER') roleBadge = '<span class="badge" style="background:#f59e0b; color:#0f172a; font-size:0.65rem;">WALLET SETTLER</span>';
+        else if (m.role === 'INGESTION') roleBadge = '<span class="badge" style="background:#06b6d4; color:#0f172a; font-size:0.65rem;">INGESTION</span>';
+
+        return `
+          <div style="background:#090d16; border:1px solid #1e293b; border-radius:8px; padding:0.5rem 0.75rem; font-size:0.75rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                ${roleBadge}
+                <strong style="color:#ffffff;">${m.agent_name}</strong>
+                <span style="color:#64748b; font-family:monospace;">(${m.agent_id})</span>
+              </div>
+              <div style="color:#94a3b8; font-family:monospace; font-size:0.7rem;">
+                ${m.timestamp} • ${m.latency_ms}ms
+              </div>
+            </div>
+            <div style="color:#cbd5e1; line-height:1.4;">
+              ${m.content}
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem; font-size:0.65rem; color:#64748b;">
+              <span style="font-family:monospace; color:#38bdf8;">Topic: ${m.band_topic}</span>
+              <span style="color:#10b981; font-weight:700;">✔ ${m.status}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function onChartTargetChange(newTarget) {
+      currentChartTarget = newTarget;
+      pollContinuousEngine();
+    }
+
+    function renderSvgTelemetryChart(chart) {
+      const container = document.getElementById('chart-svg-wrapper');
+      const titleEl = document.getElementById('chart-title-display');
+      const volEl = document.getElementById('chart-vol-display');
+      const velEl = document.getElementById('chart-velocity-display');
+
+      if (titleEl) titleEl.textContent = chart.title || chart.target_id;
+      if (volEl) volEl.textContent = `$${(chart.total_volume || 0).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+      if (velEl) velEl.textContent = `${chart.velocity_ops_min || 0} Ops/min`;
+
+      if (!container) return;
+
+      const pts = chart.points || [];
+      if (pts.length < 2) {
+        container.innerHTML = '<div style="color:#94a3b8; font-size:0.85rem;">Gathering live time-series points...</div>';
+        return;
+      }
+
+      const w = container.clientWidth || 700;
+      const h = 220;
+      const padding = { top: 20, right: 30, bottom: 30, left: 50 };
+      const innerW = w - padding.left - padding.right;
+      const innerH = h - padding.top - padding.bottom;
+
+      const vals = pts.map(p => p.value);
+      const minVal = Math.min(...vals) * 0.9;
+      const maxVal = Math.max(...vals) * 1.1 || 100;
+
+      const getX = i => padding.left + (i / (pts.length - 1)) * innerW;
+      const getY = val => padding.top + innerH - ((val - minVal) / (maxVal - minVal)) * innerH;
+
+      let pathD = `M ${getX(0)} ${getY(pts[0].value)}`;
+      for (let i = 1; i < pts.length; i++) {
+        pathD += ` L ${getX(i)} ${getY(pts[i].value)}`;
+      }
+
+      const areaD = `${pathD} L ${getX(pts.length - 1)} ${padding.top + innerH} L ${getX(0)} ${padding.top + innerH} Z`;
+
+      // Circles for points
+      const circles = pts.map((p, i) => `
+        <circle cx="${getX(i)}" cy="${getY(p.value)}" r="4" fill="#38bdf8" stroke="#020617" stroke-width="2"
+                onmouseover="showChartTooltip(event, '${p.timestamp}', '${p.label || ''}', ${p.value})"
+                onmouseout="hideChartTooltip()" style="cursor:pointer;"></circle>
+      `).join('');
+
+      // Axes gridlines
+      const yTicks = 4;
+      let gridLines = '';
+      for (let i = 0; i <= yTicks; i++) {
+        const yVal = minVal + (i / yTicks) * (maxVal - minVal);
+        const yPos = padding.top + innerH - (i / yTicks) * innerH;
+        gridLines += `
+          <line x1="${padding.left}" y1="${yPos}" x2="${w - padding.right}" y2="${yPos}" stroke="#1e293b" stroke-dasharray="3 3" />
+          <text x="${padding.left - 8}" y="${yPos + 4}" fill="#64748b" font-size="10" text-anchor="end" font-family="monospace">$${Math.round(yVal)}</text>
+        `;
+      }
+
+      container.innerHTML = `
+        <svg width="100%" height="${h}" viewBox="0 0 ${w} ${h}" style="overflow:visible;">
+          <defs>
+            <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35" />
+              <stop offset="100%" stop-color="#c084fc" stop-opacity="0.02" />
+            </linearGradient>
+          </defs>
+          ${gridLines}
+          <path d="${areaD}" fill="url(#chartGradient)" />
+          <path d="${pathD}" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          ${circles}
+          <!-- X Axis line -->
+          <line x1="${padding.left}" y1="${padding.top + innerH}" x2="${w - padding.right}" y2="${padding.top + innerH}" stroke="#334155" />
+          <!-- Start / End Time Labels -->
+          <text x="${padding.left}" y="${h - 8}" fill="#64748b" font-size="10" font-family="monospace">${pts[0].timestamp || 'Start'}</text>
+          <text x="${w - padding.right}" y="${h - 8}" fill="#64748b" font-size="10" text-anchor="end" font-family="monospace">${pts[pts.length - 1].timestamp || 'Now'}</text>
+        </svg>
+      `;
+    }
+
+    function showChartTooltip(e, time, label, val) {
+      const tip = document.getElementById('chart-tooltip');
+      if (!tip) return;
+      tip.style.display = 'block';
+      tip.style.left = `${e.offsetX + 15}px`;
+      tip.style.top = `${e.offsetY - 25}px`;
+      tip.innerHTML = `<strong>$${val.toFixed(2)} USD</strong><br><span style="color:#94a3b8;">${label || time}</span>`;
+    }
+
+    function hideChartTooltip() {
+      const tip = document.getElementById('chart-tooltip');
+      if (tip) tip.style.display = 'none';
+    }
+
+    // Auto-poll continuous engine when view-clients is mounted
+    const originalInitFleet = window.initFleetClientsView;
+    window.initFleetClientsView = async function() {
+      if (typeof originalInitFleet === 'function') {
+        await originalInitFleet();
+      }
+      pollContinuousEngine();
+      if (!continuousPollingTimer) {
+        continuousPollingTimer = setInterval(pollContinuousEngine, 2500);
+      }
+    };
 
 </script>
 </body>

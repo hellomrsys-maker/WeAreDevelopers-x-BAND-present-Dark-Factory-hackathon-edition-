@@ -19,6 +19,7 @@ type Router struct {
 	resH         *ReservationsHandler
 	agentH       *AgentHandler
 	payH         *PaymentHandler
+	engine       *ContinuousEngine
 	mux          *http.ServeMux
 	handlerStack http.Handler
 }
@@ -26,6 +27,8 @@ type Router struct {
 func NewRouter(s *store.Store, c contracts.CalendarEngine, b contracts.BookingEngine) *Router {
 	mEngine := money.NewEngine(s)
 	pEngine := payments.NewEngine(s, mEngine)
+	payH := NewPaymentHandler(s, mEngine, pEngine)
+	cEngine := InitContinuousEngine(payH)
 	r := &Router{
 		store:  s,
 		authH:  NewAuthHandler(s),
@@ -33,7 +36,8 @@ func NewRouter(s *store.Store, c contracts.CalendarEngine, b contracts.BookingEn
 		restH:  NewRestaurantsHandler(s, b, c),
 		resH:   NewReservationsHandler(b, c),
 		agentH: NewAgentHandler(s, b, c),
-		payH:   NewPaymentHandler(s, mEngine, pEngine),
+		payH:   payH,
+		engine: cEngine,
 		mux:    http.NewServeMux(),
 	}
 	r.setupRoutes()
@@ -94,6 +98,34 @@ func (r *Router) setupRoutes() {
 	})
 	r.mux.HandleFunc("/api/payment/orders", func(w http.ResponseWriter, req *http.Request) {
 		r.payH.ListUserOrders(w, req)
+	})
+
+	// Continuous Agent Communication, Rankings & Charts API
+	r.mux.HandleFunc("/api/agent/continuous-start", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.engine.HandleContinuousStart(w, req)
+	})
+	r.mux.HandleFunc("/api/agent/continuous-stop", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.engine.HandleContinuousStop(w, req)
+	})
+	r.mux.HandleFunc("/api/agent/continuous-status", func(w http.ResponseWriter, req *http.Request) {
+		r.engine.HandleContinuousStatus(w, req)
+	})
+	r.mux.HandleFunc("/api/agent/messages", func(w http.ResponseWriter, req *http.Request) {
+		r.engine.HandleAgentMessages(w, req)
+	})
+	r.mux.HandleFunc("/api/rankings/live", func(w http.ResponseWriter, req *http.Request) {
+		r.engine.HandleLiveRankings(w, req)
+	})
+	r.mux.HandleFunc("/api/charts/metrics", func(w http.ResponseWriter, req *http.Request) {
+		r.engine.HandleChartMetrics(w, req)
 	})
 
 	// Payment & Wallet API endpoints
