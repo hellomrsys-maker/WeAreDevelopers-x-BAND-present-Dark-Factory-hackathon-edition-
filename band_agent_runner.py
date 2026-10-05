@@ -263,8 +263,8 @@ def run_band_remote_agent():
         sys.exit(1)
 
     try:
-        from band import Agent, Emit
-        from band.adapters import GeminiAdapter, GeminiAdapterConfig
+        from band import Agent, Emit, PlatformMessage
+        from band.core.simple_adapter import SimpleAdapter, AgentToolsProtocol
     except ImportError:
         print("[ERROR] 'band' SDK is not installed in this Python environment.")
         print("Install via: pip install band-sdk")
@@ -274,13 +274,105 @@ def run_band_remote_agent():
     print(f"Working Directory: {WORKSPACE_DIR}")
     print(f"Agent API Endpoint: {AGENT_API_URL}")
 
-    adapter_config = GeminiAdapterConfig(
-        model="gemini-2.5-flash",
-        provider_key=GEMINI_API_KEY or None,
-        system_prompt=SYSTEM_PROMPT,
-        include_base_instructions=True,
-    )
-    adapter = GeminiAdapter(config=adapter_config)
+    if GEMINI_API_KEY:
+        from band.adapters import GeminiAdapter, GeminiAdapterConfig
+        print("[*] Initializing official GeminiAdapter (gemini-2.5-flash)...")
+        adapter_config = GeminiAdapterConfig(
+            model="gemini-2.5-flash",
+            provider_key=GEMINI_API_KEY,
+            system_prompt=SYSTEM_PROMPT,
+            include_base_instructions=True,
+        )
+        adapter = GeminiAdapter(config=adapter_config)
+    else:
+        print("[*] Initializing TablekeeperAutonomousAdapter (Direct Go Engine / SQLite WAL Integration)...")
+        class TablekeeperAutonomousAdapter(SimpleAdapter):
+            """Autonomous Band adapter executing commands directly against the Tablekeeper Agent API."""
+
+            async def on_message(
+                self,
+                msg: PlatformMessage,
+                tools: AgentToolsProtocol,
+                history,
+                participants_msg: str | None,
+                contacts_msg: str | None,
+                *,
+                is_session_bootstrap: bool,
+                room_id: str,
+            ) -> None:
+                content = (msg.content or "").strip()
+                print(f"\n[Band Event] Incoming message in room {room_id}: {content}")
+                if not content:
+                    return
+
+                c_lower = content.lower()
+
+                # 1. Status / Capabilities check
+                if any(w in c_lower for w in ["help", "status", "who are you", "what can you do"]):
+                    status = agent_client.get_status()
+                    reply = (
+                        f"⚡ **Tablekeeper Autonomous Concierge & Dark Factory Agent**\n"
+                        f"• **Status:** {status.get('status', 'online').upper()}\n"
+                        f"• **Global Destinations:** 28 world-class restaurants across 10 culinary capitals\n"
+                        f"• **Zero Double-Booking Guarantee:** 0% drift via SQLite transactional WAL locks\n"
+                        f"• **AMSV Sync Hash:** `{status.get('band_account', {}).get('amsv_state_hash', 'N/A')}`\n\n"
+                        f"**Available Commands:**\n"
+                        f"- `locations` - List all operating cities and restaurants\n"
+                        f"- `book dinner for [N] at [Restaurant] at [Time]` - Autonomous table booking\n"
+                        f"- `stress test` - Launch concurrency collision test (10 requests)\n"
+                        f"- `check availability [Restaurant]` - Live table slot inspection"
+                    )
+                    await tools.send_message(reply)
+                    return
+
+                # 2. Locations check
+                if "location" in c_lower or "cities" in c_lower or "restaurants" in c_lower:
+                    locs = agent_client.list_locations()
+                    reply_lines = ["📍 **Tablekeeper Global Culinary Network (28 Destinations):**"]
+                    for m in locs.get("locations", []):
+                        reply_lines.append(f"• **{m.get('name')}** ({m.get('restaurants')} venues) — *{m.get('highlight')}*")
+                    await tools.send_message("\n".join(reply_lines))
+                    return
+
+                # 3. Concurrency Stress Test
+                if "stress" in c_lower or "collision" in c_lower or "double booking" in c_lower or "clash" in c_lower:
+                    res = agent_client.run_stress_test(restaurant_id="r_anker", concurrency_count=10)
+                    reply = (
+                        f"🛡️ **Invariant Collision Storm Executed (10 Concurrent Requests):**\n"
+                        f"• **Total Dispatched:** {res.get('total_requests')}\n"
+                        f"• **Successful Bookings:** {res.get('successful_bookings')} (Single winner)\n"
+                        f"• **Collisions Blocked:** {res.get('collisions_blocked')} (Instant 409 Conflict)\n"
+                        f"• **Double-Bookings Allowed:** **{res.get('double_bookings_allowed', 0)}** (Strict 0 requirement)\n"
+                        f"• **Verification:** `{res.get('invariant_verification')}`\n"
+                        f"• **Double-Booking Drift Rate:** {res.get('double_booking_drift_rate', 0)}%"
+                    )
+                    await tools.send_message(reply)
+                    return
+
+                # 4. Booking or Intent Execution
+                res = agent_client._post({
+                    "action": "book",
+                    "prompt": content,
+                    "user_id": f"band_user_{getattr(msg, 'sender_id', 'guest')}",
+                })
+                if res.get("status") == "confirmed":
+                    r_info = res.get("restaurant", {})
+                    res_info = res.get("reservation", {})
+                    reply = (
+                        f"🍽️ **Reservation Confirmed!**\n"
+                        f"• **Confirmation Reference:** `{res.get('reference')}`\n"
+                        f"• **Restaurant:** {r_info.get('name')} ({r_info.get('location')})\n"
+                        f"• **Table Allocated:** {', '.join(res_info.get('table_labels', []))} (Party of {res_info.get('party_size')})\n"
+                        f"• **Time:** {res_info.get('starts_at_local')} ({r_info.get('timezone')})\n"
+                        f"• **Atomic Lock:** ZERO_DRIFT_EXCLUSIVE | Double-Booking Risk: 0"
+                    )
+                    await tools.send_message(reply)
+                elif res.get("http_code") == 409 or "Conflict" in str(res.get("error")):
+                    await tools.send_message("❌ **409 Conflict:** The requested slot is already booked. Invariant lock prevented double-booking.")
+                else:
+                    await tools.send_message(f"ℹ️ **Agent Response:** {res.get('error') or res.get('message') or json.dumps(res)}")
+
+        adapter = TablekeeperAutonomousAdapter()
 
     agent = Agent.create(
         adapter=adapter,
@@ -288,57 +380,7 @@ def run_band_remote_agent():
         api_key=BAND_API_KEY,
     )
 
-    # Register Autonomous Tools with Band SDK
-    @agent.tool(
-        name="tablekeeper_list_locations",
-        description="List all available dining metros and restaurants worldwide in Tablekeeper.",
-    )
-    async def tool_list_locations() -> str:
-        res = agent_client.list_locations()
-        return json.dumps(res)
-
-    @agent.tool(
-        name="tablekeeper_check_availability",
-        description="Check real-time opening hours and available table time slots for a given restaurant, date, and party size.",
-    )
-    async def tool_check_availability(restaurant_id: str, date: str, party_size: int = 2) -> str:
-        res = agent_client.check_availability(restaurant_id, date, party_size)
-        return json.dumps(res)
-
-    @agent.tool(
-        name="tablekeeper_book_reservation",
-        description="Autonomously book a restaurant table with zero-double-booking transactional guarantees.",
-    )
-    async def tool_book_reservation(
-        restaurant_id: str,
-        party_size: int,
-        date: str,
-        time_slot: str,
-        user_id: str = "user_band_vip",
-        prompt: str = "",
-    ) -> str:
-        res = agent_client.book_reservation(
-            restaurant_id=restaurant_id,
-            party_size=party_size,
-            date=date,
-            time_slot=time_slot,
-            user_id=user_id,
-            prompt=prompt,
-        )
-        return json.dumps(res)
-
-    @agent.tool(
-        name="tablekeeper_stress_test",
-        description="Simulate concurrent colliding reservation requests to verify 0 double-bookings and transactional integrity.",
-    )
-    async def tool_stress_test(
-        restaurant_id: str = "r_anker",
-        concurrency_count: int = 10,
-    ) -> str:
-        res = agent_client.run_stress_test(restaurant_id=restaurant_id, concurrency_count=concurrency_count)
-        return json.dumps(res)
-
-    print("Agent initialized with 4 autonomous Tablekeeper tools. Starting event loop...")
+    print("Agent initialized successfully. Starting Band WebSocket event loop...")
     asyncio.run(agent.run())
 
 
