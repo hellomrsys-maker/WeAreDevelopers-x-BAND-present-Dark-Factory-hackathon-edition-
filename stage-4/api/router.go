@@ -45,7 +45,7 @@ func (r *Router) setupRoutes() {
 
 	// Web UI Screen routes
 	r.mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" {
+		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" && req.URL.Path != "/host" && req.URL.Path != "/shifts" {
 			WriteError(w, http.StatusNotFound, "not_found", "not found")
 			return
 		}
@@ -59,6 +59,8 @@ func (r *Router) setupRoutes() {
 	r.mux.HandleFunc("/agents", serveHTML)
 	r.mux.HandleFunc("/telemetry", serveHTML)
 	r.mux.HandleFunc("/rewards", serveHTML)
+	r.mux.HandleFunc("/host", serveHTML)
+	r.mux.HandleFunc("/shifts", serveHTML)
 	r.mux.HandleFunc("/lookup", func(w http.ResponseWriter, req *http.Request) {
 		if req.Method != http.MethodGet {
 			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
