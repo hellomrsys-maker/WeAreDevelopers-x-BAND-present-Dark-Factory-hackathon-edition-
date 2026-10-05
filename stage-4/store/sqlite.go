@@ -732,8 +732,8 @@ func (s *Store) SeedDefaultRestaurants(ctx context.Context) error {
 			id: "r_anker", name: "JOEY Bellevue", timezone: "America/Los_Angeles", slotMin: 15, durMin: 90, cutMin: 60, opens: "11:00", closes: "23:30",
 			tables: []seedTable{
 				{"t_1", "Heated Patio Booth 1", 2},
-				{"t_2", "Heated Patio Booth 2", 2},
-				{"t_3", "Main Dining Salon 3", 4},
+				{"t_2", "Heated Patio Booth 2", 4},
+				{"t_3", "Main Dining Salon 3", 6},
 				{"t_4", "Main Dining Salon 4", 4},
 				{"t_5", "Main Dining Salon 5", 4},
 				{"t_6", "Main Dining Salon 6", 4},
