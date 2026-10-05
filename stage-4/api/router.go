@@ -127,6 +127,16 @@ func (r *Router) setupRoutes() {
 	r.mux.HandleFunc("/api/charts/metrics", func(w http.ResponseWriter, req *http.Request) {
 		r.engine.HandleChartMetrics(w, req)
 	})
+	r.mux.HandleFunc("/api/agent/band-sync", func(w http.ResponseWriter, req *http.Request) {
+		r.engine.HandleBandSyncStatus(w, req)
+	})
+	r.mux.HandleFunc("/api/agent/band-sync/trigger", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.engine.HandleBandSyncTrigger(w, req)
+	})
 
 	// Payment & Wallet API endpoints
 	r.mux.HandleFunc("/api/payment/wallet", func(w http.ResponseWriter, req *http.Request) {

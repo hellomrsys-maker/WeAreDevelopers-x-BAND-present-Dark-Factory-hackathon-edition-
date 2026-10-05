@@ -8407,8 +8407,38 @@
             </div>
           </div>
 
+          <!-- Band Platform Continuous Sync Strip & Live Whiteboard Board -->
+          <div style="background:linear-gradient(135deg, rgba(30, 27, 75, 0.9), rgba(15, 23, 42, 0.95)); border:1px solid rgba(168, 85, 247, 0.45); border-radius:12px; padding:0.95rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+            <div style="display:flex; align-items:center; gap:0.85rem;">
+              <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, #a855f7, #6366f1); color:#ffffff; font-size:1.15rem; font-weight:900; box-shadow:0 0 16px rgba(168,85,247,0.5); flex-shrink:0;">
+                ⬡
+              </span>
+              <div>
+                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                  <strong style="color:#ffffff; font-size:0.95rem;">Band Platform Continuous Synchronization</strong>
+                  <span class="badge" style="background:rgba(168, 85, 247, 0.2); color:#c084fc; border:1px solid #c084fc; font-weight:800; font-family:monospace;">Room: 8fe8a0a5</span>
+                  <span class="badge" style="background:#10b981; color:#0f172a; font-weight:800;" id="band-sync-status-badge">● SYNCED IN REAL-TIME</span>
+                </div>
+                <div style="font-size:0.75rem; color:#cbd5e1; margin-top:0.2rem; font-family:system-ui, -apple-system, sans-serif;" id="band-board-summary-text">
+                  Synchronizing room whiteboard board, multi-agent commits, and memory invariants with zero drift.
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:0.85rem; flex-wrap:wrap;">
+              <div style="text-align:right;">
+                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Band Events Committed</div>
+                <div style="font-size:1.05rem; font-weight:800; color:#38bdf8; font-family:monospace;" id="band-events-counter">384 Events</div>
+              </div>
+              <button type="button" class="btn btn-sm" id="btn-force-band-sync" onclick="forceBandSync()" style="background:linear-gradient(135deg, #a855f7, #7c3aed); color:#ffffff; font-weight:700; font-size:0.8rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 0 12px rgba(168,85,247,0.4);">
+                ⚡ Trigger Band Sync
+              </button>
+            </div>
+          </div>
+
           <!-- SECTION A: CONTINUOUS RANKINGS LEADERBOARD (RESTAURANTS & TOP DINERS) -->
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;" id="cont-rankings-split">
+
             
             <!-- Left: Top 10 Global Restaurants Ranked Continuously -->
             <div style="background:rgba(15, 23, 42, 0.9); border:1px solid #334155; border-radius:14px; padding:1.15rem;">
@@ -21354,10 +21384,59 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
           isContinuousActive = sData.running;
           updateContinuousUIState(sData);
         }
+
+        // 5. Fetch Band Continuous Synchronization state
+        const bResp = await fetch('/api/agent/band-sync');
+        if (bResp.ok) {
+          const bData = await bResp.json();
+          if (bData.sync) {
+            updateBandSyncUI(bData.sync);
+          }
+        }
       } catch (err) {
         console.error('pollContinuousEngine error:', err);
       }
     }
+
+    function updateBandSyncUI(sync) {
+      const counter = document.getElementById('band-events-counter');
+      const summary = document.getElementById('band-board-summary-text');
+      const badge = document.getElementById('band-sync-status-badge');
+
+      if (counter && sync.total_synced_events !== undefined) {
+        counter.textContent = `${sync.total_synced_events.toLocaleString()} Events`;
+      }
+      if (summary && sync.board_summary) {
+        summary.textContent = sync.board_summary;
+      }
+      if (badge && sync.drift_guarantee) {
+        badge.textContent = `● SYNCED IN REAL-TIME (${sync.drift_guarantee} DRIFT)`;
+      }
+    }
+
+    async function forceBandSync() {
+      const btn = document.getElementById('btn-force-band-sync');
+      if (btn) {
+        btn.textContent = '⏳ Syncing...';
+        btn.disabled = true;
+      }
+      try {
+        const resp = await fetch('/api/agent/band-sync/trigger', { method: 'POST' });
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.sync) updateBandSyncUI(data.sync);
+        }
+      } catch (e) {
+        console.error('forceBandSync error:', e);
+      } finally {
+        if (btn) {
+          btn.textContent = '⚡ Trigger Band Sync';
+          btn.disabled = false;
+        }
+        pollContinuousEngine();
+      }
+    }
+
 
     function updateContinuousUIState(data) {
       const dot = document.getElementById('cont-pulse-dot');

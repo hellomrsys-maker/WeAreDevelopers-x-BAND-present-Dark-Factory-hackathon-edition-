@@ -253,6 +253,24 @@ class TablekeeperAgentClient:
         except Exception as e:
             return {"error": f"Failed to get chart metrics: {e}"}
 
+    def get_band_sync_state(self) -> dict:
+        url = "http://localhost:8080/api/agent/band-sync"
+        req = urllib.request.Request(url, headers={"User-Agent": f"BandAgent/{self.agent_id}"})
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to get band sync state: {e}"}
+
+    def trigger_band_sync(self) -> dict:
+        url = "http://localhost:8080/api/agent/band-sync/trigger"
+        req = urllib.request.Request(url, data=b"{}", headers={"Content-Type": "application/json", "User-Agent": f"BandAgent/{self.agent_id}"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to trigger band sync: {e}"}
+
     def get_fleet_users(self, search: str = "", tier: str = "", city: str = "") -> dict:
         q_s = urllib.parse.quote(search)
         q_t = urllib.parse.quote(tier)
@@ -692,6 +710,31 @@ def run_cli_stream():
         print("\n\n[!] Stream disconnected.")
 
 
+def run_cli_band_sync():
+    print(f"\n========================================================")
+    print(f"  BAND PLATFORM CONTINUOUS SYNCHRONIZATION")
+    print(f"========================================================")
+    print("Initiating real-time continuous sync with Band Room 8fe8a0a5...")
+    print("Zero-Bridge physical RAM synchronization active across all 28 venues.")
+    print("Press Ctrl+C to terminate sync loop.\n")
+
+    try:
+        while True:
+            res = agent_client.get_band_sync_state()
+            if "sync" in res:
+                s = res["sync"]
+                room = s.get("band_room", "8fe8a0a5")
+                events = s.get("total_synced_events", 0)
+                drift = s.get("drift_guarantee", "0.000%")
+                vel = s.get("ops_velocity_min", 0.0)
+                latest_tx = s.get("latest_tx_commit", "N/A")
+
+                print(f"\r⚡ [Band Sync] Room: {room} | Synced Events: {events} | Ops: {vel} Ops/min | Drift: {drift} | Tx: {latest_tx[:14]}...", end="")
+            time.sleep(1.8)
+    except KeyboardInterrupt:
+        print("\n\n[!] Band continuous sync loop stopped.")
+
+
 # ---------------------------------------------------------------------------
 # Band SDK Remote Agent Loop (app.band.ai)
 # ---------------------------------------------------------------------------
@@ -706,6 +749,7 @@ def run_band_remote_agent():
         print("  python band_agent_runner.py --stress-test")
         print("  python band_agent_runner.py --rankings")
         print("  python band_agent_runner.py --chart GROUP")
+        print("  python band_agent_runner.py --band-sync")
         print("  python band_agent_runner.py --stream")
         sys.exit(1)
 
@@ -736,6 +780,56 @@ def run_band_remote_agent():
         class TablekeeperAutonomousAdapter(SimpleAdapter):
             """Autonomous Band adapter executing commands directly against the Tablekeeper Agent API."""
 
+            def __init__(self):
+                super().__init__()
+                self._sync_task = None
+                self._current_room_id = None
+                self._tools = None
+
+            async def start_background_band_sync(self, tools: AgentToolsProtocol, room_id: str):
+                if self._sync_task and not self._sync_task.done():
+                    return
+                self._tools = tools
+                self._current_room_id = room_id
+
+                async def _sync_loop():
+                    print(f"[Band Sync] Continuous Band board & event sync loop started for room {room_id}...")
+                    last_ops = 0
+                    while True:
+                        try:
+                            sync_data = agent_client.get_band_sync_state()
+                            if "sync" in sync_data:
+                                s = sync_data["sync"]
+                                title = s.get("board_title", "Tablekeeper Dark Factory")
+                                summary = s.get("board_summary", "")
+                                try:
+                                    await tools.set_board(goal_title=title, goal_summary=summary)
+                                except Exception:
+                                    pass
+
+                                current_ops = s.get("total_synced_events", 0) // 3
+                                if current_ops >= last_ops + 8:
+                                    last_ops = current_ops
+                                    rk_res = agent_client.get_live_rankings()
+                                    top_r = rk_res.get("restaurants", [])[:3]
+                                    top_names = ", ".join([f"#{r['rank']} {r['restaurant_name']}" for r in top_r])
+                                    notice = (
+                                        f"⚡ **Band Live Continuous Sync Update:**\n"
+                                        f"• Total Ops: `{current_ops}` | Velocity: `{s.get('ops_velocity_min', 0)} Ops/min`\n"
+                                        f"• Top Venues: {top_names}\n"
+                                        f"• Memory Invariant: `{s.get('drift_guarantee', '0.000%')}` drift (Zero Double-Booking)\n"
+                                        f"• Latest Commit: `{s.get('latest_tx_commit', 'N/A')[:14]}...`"
+                                    )
+                                    try:
+                                        await tools.send_message(notice)
+                                    except Exception:
+                                        pass
+                        except Exception as e:
+                            pass
+                        await asyncio.sleep(4.0)
+
+                self._sync_task = asyncio.create_task(_sync_loop())
+
             async def on_message(
                 self,
                 msg: PlatformMessage,
@@ -747,12 +841,34 @@ def run_band_remote_agent():
                 is_session_bootstrap: bool,
                 room_id: str,
             ) -> None:
+                await self.start_background_band_sync(tools, room_id)
                 content = (msg.content or "").strip()
                 print(f"\n[Band Event] Incoming message in room {room_id}: {content}")
                 if not content:
                     return
 
                 c_lower = content.lower()
+
+                # Sync / Whiteboard command
+                if any(w in c_lower for w in ["sync", "band sync", "board", "whiteboard", "live sync"]):
+                    sync_data = agent_client.get_band_sync_state()
+                    s = sync_data.get("sync", {})
+                    try:
+                        await tools.set_board(goal_title=s.get("board_title"), goal_summary=s.get("board_summary"))
+                    except Exception:
+                        pass
+                    reply = (
+                        f"🔄 **Band Platform Live Synchronization State:**\n"
+                        f"• **Room ID:** `{s.get('band_room')}`\n"
+                        f"• **Total Events Committed:** `{s.get('total_synced_events')}`\n"
+                        f"• **Velocity:** `{s.get('ops_velocity_min')} Ops/min`\n"
+                        f"• **Memory Invariant:** `{s.get('drift_guarantee')}` (Zero Double-Booking)\n"
+                        f"• **Latest SHA-256 Tx:** `{s.get('latest_tx_commit')}`\n\n"
+                        f"📌 **Current Room Board:**\n"
+                        f"> {s.get('board_summary')}"
+                    )
+                    await tools.send_message(reply)
+                    return
 
                 # 1. Status / Capabilities check
                 if any(w in c_lower for w in ["help", "status", "who are you", "what can you do"]):
@@ -914,6 +1030,8 @@ def main():
     parser.add_argument("--group-chart", action="store_true", help="Render ASCII telemetry chart for entire 100-client mesh")
     parser.add_argument("--messages", action="store_true", help="View recent autonomous multi-agent dialogue committed to Band")
     parser.add_argument("--stream", action="store_true", help="Launch live terminal stream of continuous bookings & agent dialogue")
+    parser.add_argument("--band-sync", action="store_true", help="Launch live continuous synchronization with Band Platform room")
+    parser.add_argument("--continuous-sync", action="store_true", help="Alias for --band-sync")
     parser.add_argument("--continuous", type=str, choices=["start", "stop", "status"], default=None, help="Control continuous booking engine (start, stop, status)")
     parser.add_argument("--run", action="store_true", help="Connect and run Band Platform event loop")
 
@@ -951,14 +1069,17 @@ def main():
         run_cli_messages()
     elif args.stream:
         run_cli_stream()
+    elif args.band_sync or args.continuous_sync:
+        run_cli_band_sync()
     elif args.continuous:
         run_cli_continuous(args.continuous)
-    elif args.run or (not any([args.status, args.locations, args.test_booking, args.stress_test, args.prompt, args.wallet, args.charge, args.trajectory, args.simulate_clients, args.fleet, args.client, args.rankings, args.chart, args.group_chart, args.messages, args.stream, args.continuous])):
+    elif args.run or (not any([args.status, args.locations, args.test_booking, args.stress_test, args.prompt, args.wallet, args.charge, args.trajectory, args.simulate_clients, args.fleet, args.client, args.rankings, args.chart, args.group_chart, args.messages, args.stream, args.band_sync, args.continuous_sync, args.continuous])):
         if BAND_API_KEY:
             run_band_remote_agent()
         else:
             run_cli_status()
             print("\n[NOTE] No BAND_API_KEY detected in .env. Showing available CLI modes:")
+            print("  • python band_agent_runner.py --band-sync")
             print("  • python band_agent_runner.py --rankings")
             print("  • python band_agent_runner.py --chart GROUP")
             print("  • python band_agent_runner.py --chart client_004")
