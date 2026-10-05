@@ -5,6 +5,8 @@ import (
 	"strings"
 
 	"tablekeeper/contracts"
+	"tablekeeper/engines/money"
+	"tablekeeper/engines/payments"
 	"tablekeeper/store"
 	"tablekeeper/web"
 )
@@ -16,11 +18,14 @@ type Router struct {
 	restH        *RestaurantsHandler
 	resH         *ReservationsHandler
 	agentH       *AgentHandler
+	payH         *PaymentHandler
 	mux          *http.ServeMux
 	handlerStack http.Handler
 }
 
 func NewRouter(s *store.Store, c contracts.CalendarEngine, b contracts.BookingEngine) *Router {
+	mEngine := money.NewEngine(s)
+	pEngine := payments.NewEngine(s, mEngine)
 	r := &Router{
 		store:  s,
 		authH:  NewAuthHandler(s),
@@ -28,6 +33,7 @@ func NewRouter(s *store.Store, c contracts.CalendarEngine, b contracts.BookingEn
 		restH:  NewRestaurantsHandler(s, b, c),
 		resH:   NewReservationsHandler(b, c),
 		agentH: NewAgentHandler(s, b, c),
+		payH:   NewPaymentHandler(s, mEngine, pEngine),
 		mux:    http.NewServeMux(),
 	}
 	r.setupRoutes()
@@ -47,7 +53,8 @@ func (r *Router) setupRoutes() {
 
 	// Web UI Screen routes
 	r.mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if req.URL.Path != "/" && req.URL.Path != "/login" && req.URL.Path != "/signup" && req.URL.Path != "/lookup" && req.URL.Path != "/admin" && req.URL.Path != "/factory" && req.URL.Path != "/agents" && req.URL.Path != "/telemetry" && req.URL.Path != "/rewards" && req.URL.Path != "/host" && req.URL.Path != "/shifts" && req.URL.Path != "/agent-api" && req.URL.Path != "/client" {
+		p := req.URL.Path
+		if p != "/" && p != "/login" && p != "/signup" && p != "/lookup" && p != "/admin" && p != "/factory" && p != "/agents" && p != "/telemetry" && p != "/rewards" && p != "/host" && p != "/shifts" && p != "/agent-api" && p != "/client" && p != "/payments" && p != "/payment" && p != "/trajectory" {
 			WriteError(w, http.StatusNotFound, "not_found", "not found")
 			return
 		}
@@ -65,6 +72,50 @@ func (r *Router) setupRoutes() {
 	r.mux.HandleFunc("/shifts", serveHTML)
 	r.mux.HandleFunc("/agent-api", serveHTML)
 	r.mux.HandleFunc("/client", serveHTML)
+	r.mux.HandleFunc("/payments", serveHTML)
+	r.mux.HandleFunc("/payment", serveHTML)
+	r.mux.HandleFunc("/trajectory", serveHTML)
+
+	// Payment & Wallet API endpoints
+	r.mux.HandleFunc("/api/payment/wallet", func(w http.ResponseWriter, req *http.Request) {
+		r.payH.GetWallet(w, req)
+	})
+	r.mux.HandleFunc("/api/payment/charge", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.payH.Charge(w, req)
+	})
+	r.mux.HandleFunc("/api/payment/topup", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.payH.Topup(w, req)
+	})
+	r.mux.HandleFunc("/api/payment/transactions", func(w http.ResponseWriter, req *http.Request) {
+		r.payH.ListTransactions(w, req)
+	})
+	r.mux.HandleFunc("/api/payment/simulate-fleet", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.payH.SimulateFleetPayments(w, req)
+	})
+
+	// Trajectory API
+	r.mux.HandleFunc("/api/agent/trajectory", func(w http.ResponseWriter, req *http.Request) {
+		r.payH.GetTrajectory(w, req)
+	})
+	r.mux.HandleFunc("/api/agent/trajectory/simulate", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method != http.MethodPost {
+			WriteError(w, http.StatusMethodNotAllowed, "method_not_allowed", "method not allowed")
+			return
+		}
+		r.payH.SimulateTrajectory(w, req)
+	})
 
 	// Autonomous Band Agent API (Single Endpoint)
 	r.mux.Handle("/api/agent/v1", r.agentH)
