@@ -55,6 +55,13 @@ func (r *Router) setupRoutes() {
 		w.Write(web.IndexHTML)
 	}
 
+	r.mux.HandleFunc("/showcase_narration.wav", func(w http.ResponseWriter, req *http.Request) {
+		w.Header().Set("Content-Type", "audio/wav")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.WriteHeader(http.StatusOK)
+		w.Write(web.ShowcaseNarrationWAV)
+	})
+
 	// Web UI Screen routes
 	r.mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		p := req.URL.Path

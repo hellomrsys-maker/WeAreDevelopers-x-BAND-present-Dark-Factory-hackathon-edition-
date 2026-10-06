@@ -22044,5 +22044,59 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
     };
 
 </script>
+
+  <!-- FLOATING VOICE SHOWCASE TOUR PLAYER -->
+  <div id="voice-tour-floating-bar" style="position: fixed; bottom: 20px; left: 24px; z-index: 99999; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 9999px; padding: 8px 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15), 0 8px 10px -6px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <div style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #fef2f2; color: #da3743; font-size: 16px;">
+      🎙️
+    </div>
+    <div>
+      <div style="font-size: 11px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.2;">Voice Tour</div>
+      <div style="font-size: 10px; color: #64748b; line-height: 1.2;" id="voice-tour-status-text">AI Narration (0:45)</div>
+    </div>
+    <audio id="audio-showcase-player" src="showcase_narration.wav" preload="auto"></audio>
+    <button id="btn-toggle-voice-tour" onclick="toggleVoiceTour()" style="background: #da3743; color: #ffffff !important; border: none; border-radius: 9999px; padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(218,55,67,0.3); transition: all 0.2s;">
+      <span id="voice-play-icon">▶</span> <span id="voice-play-label">Play Voice</span>
+    </button>
+  </div>
+
+  <script>
+    function toggleVoiceTour() {
+      var audio = document.getElementById('audio-showcase-player');
+      var icon = document.getElementById('voice-play-icon');
+      var label = document.getElementById('voice-play-label');
+      var status = document.getElementById('voice-tour-status-text');
+      if (!audio) return;
+      if (audio.paused) {
+        audio.play().then(function() {
+          if (icon) icon.textContent = '⏸';
+          if (label) label.textContent = 'Pause';
+          if (status) status.textContent = 'Playing narration...';
+        }).catch(function(err) {
+          console.warn('Audio playback error:', err);
+        });
+      } else {
+        audio.pause();
+        if (icon) icon.textContent = '▶';
+        if (label) label.textContent = 'Play Voice';
+        if (status) status.textContent = 'Paused (0:45)';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var showcaseAudio = document.getElementById('audio-showcase-player');
+      if (showcaseAudio) {
+        showcaseAudio.addEventListener('ended', function() {
+          var icon = document.getElementById('voice-play-icon');
+          var label = document.getElementById('voice-play-label');
+          var status = document.getElementById('voice-tour-status-text');
+          if (icon) icon.textContent = '▶';
+          if (label) label.textContent = 'Replay Tour';
+          if (status) status.textContent = 'Completed (0:45)';
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
