@@ -137,6 +137,9 @@ func (r *Router) setupRoutes() {
 		}
 		r.engine.HandleBandSyncTrigger(w, req)
 	})
+	r.mux.HandleFunc("/api/report/executive", func(w http.ResponseWriter, req *http.Request) {
+		r.engine.HandleExecutiveReport(w, req)
+	})
 
 	// Payment & Wallet API endpoints
 	r.mux.HandleFunc("/api/payment/wallet", func(w http.ResponseWriter, req *http.Request) {
