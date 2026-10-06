@@ -155,22 +155,22 @@
       color: var(--text-muted);
     }
 
-    input, select {
+    input, select, textarea {
       width: 100%;
       padding: 0.75rem 1rem;
-      background: var(--surface-elevated);
-      border: 1px solid var(--border);
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
       border-radius: 8px;
-      color: #ffffff !important;
+      color: #0f172a !important;
       font-size: 1rem;
       transition: var(--transition);
       outline: none;
     }
 
-    /* Crisp white text for all dropdown options & selects */
+    /* Crisp high-contrast dark text for all dropdown options & selects */
     select option, option {
-      background-color: #0f172a !important;
-      color: #ffffff !important;
+      background-color: #ffffff !important;
+      color: #0f172a !important;
       font-weight: 500;
       padding: 8px;
     }
@@ -586,13 +586,13 @@
       color: var(--primary);
     }
     .sim-chip {
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--primary);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      padding: 0.15rem 0.5rem;
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      padding: 0.2rem 0.6rem;
       border-radius: 9999px;
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 700;
     }
     .sim-feed {
       padding: 0.75rem 1.5rem;
@@ -838,15 +838,15 @@
        ======================================================== */
     :root {
       --ot-red: #da3743;
-      --ot-red-hover: #c42935;
-      --ot-red-subtle: rgba(218, 55, 67, 0.12);
-      --ot-gold: #f59e0b;
-      --ot-gold-subtle: rgba(245, 158, 11, 0.12);
-      --ot-card: #131926;
-      --ot-card-elevated: #1a2334;
-      --ot-border: #263347;
-      --ot-text: #f8fafc;
-      --ot-text-muted: #94a3b8;
+      --ot-red-hover: #b91c1c;
+      --ot-red-subtle: rgba(218, 55, 67, 0.08);
+      --ot-gold: #d97706;
+      --ot-gold-subtle: rgba(217, 119, 6, 0.08);
+      --ot-card: #ffffff;
+      --ot-card-elevated: #ffffff;
+      --ot-border: #e2e8f0;
+      --ot-text: #0f172a;
+      --ot-text-muted: #475569;
     }
 
     main {
@@ -981,7 +981,7 @@
     .ot-rest-name {
       font-size: 2.5rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: -0.03em;
       line-height: 1.15;
     }
@@ -1101,7 +1101,7 @@
     .ot-section-title {
       font-size: 1.45rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -1111,7 +1111,7 @@
     .ot-overview-text {
       font-size: 1.05rem;
       line-height: 1.75;
-      color: #cbd5e1;
+      color: #334155;
       margin-bottom: 1.25rem;
     }
 
@@ -1155,7 +1155,7 @@
     .ot-dish-title {
       font-size: 1.05rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 0.35rem;
     }
 
@@ -1209,7 +1209,7 @@
 
     .ot-reviewer-name {
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       font-size: 0.95rem;
       display: flex;
       align-items: center;
@@ -1223,7 +1223,7 @@
 
     .ot-review-text {
       font-size: 0.925rem;
-      color: #e2e8f0;
+      color: #334155;
       line-height: 1.6;
     }
 
@@ -1242,7 +1242,7 @@
     .ot-widget-title {
       font-size: 1.45rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       text-align: center;
       letter-spacing: -0.02em;
       margin-bottom: 0.25rem;
@@ -1502,7 +1502,7 @@
     .ot-ai-heading {
       font-size: 1.55rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       line-height: 1.25;
       margin-bottom: 0.35rem;
     }
@@ -1567,7 +1567,7 @@
     .ot-icons-title {
       font-size: 1.75rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: -0.02em;
     }
     .ot-icons-subtitle {
@@ -1578,7 +1578,7 @@
     .btn-explore-icons {
       background: transparent;
       border: 1px solid var(--ot-border);
-      color: #ffffff;
+      color: #0f172a;
       padding: 8px 18px;
       border-radius: 9999px;
       font-weight: 600;
@@ -1714,7 +1714,7 @@
     .ot-card-name {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 0.3rem;
       white-space: nowrap;
       overflow: hidden;
@@ -1737,7 +1737,7 @@
     }
     .ot-card-meta {
       font-size: 0.825rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-bottom: 0.6rem;
       white-space: nowrap;
       overflow: hidden;
@@ -1810,7 +1810,7 @@
     .ot-sapphire-title {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
     }
     .ot-sapphire-sub {
       font-size: 0.85rem;
@@ -1852,7 +1852,7 @@
     .hotel-os-title {
       font-size: 1.25rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1963,7 +1963,7 @@
       gap: 8px;
       font-size: 1.1rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: -0.01em;
     }
 
@@ -2240,12 +2240,12 @@
     .res-guest-name {
       font-size: 0.825rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .res-meta-line {
       font-size: 0.72rem;
-      color: #94a3b8;
+      color: #64748b;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -2616,7 +2616,7 @@
     .schedule-title {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .schedule-actions {
@@ -2875,7 +2875,7 @@
     .table-choice-name {
       font-size: 0.82rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -2883,7 +2883,7 @@
 
     .table-choice-meta {
       font-size: 0.7rem;
-      color: #94a3b8;
+      color: #64748b;
     }
 
     .table-choice-badge {
@@ -2940,7 +2940,7 @@
     .inspector-title {
       font-size: 0.95rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -2963,12 +2963,12 @@
     .inspector-kpi-val {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .inspector-kpi-label {
       font-size: 0.7rem;
-      color: #94a3b8;
+      color: #64748b;
       text-transform: uppercase;
       margin-top: 2px;
     }
@@ -3132,7 +3132,7 @@
     .ot-lunch-title {
       font-size: 1.65rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: -0.02em;
     }
     .ot-lunch-viewall {
@@ -3199,7 +3199,7 @@
     .ot-lunch-name {
       font-size: 1.1rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -3207,7 +3207,7 @@
     }
     .ot-lunch-meta {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-bottom: 0.5rem;
       white-space: nowrap;
       overflow: hidden;
@@ -3262,13 +3262,13 @@
     .ot-section-title-wrap h2 {
       font-size: 1.6rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: -0.02em;
     }
 
     .ot-section-title-wrap .ot-section-sub {
       font-size: 0.9rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.25rem;
     }
 
@@ -3311,14 +3311,14 @@
     .ot-regulars-title {
       font-size: 1.45rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .ot-regulars-sub {
-      color: #cbd5e1;
+      color: #475569;
       font-size: 0.95rem;
       margin-top: 0.2rem;
     }
@@ -3364,12 +3364,12 @@
     .ot-reward-points {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .ot-reward-label {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: #64748b;
     }
 
     /* Diners' Choice Awards Section */
@@ -3503,17 +3503,17 @@
     .ot-rave-user {
       font-size: 0.95rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .ot-rave-meta {
       font-size: 0.75rem;
-      color: #94a3b8;
+      color: #64748b;
     }
 
     .ot-rave-quote {
       font-size: 0.925rem;
-      color: #e2e8f0;
+      color: #334155;
       line-height: 1.55;
       font-style: italic;
       margin-bottom: 1.25rem;
@@ -3530,7 +3530,7 @@
 
     .ot-rave-rest-name {
       font-weight: 600;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     /* Trending Dishes 9-Photo Gallery */
@@ -3569,7 +3569,7 @@
     .ot-dish-showcase-name {
       font-size: 0.95rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -3577,7 +3577,7 @@
 
     .ot-dish-showcase-rest {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.2rem;
       display: flex;
       justify-content: space-between;
@@ -3625,26 +3625,26 @@
     .ot-experience-title {
       font-size: 0.95rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       line-height: 1.35;
     }
 
     .ot-experience-venue {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.35rem;
     }
 
     .ot-experience-price {
       font-size: 1.05rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       margin-top: 0.75rem;
     }
 
     .ot-experience-price-sub {
       font-size: 0.75rem;
-      color: #94a3b8;
+      color: #64748b;
       font-weight: 400;
     }
 
@@ -3751,13 +3751,13 @@
     .ot-article-title {
       font-size: 1.15rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       line-height: 1.35;
     }
 
     .ot-article-desc {
       font-size: 0.85rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.5rem;
       line-height: 1.5;
     }
@@ -3779,7 +3779,7 @@
 
     .ot-faq-intro {
       font-size: 0.95rem;
-      color: #cbd5e1;
+      color: #475569;
       line-height: 1.6;
       margin-bottom: 1.5rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -3797,7 +3797,7 @@
     .ot-faq-q {
       font-size: 1.05rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       padding: 1.25rem 0;
       cursor: pointer;
       display: flex;
@@ -3812,7 +3812,7 @@
 
     .ot-faq-a {
       font-size: 0.9rem;
-      color: #94a3b8;
+      color: #475569;
       line-height: 1.6;
       padding-bottom: 1.25rem;
       display: none;
@@ -3833,7 +3833,7 @@
     .ot-city-tab {
       font-size: 0.95rem;
       font-weight: 600;
-      color: #94a3b8;
+      color: #64748b;
       padding-bottom: 0.75rem;
       cursor: pointer;
       border-bottom: 2px solid transparent;
@@ -3859,7 +3859,7 @@
 
     .ot-city-link {
       font-size: 0.875rem;
-      color: #cbd5e1;
+      color: #334155;
       text-decoration: none;
       cursor: pointer;
       transition: color 0.15s ease;
@@ -3888,13 +3888,13 @@
     .ot-restaurateurs-content h2 {
       font-size: 1.6rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 0.5rem;
     }
 
     .ot-restaurateurs-content p {
       font-size: 0.95rem;
-      color: #94a3b8;
+      color: #475569;
       max-width: 550px;
       line-height: 1.5;
     }
@@ -3930,7 +3930,7 @@
     }
 
     .ot-footer-policy-link {
-      color: #cbd5e1;
+      color: #64748b;
       text-decoration: none;
       cursor: pointer;
     }
@@ -3962,7 +3962,7 @@
     .ot-footer-col-title {
       font-size: 0.8rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
@@ -3976,7 +3976,7 @@
     }
 
     .ot-footer-link {
-      color: #94a3b8;
+      color: #64748b;
       text-decoration: none;
       cursor: pointer;
       transition: color 0.15s ease;
@@ -4026,13 +4026,13 @@
     .ot-rewards-hub-title {
       font-size: 2.25rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       letter-spacing: -0.03em;
     }
 
     .ot-rewards-hub-subtitle {
       font-size: 1.05rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.25rem;
     }
 
@@ -4066,12 +4066,12 @@
     .ot-hub-box-title {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .ot-hub-box-sub {
       font-size: 0.95rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.35rem;
       line-height: 1.5;
     }
@@ -4109,12 +4109,12 @@
     .ot-fan-card-val {
       font-size: 1.1rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .ot-fan-card-label {
       font-size: 0.75rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.25rem;
     }
 
@@ -4131,7 +4131,7 @@
       align-items: center;
       gap: 0.85rem;
       font-size: 0.95rem;
-      color: #cbd5e1;
+      color: #334155;
     }
 
     .ot-check-ico {
@@ -4226,12 +4226,12 @@
     .ot-partner-title {
       font-size: 1rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
     }
 
     .ot-partner-desc {
       font-size: 0.825rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 0.2rem;
       line-height: 1.4;
     }
@@ -4602,6 +4602,87 @@
     .badge {
       font-weight: 700 !important;
     }
+  
+    /* ========================================================================= */
+    /* UNIVERSAL HIGH-CONTRAST WHITE THEME OVERRIDES                             */
+    /* ========================================================================= */
+    /* Force crisp dark text on all white/light surfaces */
+    body, main, .app-container, .page-container {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+    }
+
+    /* All headings & labels */
+    h1, h2, h3, h4, h5, h6, strong, b, dt, th,
+    .title, .heading, .card-title, .venue-name, .ot-card-name, .rest-title {
+      color: #0f172a !important;
+    }
+
+    /* Paragraphs & body copy */
+    p, li, dd, td, .body-text, .desc, .description, .ot-overview-text, .ot-review-text {
+      color: #334155 !important;
+    }
+
+    /* Subtitles, metadata, version tags & review counts */
+    .subtitle, .meta, .date, .time, .count, .version, .policy-version,
+    .text-muted, .ot-card-meta, .ot-lunch-meta, .ot-rave-meta, .inspector-kpi-label {
+      color: #64748b !important;
+    }
+
+    /* All Cards, Panels, Modals & Drawers */
+    .card, .panel, .venue-card, .ot-card, .modal-box, .modal-content, .drawer,
+    .ot-party-card, .ot-article-card, .client-card, .vip-card, .agent-msg-box {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    /* Form Controls & Dropdowns */
+    input, select, textarea {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #94a3b8 !important;
+    }
+    select option, option {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+    }
+
+    /* Badges & Chips */
+    .sim-chip, .badge:not(.btn):not(.btn-primary):not(.btn-ot-red), .pill:not(.time-pill):not(.time-slot) {
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+
+    /* Buttons with dark/colored backgrounds MUST preserve crisp white text */
+    .btn-primary, .btn-ot-red, .btn-letsgo, .btn-find-next,
+    .time-slot, .ot-time-btn, .time-pill, #btn-force-band-sync,
+    .badge-primary, .badge-danger, .badge-success {
+      color: #ffffff !important;
+    }
+    .btn-primary strong, .btn-primary span,
+    .btn-ot-red strong, .btn-ot-red span {
+      color: #ffffff !important;
+    }
+
+    /* Phone Simulator & Black Card interior MUST preserve dark styling */
+    .mobile-phone-frame, .mobile-phone-frame * {
+      /* inherit inside frame */
+    }
+    .mobile-phone-status-bar, .mobile-phone-status-bar * {
+      color: #ffffff !important;
+    }
+    .vip-black-card, .vip-black-card * {
+      color: #ffffff !important;
+    }
+    .vip-black-card .card-chip, .vip-black-card .chip-gold {
+      color: inherit !important;
+    }
+
   </style>
 </head>
 <body>
@@ -4609,12 +4690,12 @@
     <div class="header-content">
       <a href="/" class="brand" onclick="navigateTo(event, '/')" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none;">
         <span class="ot-logo-icon"></span>
-        <span style="color:#ffffff; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em;">TableMe</span>
+        <span style="color:#0f172a; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em;">TableMe</span>
         <span class="ot-badge-factory">Dark Factory</span>
       </a>
       <div class="ot-location-trigger-wrap">
         <div class="ot-location-chip" id="ot-location-btn" onclick="toggleMetroModal(event)">
-          <span>📍</span> <span id="header-location-name">Seattle / Eastern Washington</span> <span style="font-size:0.75rem; color:#94a3b8;">▼</span>
+          <span>📍</span> <span id="header-location-name">Seattle / Eastern Washington</span> <span style="font-size:0.75rem; color:#475569;">▼</span>
         </div>
         <!-- Screenshot 1: Metro & Region Selector Modal -->
         <div id="ot-metro-modal" class="ot-metro-dropdown" style="display:none;" onclick="event.stopPropagation()">
@@ -4881,7 +4962,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">LOCAL Public Eatery</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">33 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">33 reviews</span></div>
                   <div class="ot-lunch-meta">Gastro Pub • $$$$ • Capitol Hill</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 9 times today</div>
                 </div>
@@ -4901,7 +4982,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Le Pichet & Vendemmia</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">1,410 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">1,410 reviews</span></div>
                   <div class="ot-lunch-meta">American • $$$$ • Leschi / Madrona...</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 5 times today</div>
                 </div>
@@ -4921,7 +5002,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Cascina Spinasse</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">4,118 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">4,118 reviews</span></div>
                   <div class="ot-lunch-meta">Italian • $$$$ • Capitol Hill</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 26 times today</div>
                 </div>
@@ -4957,7 +5038,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">The George</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">1,610 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">1,610 reviews</span></div>
                   <div class="ot-lunch-meta">Contemporary American • $$$$ • Downtown</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 43 times today</div>
                 </div>
@@ -4976,7 +5057,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Toulouse Petit Kitchen...</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">5,154 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">5,154 reviews</span></div>
                   <div class="ot-lunch-meta">American • $$$$ • Queen Anne</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 68 times today</div>
                 </div>
@@ -4996,7 +5077,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Rider - Seattle</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">674 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">674 reviews</span></div>
                   <div class="ot-lunch-meta">Contemporary American • $$$$ • Downtown</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 13 times today</div>
                 </div>
@@ -5016,7 +5097,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">JOEY Bellevue Lunch</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">2,842 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">2,842 reviews</span></div>
                   <div class="ot-lunch-meta">American • $$$$ • Bellevue Downtown</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 92 times today</div>
                 </div>
@@ -5037,7 +5118,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Palace Kitchen Hearth</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">767 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">767 reviews</span></div>
                   <div class="ot-lunch-meta">American • $$$$ • Belltown</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 22 times today</div>
                 </div>
@@ -5115,9 +5196,9 @@
             <div class="ot-featured-choice-body">
               <div>
                 <span class="ot-top-pick-badge">Diners' top pick</span>
-                <h3 style="font-size:1.35rem; color:#fff; font-weight:700; margin-bottom:0.25rem;">Westcott Bay Shellfish Co</h3>
-                <div style="color:#da3743; font-size:0.9rem; margin-bottom:0.75rem;">★★★★★ <span style="color:#94a3b8;">5.0 (1,217 reviews) • Seafood • $$$$</span></div>
-                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.6; margin-bottom:1rem;">
+                <h3 style="font-size:1.35rem; color:#0f172a; font-weight:700; margin-bottom:0.25rem;">Westcott Bay Shellfish Co</h3>
+                <div style="color:#da3743; font-size:0.9rem; margin-bottom:0.75rem;">★★★★★ <span style="color:#64748b;">5.0 (1,217 reviews) • Seafood • $$$$</span></div>
+                <p style="color:#334155; font-size:0.9rem; line-height:1.6; margin-bottom:1rem;">
                   Growers of clams, mussels, and oysters, we highlight the splendors of the sea, with the seasonal crops of the islands, to bring you a taste of our island community. Reservations are available May - September for The Tide Tables restaurant.
                 </p>
               </div>
@@ -5132,9 +5213,9 @@
             <!-- Mini Card 1: Ambrosia Bistro & Wine Bar -->
             <div class="ot-choice-mini-card">
               <div>
-                <h4 style="font-size:1.1rem; color:#fff; font-weight:700;">Ambrosia Bistro & Wine Bar</h4>
-                <div style="color:#da3743; font-size:0.85rem; margin:0.25rem 0;">★★★★★ <span style="color:#94a3b8;">5.0 (394 reviews) • Bistro • $$$$</span></div>
-                <p style="color:#94a3b8; font-size:0.85rem; line-height:1.5;">
+                <h4 style="font-size:1.1rem; color:#0f172a; font-weight:700;">Ambrosia Bistro & Wine Bar</h4>
+                <div style="color:#da3743; font-size:0.85rem; margin:0.25rem 0;">★★★★★ <span style="color:#64748b;">5.0 (394 reviews) • Bistro • $$$$</span></div>
+                <p style="color:#64748b; font-size:0.85rem; line-height:1.5;">
                   Ambrosia Bistro was conceived by Scott and Kara to offer elevated Pacific Northwest culinary warmth paired with curated regional wines.
                 </p>
               </div>
@@ -5147,11 +5228,11 @@
             <div class="ot-choice-mini-card">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                  <h4 style="font-size:1.1rem; color:#fff; font-weight:700;">Radiator Whiskey (21 and over)</h4>
-                  <span style="font-size:0.7rem; background:#334155; color:#cbd5e1; padding:0.15rem 0.4rem; border-radius:4px;">21+</span>
+                  <h4 style="font-size:1.1rem; color:#0f172a; font-weight:700;">Radiator Whiskey (21 and over)</h4>
+                  <span style="font-size:0.7rem; background:#334155; color:#334155; padding:0.15rem 0.4rem; border-radius:4px;">21+</span>
                 </div>
-                <div style="color:#da3743; font-size:0.85rem; margin:0.25rem 0;">★★★★★ <span style="color:#94a3b8;">4.9 (497 reviews) • Comfort Food • $$$$</span></div>
-                <p style="color:#94a3b8; font-size:0.85rem; line-height:1.5;">
+                <div style="color:#da3743; font-size:0.85rem; margin:0.25rem 0;">★★★★★ <span style="color:#64748b;">4.9 (497 reviews) • Comfort Food • $$$$</span></div>
+                <p style="color:#64748b; font-size:0.85rem; line-height:1.5;">
                   In the heart of Pike Place Market, Radiator Whiskey delivers house-smoked meats, bespoke craft cocktails, and authentic market spirit.
                 </p>
               </div>
@@ -5188,7 +5269,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Terra Plata</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">4,497 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">4,497 reviews</span></div>
                   <div class="ot-lunch-meta">Farm-to-table • $$$$ • Capitol Hill</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 31 times today</div>
                 </div>
@@ -5208,7 +5289,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Elephant & Castle - Se...</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">570 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">570 reviews</span></div>
                   <div class="ot-lunch-meta">American • $$$$ • Downtown</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 31 times today</div>
                 </div>
@@ -5224,12 +5305,12 @@
               <div class="ot-lunch-img-wrap">
                 <img loading="lazy" decoding="async" class="ot-lunch-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="COMMUNION">
                 <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Bookmarked COMMUNION')">🔖</div>
-                <div style="position:absolute; bottom:8px; left:8px; background:rgba(218,55,67,0.9); color:#fff; font-size:0.7rem; font-weight:700; padding:2px 6px; border-radius:4px;">Icon</div>
+                <div style="position:absolute; bottom:8px; left:8px; background:rgba(218,55,67,0.9); color:#0f172a; font-size:0.7rem; font-weight:700; padding:2px 6px; border-radius:4px;">Icon</div>
               </div>
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">COMMUNION</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">503 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">503 reviews</span></div>
                   <div class="ot-lunch-meta">Contemporary Southern • $$$$ • Central</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 51 times today</div>
                 </div>
@@ -5249,7 +5330,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Single Shot</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">1,567 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">1,567 reviews</span></div>
                   <div class="ot-lunch-meta">Contemporary American • $$$$ • Capitol Hill</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 21 times today</div>
                 </div>
@@ -5269,7 +5350,7 @@
               <div class="ot-lunch-body">
                 <div>
                   <div class="ot-lunch-name">Le Coin</div>
-                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#94a3b8;">122 reviews</span></div>
+                  <div style="color:#da3743; font-size:0.85rem; margin-bottom:0.25rem;">★★★★★ <span style="color:#64748b;">122 reviews</span></div>
                   <div class="ot-lunch-meta">French • $$$$ • Fremont</div>
                   <div class="ot-lunch-booked"><span>📈</span> Booked 39 times today</div>
                 </div>
@@ -5314,7 +5395,7 @@
             <div class="ot-rave-footer">
               <div>
                 <div class="ot-rave-rest-name">Carmine's 5th Ave</div>
-                <div style="font-size:0.75rem; color:#94a3b8;">$$$$ • Italian • Downtown • ★ 4.8</div>
+                <div style="font-size:0.75rem; color:#64748b;">$$$$ • Italian • Downtown • ★ 4.8</div>
               </div>
               <a class="ot-view-all-link" onclick="selectRestaurant('r_spinasse')">More info ›</a>
             </div>
@@ -5337,7 +5418,7 @@
             <div class="ot-rave-footer">
               <div>
                 <div class="ot-rave-rest-name">The George</div>
-                <div style="font-size:0.75rem; color:#94a3b8;">$$$$ • Contemporary American • Downtown • ★ 4.5</div>
+                <div style="font-size:0.75rem; color:#64748b;">$$$$ • Contemporary American • Downtown • ★ 4.5</div>
               </div>
               <a class="ot-view-all-link" onclick="selectRestaurant('r_canlis')">More info ›</a>
             </div>
@@ -5360,7 +5441,7 @@
             <div class="ot-rave-footer">
               <div>
                 <div class="ot-rave-rest-name">Seattle Rooftop Next Level Lounge</div>
-                <div style="font-size:0.75rem; color:#94a3b8;">$$$$ • Steakhouse • Downtown • ★ 4.0</div>
+                <div style="font-size:0.75rem; color:#64748b;">$$$$ • Steakhouse • Downtown • ★ 4.0</div>
               </div>
               <a class="ot-view-all-link" onclick="selectRestaurant('r_ascend')">More info ›</a>
             </div>
@@ -5575,11 +5656,11 @@
               <div class="ot-instant-badge">⚡ Instant book</div>
             </div>
             <div class="ot-private-body">
-              <h4 style="color:#fff; font-size:1.05rem; font-weight:700;">Sparrow - Kirkland</h4>
-              <div style="font-size:0.8rem; color:#94a3b8;">American • $$$$ • Kirkland</div>
+              <h4 style="color:#0f172a; font-size:1.05rem; font-weight:700;">Sparrow - Kirkland</h4>
+              <div style="font-size:0.8rem; color:#64748b;">American • $$$$ • Kirkland</div>
               <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.25rem;">
                 <span style="color:#da3743; font-weight:700;">★ 4.6</span>
-                <span style="color:#cbd5e1;">👥 10 - 500 people</span>
+                <span style="color:#334155;">👥 10 - 500 people</span>
               </div>
             </div>
           </div>
@@ -5591,11 +5672,11 @@
               <div class="ot-instant-badge">⚡ Instant book</div>
             </div>
             <div class="ot-private-body">
-              <h4 style="color:#fff; font-size:1.05rem; font-weight:700;">The Old Spaghetti Factory - Lyn...</h4>
-              <div style="font-size:0.8rem; color:#94a3b8;">Italian • $$$$ • Lynnwood</div>
+              <h4 style="color:#0f172a; font-size:1.05rem; font-weight:700;">The Old Spaghetti Factory - Lyn...</h4>
+              <div style="font-size:0.8rem; color:#64748b;">Italian • $$$$ • Lynnwood</div>
               <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.25rem;">
                 <span style="color:#da3743; font-weight:700;">★ 4.5</span>
-                <span style="color:#cbd5e1;">👥 15 - 150 people</span>
+                <span style="color:#334155;">👥 15 - 150 people</span>
               </div>
             </div>
           </div>
@@ -5607,11 +5688,11 @@
               <div class="ot-instant-badge">⚡ Instant book</div>
             </div>
             <div class="ot-private-body">
-              <h4 style="color:#fff; font-size:1.05rem; font-weight:700;">The Old Spaghetti Factory - Tac...</h4>
-              <div style="font-size:0.8rem; color:#94a3b8;">Italian • $$$$ • Tacoma</div>
+              <h4 style="color:#0f172a; font-size:1.05rem; font-weight:700;">The Old Spaghetti Factory - Tac...</h4>
+              <div style="font-size:0.8rem; color:#64748b;">Italian • $$$$ • Tacoma</div>
               <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.25rem;">
                 <span style="color:#da3743; font-weight:700;">★ 4.4</span>
-                <span style="color:#cbd5e1;">👥 12 - 110 people</span>
+                <span style="color:#334155;">👥 12 - 110 people</span>
               </div>
             </div>
           </div>
@@ -5656,7 +5737,7 @@
       <!-- SECTION 13: FREQUENTLY ASKED QUESTIONS ABOUT TABLEME (PDF PAGE 2)   -->
       <!-- ===================================================================== -->
       <div class="ot-faq-container">
-        <h2 style="font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:0.5rem;">Frequently asked questions about TableMe</h2>
+        <h2 style="font-size:1.5rem; color:#0f172a; font-weight:700; margin-bottom:0.5rem;">Frequently asked questions about TableMe</h2>
         <div class="ot-faq-intro">
           TableMe helps you discover the best restaurants for every occasion. Through the website and app, you can explore over 70,000 restaurants worldwide and instantly see what’s available nearby. Quickly narrow down your choices by filtering for new restaurants, hidden culinary gems, local favorites, and more. Whether you’re looking to book top restaurants near you or MICHELIN-Starred restaurants around the world, TableMe has you covered.
         </div>
@@ -5696,7 +5777,7 @@
       <!-- SECTION 14: FIND THE PERFECT RESTAURANTS NEAR YOU (PDF PAGE 2)        -->
       <!-- ===================================================================== -->
       <div style="margin-top:3.5rem;">
-        <h2 style="font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:1rem;">Find the Perfect Restaurants Near You</h2>
+        <h2 style="font-size:1.5rem; color:#0f172a; font-weight:700; margin-bottom:1rem;">Find the Perfect Restaurants Near You</h2>
         
         <div class="ot-cities-tabs">
           <div id="tab-cities-us" class="ot-city-tab active" onclick="toggleCityTab('us')">
@@ -5776,7 +5857,7 @@
             </button>
           </div>
           <div style="font-size:0.8rem; color:#64748b; margin-top:1rem;">
-            Favorite restaurant not yet on TableMe? <a style="color:#cbd5e1; text-decoration:underline; cursor:pointer;" onclick="alert('Thank you for suggesting a restaurant to our curation team!')">Suggest a restaurant.</a>
+            Favorite restaurant not yet on TableMe? <a style="color:#334155; text-decoration:underline; cursor:pointer;" onclick="alert('Thank you for suggesting a restaurant to our curation team!')">Suggest a restaurant.</a>
           </div>
         </div>
         <div style="font-size:4.5rem; opacity:0.85; display:flex; align-items:center; gap:12px;">
@@ -5875,7 +5956,7 @@
                   <div class="ot-dish-desc">16oz hand-cut prime beef, roasted wild forest mushrooms, truffle butter, yukon gold purée.</div>
                   <div class="ot-dish-footer">
                     <span class="ot-dish-price">$56.50</span>
-                    <span style="font-size:0.75rem; color:#94a3b8;">★ Top Rated</span>
+                    <span style="font-size:0.75rem; color:#64748b;">★ Top Rated</span>
                   </div>
                 </div>
               </div>
@@ -5887,7 +5968,7 @@
                   <div class="ot-dish-desc">Fresh Atlantic salmon, sweet soy glaze, avocado, chili aioli, toasted sesame seeds.</div>
                   <div class="ot-dish-footer">
                     <span class="ot-dish-price">$39.00</span>
-                    <span style="font-size:0.75rem; color:#94a3b8;">★ Chef Choice</span>
+                    <span style="font-size:0.75rem; color:#64748b;">★ Chef Choice</span>
                   </div>
                 </div>
               </div>
@@ -5899,7 +5980,7 @@
                   <div class="ot-dish-desc">Handmade ricotta ravioli, white truffle cream sauce, toasted hazelnuts, crispy garden sage.</div>
                   <div class="ot-dish-footer">
                     <span class="ot-dish-price">$29.50</span>
-                    <span style="font-size:0.75rem; color:#94a3b8;">★ Vegetarian</span>
+                    <span style="font-size:0.75rem; color:#64748b;">★ Vegetarian</span>
                   </div>
                 </div>
               </div>
@@ -5911,7 +5992,7 @@
                   <div class="ot-dish-desc">Woodford Reserve Bourbon, carpano antica vermouth, aromatic bitters, smoked brandied cherry.</div>
                   <div class="ot-dish-footer">
                     <span class="ot-dish-price">$18.00</span>
-                    <span style="font-size:0.75rem; color:#94a3b8;">🍸 Signature</span>
+                    <span style="font-size:0.75rem; color:#64748b;">🍸 Signature</span>
                   </div>
                 </div>
               </div>
@@ -5924,19 +6005,19 @@
             <div class="card" style="background:var(--ot-card); border:1px solid var(--ot-border);">
               <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1rem;">
                 <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid var(--ot-gold);">
-                  <div style="font-weight:700; color:#fff;">Table 1 (t_1)</div>
-                  <div style="font-size:0.85rem; color:#94a3b8;">Window Intimate • Capacity: 2 Guests</div>
+                  <div style="font-weight:700; color:#0f172a;">Table 1 (t_1)</div>
+                  <div style="font-size:0.85rem; color:#64748b;">Window Intimate • Capacity: 2 Guests</div>
                 </div>
                 <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid #38bdf8;">
-                  <div style="font-weight:700; color:#fff;">Table 2 (t_2)</div>
-                  <div style="font-size:0.85rem; color:#94a3b8;">Main Dining Booth • Capacity: 4 Guests</div>
+                  <div style="font-weight:700; color:#0f172a;">Table 2 (t_2)</div>
+                  <div style="font-size:0.85rem; color:#64748b;">Main Dining Booth • Capacity: 4 Guests</div>
                 </div>
                 <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid #34d399;">
-                  <div style="font-weight:700; color:#fff;">Table 3 (t_3)</div>
-                  <div style="font-size:0.85rem; color:#94a3b8;">Executive Banquette • Capacity: 6 Guests</div>
+                  <div style="font-weight:700; color:#0f172a;">Table 3 (t_3)</div>
+                  <div style="font-size:0.85rem; color:#64748b;">Executive Banquette • Capacity: 6 Guests</div>
                 </div>
               </div>
-              <div style="font-size:0.9rem; color:#94a3b8; background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:8px;">
+              <div style="font-size:0.9rem; color:#64748b; background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:8px;">
                 🔗 <strong>Combinable Pairs Supported:</strong> Pair 1: [Table 1 + Table 2] (Seats 6) • Pair 2: [Table 2 + Table 3] (Seats 10)
               </div>
             </div>
@@ -5974,7 +6055,7 @@
 
           <section id="policies" class="ot-section">
             <h2 class="ot-section-title">Dining Policies & Details</h2>
-            <div class="card" style="background:var(--ot-card); border:1px solid var(--ot-border); font-size:0.9rem; line-height:1.7; color:#cbd5e1;">
+            <div class="card" style="background:var(--ot-card); border:1px solid var(--ot-border); font-size:0.9rem; line-height:1.7; color:#334155;">
               <div>• <strong>Seating Duration:</strong> Tables are reserved for 2 hours for parties up to 6.</div>
               <div>• <strong>Grace Period:</strong> Tables are held for 15 minutes past reservation time.</div>
               <div>• <strong>Cancellation Policy:</strong> Free cancellation up to 2 hours prior to reservation.</div>
@@ -5991,7 +6072,7 @@
 
             <div class="search-bar" style="flex-direction:column; gap:1rem; padding:0; background:transparent; border:none; box-shadow:none;">
               <div class="form-group" style="margin-bottom:0; width:100%;">
-                <label for="restaurant-select" style="color:#ffffff; font-weight:700;">Dining Destination</label>
+                <label for="restaurant-select" style="color:#0f172a; font-weight:700;">Dining Destination</label>
                 <select id="restaurant-select" data-testid="restaurant-select" style="background:var(--ot-card-elevated); border:1px solid var(--ot-border); border-radius:10px;">
                   <option value="r_jiro">🍣 Sukiyabashi Jiro — Tokyo (Ginza) (10 Tables)</option>
                   <option value="r_den">🍱 Den Tokyo — Tokyo (Shibuya) (10 Tables)</option>
@@ -6025,12 +6106,12 @@
               </div>
 
               <div class="form-group" style="margin-bottom:0; width:100%;">
-                <label for="party-size-input" style="color:#ffffff; font-weight:700;">Party Size</label>
+                <label for="party-size-input" style="color:#0f172a; font-weight:700;">Party Size</label>
                 <input type="number" id="party-size-input" data-testid="party-size-input" min="1" value="2" style="background:var(--ot-card-elevated); border:1px solid var(--ot-border); border-radius:10px;">
               </div>
 
               <div class="form-group" style="margin-bottom:0; width:100%;">
-                <label for="date-input" style="color:#ffffff; font-weight:700;">Date</label>
+                <label for="date-input" style="color:#0f172a; font-weight:700;">Date</label>
                 <input type="date" id="date-input" data-testid="date-input" style="background:var(--ot-card-elevated); border:1px solid var(--ot-border); border-radius:10px;">
               </div>
 
@@ -6049,7 +6130,7 @@
                 </div>
                 <span class="sim-chip" style="background:rgba(56,189,248,0.2); color:#38bdf8;">AI Agent Arranged</span>
               </div>
-              <div style="font-size:0.775rem; color:#94a3b8;">
+              <div style="font-size:0.775rem; color:#64748b;">
                 Select your preferred table geometry or dining atmosphere. Our autonomous agent will verify availability, solve combinable pairs if needed, and lock your table.
               </div>
 
@@ -6097,7 +6178,7 @@
                 <div style="display:flex; align-items:center; gap:8px;">
                   <span style="font-size:1.1rem;">⚡</span>
                   <div>
-                    <strong style="color:#ffffff;">AI Agent Concierge:</strong>
+                    <strong style="color:#0f172a;">AI Agent Concierge:</strong>
                     <span id="agent-matchmaker-msg" style="color:#38bdf8;">
                       Table 14 (Sapphire Booth) arranged for your party. Invariant checks passed: 0 conflicts detected.
                     </span>
@@ -6117,7 +6198,7 @@
                 </div>
                 <span class="sim-chip" style="background:rgba(16,185,129,0.2); color:#34d399;">Zero Double-Booking Standard</span>
               </div>
-              <div style="font-size:0.775rem; color:#94a3b8;">
+              <div style="font-size:0.775rem; color:#64748b;">
                 <strong>Judge Verification Tool:</strong> Simulates high-speed race conditions where multiple diners submit simultaneous requests for the exact same table and slot. Proves that our atomic invariant locks prevent double bookings 100% of the time.
               </div>
 
@@ -6624,7 +6705,7 @@
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <!-- 2-Way View Mode Toggle -->
           <div style="display:flex; background:rgba(15,23,42,0.9); border:1px solid var(--border); border-radius:6px; padding:3px; gap:3px;">
-            <button id="btn-mode-dining" type="button" class="btn btn-sm" style="background:#10b981; color:#fff; border:none; padding:0.35rem 0.85rem; border-radius:4px; font-weight:700; cursor:pointer;" onclick="switch3DMode('dining')">
+            <button id="btn-mode-dining" type="button" class="btn btn-sm" style="background:#10b981; color:#0f172a; border:none; padding:0.35rem 0.85rem; border-radius:4px; font-weight:700; cursor:pointer;" onclick="switch3DMode('dining')">
               🟢 Vacancy 3D Floor
             </button>
             <button id="btn-mode-factory" type="button" class="btn btn-sm" style="background:transparent; color:var(--text-muted); border:none; padding:0.35rem 0.85rem; border-radius:4px; cursor:pointer;" onclick="switch3DMode('factory')">
@@ -6770,7 +6851,7 @@
                 <!-- Partner 2: Uber One -->
                 <div class="ot-partner-card">
                   <div class="ot-partner-badge uber-badge">
-                    <div style="font-size:0.85rem; font-weight:900; color:#fff;">Uber</div>
+                    <div style="font-size:0.85rem; font-weight:900; color:#0f172a;">Uber</div>
                     <div style="font-size:0.65rem; color:#facc15; font-weight:700;">One</div>
                   </div>
                   <div class="ot-partner-info">
@@ -6799,7 +6880,7 @@
             </div>
 
             <!-- Partner Perks Summary -->
-            <div style="margin-top:1.5rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:0.875rem 1rem; font-size:0.825rem; color:#94a3b8; display:flex; align-items:center; gap:8px;">
+            <div style="margin-top:1.5rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:0.875rem 1rem; font-size:0.825rem; color:#64748b; display:flex; align-items:center; gap:8px;">
               <span>✨</span>
               <span>Partner benefits automatically stack with TableMe loyalty points and status.</span>
             </div>
@@ -6822,21 +6903,21 @@
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div>
                 <div style="font-size:0.8rem; color:#34d399; font-weight:700; text-transform:uppercase;">● Current Member Tier</div>
-                <div style="font-size:1.4rem; font-weight:800; color:#fff;" id="modal-member-tier">Gold Regular</div>
+                <div style="font-size:1.4rem; font-weight:800; color:#0f172a;" id="modal-member-tier">Gold Regular</div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:0.8rem; color:#94a3b8;">Available Balance</div>
+                <div style="font-size:0.8rem; color:#64748b;">Available Balance</div>
                 <div style="font-size:1.4rem; font-weight:800; color:#f59e0b;" id="modal-points-balance">2,450 pts</div>
               </div>
             </div>
           </div>
 
-          <h4 style="color:#fff; font-size:1.05rem; margin-bottom:0.75rem;">Available Redemptions</h4>
+          <h4 style="color:#0f172a; font-size:1.05rem; margin-bottom:0.75rem;">Available Redemptions</h4>
           <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;">
             <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
               <div>
-                <div style="font-weight:700; color:#fff;">$20 Dining Credit</div>
-                <div style="font-size:0.8rem; color:#94a3b8;">Valid across all Seattle & Eastside TableMe restaurants</div>
+                <div style="font-weight:700; color:#0f172a;">$20 Dining Credit</div>
+                <div style="font-size:0.8rem; color:#64748b;">Valid across all Seattle & Eastside TableMe restaurants</div>
               </div>
               <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('$20 Dining Credit', 2000)">
                 Redeem 2,000 pts
@@ -6845,8 +6926,8 @@
 
             <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
               <div>
-                <div style="font-weight:700; color:#fff;">$20 Amazon Gift Card</div>
-                <div style="font-size:0.8rem; color:#94a3b8;">Instant digital voucher code delivered to your account</div>
+                <div style="font-weight:700; color:#0f172a;">$20 Amazon Gift Card</div>
+                <div style="font-size:0.8rem; color:#64748b;">Instant digital voucher code delivered to your account</div>
               </div>
               <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('$20 Amazon Gift Card', 2000)">
                 Redeem 2,000 pts
@@ -6855,8 +6936,8 @@
 
             <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
               <div>
-                <div style="font-weight:700; color:#fff;">Experience Credit ($10 off)</div>
-                <div style="font-size:0.8rem; color:#94a3b8;">Applicable towards any chef tasting menu or course experience</div>
+                <div style="font-weight:700; color:#0f172a;">Experience Credit ($10 off)</div>
+                <div style="font-size:0.8rem; color:#64748b;">Applicable towards any chef tasting menu or course experience</div>
               </div>
               <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('Experience Pass ($10)', 1000)">
                 Redeem 1,000 pts
@@ -6943,7 +7024,7 @@
             <div class="ipad-top-nav">
               <div class="ipad-time-display">
                 <span>🔍</span>
-                <input type="text" placeholder="Search diner, phone, or table..." style="background:#1c2430; border:1px solid #2f3b4c; border-radius:14px; padding:3px 10px; font-size:0.75rem; color:#fff; width:180px;">
+                <input type="text" placeholder="Search diner, phone, or table..." style="background:#1c2430; border:1px solid #2f3b4c; border-radius:14px; padding:3px 10px; font-size:0.75rem; color:#0f172a; width:180px;">
                 <span style="margin-left:8px;" id="ipad-live-clock">11:47 AM Wed, Aug 24</span>
               </div>
               <div class="ipad-shift-selector" onclick="alert('Viewing lunch service pacing: 82 Covers committed, 18 Covers remaining.')">
@@ -7046,7 +7127,7 @@
                             <div class="res-meta-line"><span>🕒 11:45 am</span></div>
                           </div>
                         </div>
-                        <div style="color:#94a3b8; font-size:0.8rem;">›</div>
+                        <div style="color:#64748b; font-size:0.8rem;">›</div>
                       </div>
 
                       <!-- Card 3: Bruce Hardage (⭐ VIP) -->
@@ -7070,7 +7151,7 @@
                             <div class="res-meta-line"><span>🕒 11:45 am</span></div>
                           </div>
                         </div>
-                        <div style="color:#94a3b8; font-size:0.8rem;">›</div>
+                        <div style="color:#64748b; font-size:0.8rem;">›</div>
                       </div>
 
                       <!-- Card 5: Irene Rodriguez (🏠 House Seat) -->
@@ -7129,10 +7210,10 @@
                       <div class="queue-section-title">
                         <span>Servers</span>
                       </div>
-                      <span style="font-size:0.75rem; color:#94a3b8;">Active (3)</span>
+                      <span style="font-size:0.75rem; color:#64748b;">Active (3)</span>
                     </div>
-                    <div style="background:#1a222d; padding:6px 10px; border-radius:6px; font-size:0.75rem; color:#94a3b8; border:1px solid #273344;">
-                      <div style="display:flex; justify-content:space-between; color:#ffffff; font-weight:700; margin-bottom:2px;">
+                    <div style="background:#1a222d; padding:6px 10px; border-radius:6px; font-size:0.75rem; color:#64748b; border:1px solid #273344;">
+                      <div style="display:flex; justify-content:space-between; color:#0f172a; font-weight:700; margin-bottom:2px;">
                         <span>Sarah M.</span>
                         <span style="color:#38bdf8;">Tables 11-15</span>
                       </div>
@@ -7149,7 +7230,7 @@
                   <div style="display:flex; align-items:center; gap:8px;">
                     <span style="font-size:1.1rem;" id="host-venue-icon">🏛️</span>
                     <div>
-                      <div style="font-size:0.85rem; font-weight:800; color:#ffffff;" id="host-venue-spatial-name">JOEY Bellevue — Flagship Multi-Zone Dining</div>
+                      <div style="font-size:0.85rem; font-weight:800; color:#0f172a;" id="host-venue-spatial-name">JOEY Bellevue — Flagship Multi-Zone Dining</div>
                       <div style="font-size:0.75rem; color:#38bdf8; font-weight:600;" id="host-venue-spatial-spec">MAX 25 TABLES • 8,500 SQ FT • HEATED PATIO, MAIN DINING, SOMMELIER VAULT</div>
                     </div>
                   </div>
@@ -7271,27 +7352,27 @@
 
                   <!-- Far Right High-Tops 61-66 -->
                   <div class="host-table shape-high-top" id="host-tbl-T61" style="top:140px; left:540px; border-color:#c084fc; background:rgba(192,132,252,0.2);" onclick="selectHostTable('T61')" title="Stool 61">
-                    <span style="font-size:0.7rem; font-weight:800; color:#fff;">61</span>
+                    <span style="font-size:0.7rem; font-weight:800; color:#0f172a;">61</span>
                   </div>
                   <div class="host-table shape-high-top" id="host-tbl-T62" style="top:195px; left:540px; border-color:#38bdf8; background:rgba(56,189,248,0.2);" onclick="selectHostTable('T62')" title="Stool 62">
-                    <span style="font-size:0.7rem; font-weight:800; color:#fff;">62</span>
+                    <span style="font-size:0.7rem; font-weight:800; color:#0f172a;">62</span>
                   </div>
                   <div class="host-table shape-high-top" id="host-tbl-T63" style="top:250px; left:540px; border-color:#818cf8; background:rgba(129,140,248,0.2);" onclick="selectHostTable('T63')" title="Stool 63">
-                    <span style="font-size:0.7rem; font-weight:800; color:#fff;">63</span>
+                    <span style="font-size:0.7rem; font-weight:800; color:#0f172a;">63</span>
                   </div>
                   <div class="host-table shape-high-top" id="host-tbl-T64" style="top:305px; left:540px;" onclick="selectHostTable('T64')" title="Stool 64">
-                    <span style="font-size:0.7rem; font-weight:800; color:#94a3b8;">64</span>
+                    <span style="font-size:0.7rem; font-weight:800; color:#64748b;">64</span>
                   </div>
                   <div class="host-table shape-high-top" id="host-tbl-T65" style="top:360px; left:540px;" onclick="selectHostTable('T65')" title="Stool 65">
-                    <span style="font-size:0.7rem; font-weight:800; color:#94a3b8;">65</span>
+                    <span style="font-size:0.7rem; font-weight:800; color:#64748b;">65</span>
                   </div>
                   <div class="host-table shape-high-top" id="host-tbl-T66" style="top:415px; left:540px;" onclick="selectHostTable('T66')" title="Stool 66">
-                    <span style="font-size:0.7rem; font-weight:800; color:#94a3b8;">66</span>
+                    <span style="font-size:0.7rem; font-weight:800; color:#64748b;">66</span>
                   </div>
 
                   <!-- Bottom Bar Stool Rail B1-B9 -->
                   <div style="position:absolute; top:530px; left:30px; display:flex; gap:8px; align-items:center;">
-                    <span style="font-size:0.7rem; font-weight:700; color:#94a3b8; margin-right:4px;">BAR:</span>
+                    <span style="font-size:0.7rem; font-weight:700; color:#64748b; margin-right:4px;">BAR:</span>
                     <div class="shape-bar-stool" style="border-color:#eab308; background:#eab308; color:#000;" onclick="selectHostTable('B1')">B1</div>
                     <div class="shape-bar-stool" style="border-color:#c084fc; background:#c084fc; color:#000;" onclick="selectHostTable('B2')">B2</div>
                     <div class="shape-bar-stool" style="border-color:#38bdf8; background:#38bdf8; color:#000;" onclick="selectHostTable('B3')">B3</div>
@@ -7305,18 +7386,18 @@
 
                   <!-- Patio / Lounge Low Tables L1-L4 -->
                   <div style="position:absolute; top:528px; left:410px; display:flex; gap:10px; align-items:center;">
-                    <span style="font-size:0.7rem; font-weight:700; color:#94a3b8;">PATIO:</span>
+                    <span style="font-size:0.7rem; font-weight:700; color:#64748b;">PATIO:</span>
                     <div class="host-table" style="position:relative; width:28px; height:28px; border:2px solid #06b6d4; background:rgba(6,182,212,0.3); border-radius:4px;" onclick="selectHostTable('L1')" title="Patio L1">
-                      <span style="font-size:0.65rem; font-weight:800; color:#fff;">L1</span>
+                      <span style="font-size:0.65rem; font-weight:800; color:#0f172a;">L1</span>
                     </div>
                     <div class="host-table" style="position:relative; width:28px; height:28px; border:2px solid #64748b; border-radius:50%; background:rgba(100,116,139,0.3);" onclick="selectHostTable('L2')" title="Patio L2">
-                      <span style="font-size:0.65rem; font-weight:800; color:#fff;">L2</span>
+                      <span style="font-size:0.65rem; font-weight:800; color:#0f172a;">L2</span>
                     </div>
                     <div class="host-table" style="position:relative; width:28px; height:28px; border:2px solid #64748b; border-radius:50%; background:rgba(100,116,139,0.3);" onclick="selectHostTable('L3')" title="Patio L3">
-                      <span style="font-size:0.65rem; font-weight:800; color:#fff;">L3</span>
+                      <span style="font-size:0.65rem; font-weight:800; color:#0f172a;">L3</span>
                     </div>
                     <div class="host-table" style="position:relative; width:28px; height:28px; border:2px solid #64748b; border-radius:50%; background:rgba(100,116,139,0.3);" onclick="selectHostTable('L4')" title="Patio L4">
-                      <span style="font-size:0.65rem; font-weight:800; color:#fff;">L4</span>
+                      <span style="font-size:0.65rem; font-weight:800; color:#0f172a;">L4</span>
                     </div>
                   </div>
                 </div>
@@ -7347,7 +7428,7 @@
             <div class="desktop-top-header">
               <div style="display:flex; align-items:center; gap:14px;">
                 <span style="font-size:1.2rem; cursor:pointer;">☰</span>
-                <div style="font-weight:700; color:#ffffff; font-size:0.95rem;" id="desktop-venue-title">
+                <div style="font-weight:700; color:#0f172a; font-size:0.95rem;" id="desktop-venue-title">
                   Green Food & Good Taste ▾
                 </div>
               </div>
@@ -7358,9 +7439,9 @@
               <div style="display:flex; align-items:center; gap:12px;">
                 <span style="position:relative; cursor:pointer;" title="1 Unread Alert">
                   ❔
-                  <span style="position:absolute; top:-4px; right:-6px; background:#da3743; color:#fff; font-size:0.65rem; border-radius:50%; padding:1px 4px; font-weight:800;">1</span>
+                  <span style="position:absolute; top:-4px; right:-6px; background:#da3743; color:#0f172a; font-size:0.65rem; border-radius:50%; padding:1px 4px; font-weight:800;">1</span>
                 </span>
-                <span style="font-size:0.85rem; color:#cbd5e1; font-weight:600;">Benaz Irani ▾</span>
+                <span style="font-size:0.85rem; color:#334155; font-weight:600;">Benaz Irani ▾</span>
               </div>
             </div>
 
@@ -7394,7 +7475,7 @@
                 <div class="schedule-title">Normal Schedule</div>
                 <div class="schedule-actions">
                   <button type="button" class="btn btn-secondary btn-sm" onclick="alert('Shift Change Log: 4 modifications by Benaz Irani.')">Change Log</button>
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="promptAddShift()" style="background:#334155; color:#fff;">+ Add</button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="promptAddShift()" style="background:#334155; color:#0f172a;">+ Add</button>
                 </div>
               </div>
 
@@ -7409,7 +7490,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Sat - Sunday Dinner: 4:00 PM - 10:30 PM • 90 Covers')">
                     <strong>Sat - Sunday</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">4:00 pm - 10:30 pm</div>
+                    <div style="font-size:0.7rem; color:#64748b;">4:00 pm - 10:30 pm</div>
                   </div>
                 </div>
 
@@ -7422,7 +7503,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Monday Dinner: 5:00 PM - 10:00 PM')">
                     <strong>Monday</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">5:00 pm - 10:00 pm</div>
+                    <div style="font-size:0.7rem; color:#64748b;">5:00 pm - 10:00 pm</div>
                   </div>
                 </div>
 
@@ -7435,7 +7516,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Tuesday Dinner: 5:00 PM - 10:00 PM')">
                     <strong>Tuesday</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">5:00 pm - 10:00 pm</div>
+                    <div style="font-size:0.7rem; color:#64748b;">5:00 pm - 10:00 pm</div>
                   </div>
                 </div>
 
@@ -7448,7 +7529,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Wednesday-Friday Dinner: 5:00 PM - 11:00 PM')">
                     <strong>Wednesday-Friday</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">5:00 pm - 11:00 pm</div>
+                    <div style="font-size:0.7rem; color:#64748b;">5:00 pm - 11:00 pm</div>
                   </div>
                 </div>
 
@@ -7461,7 +7542,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Wednesday-Friday Dinner: 5:00 PM - 11:00 PM')">
                     <strong>Wednesday-Friday</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">5:00 pm - 11:00 pm</div>
+                    <div style="font-size:0.7rem; color:#64748b;">5:00 pm - 11:00 pm</div>
                   </div>
                 </div>
 
@@ -7478,7 +7559,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Friday Night Peak: 6:00 PM - Midnight')">
                     <strong>Dinner Peak</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">6:00 pm - Midnight</div>
+                    <div style="font-size:0.7rem; color:#64748b;">6:00 pm - Midnight</div>
                   </div>
                 </div>
 
@@ -7491,7 +7572,7 @@
                   </div>
                   <div class="shift-block dinner" onclick="alert('Sat - Sunday Gala: 4:00 PM - Midnight')">
                     <strong>Sat - Sunday</strong>
-                    <div style="font-size:0.7rem; color:#94a3b8;">4:00 pm - Midnight</div>
+                    <div style="font-size:0.7rem; color:#64748b;">4:00 pm - Midnight</div>
                   </div>
                 </div>
               </div>
@@ -7503,7 +7584,7 @@
         <div id="host-mode-mobile" class="host-mode-view" style="display:none; padding:1rem;">
           <div class="mobile-phone-chassis">
             <div class="mobile-status-header">
-              <span style="font-weight:700; color:#fff;">6:33</span>
+              <span style="font-weight:700; color:#0f172a;">6:33</span>
               <span>Wed, Aug 24 dinner ▾</span>
               <span>🔋 94%</span>
             </div>
@@ -7517,20 +7598,20 @@
               <!-- Mobile Floor Plan Tables -->
               <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;">
                 <div style="background:#1e293b; border:2px solid #ec4899; border-radius:10px; padding:12px; text-align:center;" onclick="selectHostTable('T19')">
-                  <div style="font-size:1.1rem; font-weight:800; color:#fff;">19</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#0f172a;">19</div>
                   <div style="font-size:0.7rem; color:#f472b6;">👤 Booth (Cap 4)</div>
                 </div>
                 <div style="background:#1e293b; border:2px solid #06b6d4; border-radius:10px; padding:12px; text-align:center;" onclick="selectHostTable('T5')">
-                  <div style="font-size:1.1rem; font-weight:800; color:#fff;">5</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#0f172a;">5</div>
                   <div style="font-size:0.7rem; color:#38bdf8;">3 Seats</div>
                 </div>
                 <div style="background:#1e293b; border:2px solid #a855f7; border-radius:10px; padding:12px; text-align:center;" onclick="selectHostTable('T6')">
-                  <div style="font-size:1.1rem; font-weight:800; color:#fff;">6</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#0f172a;">6</div>
                   <div style="font-size:0.7rem; color:#c084fc;">4 Seats</div>
                 </div>
                 <div style="background:#1e293b; border:2px solid #64748b; border-radius:10px; padding:12px; text-align:center;" onclick="selectHostTable('T7')">
-                  <div style="font-size:1.1rem; font-weight:800; color:#fff;">7</div>
-                  <div style="font-size:0.7rem; color:#94a3b8;">Vacant</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#0f172a;">7</div>
+                  <div style="font-size:0.7rem; color:#64748b;">Vacant</div>
                 </div>
               </div>
               <div style="margin-top:20px; display:flex; justify-content:center;">
@@ -7545,10 +7626,10 @@
         <!-- ================= MODE 4: 3D MULTI-DEVICE STUDIO VIEW ================= -->
         <div id="host-mode-studio" class="host-mode-view" style="display:none; padding:1rem;">
           <div style="text-align:center; margin-bottom:1rem;">
-            <h3 style="color:#ffffff; font-size:1.25rem; font-weight:800;">
+            <h3 style="color:#0f172a; font-size:1.25rem; font-weight:800;">
               ✨ TableMe Complete Restaurateur Suite (Screenshot Replica)
             </h3>
-            <p style="font-size:0.85rem; color:#94a3b8;">
+            <p style="font-size:0.85rem; color:#64748b;">
               Live cross-device synchrony: Mobile Floorplan, Desktop Shift Manager, and iPad Host Stand Controller
             </p>
           </div>
@@ -7564,16 +7645,16 @@
                 <div class="mobile-floor-content" style="min-height:300px; padding:10px;">
                   <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                     <div style="background:#1e293b; border:2px solid #ec4899; border-radius:6px; padding:8px; text-align:center;">
-                      <div style="font-weight:800; color:#fff;">19</div>
+                      <div style="font-weight:800; color:#0f172a;">19</div>
                     </div>
                     <div style="background:#1e293b; border:2px solid #06b6d4; border-radius:6px; padding:8px; text-align:center;">
-                      <div style="font-weight:800; color:#fff;">5</div>
+                      <div style="font-weight:800; color:#0f172a;">5</div>
                     </div>
                     <div style="background:#1e293b; border:2px solid #a855f7; border-radius:6px; padding:8px; text-align:center;">
-                      <div style="font-weight:800; color:#fff;">6</div>
+                      <div style="font-weight:800; color:#0f172a;">6</div>
                     </div>
                     <div style="background:#1e293b; border:2px solid #64748b; border-radius:6px; padding:8px; text-align:center;">
-                      <div style="font-weight:800; color:#fff;">7</div>
+                      <div style="font-weight:800; color:#0f172a;">7</div>
                     </div>
                   </div>
                 </div>
@@ -7585,7 +7666,7 @@
               <div style="font-size:0.75rem; color:#38bdf8; font-weight:700; text-align:center; margin-bottom:4px;">🖥️ Desktop Shift Manager</div>
               <div class="desktop-chassis" style="max-width:480px;">
                 <div class="desktop-top-header" style="padding:6px 12px; font-size:0.75rem;">
-                  <div style="font-weight:700; color:#fff;">Green Food & Good Taste</div>
+                  <div style="font-weight:700; color:#0f172a;">Green Food & Good Taste</div>
                   <div class="desktop-ot-logo" style="font-size:0.85rem;"><span class="red-dot"></span> TableMe</div>
                 </div>
                 <div style="padding:10px; background:#0f1620; min-height:280px;">
@@ -7595,7 +7676,7 @@
                     <div style="background:#19222e; padding:4px; border-radius:4px; text-align:center;">Tue<div style="background:#cbd5e1; color:#000; border-radius:3px; margin-top:2px;">Lunch</div></div>
                     <div style="background:#19222e; padding:4px; border-radius:4px; text-align:center;">Wed<div style="background:#cbd5e1; color:#000; border-radius:3px; margin-top:2px;">Lunch</div></div>
                     <div style="background:#19222e; padding:4px; border-radius:4px; text-align:center;">Thu<div style="background:#cbd5e1; color:#000; border-radius:3px; margin-top:2px;">Lunch</div></div>
-                    <div style="background:#19222e; padding:4px; border-radius:4px; text-align:center;">Fri<div style="background:#0f766e; color:#fff; border-radius:3px; margin-top:2px;">Happy</div></div>
+                    <div style="background:#19222e; padding:4px; border-radius:4px; text-align:center;">Fri<div style="background:#0f766e; color:#0f172a; border-radius:3px; margin-top:2px;">Happy</div></div>
                     <div style="background:#19222e; padding:4px; border-radius:4px; text-align:center;">Sat<div style="background:#cbd5e1; color:#000; border-radius:3px; margin-top:2px;">Lunch</div></div>
                   </div>
                 </div>
@@ -7612,12 +7693,12 @@
                 </div>
                 <div style="display:flex; min-height:280px; background:#11161d;">
                   <div style="width:120px; background:#151c24; border-right:1px solid #222b38; padding:6px; font-size:0.65rem;">
-                    <div style="font-weight:700; color:#fff; margin-bottom:4px;">Waitlist (5)</div>
+                    <div style="font-weight:700; color:#0f172a; margin-bottom:4px;">Waitlist (5)</div>
                     <div style="display:flex; gap:2px; flex-wrap:wrap;">
                       <span style="background:#1c2533; padding:2px 4px; border-radius:3px;">40m</span>
                       <span style="background:#1c2533; padding:2px 4px; border-radius:3px;">45m</span>
                     </div>
-                    <div style="font-weight:700; color:#fff; margin-top:8px; margin-bottom:4px;">Reservations (6)</div>
+                    <div style="font-weight:700; color:#0f172a; margin-top:8px; margin-bottom:4px;">Reservations (6)</div>
                     <div style="background:#1a222d; padding:4px; border-radius:4px; margin-bottom:3px;">Thomas M. (4)</div>
                     <div style="background:#1a222d; padding:4px; border-radius:4px;">Bruce H. (5)</div>
                   </div>
@@ -7638,10 +7719,10 @@
           <div class="hotel-pms-grid">
             <div class="hotel-pms-box">
               <div class="hotel-pms-title"><span>🛎️</span> Luxury Hotel Concierge Line</div>
-              <div style="font-size:0.875rem; color:#cbd5e1; margin-bottom:0.75rem;">
-                Affiliated Hotel: <strong id="hotel-pms-partner" style="color:#ffffff;">Hyatt Regency Bellevue & The Westin</strong>
+              <div style="font-size:0.875rem; color:#334155; margin-bottom:0.75rem;">
+                Affiliated Hotel: <strong id="hotel-pms-partner" style="color:#0f172a;">Hyatt Regency Bellevue & The Westin</strong>
               </div>
-              <div style="font-size:0.825rem; color:#94a3b8; line-height:1.5;">
+              <div style="font-size:0.825rem; color:#64748b; line-height:1.5;">
                 • Dedicated VIP House Seats: 4 Reserved Tables<br>
                 • Complimentary Valet Validation: Enabled<br>
                 • Welcome Champagne Amenity: Active
@@ -7652,8 +7733,8 @@
               <div class="hotel-pms-title"><span>💳</span> Hotel Guest Folio & Room Billing</div>
               <div style="display:flex; flex-direction:column; gap:0.5rem;">
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem;">
-                  <input type="text" id="pms-room-input" placeholder="Room / Suite #" value="Suite 1402" style="padding:0.4rem 0.6rem; font-size:0.85rem; border-radius:6px; background:#090d16; border:1px solid #334155; color:#fff;">
-                  <input type="text" id="pms-guest-input" placeholder="Guest Name" value="Harrison Ford" style="padding:0.4rem 0.6rem; font-size:0.85rem; border-radius:6px; background:#090d16; border:1px solid #334155; color:#fff;">
+                  <input type="text" id="pms-room-input" placeholder="Room / Suite #" value="Suite 1402" style="padding:0.4rem 0.6rem; font-size:0.85rem; border-radius:6px; background:#090d16; border:1px solid #334155; color:#0f172a;">
+                  <input type="text" id="pms-guest-input" placeholder="Guest Name" value="Harrison Ford" style="padding:0.4rem 0.6rem; font-size:0.85rem; border-radius:6px; background:#090d16; border:1px solid #334155; color:#0f172a;">
                 </div>
                 <button type="button" class="btn btn-primary btn-sm" onclick="authorizeHotelRoomCharge()" style="padding:0.4rem 0.8rem; font-size:0.85rem;">
                   Authorize Table Deposit to Room Folio
@@ -7667,7 +7748,7 @@
           <div style="margin-top:1.25rem;">
             <div class="hotel-pms-box">
               <div class="hotel-pms-title"><span>🍳</span> Live Kitchen POS Ticket Rail</div>
-              <div id="hotel-pos-tickets" style="font-family:monospace; font-size:0.8rem; color:#cbd5e1; display:flex; flex-direction:column; gap:0.4rem;">
+              <div id="hotel-pos-tickets" style="font-family:monospace; font-size:0.8rem; color:#334155; display:flex; flex-direction:column; gap:0.4rem;">
                 <div style="background:#090d16; padding:0.4rem 0.6rem; border-radius:6px; border-left:3px solid #ef4444;">
                   [Ticket #142] Table 3: 2x Prime Ribeye (Medium), 1x Truffle Ravioli • Firing Mains
                 </div>
@@ -7689,23 +7770,23 @@
     <div id="host-table-drawer" class="table-action-drawer" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
         <div>
-          <h4 style="color:#ffffff; font-size:1rem; margin:0;" id="drawer-table-title">Table 32</h4>
-          <div style="font-size:0.75rem; color:#94a3b8;" id="drawer-table-meta">Center Circle (Cap 8)</div>
+          <h4 style="color:#0f172a; font-size:1rem; margin:0;" id="drawer-table-title">Table 32</h4>
+          <div style="font-size:0.75rem; color:#64748b;" id="drawer-table-meta">Center Circle (Cap 8)</div>
         </div>
         <button type="button" class="btn btn-secondary btn-sm" onclick="closeTableDrawer()" style="padding:1px 6px; font-size:0.8rem;">✕</button>
       </div>
 
       <div style="background:#0f172a; padding:8px 10px; border-radius:6px; margin-bottom:10px; font-size:0.8rem;">
         <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-          <span style="color:#94a3b8;">Status:</span>
+          <span style="color:#64748b;">Status:</span>
           <strong id="drawer-status-badge" style="color:#22c55e;">Seated</strong>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-          <span style="color:#94a3b8;">Assigned Guest:</span>
-          <strong id="drawer-guest-name" style="color:#ffffff;">Thomas Mink (Party of 4)</strong>
+          <span style="color:#64748b;">Assigned Guest:</span>
+          <strong id="drawer-guest-name" style="color:#0f172a;">Thomas Mink (Party of 4)</strong>
         </div>
         <div style="display:flex; justify-content:space-between;">
-          <span style="color:#94a3b8;">Elapsed:</span>
+          <span style="color:#64748b;">Elapsed:</span>
           <span id="drawer-timer-text" style="color:#38bdf8;">14m / 90m</span>
         </div>
       </div>
@@ -7730,16 +7811,16 @@
     <div id="ai-custom-modal" class="ai-modal" style="display:none;" onclick="if(event.target===this)closeAiCustomModal()">
       <div class="ai-modal-box">
         <div style="padding:1.25rem 1.5rem; border-bottom:1px solid #1e293b; display:flex; justify-content:space-between; align-items:center;">
-          <h3 style="color:#ffffff; font-size:1.2rem; display:flex; align-items:center; gap:6px;">
+          <h3 style="color:#0f172a; font-size:1.2rem; display:flex; align-items:center; gap:6px;">
             <span>✨</span> Describe Your Ideal Dining Experience
           </h3>
           <button type="button" class="btn btn-secondary btn-sm" onclick="closeAiCustomModal()">✕</button>
         </div>
         <div style="padding:1.5rem;">
-          <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:1rem;">
+          <p style="color:#64748b; font-size:0.9rem; margin-bottom:1rem;">
             Tell our AI dining concierge what you are looking for (e.g. "intimate date night with handmade pasta", "panoramic 31st floor steakhouse", or "fresh oysters by the waterfront").
           </p>
-          <textarea id="ai-custom-prompt-input" rows="3" placeholder="e.g. romantic candlelit Italian with authentic tajarin and rare wine..." style="width:100%; padding:0.75rem; border-radius:8px; background:#1e293b; border:1px solid #334155; color:#ffffff; font-size:0.95rem; resize:none;"></textarea>
+          <textarea id="ai-custom-prompt-input" rows="3" placeholder="e.g. romantic candlelit Italian with authentic tajarin and rare wine..." style="width:100%; padding:0.75rem; border-radius:8px; background:#1e293b; border:1px solid #334155; color:#0f172a; font-size:0.95rem; resize:none;"></textarea>
           <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1rem;">
             <button type="button" class="btn btn-secondary btn-sm" onclick="closeAiCustomModal()">Cancel</button>
             <button type="button" class="btn btn-primary btn-sm" onclick="submitAiCustomPrompt()">Find Matching Spots</button>
@@ -7876,14 +7957,14 @@
             <div>
               <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
                 <span style="font-size:1.5rem;">⚡</span>
-                <h1 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin:0;">Band Autonomous Agent API</h1>
-                <span class="badge" style="background:#ec4899; color:#fff; font-weight:bold;">v1 Production</span>
-                <span class="badge" style="background:#10b981; color:#fff; font-weight:bold;">● 0ns Sync</span>
+                <h1 style="font-size:1.75rem; font-weight:800; color:#0f172a; margin:0;">Band Autonomous Agent API</h1>
+                <span class="badge" style="background:#ec4899; color:#0f172a; font-weight:bold;">v1 Production</span>
+                <span class="badge" style="background:#10b981; color:#0f172a; font-weight:bold;">● 0ns Sync</span>
               </div>
               <p class="subtitle" style="margin:0;">Unified Single Endpoint for Band Platform Agents, Solo Rock AI Fleet, & Autonomous Concierge</p>
             </div>
             <div style="text-align:right;">
-              <span style="font-size:0.8rem; color:#94a3b8;">Endpoint URI:</span>
+              <span style="font-size:0.8rem; color:#64748b;">Endpoint URI:</span>
               <div style="font-family:monospace; background:rgba(0,0,0,0.4); padding:4px 10px; border-radius:6px; color:#38bdf8; font-size:0.9rem; font-weight:bold; border:1px solid #334155;">
                 POST http://localhost:8080/api/agent/v1
               </div>
@@ -7893,33 +7974,33 @@
           <!-- Band Account & Hackathon Configuration Card -->
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
             <div style="background:rgba(30, 41, 59, 0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
-              <div style="font-size:0.75rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Band Agent Identity</div>
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:bold;">Band Agent Identity</div>
               <div style="font-family:monospace; color:#f472b6; font-size:0.95rem; font-weight:bold; margin-top:0.25rem;">8fe8a0a5-74c6-4271-9419-7b542af177b5</div>
-              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:0.5rem;">Official runner: <code style="color:#38bdf8;">band_agent_runner.py</code></div>
-              <div style="font-size:0.8rem; color:#cbd5e1;">Platform: <a href="https://app.band.ai" target="_blank" style="color:#38bdf8;">app.band.ai</a> (Gemini 2.5 Flash)</div>
+              <div style="font-size:0.8rem; color:#334155; margin-top:0.5rem;">Official runner: <code style="color:#38bdf8;">band_agent_runner.py</code></div>
+              <div style="font-size:0.8rem; color:#334155;">Platform: <a href="https://app.band.ai" target="_blank" style="color:#38bdf8;">app.band.ai</a> (Gemini 2.5 Flash)</div>
             </div>
 
             <div style="background:rgba(30, 41, 59, 0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
-              <div style="font-size:0.75rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Zero-Bridge Memory Matrix</div>
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:bold;">Zero-Bridge Memory Matrix</div>
               <div style="color:#34d399; font-weight:bold; font-size:0.95rem; margin-top:0.25rem;">64-Byte Atomic Memory State Vector</div>
-              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:0.5rem;">Direct physical memory synchronization (0-nanosecond latency)</div>
-              <div style="font-size:0.8rem; color:#cbd5e1;">Strict Six-Language Matrix (Rust, Julia, Python, C++, CUDA, Java)</div>
+              <div style="font-size:0.8rem; color:#334155; margin-top:0.5rem;">Direct physical memory synchronization (0-nanosecond latency)</div>
+              <div style="font-size:0.8rem; color:#334155;">Strict Six-Language Matrix (Rust, Julia, Python, C++, CUDA, Java)</div>
             </div>
 
             <div style="background:rgba(30, 41, 59, 0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
-              <div style="font-size:0.75rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Double-Booking Safety</div>
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:bold;">Double-Booking Safety</div>
               <div style="color:#10b981; font-weight:bold; font-size:0.95rem; margin-top:0.25rem;">0% Double-Booking Guarantee</div>
-              <div style="font-size:0.8rem; color:#cbd5e1; margin-top:0.5rem;">Transactional WAL Invariant Lock (< 2ms acquisition)</div>
-              <div style="font-size:0.8rem; color:#cbd5e1;">Colliding requests rejected with instant 409 Conflict</div>
+              <div style="font-size:0.8rem; color:#334155; margin-top:0.5rem;">Transactional WAL Invariant Lock (< 2ms acquisition)</div>
+              <div style="font-size:0.8rem; color:#334155;">Colliding requests rejected with instant 409 Conflict</div>
             </div>
           </div>
 
           <!-- Interactive API Dispatch Console -->
           <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem;">
-            <h3 style="color:#ffffff; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
+            <h3 style="color:#0f172a; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
               <span>🎮</span> Interactive Agent API Console & Sandbox
             </h3>
-            <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+            <p style="font-size:0.85rem; color:#64748b; margin-bottom:1rem;">
               Select a quick action preset or craft a custom request payload to test live autonomous execution against the Go/SQLite backend:
             </p>
 
@@ -7947,13 +8028,13 @@
 
             <!-- Natural Language Prompt Input -->
             <div class="form-group" style="margin-bottom:1rem;">
-              <label for="agent-nl-prompt" style="font-size:0.85rem; color:#cbd5e1; font-weight:600;">
+              <label for="agent-nl-prompt" style="font-size:0.85rem; color:#334155; font-weight:600;">
                 Natural Language Prompt (Autonomous Intent Extraction):
               </label>
               <div style="display:flex; gap:0.5rem;">
                 <input type="text" id="agent-nl-prompt" class="form-control"
                        placeholder="e.g., Book dinner for 4 at Le Bernardin NYC at 7:30pm on Friday with Sapphire Booth"
-                       style="background:#0f172a; border:1px solid #475569; color:#f8fafc; font-size:0.95rem; flex:1;">
+                       style="background:#0f172a; border:1px solid #475569; color:#0f172a; font-size:0.95rem; flex:1;">
                 <button type="button" class="btn btn-primary btn-sm" onclick="handleAgentPromptSubmit()" style="background:#ec4899; border:none; padding:0 1.25rem; font-weight:bold;">
                   Convert to Request
                 </button>
@@ -7962,7 +8043,7 @@
 
             <!-- JSON Request Editor -->
             <div class="form-group" style="margin-bottom:1rem;">
-              <label for="agent-json-payload" style="font-size:0.85rem; color:#cbd5e1; font-weight:600;">
+              <label for="agent-json-payload" style="font-size:0.85rem; color:#334155; font-weight:600;">
                 POST Request Payload (JSON):
               </label>
               <textarea id="agent-json-payload" rows="8"
@@ -7974,7 +8055,7 @@
                       style="background:linear-gradient(135deg, #ec4899 0%, #be185d 100%); border:none; padding:0.75rem 2rem; font-weight:800; font-size:1rem; box-shadow:0 4px 15px rgba(236, 72, 153, 0.4);">
                 ⚡ Dispatch Agent Request to /api/agent/v1
               </button>
-              <div id="agent-api-status-badge" style="font-size:0.85rem; color:#94a3b8;">
+              <div id="agent-api-status-badge" style="font-size:0.85rem; color:#64748b;">
                 Ready to execute.
               </div>
             </div>
@@ -7982,11 +8063,11 @@
             <!-- Live Output Terminal -->
             <div style="margin-top:1.25rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                <span style="font-size:0.8rem; text-transform:uppercase; color:#94a3b8; font-weight:bold;">Live API Response Output</span>
+                <span style="font-size:0.8rem; text-transform:uppercase; color:#64748b; font-weight:bold;">Live API Response Output</span>
                 <span id="agent-response-latency" style="font-size:0.75rem; color:#34d399; font-family:monospace;"></span>
               </div>
               <pre id="agent-response-terminal"
-                   style="background:#020617; border:1px solid #334155; border-radius:8px; padding:1rem; color:#e2e8f0; font-family:monospace; font-size:0.85rem; min-height:140px; max-height:360px; overflow-y:auto; margin:0;">// Response will appear here after dispatch...</pre>
+                   style="background:#020617; border:1px solid #334155; border-radius:8px; padding:1rem; color:#334155; font-family:monospace; font-size:0.85rem; min-height:140px; max-height:360px; overflow-y:auto; margin:0;">// Response will appear here after dispatch...</pre>
             </div>
           </div>
         </div>
@@ -8001,9 +8082,9 @@
           <div>
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
               <span style="font-size:1.5rem;">📱</span>
-              <h1 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin:0;">User Mobile App & Admin Host Stand Synchronizer</h1>
+              <h1 style="font-size:1.75rem; font-weight:800; color:#0f172a; margin:0;">User Mobile App & Admin Host Stand Synchronizer</h1>
               <span class="badge" style="background:#38bdf8; color:#0f172a; font-weight:bold;">Dual-Screen Live Sync</span>
-              <span class="badge" style="background:#10b981; color:#fff; font-weight:bold;">● 0ns Memory Coherence</span>
+              <span class="badge" style="background:#10b981; color:#0f172a; font-weight:bold;">● 0ns Memory Coherence</span>
             </div>
             <p class="subtitle" style="margin:0;">
               Experience the end-to-end guest journey: simulate diners booking on their personal mobile phones with pre-funded wallets ($1,000 – $10,000), watch table geometry allocate in under 2ms, and see the Admin Host Stand update instantly in real-time.
@@ -8027,8 +8108,8 @@
         <!-- Fleet Multi-User & Rapid Simulator Control Bar -->
         <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:12px; padding:1rem; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
-            <label style="font-size:0.85rem; color:#94a3b8; font-weight:bold; text-transform:uppercase; margin:0;">Active User Client:</label>
-            <select id="client-user-select" onchange="onClientUserChange(event)" style="background:#020617; color:#ffffff; border:1px solid #475569; padding:0.45rem 0.75rem; border-radius:6px; font-weight:600; font-size:0.9rem; min-width:280px;">
+            <label style="font-size:0.85rem; color:#64748b; font-weight:bold; text-transform:uppercase; margin:0;">Active User Client:</label>
+            <select id="client-user-select" onchange="onClientUserChange(event)" style="background:#020617; color:#0f172a; border:1px solid #475569; padding:0.45rem 0.75rem; border-radius:6px; font-weight:600; font-size:0.9rem; min-width:280px;">
               <option value="user_band_vip" selected>Haqqan / Hackathon VIP Concierge ($10,000.00)</option>
               <option value="u_ada">Ada Lovelace (Pioneer Platinum - $7,500.00)</option>
               <option value="sheikh_maktoum">Sheikh Al-Maktoum (Royal Centurion - $10,000.00)</option>
@@ -8051,7 +8132,7 @@
             <button type="button" class="btn btn-sm" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a; font-weight:800; font-size:0.85rem;" onclick="simulateRandomClientBooking(1)">
               🎲 Random Client Quick-Book
             </button>
-            <button type="button" class="btn btn-sm" style="background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; font-weight:800; font-size:0.85rem;" onclick="simulateRandomClientBooking(5)">
+            <button type="button" class="btn btn-sm" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; font-weight:800; font-size:0.85rem;" onclick="simulateRandomClientBooking(5)">
               🚀 Simulate Multi-Client Burst (5 Random Days & Users)
             </button>
           </div>
@@ -8066,12 +8147,12 @@
               <div style="display:flex; align-items:center; gap:0.5rem;">
                 <span style="font-size:1.25rem;">🖥️</span>
                 <div>
-                  <strong style="color:#ffffff; font-size:1rem; display:block;">Admin Host Stand Dashboard</strong>
-                  <span style="font-size:0.75rem; color:#94a3b8;">Floor Manager Live Matrix & Shift Telemetry</span>
+                  <strong style="color:#0f172a; font-size:1rem; display:block;">Admin Host Stand Dashboard</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Floor Manager Live Matrix & Shift Telemetry</span>
                 </div>
               </div>
               <div style="display:flex; align-items:center; gap:0.5rem;">
-                <select id="admin-host-rest-select" onchange="renderAdminHostTables()" style="background:#0f172a; color:#ffffff; border:1px solid #475569; padding:0.35rem 0.6rem; border-radius:6px; font-size:0.85rem;">
+                <select id="admin-host-rest-select" onchange="renderAdminHostTables()" style="background:#0f172a; color:#0f172a; border:1px solid #475569; padding:0.35rem 0.6rem; border-radius:6px; font-size:0.85rem;">
                   <option value="r_anker" selected>JOEY Bellevue (25 Tables)</option>
                   <option value="r_zuma_dubai">Zuma Dubai DIFC (25 Tables)</option>
                   <option value="r_spinasse">Spinasse Seattle (11 Tables)</option>
@@ -8088,17 +8169,17 @@
             <!-- Host Stand Real-Time Status Telemetry -->
             <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.75rem; margin-bottom:1rem;">
               <div style="background:rgba(30, 41, 59, 0.5); border:1px solid #1e293b; border-radius:8px; padding:0.75rem; text-align:center;">
-                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Active Seated</div>
+                <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase;">Active Seated</div>
                 <div style="font-size:1.35rem; font-weight:800; color:#ef4444;" id="admin-seated-count">14 Guests</div>
                 <div style="font-size:0.75rem; color:#64748b;">Live Seated</div>
               </div>
               <div style="background:rgba(30, 41, 59, 0.5); border:1px solid #1e293b; border-radius:8px; padding:0.75rem; text-align:center;">
-                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Available Tables</div>
+                <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase;">Available Tables</div>
                 <div style="font-size:1.35rem; font-weight:800; color:#10b981;" id="admin-available-count">18 Tables</div>
                 <div style="font-size:0.75rem; color:#64748b;">Ready to Seat</div>
               </div>
               <div style="background:rgba(30, 41, 59, 0.5); border:1px solid #1e293b; border-radius:8px; padding:0.75rem; text-align:center;">
-                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Double-Booking Drift</div>
+                <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase;">Double-Booking Drift</div>
                 <div style="font-size:1.35rem; font-weight:800; color:#38bdf8;" id="admin-drift-count">0.0000%</div>
                 <div style="font-size:0.75rem; color:#64748b;">WAL Invariant Certified</div>
               </div>
@@ -8107,7 +8188,7 @@
             <!-- Real-Time Interactive Floor Geometry Grid -->
             <div style="margin-bottom:1rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-                <span style="font-size:0.8rem; color:#94a3b8; font-weight:bold; text-transform:uppercase;">Live Floor Geometry & Table Occupancy:</span>
+                <span style="font-size:0.8rem; color:#64748b; font-weight:bold; text-transform:uppercase;">Live Floor Geometry & Table Occupancy:</span>
                 <div style="display:flex; gap:0.75rem; font-size:0.75rem;">
                   <span style="display:flex; align-items:center; gap:0.25rem;"><span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block;"></span> Available</span>
                   <span style="display:flex; align-items:center; gap:0.25rem;"><span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block;"></span> Booked / Occupied</span>
@@ -8121,11 +8202,11 @@
 
             <!-- Host Stand Event Log Feed -->
             <div style="background:rgba(0,0,0,0.4); border:1px solid #1e293b; border-radius:8px; padding:0.75rem;">
-              <div style="font-size:0.75rem; color:#94a3b8; font-weight:bold; text-transform:uppercase; margin-bottom:0.4rem; display:flex; justify-content:space-between;">
+              <div style="font-size:0.75rem; color:#64748b; font-weight:bold; text-transform:uppercase; margin-bottom:0.4rem; display:flex; justify-content:space-between;">
                 <span>📡 Synchronized Event Stream</span>
                 <span style="color:#10b981;">● Online</span>
               </div>
-              <div id="admin-host-event-stream" style="font-family:monospace; font-size:0.75rem; color:#cbd5e1; max-height:100px; overflow-y:auto; display:flex; flex-direction:column; gap:0.25rem;">
+              <div id="admin-host-event-stream" style="font-family:monospace; font-size:0.75rem; color:#334155; max-height:100px; overflow-y:auto; display:flex; flex-direction:column; gap:0.25rem;">
                 <div style="color:#64748b;">[00:00:00] Host Stand listening on broadcast channel... 0 nanosecond sync active.</div>
               </div>
             </div>
@@ -8152,10 +8233,10 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.75rem;">
                   <div>
                     <div style="font-size:0.7rem; text-transform:uppercase; color:#38bdf8; font-weight:bold; letter-spacing:0.05em;">TableMe Mobile</div>
-                    <strong style="color:#ffffff; font-size:1.05rem;" id="mobile-current-username">Haqqan (VIP)</strong>
+                    <strong style="color:#0f172a; font-size:1.05rem;" id="mobile-current-username">Haqqan (VIP)</strong>
                   </div>
                   <div style="text-align:right;">
-                    <div style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase;">Balance</div>
+                    <div style="font-size:0.65rem; color:#64748b; text-transform:uppercase;">Balance</div>
                     <strong style="color:#10b981; font-size:0.95rem; font-family:monospace;" id="mobile-wallet-badge">$10,000.00</strong>
                   </div>
                 </div>
@@ -8163,8 +8244,8 @@
                 <!-- Client Mobile Booking Form -->
                 <form id="client-booking-form" onsubmit="handleClientBookingSubmit(event)">
                   <div style="margin-bottom:0.75rem;">
-                    <label style="font-size:0.75rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.25rem;">Select Venue:</label>
-                    <select id="client-rest-select" class="form-control" onchange="onClientVenueChange(event)" style="background:#020617; color:#f8fafc; border:1px solid #334155; width:100%; padding:0.45rem; border-radius:6px; font-size:0.85rem;">
+                    <label style="font-size:0.75rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.25rem;">Select Venue:</label>
+                    <select id="client-rest-select" class="form-control" onchange="onClientVenueChange(event)" style="background:#020617; color:#0f172a; border:1px solid #334155; width:100%; padding:0.45rem; border-radius:6px; font-size:0.85rem;">
                       <option value="r_anker" selected>👑 JOEY Bellevue — Bellevue (Max 25 Tables)</option>
                       <option value="r_zuma_dubai">✨ Zuma Dubai DIFC — Dubai (Max 25 Tables)</option>
                       <option value="r_spinasse">🍝 Spinasse — Seattle (Max 11 Tables)</option>
@@ -8198,8 +8279,8 @@
 
                   <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.75rem;">
                     <div>
-                      <label style="font-size:0.75rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.25rem;">Party:</label>
-                      <select id="client-party-select" class="form-control" style="background:#020617; color:#f8fafc; border:1px solid #334155; width:100%; padding:0.45rem; border-radius:6px; font-size:0.85rem;">
+                      <label style="font-size:0.75rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.25rem;">Party:</label>
+                      <select id="client-party-select" class="form-control" style="background:#020617; color:#0f172a; border:1px solid #334155; width:100%; padding:0.45rem; border-radius:6px; font-size:0.85rem;">
                         <option value="2">2 Guests</option>
                         <option value="4" selected>4 Guests</option>
                         <option value="6">6 Guests</option>
@@ -8208,8 +8289,8 @@
                     </div>
 
                     <div>
-                      <label style="font-size:0.75rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.25rem;">Time:</label>
-                      <select id="client-time-select" class="form-control" style="background:#020617; color:#f8fafc; border:1px solid #334155; width:100%; padding:0.45rem; border-radius:6px; font-size:0.85rem;">
+                      <label style="font-size:0.75rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.25rem;">Time:</label>
+                      <select id="client-time-select" class="form-control" style="background:#020617; color:#0f172a; border:1px solid #334155; width:100%; padding:0.45rem; border-radius:6px; font-size:0.85rem;">
                         <option value="17:30">17:30</option>
                         <option value="18:30">18:30</option>
                         <option value="19:00" selected>19:00 (Prime)</option>
@@ -8222,22 +8303,22 @@
 
                   <div style="margin-bottom:0.75rem;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
-                      <label style="font-size:0.75rem; color:#94a3b8; font-weight:600; margin:0;">Date:</label>
+                      <label style="font-size:0.75rem; color:#64748b; font-weight:600; margin:0;">Date:</label>
                       <button type="button" class="btn btn-secondary btn-sm" onclick="randomizeClientDate()" style="font-size:0.7rem; padding:0.15rem 0.4rem; color:#38bdf8;">
                         🎲 Random Day
                       </button>
                     </div>
-                    <input type="date" id="client-date-input" class="form-control" style="background:#020617; color:#f8fafc; border:1px solid #334155; width:100%; padding:0.4rem; border-radius:6px; font-size:0.85rem;">
+                    <input type="date" id="client-date-input" class="form-control" style="background:#020617; color:#0f172a; border:1px solid #334155; width:100%; padding:0.4rem; border-radius:6px; font-size:0.85rem;">
                   </div>
 
                   <div style="margin-bottom:0.85rem;">
-                    <label style="font-size:0.75rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.25rem;">Special Requests / Notes:</label>
+                    <label style="font-size:0.75rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.25rem;">Special Requests / Notes:</label>
                     <input type="text" id="client-notes-input" placeholder="e.g. Window booth, anniversary, VIP concierge"
-                           style="width:100%; background:#020617; color:#e2e8f0; border:1px solid #334155; border-radius:6px; padding:0.45rem; font-size:0.8rem;">
+                           style="width:100%; background:#020617; color:#334155; border:1px solid #334155; border-radius:6px; padding:0.45rem; font-size:0.8rem;">
                   </div>
 
                   <button type="submit" id="btn-client-book-now" class="btn"
-                          style="width:100%; background:linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color:#ffffff; border:none; padding:0.65rem; font-weight:800; font-size:0.9rem; border-radius:8px; box-shadow:0 4px 12px rgba(2,132,199,0.35);">
+                          style="width:100%; background:linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color:#0f172a; border:none; padding:0.65rem; font-weight:800; font-size:0.9rem; border-radius:8px; box-shadow:0 4px 12px rgba(2,132,199,0.35);">
                     ⚡ Book Now ($100 Deposit Settle)
                   </button>
                 </form>
@@ -8255,7 +8336,7 @@
         <!-- Real-Time Cross-Dashboard Reservation Ledger -->
         <div style="margin-top:1.5rem; background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
-            <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+            <h3 style="color:#0f172a; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
               <span>📋</span> Cross-Dashboard Synchronized Reservations Ledger
             </h3>
             <span style="font-size:0.8rem; color:#10b981; font-weight:bold;">
@@ -8296,20 +8377,20 @@
           <div>
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
               <span style="font-size:1.75rem;">👥</span>
-              <h1 style="font-size:1.85rem; font-weight:800; color:#ffffff; margin:0;">100 VIP Clients & Live Mobile Phone Simulator</h1>
+              <h1 style="font-size:1.85rem; font-weight:800; color:#0f172a; margin:0;">100 VIP Clients & Live Mobile Phone Simulator</h1>
               <span class="badge" style="background:#c084fc; color:#0f172a; font-weight:bold; font-size:0.8rem;">Production Level</span>
-              <span class="badge" style="background:#10b981; color:#fff; font-weight:bold; font-size:0.8rem;">● 0.000% Drift</span>
+              <span class="badge" style="background:#10b981; color:#0f172a; font-weight:bold; font-size:0.8rem;">● 0.000% Drift</span>
               <span class="badge" style="background:#38bdf8; color:#0f172a; font-weight:bold; font-size:0.8rem;">28 Global Venues</span>
             </div>
-            <p class="subtitle" style="margin:0; font-size:0.95rem; color:#cbd5e1;">
+            <p class="subtitle" style="margin:0; font-size:0.95rem; color:#334155;">
               Explore 100 high-profile virtual diners across 10 global culinary capitals. Click any client to launch their real-time dashboard inside the interactive iPhone 15 Pro chassis, inspect their live order history, top up their Centurion wallet, and place authentic dish orders across all 28 restaurants!
             </p>
           </div>
           <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-            <button type="button" class="btn btn-sm" onclick="pickRandomFleetClient()" style="background:linear-gradient(135deg, #c084fc, #9333ea); color:#ffffff; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 4px 12px rgba(147, 51, 234, 0.35);">
+            <button type="button" class="btn btn-sm" onclick="pickRandomFleetClient()" style="background:linear-gradient(135deg, #c084fc, #9333ea); color:#0f172a; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 4px 12px rgba(147, 51, 234, 0.35);">
               🎲 Pick Random VIP Client
             </button>
-            <button type="button" class="btn btn-sm" onclick="simulateFleetMultiOrderBurst()" style="background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 4px 12px rgba(16, 185, 129, 0.35);">
+            <button type="button" class="btn btn-sm" onclick="simulateFleetMultiOrderBurst()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 4px 12px rgba(16, 185, 129, 0.35);">
               ⚡ Multi-Client Burst (5 Orders)
             </button>
           </div>
@@ -8318,22 +8399,22 @@
         <!-- 4 Metric Highlight Cards -->
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
           <div style="background:rgba(15, 23, 42, 0.85); border:1px solid #334155; border-radius:10px; padding:0.85rem 1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Verified VIP Clients</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase; font-weight:700;">Verified VIP Clients</div>
             <div style="font-size:1.6rem; font-weight:800; color:#c084fc; font-family:monospace;" id="fleet-stat-count">100 Active</div>
             <div style="font-size:0.75rem; color:#64748b;">10 Culinary Capitals (Tokyo, Paris, NY, Dubai, etc.)</div>
           </div>
           <div style="background:rgba(15, 23, 42, 0.85); border:1px solid #334155; border-radius:10px; padding:0.85rem 1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Total Pre-Funded Liquidity</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase; font-weight:700;">Total Pre-Funded Liquidity</div>
             <div style="font-size:1.6rem; font-weight:800; color:#10b981; font-family:monospace;" id="fleet-stat-liquidity">$712,500.00</div>
             <div style="font-size:0.75rem; color:#64748b;">100% Backed by SQLite WAL Money Engine</div>
           </div>
           <div style="background:rgba(15, 23, 42, 0.85); border:1px solid #334155; border-radius:10px; padding:0.85rem 1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Connected Restaurants</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase; font-weight:700;">Connected Restaurants</div>
             <div style="font-size:1.6rem; font-weight:800; color:#38bdf8; font-family:monospace;">28 Venues</div>
             <div style="font-size:0.75rem; color:#64748b;">Full Multi-Course Menus & Instant Settlements</div>
           </div>
           <div style="background:rgba(15, 23, 42, 0.85); border:1px solid #334155; border-radius:10px; padding:0.85rem 1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Double-Charge Invariant</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase; font-weight:700;">Double-Charge Invariant</div>
             <div style="font-size:1.6rem; font-weight:800; color:#f59e0b; font-family:monospace;">0.000% Drift</div>
             <div style="font-size:0.75rem; color:#64748b;">Cryptographic SHA-256 Receipts Guaranteed</div>
           </div>
@@ -8342,12 +8423,12 @@
         <!-- Filter & Search Toolbar -->
         <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:12px; padding:0.85rem 1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
           <div style="display:flex; align-items:center; gap:0.6rem; flex:1; min-width:260px;">
-            <span style="font-size:1.1rem; color:#94a3b8;">🔍</span>
+            <span style="font-size:1.1rem; color:#64748b;">🔍</span>
             <input type="text" id="fleet-search-input" oninput="filterFleetClients()" placeholder="Filter 100 VIPs by Name, Email, ID, or City..."
-                   style="width:100%; background:#020617; color:#ffffff; border:1px solid #334155; border-radius:6px; padding:0.5rem 0.75rem; font-size:0.85rem;">
+                   style="width:100%; background:#020617; color:#0f172a; border:1px solid #334155; border-radius:6px; padding:0.5rem 0.75rem; font-size:0.85rem;">
           </div>
           <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-            <select id="fleet-tier-filter" onchange="filterFleetClients()" style="background:#020617; color:#ffffff; border:1px solid #334155; border-radius:6px; padding:0.5rem 0.6rem; font-size:0.85rem;">
+            <select id="fleet-tier-filter" onchange="filterFleetClients()" style="background:#020617; color:#0f172a; border:1px solid #334155; border-radius:6px; padding:0.5rem 0.6rem; font-size:0.85rem;">
               <option value="All">All VIP Tiers (100)</option>
               <option value="Centurion Black VIP">👑 Centurion Black VIP (25)</option>
               <option value="Platinum Pioneer">💎 Platinum Pioneer (25)</option>
@@ -8355,7 +8436,7 @@
               <option value="Michelin Club Executive">🍷 Michelin Club (15)</option>
               <option value="Autonomous Bot Diner">🤖 Autonomous Bot Diners (10)</option>
             </select>
-            <select id="fleet-city-filter" onchange="filterFleetClients()" style="background:#020617; color:#ffffff; border:1px solid #334155; border-radius:6px; padding:0.5rem 0.6rem; font-size:0.85rem;">
+            <select id="fleet-city-filter" onchange="filterFleetClients()" style="background:#020617; color:#0f172a; border:1px solid #334155; border-radius:6px; padding:0.5rem 0.6rem; font-size:0.85rem;">
               <option value="All">All Cities (10)</option>
               <option value="Tokyo">Tokyo (10)</option>
               <option value="Paris">Paris (10)</option>
@@ -8368,7 +8449,7 @@
               <option value="Chicago">Chicago (10)</option>
               <option value="Berlin">Berlin (10)</option>
             </select>
-            <span id="fleet-filter-stats" style="font-size:0.8rem; color:#94a3b8; font-weight:600; padding:0 0.5rem;">Showing 100/100</span>
+            <span id="fleet-filter-stats" style="font-size:0.8rem; color:#64748b; font-weight:600; padding:0 0.5rem;">Showing 100/100</span>
           </div>
         </div>
 
@@ -8378,7 +8459,7 @@
           <!-- LEFT COLUMN: 100 VIRTUAL CLIENT CARDS DIRECTORY -->
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-              <strong style="color:#ffffff; font-size:1rem; display:flex; align-items:center; gap:0.4rem;">
+              <strong style="color:#0f172a; font-size:1rem; display:flex; align-items:center; gap:0.4rem;">
                 <span>📋</span> Client Roster (Click Any Client to Inspect in Mobile)
               </strong>
               <span style="font-size:0.75rem; color:#c084fc;">● Real-Time Balance Synced</span>
@@ -8386,14 +8467,14 @@
             
             <div id="fleet-clients-list" style="max-height:760px; overflow-y:auto; padding-right:0.4rem; display:flex; flex-direction:column; gap:0.6rem;">
               <!-- 100 Client Cards populated dynamically by initFleetClientsView() -->
-              <div style="text-align:center; padding:3rem; color:#94a3b8;">Loading 100 VIP Clients...</div>
+              <div style="text-align:center; padding:3rem; color:#64748b;">Loading 100 VIP Clients...</div>
             </div>
           </div>
 
           <!-- RIGHT COLUMN: REALISTIC IPHONE 15 PRO TITANIUM SIMULATOR -->
           <div style="position:sticky; top:80px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-              <strong style="color:#ffffff; font-size:1rem; display:flex; align-items:center; gap:0.4rem;">
+              <strong style="color:#0f172a; font-size:1rem; display:flex; align-items:center; gap:0.4rem;">
                 <span>📱</span> Live Guest Mobile Dashboard (Active Client)
               </strong>
               <span class="badge" style="background:#10b981; color:#0f172a; font-weight:bold; font-size:0.75rem;">Live Device Emulation</span>
@@ -8403,8 +8484,8 @@
             <div class="mobile-phone-frame" style="max-width:420px; margin:0 auto; border:10px solid #1e293b; border-radius:44px; box-shadow:0 25px 60px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1); background:#020617; overflow:hidden;">
               
               <!-- iPhone Status Bar & Dynamic Island -->
-              <div class="mobile-phone-status-bar" style="background:#090d16; padding:0.6rem 1.25rem 0.3rem; display:flex; justify-content:space-between; align-items:center; color:#94a3b8; font-size:0.75rem;">
-                <span id="fleet-phone-clock" style="font-weight:700; color:#ffffff;">19:42</span>
+              <div class="mobile-phone-status-bar" style="background:#090d16; padding:0.6rem 1.25rem 0.3rem; display:flex; justify-content:space-between; align-items:center; color:#64748b; font-size:0.75rem;">
+                <span id="fleet-phone-clock" style="font-weight:700; color:#0f172a;">19:42</span>
                 <div class="mobile-phone-island" style="background:#000; width:92px; height:24px; border-radius:20px; display:flex; align-items:center; justify-content:center; gap:6px;">
                   <span style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block;" id="fleet-island-dot"></span>
                   <span style="font-size:0.65rem; color:#10b981; font-weight:700;" id="fleet-island-text">Online</span>
@@ -8421,15 +8502,15 @@
                 
                 <!-- Client Profile Header inside Phone -->
                 <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #1e293b; border-radius:16px; padding:0.85rem; display:flex; align-items:center; gap:0.75rem;">
-                  <div id="fleet-active-avatar" style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, #c084fc, #9333ea); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; color:#ffffff; flex-shrink:0; border:2px solid rgba(255,255,255,0.2);">
+                  <div id="fleet-active-avatar" style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, #c084fc, #9333ea); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; color:#0f172a; flex-shrink:0; border:2px solid rgba(255,255,255,0.2);">
                     AV
                   </div>
                   <div style="flex:1; min-width:0;">
                     <div style="display:flex; align-items:center; gap:0.4rem; justify-content:space-between;">
-                      <strong id="fleet-active-name" style="color:#ffffff; font-size:1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block;">Alexander Vance</strong>
+                      <strong id="fleet-active-name" style="color:#0f172a; font-size:1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block;">Alexander Vance</strong>
                       <span id="fleet-active-tier-badge" class="badge" style="background:#f59e0b; color:#0f172a; font-size:0.65rem; font-weight:800;">Centurion VIP</span>
                     </div>
-                    <div style="font-size:0.75rem; color:#94a3b8; display:flex; align-items:center; gap:0.5rem; margin-top:0.15rem;">
+                    <div style="font-size:0.75rem; color:#64748b; display:flex; align-items:center; gap:0.5rem; margin-top:0.15rem;">
                       <span id="fleet-active-city">🗽 New York</span>
                       <span>•</span>
                       <span id="fleet-active-phone">+1 (212) 555-0121</span>
@@ -8447,15 +8528,15 @@
                       <span style="font-size:1.1rem;">💳</span>
                       <span style="font-size:0.75rem; font-weight:800; letter-spacing:0.1em; color:#c084fc; text-transform:uppercase;">Centurion Wallet</span>
                     </div>
-                    <span style="font-size:0.65rem; color:#94a3b8; font-family:monospace;" id="fleet-active-id">client_001</span>
+                    <span style="font-size:0.65rem; color:#64748b; font-family:monospace;" id="fleet-active-id">client_001</span>
                   </div>
-                  <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Available Balance</div>
+                  <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:0.05em;">Available Balance</div>
                   <div style="font-size:1.75rem; font-weight:900; color:#10b981; font-family:monospace; margin:0.15rem 0 0.6rem;" id="fleet-active-balance">
                     $10,000.00 USD
                   </div>
                   <!-- Quick Top-Up Action Buttons -->
                   <div style="display:flex; align-items:center; gap:0.4rem; border-top:1px solid rgba(255,255,255,0.08); padding-top:0.6rem;">
-                    <span style="font-size:0.7rem; color:#94a3b8; font-weight:600;">Top-Up:</span>
+                    <span style="font-size:0.7rem; color:#64748b; font-weight:600;">Top-Up:</span>
                     <button type="button" class="btn btn-sm btn-secondary" onclick="handleFleetTopup(500)" style="font-size:0.7rem; padding:0.2rem 0.5rem; color:#10b981; border-color:rgba(16,185,129,0.4);">
                       +$500
                     </button>
@@ -8470,13 +8551,13 @@
 
                 <!-- Phone Sub-Navigation Tabs -->
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; background:#020617; border:1px solid #1e293b; border-radius:10px; padding:0.25rem;">
-                  <button type="button" id="tab-btn-history" onclick="switchFleetPhoneTab('history')" style="background:#1e293b; color:#ffffff; font-size:0.75rem; font-weight:700; border:none; border-radius:6px; padding:0.4rem; cursor:pointer;">
+                  <button type="button" id="tab-btn-history" onclick="switchFleetPhoneTab('history')" style="background:#1e293b; color:#0f172a; font-size:0.75rem; font-weight:700; border:none; border-radius:6px; padding:0.4rem; cursor:pointer;">
                     📜 Orders (<span id="fleet-orders-count-badge">2</span>)
                   </button>
-                  <button type="button" id="tab-btn-order" onclick="switchFleetPhoneTab('order')" style="background:transparent; color:#94a3b8; font-size:0.75rem; font-weight:700; border:none; border-radius:6px; padding:0.4rem; cursor:pointer;">
+                  <button type="button" id="tab-btn-order" onclick="switchFleetPhoneTab('order')" style="background:transparent; color:#64748b; font-size:0.75rem; font-weight:700; border:none; border-radius:6px; padding:0.4rem; cursor:pointer;">
                     🍽️ Place Order
                   </button>
-                  <button type="button" id="tab-btn-security" onclick="switchFleetPhoneTab('security')" style="background:transparent; color:#94a3b8; font-size:0.75rem; font-weight:700; border:none; border-radius:6px; padding:0.4rem; cursor:pointer;">
+                  <button type="button" id="tab-btn-security" onclick="switchFleetPhoneTab('security')" style="background:transparent; color:#64748b; font-size:0.75rem; font-weight:700; border:none; border-radius:6px; padding:0.4rem; cursor:pointer;">
                     🛡️ Invariant
                   </button>
                 </div>
@@ -8492,8 +8573,8 @@
                 <div id="fleet-tab-content-order" style="display:none; flex:1; max-height:340px; overflow-y:auto; padding-right:0.25rem;">
                   <form id="fleet-mobile-order-form" onsubmit="handleFleetOrderSubmit(event)">
                     <div style="margin-bottom:0.6rem;">
-                      <label style="font-size:0.7rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.2rem;">Choose Venue (28 Available):</label>
-                      <select id="fleet-order-venue-select" onchange="onFleetVenueSelectChange(event)" style="background:#020617; color:#ffffff; border:1px solid #334155; border-radius:6px; padding:0.35rem 0.5rem; width:100%; font-size:0.8rem;">
+                      <label style="font-size:0.7rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.2rem;">Choose Venue (28 Available):</label>
+                      <select id="fleet-order-venue-select" onchange="onFleetVenueSelectChange(event)" style="background:#020617; color:#0f172a; border:1px solid #334155; border-radius:6px; padding:0.35rem 0.5rem; width:100%; font-size:0.8rem;">
                         <option value="r_anker" selected>JOEY Bellevue (Bellevue)</option>
                         <option value="r_zuma_dubai">Zuma Dubai DIFC (Dubai)</option>
                         <option value="r_jiro">Sukiyabashi Jiro (Tokyo)</option>
@@ -8527,7 +8608,7 @@
 
                     <!-- Authentic Signature Dishes Checkbox List -->
                     <div style="margin-bottom:0.6rem;">
-                      <label style="font-size:0.7rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.25rem;">Select Authentic Dishes:</label>
+                      <label style="font-size:0.7rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.25rem;">Select Authentic Dishes:</label>
                       <div id="fleet-dishes-checkbox-group" style="display:flex; flex-direction:column; gap:0.35rem; background:#020617; border:1px solid #1e293b; border-radius:8px; padding:0.5rem;">
                         <!-- Checkboxes inserted dynamically based on selected venue -->
                       </div>
@@ -8535,8 +8616,8 @@
 
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.6rem;">
                       <div>
-                        <label style="font-size:0.7rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.2rem;">Party Size:</label>
-                        <select id="fleet-order-party" style="background:#020617; color:#ffffff; border:1px solid #334155; border-radius:6px; padding:0.35rem; width:100%; font-size:0.8rem;">
+                        <label style="font-size:0.7rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.2rem;">Party Size:</label>
+                        <select id="fleet-order-party" style="background:#020617; color:#0f172a; border:1px solid #334155; border-radius:6px; padding:0.35rem; width:100%; font-size:0.8rem;">
                           <option value="2" selected>2 Guests</option>
                           <option value="4">4 Guests</option>
                           <option value="6">6 Guests</option>
@@ -8544,8 +8625,8 @@
                         </select>
                       </div>
                       <div>
-                        <label style="font-size:0.7rem; color:#94a3b8; font-weight:600; display:block; margin-bottom:0.2rem;">Dining Time:</label>
-                        <select id="fleet-order-time" style="background:#020617; color:#ffffff; border:1px solid #334155; border-radius:6px; padding:0.35rem; width:100%; font-size:0.8rem;">
+                        <label style="font-size:0.7rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.2rem;">Dining Time:</label>
+                        <select id="fleet-order-time" style="background:#020617; color:#0f172a; border:1px solid #334155; border-radius:6px; padding:0.35rem; width:100%; font-size:0.8rem;">
                           <option value="18:00">18:00</option>
                           <option value="19:00">19:00</option>
                           <option value="19:30" selected>19:30 (Prime)</option>
@@ -8557,11 +8638,11 @@
 
                     <!-- Total Price Calculation -->
                     <div style="background:#020617; border:1px solid #334155; border-radius:8px; padding:0.5rem 0.75rem; display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-                      <span style="font-size:0.75rem; color:#94a3b8; font-weight:600;">Total Order Amount:</span>
+                      <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Total Order Amount:</span>
                       <strong style="color:#10b981; font-size:1rem; font-family:monospace;" id="fleet-order-total-display">$140.00</strong>
                     </div>
 
-                    <button type="submit" id="btn-fleet-order-submit" class="btn" style="width:100%; background:linear-gradient(135deg, #10b981 0%, #059669 100%); color:#ffffff; font-weight:800; font-size:0.85rem; padding:0.55rem; border:none; border-radius:8px; box-shadow:0 4px 12px rgba(16,185,129,0.35);">
+                    <button type="submit" id="btn-fleet-order-submit" class="btn" style="width:100%; background:linear-gradient(135deg, #10b981 0%, #059669 100%); color:#0f172a; font-weight:800; font-size:0.85rem; padding:0.55rem; border:none; border-radius:8px; box-shadow:0 4px 12px rgba(16,185,129,0.35);">
                       ⚡ Place Order & Pay from Wallet
                     </button>
                     <div id="fleet-order-feedback" style="display:none; margin-top:0.5rem; font-size:0.75rem; padding:0.4rem; border-radius:6px;"></div>
@@ -8572,24 +8653,24 @@
                 <div id="fleet-tab-content-security" style="display:none; flex:1; max-height:340px; overflow-y:auto; padding-right:0.25rem;">
                   <div style="background:#020617; border:1px solid #334155; border-radius:10px; padding:0.75rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.75rem;">
                     <div>
-                      <div style="color:#94a3b8; font-weight:600;">Physical Memory Vector (AMSV):</div>
+                      <div style="color:#64748b; font-weight:600;">Physical Memory Vector (AMSV):</div>
                       <div style="color:#38bdf8; font-family:monospace; font-weight:700; word-break:break-all;">0x7FFE_A104_99B2_0000</div>
                     </div>
                     <div>
-                      <div style="color:#94a3b8; font-weight:600;">C <-> Python Zero-Bridge:</div>
+                      <div style="color:#64748b; font-weight:600;">C <-> Python Zero-Bridge:</div>
                       <div style="color:#10b981; font-weight:700;">● Active (0-ns Memory Coherence)</div>
                     </div>
                     <div>
-                      <div style="color:#94a3b8; font-weight:600;">Double-Charge Invariant:</div>
+                      <div style="color:#64748b; font-weight:600;">Double-Charge Invariant:</div>
                       <div style="color:#10b981; font-weight:700;">0.000% Drift Guaranteed</div>
                     </div>
                     <div>
-                      <div style="color:#94a3b8; font-weight:600;">Database Lock Coordinator:</div>
+                      <div style="color:#64748b; font-weight:600;">Database Lock Coordinator:</div>
                       <div style="color:#f59e0b; font-weight:700;">SQLite WAL Exclusive Lock Granted</div>
                     </div>
                     <div>
-                      <div style="color:#94a3b8; font-weight:600;">Audit Ledger:</div>
-                      <div style="color:#cbd5e1;">Every order cryptographically hashed via SHA-256 and appended to audit_log table.</div>
+                      <div style="color:#64748b; font-weight:600;">Audit Ledger:</div>
+                      <div style="color:#334155;">Every order cryptographically hashed via SHA-256 and appended to audit_log table.</div>
                     </div>
                   </div>
                 </div>
@@ -8612,11 +8693,11 @@
               <span id="cont-pulse-dot" style="width:12px; height:12px; border-radius:50%; background:#10b981; box-shadow:0 0 12px #10b981; display:inline-block; animation:pulse 1.5s infinite;"></span>
               <div>
                 <div style="display:flex; align-items:center; gap:0.5rem;">
-                  <strong style="color:#ffffff; font-size:1.05rem;" id="cont-status-title">Continuous Autonomous Bookings: ACTIVE</strong>
+                  <strong style="color:#0f172a; font-size:1.05rem;" id="cont-status-title">Continuous Autonomous Bookings: ACTIVE</strong>
                   <span class="badge" style="background:#10b981; color:#0f172a; font-weight:800;" id="cont-status-badge">1.8s Real-Time Loop</span>
                   <span class="badge" style="background:#38bdf8; color:#0f172a; font-weight:800;">Band Agent Synchronized</span>
                 </div>
-                <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.15rem;">
+                <div style="font-size:0.75rem; color:#64748b; margin-top:0.15rem;">
                   100 VIP diners continuously requesting reservations across 28 global restaurants with atomic wallet settlements.
                 </div>
               </div>
@@ -8635,12 +8716,12 @@
           <!-- Band Platform Continuous Sync Strip & Live Whiteboard Board -->
           <div style="background:linear-gradient(135deg, #faf5ff, #f3e8ff); border:1px solid #d8b4fe; box-shadow:0 4px 15px rgba(168,85,247,0.08); border-radius:12px; padding:0.95rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
             <div style="display:flex; align-items:center; gap:0.85rem;">
-              <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, #a855f7, #6366f1); color:#ffffff; font-size:1.15rem; font-weight:900; box-shadow:0 0 16px rgba(168,85,247,0.5); flex-shrink:0;">
+              <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, #a855f7, #6366f1); color:#0f172a; font-size:1.15rem; font-weight:900; box-shadow:0 0 16px rgba(168,85,247,0.5); flex-shrink:0;">
                 ⬡
               </span>
               <div>
                 <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                  <strong style="color:#ffffff; font-size:0.95rem;">Band Platform Continuous Synchronization</strong>
+                  <strong style="color:#0f172a; font-size:0.95rem;">Band Platform Continuous Synchronization</strong>
                   <span class="badge" style="background:rgba(168, 85, 247, 0.2); color:#c084fc; border:1px solid #c084fc; font-weight:800; font-family:monospace;">Room: 8fe8a0a5</span>
                   <span class="badge" style="background:#10b981; color:#0f172a; font-weight:800;" id="band-sync-status-badge">● SYNCED IN REAL-TIME</span>
                 </div>
@@ -8652,10 +8733,10 @@
 
             <div style="display:flex; align-items:center; gap:0.85rem; flex-wrap:wrap;">
               <div style="text-align:right;">
-                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Band Events Committed</div>
+                <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:0.05em;">Band Events Committed</div>
                 <div style="font-size:1.05rem; font-weight:800; color:#38bdf8; font-family:monospace;" id="band-events-counter">384 Events</div>
               </div>
-              <button type="button" class="btn btn-sm" id="btn-force-band-sync" onclick="forceBandSync()" style="background:linear-gradient(135deg, #a855f7, #7c3aed); color:#ffffff; font-weight:700; font-size:0.8rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 0 12px rgba(168,85,247,0.4);">
+              <button type="button" class="btn btn-sm" id="btn-force-band-sync" onclick="forceBandSync()" style="background:linear-gradient(135deg, #a855f7, #7c3aed); color:#0f172a; font-weight:700; font-size:0.8rem; padding:0.45rem 0.9rem; border-radius:8px; box-shadow:0 0 12px rgba(168,85,247,0.4);">
                 ⚡ Trigger Band Sync
               </button>
             </div>
@@ -8668,7 +8749,7 @@
             <!-- Left: Top 10 Global Restaurants Ranked Continuously -->
             <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.04); padding:1.15rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-                <h3 style="color:#ffffff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                <h3 style="color:#0f172a; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
                   <span>🏆</span> Top 10 Restaurants Ranked Continuously
                 </h3>
                 <span style="font-size:0.75rem; color:#10b981; font-weight:700;">● Volume & Bookings Ranking</span>
@@ -8695,7 +8776,7 @@
             <!-- Right: Top 10 VIP Diners Ranked by Activity & Spend -->
             <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.04); padding:1.15rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-                <h3 style="color:#ffffff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                <h3 style="color:#0f172a; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
                   <span>👑</span> Top 10 VIP Diners Leaderboard
                 </h3>
                 <span style="font-size:0.75rem; color:#c084fc; font-weight:700;">● Spend & Frequency</span>
@@ -8724,16 +8805,16 @@
           <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:14px; padding:1.25rem; margin-bottom:1.5rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1px solid #1e293b; padding-bottom:0.75rem;">
               <div>
-                <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                <h3 style="color:#0f172a; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
                   <span>📈</span> Interactive Telemetry Chart: Particular ID & Group Mesh
                 </h3>
-                <span style="font-size:0.75rem; color:#94a3b8;">
+                <span style="font-size:0.75rem; color:#64748b;">
                   Select either the entire 100-client Network Group Mesh or any particular Client / Agent ID to inspect time-series velocity and spend curves.
                 </span>
               </div>
               <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
-                <label style="font-size:0.8rem; color:#94a3b8; font-weight:600;">Select Chart Target:</label>
-                <select id="chart-target-select" onchange="onChartTargetChange(this.value)" style="background:#020617; color:#ffffff; border:1px solid #475569; padding:0.4rem 0.75rem; border-radius:6px; font-size:0.85rem; font-weight:600; min-width:280px;">
+                <label style="font-size:0.8rem; color:#64748b; font-weight:600;">Select Chart Target:</label>
+                <select id="chart-target-select" onchange="onChartTargetChange(this.value)" style="background:#020617; color:#0f172a; border:1px solid #475569; padding:0.4rem 0.75rem; border-radius:6px; font-size:0.85rem; font-weight:600; min-width:280px;">
                   <option value="GROUP" selected>🌐 Group Mesh: All 100 Clients & 28 Venues</option>
                   <option value="client_001">Kenji Takahashi (Tokyo • Centurion VIP)</option>
                   <option value="client_011">Genevieve Laurent (Paris • Centurion VIP)</option>
@@ -8758,12 +8839,12 @@
               <div id="chart-svg-wrapper" style="width:100%; height:240px; display:flex; align-items:center; justify-content:center;">
                 <!-- SVG Chart dynamically rendered here -->
               </div>
-              <div id="chart-tooltip" style="position:absolute; display:none; background:rgba(15,23,42,0.95); border:1px solid #38bdf8; border-radius:6px; padding:0.35rem 0.65rem; color:#ffffff; font-size:0.75rem; pointer-events:none; z-index:50;"></div>
+              <div id="chart-tooltip" style="position:absolute; display:none; background:rgba(15,23,42,0.95); border:1px solid #38bdf8; border-radius:6px; padding:0.35rem 0.65rem; color:#0f172a; font-size:0.75rem; pointer-events:none; z-index:50;"></div>
             </div>
 
             <!-- Chart Metrics Bar -->
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:0.75rem; font-size:0.8rem; color:#94a3b8;">
-              <div>Active Target: <strong style="color:#ffffff;" id="chart-title-display">Group Mesh</strong></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:0.75rem; font-size:0.8rem; color:#64748b;">
+              <div>Active Target: <strong style="color:#0f172a;" id="chart-title-display">Group Mesh</strong></div>
               <div>Total Period Volume: <strong style="color:#10b981;" id="chart-vol-display">$0.00</strong></div>
               <div>Velocity: <strong style="color:#38bdf8;" id="chart-velocity-display">0.0 Ops/min</strong></div>
               <div>Invariant: <strong style="color:#f59e0b;">0.000% Drift Guaranteed</strong></div>
@@ -8776,7 +8857,7 @@
               <div style="display:flex; align-items:center; gap:0.5rem;">
                 <span style="font-size:1.25rem;">📡</span>
                 <div>
-                  <h3 style="color:#ffffff; font-size:1.05rem; margin:0;">
+                  <h3 style="color:#0f172a; font-size:1.05rem; margin:0;">
                     Live Continuous Agent Communication Stream
                   </h3>
                   <span style="font-size:0.75rem; color:#38bdf8;">
@@ -8806,16 +8887,16 @@
           <div>
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
               <span style="font-size:1.5rem;">💳</span>
-              <h1 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin:0;">Enterprise Payment Gateway & Wallet Engine</h1>
+              <h1 style="font-size:1.75rem; font-weight:800; color:#0f172a; margin:0;">Enterprise Payment Gateway & Wallet Engine</h1>
               <span class="badge" style="background:#10b981; color:#0f172a; font-weight:bold;">Production Grade</span>
-              <span class="badge" style="background:#38bdf8; color:#fff; font-weight:bold;">● Zero Double-Charge Drift</span>
+              <span class="badge" style="background:#38bdf8; color:#0f172a; font-weight:bold;">● Zero Double-Charge Drift</span>
             </div>
             <p class="subtitle" style="margin:0;">
               Real-time payment settlement, pre-funded guest and agent accounts ($1,000 – $10,000), SHA-256 cryptographic transaction receipts, and live automated wallet reconciliation.
             </p>
           </div>
           <div style="text-align:right;">
-            <button type="button" class="btn btn-sm" style="background:linear-gradient(135deg, #10b981, #059669); color:#fff; font-weight:bold;" onclick="simulateFleetSpending()">
+            <button type="button" class="btn btn-sm" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; font-weight:bold;" onclick="simulateFleetSpending()">
               🤖 Launch Fleet Autonomous Spending (5 Parallel Bots)
             </button>
           </div>
@@ -8830,16 +8911,16 @@
               <span style="font-size:1.25rem;">💎</span>
             </div>
             <div class="chip-gold" style="margin-bottom:1rem;"></div>
-            <div style="font-family:monospace; font-size:1.2rem; letter-spacing:0.15em; color:#ffffff; margin-bottom:1rem;" id="wallet-card-number">
+            <div style="font-family:monospace; font-size:1.2rem; letter-spacing:0.15em; color:#0f172a; margin-bottom:1rem;" id="wallet-card-number">
               •••• •••• •••• 8842
             </div>
             <div style="display:flex; justify-content:space-between; align-items:flex-end;">
               <div>
-                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Cardholder</div>
-                <div style="font-weight:700; color:#ffffff; font-size:0.95rem;" id="wallet-cardholder-name">Ada Lovelace (VIP Gold)</div>
+                <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase;">Cardholder</div>
+                <div style="font-weight:700; color:#0f172a; font-size:0.95rem;" id="wallet-cardholder-name">Ada Lovelace (VIP Gold)</div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Available Balance</div>
+                <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase;">Available Balance</div>
                 <div style="font-weight:800; color:#34d399; font-size:1.4rem;" id="wallet-balance-display">$7,500.00 USD</div>
               </div>
             </div>
@@ -8851,7 +8932,7 @@
               <div style="font-size:0.8rem; text-transform:uppercase; color:#38bdf8; font-weight:bold; margin-bottom:0.5rem;">
                 Select Account / Identity
               </div>
-              <select id="wallet-user-select" onchange="onWalletUserChange(event)" style="background:#020617; color:#ffffff; border:1px solid #475569; width:100%; padding:0.6rem; border-radius:8px; margin-bottom:1rem;">
+              <select id="wallet-user-select" onchange="onWalletUserChange(event)" style="background:#020617; color:#0f172a; border:1px solid #475569; width:100%; padding:0.6rem; border-radius:8px; margin-bottom:1rem;">
                 <option value="u_ada" selected>Ada Lovelace (Pioneer Platinum - $7,500.00 Initial)</option>
                 <option value="user_band_vip">Haqqan / Hackathon VIP Concierge ($10,000.00 Initial)</option>
                 <option value="sheikh_maktoum">Sheikh Al-Maktoum (Royal Palm Centurion - $10,000.00 Initial)</option>
@@ -8862,11 +8943,11 @@
 
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:1rem; font-size:0.85rem;">
                 <div style="background:rgba(0,0,0,0.3); padding:0.5rem; border-radius:6px; border:1px solid #1e293b;">
-                  <span style="color:#94a3b8; display:block;">Settlement Protocol:</span>
+                  <span style="color:#64748b; display:block;">Settlement Protocol:</span>
                   <strong style="color:#10b981;">WAL Transactional Atomic</strong>
                 </div>
                 <div style="background:rgba(0,0,0,0.3); padding:0.5rem; border-radius:6px; border:1px solid #1e293b;">
-                  <span style="color:#94a3b8; display:block;">Double-Charge Drift:</span>
+                  <span style="color:#64748b; display:block;">Double-Charge Drift:</span>
                   <strong style="color:#38bdf8;">0.0000% (Certified)</strong>
                 </div>
               </div>
@@ -8882,14 +8963,14 @@
 
         <!-- Checkout Simulator Box -->
         <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
-          <h3 style="color:#ffffff; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
+          <h3 style="color:#0f172a; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
             <span>⚡</span> Real-Time Table Deposit Checkout Simulator
           </h3>
           <form onsubmit="handlePaymentCheckoutSubmit(event)">
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1rem;">
               <div>
-                <label style="font-size:0.85rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:0.35rem;">Venue:</label>
-                <select id="checkout-rest-select" style="background:#020617; color:#ffffff; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
+                <label style="font-size:0.85rem; color:#334155; font-weight:600; display:block; margin-bottom:0.35rem;">Venue:</label>
+                <select id="checkout-rest-select" style="background:#020617; color:#0f172a; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
                   <option value="r_anker">👑 JOEY Bellevue — Bellevue (Lincoln Square)</option>
                   <option value="r_zuma_dubai">✨ Zuma Dubai DIFC — Dubai (DIFC Gate Village)</option>
                   <option value="r_jiro">🍣 Sukiyabashi Jiro — Tokyo (Ginza)</option>
@@ -8901,8 +8982,8 @@
                 </select>
               </div>
               <div>
-                <label style="font-size:0.85rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:0.35rem;">Deposit Amount:</label>
-                <select id="checkout-amount-select" style="background:#020617; color:#ffffff; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
+                <label style="font-size:0.85rem; color:#334155; font-weight:600; display:block; margin-bottom:0.35rem;">Deposit Amount:</label>
+                <select id="checkout-amount-select" style="background:#020617; color:#0f172a; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
                   <option value="5000">$50.00 — Standard Table Reservation Deposit</option>
                   <option value="10000" selected>$100.00 — VIP Dining Credit & Prime Booth Lock</option>
                   <option value="25000">$250.00 — Royal Banquet & Penthouse Suite Retainer</option>
@@ -8910,23 +8991,23 @@
                 </select>
               </div>
               <div>
-                <label style="font-size:0.85rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:0.35rem;">Payment Method:</label>
-                <select id="checkout-method-select" style="background:#020617; color:#ffffff; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
+                <label style="font-size:0.85rem; color:#334155; font-weight:600; display:block; margin-bottom:0.35rem;">Payment Method:</label>
+                <select id="checkout-method-select" style="background:#020617; color:#0f172a; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
                   <option value="WALLET_BALANCE" selected>Pre-Funded Wallet Balance (Instant < 2ms)</option>
                   <option value="VIP_BLACK_CARD">Solo Rock VIP Centurion Black Card</option>
                   <option value="BAND_AGENT_CREDIT">Band Platform Autonomous Agent Credit Line</option>
                 </select>
               </div>
               <div>
-                <label style="font-size:0.85rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:0.35rem;">Reservation Ref (Optional):</label>
-                <input type="text" id="checkout-ref-input" placeholder="e.g. #VIP-9942 or auto-mint" style="background:#020617; color:#ffffff; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
+                <label style="font-size:0.85rem; color:#334155; font-weight:600; display:block; margin-bottom:0.35rem;">Reservation Ref (Optional):</label>
+                <input type="text" id="checkout-ref-input" placeholder="e.g. #VIP-9942 or auto-mint" style="background:#020617; color:#0f172a; border:1px solid #475569; width:100%; padding:0.5rem; border-radius:6px;">
               </div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-              <span style="font-size:0.85rem; color:#94a3b8;">
+              <span style="font-size:0.85rem; color:#64748b;">
                 Verified Invariant: Atomic ledger entry with zero double-charge drift and immediate cryptographic receipt.
               </span>
-              <button type="submit" id="btn-submit-checkout" class="btn" style="background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; font-weight:bold; padding:0.6rem 1.5rem;">
+              <button type="submit" id="btn-submit-checkout" class="btn" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; font-weight:bold; padding:0.6rem 1.5rem;">
                 ⚡ Authorize & Settle Payment Now
               </button>
             </div>
@@ -8937,7 +9018,7 @@
         <!-- Global Real-Time Transaction Ledger -->
         <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-            <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+            <h3 style="color:#0f172a; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
               <span>📜</span> Global Transaction & Cryptographic Ledger
             </h3>
             <button type="button" class="btn btn-secondary btn-sm" onclick="loadPaymentTransactions()">🔄 Refresh Ledger</button>
@@ -8971,9 +9052,9 @@
           <div>
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
               <span style="font-size:1.5rem;">🌐</span>
-              <h1 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin:0;">Distributed Intelligence Trajectory Explorer</h1>
+              <h1 style="font-size:1.75rem; font-weight:800; color:#0f172a; margin:0;">Distributed Intelligence Trajectory Explorer</h1>
               <span class="badge" style="background:#f59e0b; color:#0f172a; font-weight:bold;">Execution Path</span>
-              <span class="badge" style="background:#10b981; color:#fff; font-weight:bold;">0% Double-Booking Proof</span>
+              <span class="badge" style="background:#10b981; color:#0f172a; font-weight:bold;">0% Double-Booking Proof</span>
             </div>
             <p class="subtitle" style="margin:0;">
               High-fidelity audit trajectory showing every hop from client mobile ingestion to 0-nanosecond physical memory synchronization, WAL invariant locks, and multi-dashboard state propagation.
@@ -8989,22 +9070,22 @@
         <!-- System Architecture Telemetry Cards -->
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
           <div style="background:rgba(30,41,59,0.5); border:1px solid #334155; border-radius:10px; padding:1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase;">Memory Synchronization</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase;">Memory Synchronization</div>
             <div style="font-size:1.35rem; font-weight:800; color:#10b981;">0-ns Physical RAM</div>
             <div style="font-size:0.8rem; color:#64748b; font-family:monospace; margin-top:0.25rem;">64-byte AMSV State Vector</div>
           </div>
           <div style="background:rgba(30,41,59,0.5); border:1px solid #334155; border-radius:10px; padding:1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase;">Lock Acquisition Latency</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase;">Lock Acquisition Latency</div>
             <div style="font-size:1.35rem; font-weight:800; color:#38bdf8;">1.75 ms (WAL Invariant)</div>
             <div style="font-size:0.8rem; color:#64748b; font-family:monospace; margin-top:0.25rem;">Deterministic FIFO Barrier</div>
           </div>
           <div style="background:rgba(30,41,59,0.5); border:1px solid #334155; border-radius:10px; padding:1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase;">Double-Booking Risk</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase;">Double-Booking Risk</div>
             <div style="font-size:1.35rem; font-weight:800; color:#34d399;">0.00000%</div>
             <div style="font-size:0.8rem; color:#64748b; font-family:monospace; margin-top:0.25rem;">Strict Transaction Invariant</div>
           </div>
           <div style="background:rgba(30,41,59,0.5); border:1px solid #334155; border-radius:10px; padding:1rem;">
-            <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase;">Band Agent Identity</div>
+            <div style="font-size:0.75rem; color:#64748b; text-transform:uppercase;">Band Agent Identity</div>
             <div style="font-size:1.15rem; font-weight:800; color:#f59e0b; font-family:monospace;">8fe8a0a5...</div>
             <div style="font-size:0.8rem; color:#64748b; font-family:monospace; margin-top:0.25rem;">Google Gemini Adapter</div>
           </div>
@@ -9012,7 +9093,7 @@
 
         <!-- 7-Hop Interactive Trajectory Pipeline -->
         <div style="background:#090d16; border:1px solid #334155; border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
-          <h3 style="color:#ffffff; font-size:1.15rem; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <h3 style="color:#0f172a; font-size:1.15rem; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
             <span>🛤️</span> End-to-End Distributed Communication Trajectory
           </h3>
 
@@ -9027,7 +9108,7 @@
             <span style="font-size:1.5rem;">🛡️</span>
             <div>
               <strong style="color:#10b981; font-size:1rem;">Dark Factory Distributed Proof: Collision-Free Certified</strong>
-              <div style="font-size:0.85rem; color:#cbd5e1;">Every table allocation is protected by dual transactional memory barriers. Double-booking is mathematically impossible under high load.</div>
+              <div style="font-size:0.85rem; color:#334155;">Every table allocation is protected by dual transactional memory barriers. Double-booking is mathematically impossible under high load.</div>
             </div>
           </div>
           <div style="font-family:monospace; background:rgba(0,0,0,0.5); padding:6px 14px; border-radius:6px; color:#38bdf8; font-size:0.85rem; border:1px solid #334155;" id="traj-amsv-display">
@@ -10325,7 +10406,7 @@
       document.getElementById('ai-match-result').innerHTML = `
         <div style="background:#1e293b; border:1px solid #10b981; border-radius:10px; padding:1rem; margin-top:0.75rem;">
           <div style="font-weight:700; color:#34d399; margin-bottom:0.25rem;">✨ Best Match: ${rest.name} (${rest.cuisine})</div>
-          <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:0.75rem;">${rest.overview}</div>
+          <div style="font-size:0.85rem; color:#334155; margin-bottom:0.75rem;">${rest.overview}</div>
           <button type="button" class="btn btn-primary btn-sm" onclick="selectRestaurant('${matchedId}'); closeAiCustomModal(); performSearch();">
             Book Table at ${rest.name}
           </button>
@@ -10483,7 +10564,7 @@
               <div class="ot-dish-desc">${d.desc}</div>
               <div class="ot-dish-footer">
                 <span class="ot-dish-price">${d.price}</span>
-                <span style="font-size:0.75rem; color:#94a3b8;">★ ${d.tag}</span>
+                <span style="font-size:0.75rem; color:#64748b;">★ ${d.tag}</span>
               </div>
             </div>
           </div>
@@ -10497,8 +10578,8 @@
           const colors = ['var(--ot-gold)', '#38bdf8', '#34d399'];
           return `
             <div style="background:var(--ot-card-elevated); padding:1rem; border-radius:10px; border-left:3px solid ${colors[idx % 3]};">
-              <div style="font-weight:700; color:#fff;">${t.label} (${t.id})</div>
-              <div style="font-size:0.85rem; color:#94a3b8;">${t.zone} • Capacity: ${t.cap} Guests</div>
+              <div style="font-weight:700; color:#0f172a;">${t.label} (${t.id})</div>
+              <div style="font-size:0.85rem; color:#64748b;">${t.zone} • Capacity: ${t.cap} Guests</div>
             </div>
           `;
         }).join('');
@@ -17437,8 +17518,8 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
       const totalElapsed = (performance.now() - startTime).toFixed(1);
       terminal.innerHTML += `\n<strong style="color:#38bdf8;">[+${totalElapsed}ms] --- VERIFICATION OUTCOME ---</strong>\n`;
       terminal.innerHTML += `<strong style="color:#10b981;">✔ Double-Bookings Allowed: 0 (ZERO DOUBLE-BOOKINGS).</strong>\n`;
-      terminal.innerHTML += `<span style="color:#cbd5e1;">✔ Successful Bookings: ${successCount} (Exactly One Holder)</span>\n`;
-      terminal.innerHTML += `<span style="color:#cbd5e1;">✔ Collisions Blocked: ${conflictCount} of ${numRequests - (successCount > 0 ? 1 : 0)} clashing requests</span>\n`;
+      terminal.innerHTML += `<span style="color:#334155;">✔ Successful Bookings: ${successCount} (Exactly One Holder)</span>\n`;
+      terminal.innerHTML += `<span style="color:#334155;">✔ Collisions Blocked: ${conflictCount} of ${numRequests - (successCount > 0 ? 1 : 0)} clashing requests</span>\n`;
       terminal.innerHTML += `<span style="color:#34d399;">✔ Invariant Integrity: 100% PASS (Zero Overlaps, Zero Double-Entry Drift)</span>\n`;
       terminal.scrollTop = terminal.scrollHeight;
 
@@ -19633,7 +19714,7 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div>
                 <div style="font-size:0.8rem; color:#34d399; font-weight:700; text-transform:uppercase;">● Active Member: Gold Regular</div>
-                <div style="font-size:1.35rem; font-weight:800; color:#fff; margin-top:2px;">${userRewardPoints.toLocaleString()} pts available</div>
+                <div style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-top:2px;">${userRewardPoints.toLocaleString()} pts available</div>
               </div>
               <button type="button" class="btn btn-ot-red btn-sm" onclick="openRewardsTiersModal()" style="font-weight:700;">Redeem Rewards</button>
             </div>
@@ -19696,7 +19777,7 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
       const notice = document.getElementById('redemption-success-notice');
       if (notice) {
         notice.style.display = 'block';
-        notice.innerHTML = `<strong>🎉 Redemption Confirmed!</strong><br>Reward: <em>${title}</em><br>Voucher Code: <code style="background:#090d16; padding:2px 6px; border-radius:4px; font-weight:800; color:#38bdf8;">${voucher}</code><br><span style="font-size:0.8rem; color:#cbd5e1;">Present this code during your next dining visit or apply at checkout.</span>`;
+        notice.innerHTML = `<strong>🎉 Redemption Confirmed!</strong><br>Reward: <em>${title}</em><br>Voucher Code: <code style="background:#090d16; padding:2px 6px; border-radius:4px; font-weight:800; color:#38bdf8;">${voucher}</code><br><span style="font-size:0.8rem; color:#334155;">Present this code during your next dining visit or apply at checkout.</span>`;
       }
     }
 
@@ -20514,8 +20595,8 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             actionArea.innerHTML = `
               <div style="background:rgba(16, 185, 129, 0.2); border:1px solid #10b981; border-radius:6px; padding:0.5rem; margin-top:0.5rem;">
                 <div style="color:#10b981; font-weight:bold; font-size:0.85rem;">✔ Booked Real-Time!</div>
-                <div style="color:#e2e8f0; font-size:0.8rem; font-family:monospace;">Ref: ${data.reference || '#CONFIRMED'}</div>
-                <div style="color:#94a3b8; font-size:0.75rem;">Invariant: 0 Double-Booking Lock</div>
+                <div style="color:#334155; font-size:0.8rem; font-family:monospace;">Ref: ${data.reference || '#CONFIRMED'}</div>
+                <div style="color:#64748b; font-size:0.75rem;">Invariant: 0 Double-Booking Lock</div>
               </div>`;
           }
 
@@ -20716,7 +20797,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
         html += `
           <div style="background:${bg}; border:1px solid ${border}; border-radius:6px; padding:0.4rem 0.25rem; text-align:center;">
             <strong style="color:${color}; font-size:0.8rem; display:block;">${label}</strong>
-            <span style="font-size:0.65rem; color:#94a3b8;">${status}</span>
+            <span style="font-size:0.65rem; color:#64748b;">${status}</span>
           </div>`;
       }
       grid.innerHTML = html;
@@ -20821,14 +20902,14 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             <div style="background:rgba(16, 185, 129, 0.15); border:1px solid #10b981; border-radius:8px; padding:0.85rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
                 <strong style="color:#10b981; font-size:0.95rem;">✔ Confirmed & Paid!</strong>
-                <span class="badge" style="background:#10b981; color:#fff; font-size:0.75rem;">${resObj.reference}</span>
+                <span class="badge" style="background:#10b981; color:#0f172a; font-size:0.75rem;">${resObj.reference}</span>
               </div>
-              <div style="font-size:0.8rem; color:#cbd5e1; line-height:1.4;">
-                <div>Venue: <strong style="color:#fff;">${resObj.restName}</strong></div>
+              <div style="font-size:0.8rem; color:#334155; line-height:1.4;">
+                <div>Venue: <strong style="color:#0f172a;">${resObj.restName}</strong></div>
                 <div>Table: <strong style="color:#38bdf8;">${tableLabel}</strong> • Party: <strong>${partySize} Guests</strong></div>
-                <div>Date & Time: <strong style="color:#fff;">${dateVal} @ ${timeVal}</strong></div>
+                <div>Date & Time: <strong style="color:#0f172a;">${dateVal} @ ${timeVal}</strong></div>
               </div>
-              <div style="margin-top:0.6rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:0.5rem; font-size:0.75rem; color:#94a3b8; font-family:monospace;">
+              <div style="margin-top:0.6rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:0.5rem; font-size:0.75rem; color:#64748b; font-family:monospace;">
                 <div>Deposit Paid: <strong style="color:#34d399;">$100.00 USD</strong> (Tx: ${txHash})</div>
                 <div>Wallet Remaining: <strong style="color:#38bdf8;">${remainingBal}</strong></div>
                 <div style="color:#10b981; margin-top:2px;">Invariant: 0 Double-Booking Guarantee</div>
@@ -20901,13 +20982,13 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
         html += `
           <tr style="border-bottom:1px solid #1e293b;">
             <td style="padding:0.6rem; font-family:monospace; color:#38bdf8; font-weight:bold;">${r.reference}</td>
-            <td style="padding:0.6rem; color:#ffffff; font-weight:600;">${r.userName || 'VIP Client'}</td>
-            <td style="padding:0.6rem; color:#f8fafc;">${r.restName}</td>
-            <td style="padding:0.6rem; color:#cbd5e1;">${r.timeDate}</td>
-            <td style="padding:0.6rem; color:#cbd5e1;">${r.party} Guests</td>
+            <td style="padding:0.6rem; color:#0f172a; font-weight:600;">${r.userName || 'VIP Client'}</td>
+            <td style="padding:0.6rem; color:#0f172a;">${r.restName}</td>
+            <td style="padding:0.6rem; color:#334155;">${r.timeDate}</td>
+            <td style="padding:0.6rem; color:#334155;">${r.party} Guests</td>
             <td style="padding:0.6rem; color:#34d399; font-weight:600;">${r.tableAssigned}</td>
             <td style="padding:0.6rem; color:#10b981; font-weight:bold;">${r.depositPaid || '$100.00'}</td>
-            <td style="padding:0.6rem; font-size:0.75rem; color:#94a3b8; font-family:monospace;">${r.lock}</td>
+            <td style="padding:0.6rem; font-size:0.75rem; color:#64748b; font-family:monospace;">${r.lock}</td>
             <td style="padding:0.6rem;">
               <button type="button" class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.75rem; color:#ef4444;"
                       onclick="cancelClientReservation(${idx})">Cancel</button>
@@ -21018,11 +21099,11 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
 
         if (resp.ok && data.status === 'ok') {
           feedback.innerHTML = `
-            <div style="background:rgba(16, 185, 129, 0.2); border:1px solid #10b981; border-radius:8px; padding:1rem; color:#fff;">
+            <div style="background:rgba(16, 185, 129, 0.2); border:1px solid #10b981; border-radius:8px; padding:1rem; color:#0f172a;">
               <strong style="color:#10b981; font-size:1.05rem;">✔ Cryptographic Payment Settled!</strong>
               <div style="font-size:0.85rem; margin-top:0.35rem;">Tx Hash: <code style="color:#38bdf8;">${data.tx_hash}</code></div>
               <div style="font-size:0.85rem;">Amount: <strong>$${(data.amount_charged).toFixed(2)} USD</strong> • Remaining: <strong style="color:#34d399;">${data.balance_formatted}</strong></div>
-              <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.25rem;">Receipt: ${data.receipt_id} | Zero Double-Charge Drift Verified</div>
+              <div style="font-size:0.8rem; color:#64748b; margin-top:0.25rem;">Receipt: ${data.receipt_id} | Zero Double-Charge Drift Verified</div>
             </div>`;
           await loadPaymentWallet();
           await loadPaymentTransactions();
@@ -21070,12 +21151,12 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             html += `
               <tr style="border-bottom:1px solid #1e293b;">
                 <td style="padding:0.6rem; font-family:monospace; color:#38bdf8;">${shortHash}</td>
-                <td style="padding:0.6rem; color:#ffffff; font-weight:600;">${t.account_id}</td>
-                <td style="padding:0.6rem; color:#cbd5e1; font-family:monospace;">${t.reservation_ref || t.restaurant_id || 'N/A'}</td>
+                <td style="padding:0.6rem; color:#0f172a; font-weight:600;">${t.account_id}</td>
+                <td style="padding:0.6rem; color:#334155; font-family:monospace;">${t.reservation_ref || t.restaurant_id || 'N/A'}</td>
                 <td style="padding:0.6rem; color:#10b981; font-weight:bold;">$${(t.amount_dollars || t.amount_cents / 100).toFixed(2)}</td>
-                <td style="padding:0.6rem; font-size:0.75rem; color:#94a3b8;">${t.method}</td>
-                <td style="padding:0.6rem;"><span class="badge" style="background:#10b981; color:#fff; font-size:0.75rem;">${t.status}</span></td>
-                <td style="padding:0.6rem; font-size:0.8rem; color:#94a3b8;">${dateStr}</td>
+                <td style="padding:0.6rem; font-size:0.75rem; color:#64748b;">${t.method}</td>
+                <td style="padding:0.6rem;"><span class="badge" style="background:#10b981; color:#0f172a; font-size:0.75rem;">${t.status}</span></td>
+                <td style="padding:0.6rem; font-size:0.8rem; color:#64748b;">${dateStr}</td>
               </tr>`;
           });
           tbody.innerHTML = html;
@@ -21114,17 +21195,17 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
               <div style="display:flex; align-items:center; gap:0.75rem;">
                 <span class="badge" style="background:#f59e0b; color:#0f172a; font-weight:800; font-size:0.85rem;">Hop ${step.hop_index}</span>
-                <strong style="color:#ffffff; font-size:0.95rem;">${step.phase}</strong>
+                <strong style="color:#0f172a; font-size:0.95rem;">${step.phase}</strong>
                 <span style="font-size:0.75rem; color:#38bdf8; background:rgba(56,189,248,0.1); padding:2px 8px; border-radius:4px; border:1px solid rgba(56,189,248,0.2); font-family:monospace;">
                   ${step.system_node}
                 </span>
               </div>
               <div style="display:flex; align-items:center; gap:0.75rem;">
                 <span style="font-family:monospace; font-size:0.8rem; color:#10b981; font-weight:bold;">${step.latency_ms} ms</span>
-                <span class="badge" style="background:#10b981; color:#ffffff; font-size:0.75rem;">${step.status}</span>
+                <span class="badge" style="background:#10b981; color:#0f172a; font-size:0.75rem;">${step.status}</span>
               </div>
             </div>
-            <div style="font-size:0.85rem; color:#cbd5e1; margin-top:0.5rem; line-height:1.4;">
+            <div style="font-size:0.85rem; color:#334155; margin-top:0.5rem; line-height:1.4;">
               ${step.detail}
             </div>
             <div style="margin-top:0.4rem; font-size:0.75rem; color:#64748b; font-family:monospace;">
@@ -21283,7 +21364,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       if (!container) return;
 
       if (users.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:2rem; color:#94a3b8;">No clients matched the current filter.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:2rem; color:#64748b;">No clients matched the current filter.</div>';
         return;
       }
 
@@ -21301,15 +21382,15 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
           <div class="card fleet-client-card" id="card-${u.id}" onclick="selectFleetClient('${u.id}')"
                style="cursor:pointer; transition:all 0.2s ease; border:1px solid ${isSelected ? '#c084fc' : '#334155'}; background:${isSelected ? 'rgba(192, 132, 252, 0.12)' : 'rgba(15, 23, 42, 0.85)'}; padding:0.75rem 1rem; border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:0.75rem;">
             <div style="display:flex; align-items:center; gap:0.75rem; min-width:0;">
-              <div style="width:40px; height:40px; border-radius:50%; background:${u.avatar_color || '#c084fc'}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:800; font-size:0.95rem; flex-shrink:0;">
+              <div style="width:40px; height:40px; border-radius:50%; background:${u.avatar_color || '#c084fc'}; display:flex; align-items:center; justify-content:center; color:#0f172a; font-weight:800; font-size:0.95rem; flex-shrink:0;">
                 ${initials}
               </div>
               <div style="min-width:0;">
                 <div style="display:flex; align-items:center; gap:0.5rem;">
-                  <strong style="color:#ffffff; font-size:0.92rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${u.name}</strong>
+                  <strong style="color:#0f172a; font-size:0.92rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${u.name}</strong>
                   <span class="badge" style="background:${tierColor}; color:#0f172a; font-size:0.65rem; font-weight:800;">${u.tier}</span>
                 </div>
-                <div style="font-size:0.75rem; color:#94a3b8; display:flex; align-items:center; gap:0.4rem; margin-top:0.15rem;">
+                <div style="font-size:0.75rem; color:#64748b; display:flex; align-items:center; gap:0.4rem; margin-top:0.15rem;">
                   <span>📍 ${u.city}</span>
                   <span>•</span>
                   <span>${u.email}</span>
@@ -21428,13 +21509,13 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       if (!container) return;
 
       if (!orders || orders.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:1.5rem; color:#94a3b8; font-size:0.75rem;">No orders placed yet. Tap "Place Order" to dine.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:1.5rem; color:#64748b; font-size:0.75rem;">No orders placed yet. Tap "Place Order" to dine.</div>';
         return;
       }
 
       container.innerHTML = orders.map(ord => {
         const itemsList = (ord.items || []).map(it => `
-          <div style="font-size:0.7rem; color:#cbd5e1; display:flex; align-items:center; gap:0.3rem;">
+          <div style="font-size:0.7rem; color:#334155; display:flex; align-items:center; gap:0.3rem;">
             <span style="color:#10b981;">•</span> <span>${it}</span>
           </div>
         `).join('');
@@ -21443,8 +21524,8 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
           <div style="background:#020617; border:1px solid #1e293b; border-radius:10px; padding:0.65rem 0.75rem;">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.3rem;">
               <div>
-                <strong style="color:#ffffff; font-size:0.85rem; display:block;">${ord.restaurant_name || ord.restaurant_id}</strong>
-                <span style="font-size:0.65rem; color:#94a3b8;">${ord.date} at ${ord.time_slot} • ${ord.party_size} Guests</span>
+                <strong style="color:#0f172a; font-size:0.85rem; display:block;">${ord.restaurant_name || ord.restaurant_id}</strong>
+                <span style="font-size:0.65rem; color:#64748b;">${ord.date} at ${ord.time_slot} • ${ord.party_size} Guests</span>
               </div>
               <div style="text-align:right;">
                 <span style="font-size:0.85rem; font-weight:800; color:#10b981; font-family:monospace;">${ord.total_formatted}</span>
@@ -21457,7 +21538,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.65rem; color:#64748b;">
-              <span style="font-family:monospace; color:#94a3b8;">Hash: ${ord.tx_hash ? ord.tx_hash.substring(0, 16) + '...' : '0xVerified'}</span>
+              <span style="font-family:monospace; color:#64748b;">Hash: ${ord.tx_hash ? ord.tx_hash.substring(0, 16) + '...' : '0xVerified'}</span>
               <span class="badge" style="background:rgba(16,185,129,0.2); color:#10b981; font-size:0.6rem; padding:0.15rem 0.4rem;">${ord.status}</span>
             </div>
           </div>
@@ -21496,7 +21577,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       ];
 
       container.innerHTML = dishes.map((d, i) => `
-        <label style="display:flex; align-items:center; justify-content:space-between; font-size:0.75rem; color:#cbd5e1; cursor:pointer; padding:0.15rem 0;">
+        <label style="display:flex; align-items:center; justify-content:space-between; font-size:0.75rem; color:#334155; cursor:pointer; padding:0.15rem 0;">
           <div style="display:flex; align-items:center; gap:0.4rem;">
             <input type="checkbox" class="fleet-dish-cb" data-name="${d.name}" data-price="${d.price}" onchange="updateFleetOrderTotal()" ${i < 2 ? 'checked' : ''} style="cursor:pointer;">
             <span>${d.name}</span>
@@ -21569,7 +21650,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             feedbackEl.style.background = 'rgba(16, 185, 129, 0.2)';
             feedbackEl.style.border = '1px solid #10b981';
             feedbackEl.style.color = '#a7f3d0';
-            feedbackEl.innerHTML = `✅ Order Settled: <strong>${res.order.order_id}</strong> (${res.order.total_formatted})<br><span style="font-size:0.65rem; color:#94a3b8;">TxHash: ${res.tx_hash.substring(0, 18)}...</span>`;
+            feedbackEl.innerHTML = `✅ Order Settled: <strong>${res.order.order_id}</strong> (${res.order.total_formatted})<br><span style="font-size:0.65rem; color:#64748b;">TxHash: ${res.tx_hash.substring(0, 18)}...</span>`;
           }
 
           // Reload user and switch to history
@@ -21844,20 +21925,20 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       const rBody = document.getElementById('cont-ranking-restaurants-body');
       if (rBody) {
         rBody.innerHTML = restaurants.slice(0, 10).map((r, i) => {
-          let rankBadge = `<span style="font-weight:700; color:#cbd5e1;">#${r.rank}</span>`;
+          let rankBadge = `<span style="font-weight:700; color:#334155;">#${r.rank}</span>`;
           if (r.rank === 1) rankBadge = `<span style="color:#f59e0b; font-weight:800; font-size:0.9rem;">🥇 #1</span>`;
-          else if (r.rank === 2) rankBadge = `<span style="color:#94a3b8; font-weight:800; font-size:0.9rem;">🥈 #2</span>`;
+          else if (r.rank === 2) rankBadge = `<span style="color:#64748b; font-weight:800; font-size:0.9rem;">🥈 #2</span>`;
           else if (r.rank === 3) rankBadge = `<span style="color:#d97706; font-weight:800; font-size:0.9rem;">🥉 #3</span>`;
 
-          let trendBadge = `<span style="color:#94a3b8; font-size:0.7rem;">● STABLE</span>`;
+          let trendBadge = `<span style="color:#64748b; font-size:0.7rem;">● STABLE</span>`;
           if (r.trend === 'HOT') trendBadge = `<span style="color:#ef4444; font-weight:800; font-size:0.75rem;">🔥 HOT</span>`;
           else if (r.trend === 'UP') trendBadge = `<span style="color:#10b981; font-weight:800; font-size:0.75rem;">▲ UP</span>`;
 
           return `
             <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
               <td style="padding:0.4rem 0.5rem;">${rankBadge}</td>
-              <td style="padding:0.4rem 0.5rem; color:#ffffff; font-weight:600;">${r.restaurant_name}</td>
-              <td style="padding:0.4rem 0.5rem; color:#94a3b8;">${r.city}</td>
+              <td style="padding:0.4rem 0.5rem; color:#0f172a; font-weight:600;">${r.restaurant_name}</td>
+              <td style="padding:0.4rem 0.5rem; color:#64748b;">${r.city}</td>
               <td style="padding:0.4rem 0.5rem; color:#38bdf8; font-family:monospace; font-weight:700;">${r.bookings_count}</td>
               <td style="padding:0.4rem 0.5rem; color:#10b981; font-family:monospace; font-weight:700;">$${r.total_volume_usd.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
               <td style="padding:0.4rem 0.5rem;">${trendBadge}</td>
@@ -21870,21 +21951,21 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       const dBody = document.getElementById('cont-ranking-diners-body');
       if (dBody) {
         dBody.innerHTML = diners.slice(0, 10).map((d, i) => {
-          let rankBadge = `<span style="font-weight:700; color:#cbd5e1;">#${d.rank}</span>`;
+          let rankBadge = `<span style="font-weight:700; color:#334155;">#${d.rank}</span>`;
           if (d.rank === 1) rankBadge = `<span style="color:#f59e0b; font-weight:800; font-size:0.9rem;">🥇 #1</span>`;
-          else if (d.rank === 2) rankBadge = `<span style="color:#94a3b8; font-weight:800; font-size:0.9rem;">🥈 #2</span>`;
+          else if (d.rank === 2) rankBadge = `<span style="color:#64748b; font-weight:800; font-size:0.9rem;">🥈 #2</span>`;
           else if (d.rank === 3) rankBadge = `<span style="color:#d97706; font-weight:800; font-size:0.9rem;">🥉 #3</span>`;
 
           return `
             <tr style="border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;" onclick="selectFleetClient('${d.user_id}')" title="Click to inspect ${d.user_name} in mobile simulator">
               <td style="padding:0.4rem 0.5rem;">${rankBadge}</td>
-              <td style="padding:0.4rem 0.5rem; color:#ffffff; font-weight:600; display:flex; align-items:center; gap:0.4rem;">
+              <td style="padding:0.4rem 0.5rem; color:#0f172a; font-weight:600; display:flex; align-items:center; gap:0.4rem;">
                 <span style="width:20px; height:20px; border-radius:50%; background:${d.avatar_color || '#c084fc'}; display:inline-flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:800;">
                   ${d.user_name.split(' ').map(n=>n[0]).join('').substring(0,2)}
                 </span>
                 <span>${d.user_name}</span>
               </td>
-              <td style="padding:0.4rem 0.5rem; color:#94a3b8;">${d.city}</td>
+              <td style="padding:0.4rem 0.5rem; color:#64748b;">${d.city}</td>
               <td style="padding:0.4rem 0.5rem;"><span class="badge" style="background:#334155; font-size:0.65rem;">${d.tier.split(' ')[0]}</span></td>
               <td style="padding:0.4rem 0.5rem; color:#10b981; font-family:monospace; font-weight:700;">$${d.total_spent.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
               <td style="padding:0.4rem 0.5rem; color:#c084fc; font-weight:700;">${d.orders_count}</td>
@@ -21899,7 +21980,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       if (!feed) return;
 
       if (!messages || messages.length === 0) {
-        feed.innerHTML = '<div style="color:#94a3b8; font-size:0.8rem; text-align:center; padding:1rem;">Waiting for incoming agent dialogue...</div>';
+        feed.innerHTML = '<div style="color:#64748b; font-size:0.8rem; text-align:center; padding:1rem;">Waiting for incoming agent dialogue...</div>';
         return;
       }
 
@@ -21915,14 +21996,14 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
               <div style="display:flex; align-items:center; gap:0.4rem;">
                 ${roleBadge}
-                <strong style="color:#ffffff;">${m.agent_name}</strong>
+                <strong style="color:#0f172a;">${m.agent_name}</strong>
                 <span style="color:#64748b; font-family:monospace;">(${m.agent_id})</span>
               </div>
-              <div style="color:#94a3b8; font-family:monospace; font-size:0.7rem;">
+              <div style="color:#64748b; font-family:monospace; font-size:0.7rem;">
                 ${m.timestamp} • ${m.latency_ms}ms
               </div>
             </div>
-            <div style="color:#cbd5e1; line-height:1.4;">
+            <div style="color:#334155; line-height:1.4;">
               ${m.content}
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem; font-size:0.65rem; color:#64748b;">
@@ -21953,7 +22034,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
 
       const pts = chart.points || [];
       if (pts.length < 2) {
-        container.innerHTML = '<div style="color:#94a3b8; font-size:0.85rem;">Gathering live time-series points...</div>';
+        container.innerHTML = '<div style="color:#64748b; font-size:0.85rem;">Gathering live time-series points...</div>';
         return;
       }
 
@@ -22023,7 +22104,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       tip.style.display = 'block';
       tip.style.left = `${e.offsetX + 15}px`;
       tip.style.top = `${e.offsetY - 25}px`;
-      tip.innerHTML = `<strong>$${val.toFixed(2)} USD</strong><br><span style="color:#94a3b8;">${label || time}</span>`;
+      tip.innerHTML = `<strong>$${val.toFixed(2)} USD</strong><br><span style="color:#64748b;">${label || time}</span>`;
     }
 
     function hideChartTooltip() {
@@ -22055,7 +22136,7 @@ REST_3D_ENERGY['r_nobu_malibu'] = REST_3D_ENERGY['r_nobumalibu'];
       <div style="font-size: 10px; color: #64748b; line-height: 1.2;" id="voice-tour-status-text">AI Narration (0:45)</div>
     </div>
     <audio id="audio-showcase-player" src="showcase_narration.wav" preload="auto"></audio>
-    <button id="btn-toggle-voice-tour" onclick="toggleVoiceTour()" style="background: #da3743; color: #ffffff !important; border: none; border-radius: 9999px; padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(218,55,67,0.3); transition: all 0.2s;">
+    <button id="btn-toggle-voice-tour" onclick="toggleVoiceTour()" style="background: #da3743; color:#0f172a !important; border: none; border-radius: 9999px; padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(218,55,67,0.3); transition: all 0.2s;">
       <span id="voice-play-icon">▶</span> <span id="voice-play-label">Play Voice</span>
     </button>
   </div>
