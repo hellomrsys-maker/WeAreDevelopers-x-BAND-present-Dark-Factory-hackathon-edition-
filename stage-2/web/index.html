@@ -3,23 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tablekeeper — Restaurant Reservations</title>
+  <title>TableMe — Restaurant Reservations</title>
   <style>
-    :root {
-      --bg: #090d16;
-      --surface: #111827;
-      --surface-elevated: #1f2937;
-      --border: #374151;
-      --border-focus: #f59e0b;
-      --text: #f9fafb;
-      --text-muted: #9ca3af;
-      --primary: #f59e0b;
-      --primary-hover: #d97706;
-      --primary-text: #090d16;
+        :root {
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --surface: #ffffff;
+      --surface-elevated: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --border-focus: #da3743;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --primary: #da3743;
+      --primary-hover: #b91c1c;
+      --primary-text: #ffffff;
       --accent: #10b981;
       --danger: #ef4444;
       --warning: #f59e0b;
-      --radius: 10px;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
       --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -826,7 +834,7 @@
     }
   
     /* ========================================================
-       OPENTABLE JOEY BELLEVUE LUXURY DESIGN SYSTEM
+       TABLEME JOEY BELLEVUE LUXURY DESIGN SYSTEM
        ======================================================== */
     :root {
       --ot-red: #da3743;
@@ -1034,7 +1042,7 @@
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
-    /* Two-Column OpenTable Layout */
+    /* Two-Column TableMe Layout */
     .ot-layout-grid {
       display: grid;
       grid-template-columns: 1fr 420px;
@@ -1219,7 +1227,7 @@
       line-height: 1.6;
     }
 
-    /* Right Column: Sticky OpenTable Booking Widget */
+    /* Right Column: Sticky TableMe Booking Widget */
     .ot-sticky-widget {
       position: sticky;
       top: 85px;
@@ -1267,7 +1275,7 @@
     }
 
   
-    /* --- OPENTABLE REPLICA DESIGN SYSTEM (SCREENSHOTS 1, 2, 3) --- */
+    /* --- TABLEME REPLICA DESIGN SYSTEM (SCREENSHOTS 1, 2, 3) --- */
 
     /* Screenshot 1: Metro & Region Selector Modal */
     .ot-location-trigger-wrap {
@@ -1546,7 +1554,7 @@
       font-weight: 600;
     }
 
-    /* Screenshot 3: OpenTable Icons Section & Carousel */
+    /* Screenshot 3: TableMe Icons Section & Carousel */
     .ot-icons-section {
       margin-bottom: 3.5rem;
     }
@@ -1917,7 +1925,7 @@
     }
 
     /* ==========================================================================
-       OPENTABLE RESTAURATEURS & HOST STAND MULTI-DEVICE OPERATING SYSTEM
+       TABLEME RESTAURATEURS & HOST STAND MULTI-DEVICE OPERATING SYSTEM
        Authentic Reproduction of iPad Host Stand, Desktop Shift Manager & Mobile App
        ========================================================================== */
 
@@ -2978,7 +2986,7 @@
       line-height: 1.5;
     }
 
-    /* --- OPENTABLE PHONE AUTH MODAL & 'BOOK FOR LUNCH' (NEW SCREENSHOT) --- */
+    /* --- TABLEME PHONE AUTH MODAL & 'BOOK FOR LUNCH' (NEW SCREENSHOT) --- */
 
     /* Authentic Phone & Email Sign-In Modal */
     .ot-auth-modal-overlay {
@@ -3237,7 +3245,7 @@
 
   
     /* ==========================================================================
-       OPENTABLE AUTHENTIC SEATTLE DISCOVERY & EXPERIENCES SYSTEM (PAGE 1 & 2)
+       TABLEME AUTHENTIC SEATTLE DISCOVERY & EXPERIENCES SYSTEM (PAGE 1 & 2)
        ========================================================================== */
 
     /* Section Headers */
@@ -3279,7 +3287,7 @@
       text-decoration: underline;
     }
 
-    /* OpenTable Regulars Rewards Section */
+    /* TableMe Regulars Rewards Section */
     .ot-regulars-section {
       background: linear-gradient(135deg, rgba(218, 55, 67, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
       border: 1px solid rgba(218, 55, 67, 0.25);
@@ -3897,7 +3905,7 @@
       flex-wrap: wrap;
     }
 
-    /* Comprehensive Authentic OpenTable Footer */
+    /* Comprehensive Authentic TableMe Footer */
     .ot-footer {
       background: #090d16;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -4003,7 +4011,7 @@
 
   
     /* ==========================================================================
-       OPENTABLE REWARDS HUB STYLES (PDF AUTHENTIC REPLICA)
+       TABLEME REWARDS HUB STYLES (PDF AUTHENTIC REPLICA)
        ========================================================================== */
     .ot-rewards-hub-wrapper {
       max-width: 1080px;
@@ -4230,7 +4238,7 @@
 
   
     /* ==========================================================================
-       OPENTABLE DATE PICKER CALENDAR POPOVER & SEARCH SEGMENTS (SCREENSHOT REPLICA)
+       TABLEME DATE PICKER CALENDAR POPOVER & SEARCH SEGMENTS (SCREENSHOT REPLICA)
        ========================================================================== */
     .ot-calendar-popover {
       position: absolute;
@@ -4377,6 +4385,223 @@
       color: #da3743;
     }
 
+  
+    /* ========================================================================= */
+    /* TABLEME PRODUCTION WHITE THEME COMPREHENSIVE SYSTEM                        */
+    /* ========================================================================= */
+    body {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+    }
+
+    header {
+      background-color: #ffffff !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .brand {
+      color: #da3743 !important;
+    }
+
+    .nav-link {
+      color: #475569 !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #da3743 !important;
+    }
+
+    .card, .venue-card, .ot-card, .ot-article-card, .ot-dish-card, .ot-experience-card, .ot-party-card, .client-card, .vip-card {
+      background-color: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+      color: #0f172a !important;
+    }
+
+    .card:hover, .ot-card:hover, .venue-card:hover, .client-card:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Headings & Text */
+    h1, h2, h3, h4, h5, h6, .section-title, .ot-section-title, .ot-hub-box-title, #cont-status-title {
+      color: #0f172a !important;
+    }
+
+    .section-subtitle, .ot-section-sub, .ot-hub-box-sub, .text-muted, p {
+      color: #475569 !important;
+    }
+
+    /* Inputs, Selects, Dropdowns */
+    input, select, textarea {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #da3743 !important;
+      box-shadow: 0 0 0 3px rgba(218, 55, 67, 0.15) !important;
+    }
+
+    /* Buttons with correct contrast */
+    .btn-primary, .btn-ot-red {
+      background-color: #da3743 !important;
+      color: #ffffff !important;
+      border: none !important;
+      font-weight: 700 !important;
+    }
+
+    .btn-primary:hover, .btn-ot-red:hover {
+      background-color: #b91c1c !important;
+    }
+
+    .btn-secondary {
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+      font-weight: 600 !important;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e2e8f0 !important;
+    }
+
+    #btn-force-band-sync {
+      background: linear-gradient(135deg, #a855f7, #7c3aed) !important;
+      color: #ffffff !important;
+    }
+
+    #btn-toggle-continuous {
+      color: #ffffff !important;
+    }
+
+    /* Time Slot Pills */
+    .time-slot, .ot-time-btn, .time-pill {
+      background-color: #da3743 !important;
+      color: #ffffff !important;
+      border: none !important;
+      font-weight: 700 !important;
+      border-radius: 6px !important;
+    }
+
+    .time-slot:hover, .ot-time-btn:hover {
+      background-color: #b91c1c !important;
+      transform: translateY(-1px);
+    }
+
+    /* Modals & Popovers */
+    .modal-box, .modal-content, .drawer, .ot-dropdown-popover, .ot-cal-popover {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.18) !important;
+    }
+
+    /* Tables */
+    table {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+    }
+
+    th {
+      background-color: #f8fafc !important;
+      color: #475569 !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      font-weight: 700 !important;
+    }
+
+    td {
+      border-bottom: 1px solid #f1f5f9 !important;
+      color: #1e293b !important;
+    }
+
+    tr:hover td {
+      background-color: #f8fafc !important;
+    }
+
+    /* Footer */
+    footer, .ot-footer {
+      background-color: #ffffff !important;
+      border-top: 1px solid #e2e8f0 !important;
+      color: #475569 !important;
+    }
+
+    .ot-footer-title {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+    }
+
+    .ot-footer-link {
+      color: #64748b !important;
+    }
+
+    .ot-footer-link:hover {
+      color: #da3743 !important;
+    }
+
+    /* FAQ Items */
+    .ot-faq-item {
+      background-color: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      margin-bottom: 0.75rem !important;
+    }
+
+    .ot-faq-question {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+    }
+
+    .ot-faq-answer {
+      color: #475569 !important;
+      border-top: 1px solid #f1f5f9 !important;
+    }
+
+    /* Continuous Engine Hub */
+    #cont-rankings-split > div, #continuous-chart-card, #agent-comms-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .agent-msg-box {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      color: #1e293b !important;
+    }
+
+    /* Search Bar Segment Bar */
+    .ot-search-hero {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+    }
+
+    .ot-search-segments {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .ot-search-segment {
+      border-right: 1px solid #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    .ot-search-segment-label {
+      color: #64748b !important;
+    }
+
+    .ot-search-segment-val {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+    }
+
+    /* White theme badges & pills contrast */
+    .badge {
+      font-weight: 700 !important;
+    }
   </style>
 </head>
 <body>
@@ -4384,7 +4609,7 @@
     <div class="header-content">
       <a href="/" class="brand" onclick="navigateTo(event, '/')" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none;">
         <span class="ot-logo-icon"></span>
-        <span style="color:#ffffff; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em;">OpenTable</span>
+        <span style="color:#ffffff; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em;">TableMe</span>
         <span class="ot-badge-factory">Dark Factory</span>
       </a>
       <div class="ot-location-trigger-wrap">
@@ -4496,13 +4721,13 @@
       <!-- Screenshot 2: Top Reservation Search Bar -->
       <div class="ot-hero-search-container">
         <div class="ot-search-pill-wrapper">
-          <!-- Segment 1: Date with OpenTable Calendar Popover -->
+          <!-- Segment 1: Date with TableMe Calendar Popover -->
           <div class="ot-search-segment" id="ot-date-segment" onclick="toggleCalendarPopover(event)" style="position:relative;">
             <span>📅</span>
             <span id="pill-date-display">Oct 5</span>
             <span style="font-size:0.75rem; color:#64748b;">▼</span>
 
-            <!-- Authentic OpenTable Calendar Popover Dropdown -->
+            <!-- Authentic TableMe Calendar Popover Dropdown -->
             <div id="ot-calendar-popover" class="ot-calendar-popover" style="display:none;" onclick="event.stopPropagation()">
               <div class="ot-cal-header">
                 <button type="button" class="ot-cal-nav-btn" onclick="navCalendarMonth(-1)">‹</button>
@@ -4524,7 +4749,7 @@
             <span id="pill-time-display">7:00 PM</span>
             <span style="font-size:0.75rem; color:#64748b;">▼</span>
 
-            <!-- OpenTable Time Popover Dropdown -->
+            <!-- TableMe Time Popover Dropdown -->
             <div id="ot-time-popover" class="ot-dropdown-popover" style="display:none;" onclick="event.stopPropagation()">
               <div class="ot-time-options-list" id="ot-time-options">
                 <!-- Populated dynamically -->
@@ -4538,7 +4763,7 @@
             <span id="pill-party-display">2 people</span>
             <span style="font-size:0.75rem; color:#64748b;">▼</span>
 
-            <!-- OpenTable Party Size Popover Dropdown -->
+            <!-- TableMe Party Size Popover Dropdown -->
             <div id="ot-party-popover" class="ot-dropdown-popover" style="display:none;" onclick="event.stopPropagation()">
               <div class="ot-party-options-list">
                 <div class="ot-dropdown-opt" onclick="selectPartySize(1)">1 person</div>
@@ -4572,7 +4797,7 @@
       <div class="ot-ai-section">
         <div class="ot-ai-intro">
           <h2 class="ot-ai-heading">Find the right table in Seattle</h2>
-          <div class="ot-ai-sub">Let OpenTable find the best spots for you.</div>
+          <div class="ot-ai-sub">Let TableMe find the best spots for you.</div>
           <div class="ot-ai-badge">✨ Powered by AI</div>
         </div>
         <div class="ot-ai-chips">
@@ -4591,11 +4816,11 @@
         </div>
       </div>
 
-      <!-- Screenshot 3: OpenTable Icons Section & Carousel -->
+      <!-- Screenshot 3: TableMe Icons Section & Carousel -->
       <div class="ot-icons-section">
         <div class="ot-icons-header">
           <div>
-            <h2 class="ot-icons-title">OpenTable Icons</h2>
+            <h2 class="ot-icons-title">TableMe Icons</h2>
             <div class="ot-icons-subtitle">Book this year's award-winners, hot newcomers, and hard-to-get tables.</div>
           </div>
           <div style="display:flex; gap:0.75rem; align-items:center;">
@@ -4830,13 +5055,13 @@
 
       
       <!-- ===================================================================== -->
-      <!-- SECTION 5: OPENTABLE REGULARS REWARDS (PDF PAGE 1)                    -->
+      <!-- SECTION 5: TABLEME REGULARS REWARDS (PDF PAGE 1)                    -->
       <!-- ===================================================================== -->
       <div class="ot-regulars-section">
         <div class="ot-regulars-header">
           <div>
             <div class="ot-regulars-title" style="cursor:pointer;" onclick="navigateTo(event, '/rewards')">
-              <span>🎟️</span> OpenTable Regulars
+              <span>🎟️</span> TableMe Regulars
             </div>
             <div class="ot-regulars-sub">You’re leaving rewards on the table, enroll today.</div>
           </div>
@@ -4878,7 +5103,7 @@
           <div class="ot-section-title-wrap">
             <h2>Check out diners' favorite restaurants in Seattle / Eastern Washington</h2>
             <div class="ot-section-sub">
-              <span style="color:#da3743; font-weight:600;">Updated on 9/5/2026</span> • Diners’ Choice Awards are based on where your fellow diners book, dine, and review. Only verified diners get to review restaurants on OpenTable, so our data doesn’t lie.
+              <span style="color:#da3743; font-weight:600;">Updated on 9/5/2026</span> • Diners’ Choice Awards are based on where your fellow diners book, dine, and review. Only verified diners get to review restaurants on TableMe, so our data doesn’t lie.
             </div>
           </div>
         </div>
@@ -5400,13 +5625,13 @@
         <div class="ot-section-header">
           <div class="ot-section-title-wrap">
             <h2>Get inspired by our collections of the top restaurants in Seattle / Eastern Washington</h2>
-            <div class="ot-section-sub">Hand-curated dining guides from OpenTable's Pacific Northwest culinary editors</div>
+            <div class="ot-section-sub">Hand-curated dining guides from TableMe's Pacific Northwest culinary editors</div>
           </div>
         </div>
 
         <div class="ot-articles-grid">
           <!-- Article 1 -->
-          <div class="ot-article-card" onclick="alert('Viewing OpenTable Editorial: The best restaurants in Seattle for 2026')">
+          <div class="ot-article-card" onclick="alert('Viewing TableMe Editorial: The best restaurants in Seattle for 2026')">
             <img loading="lazy" decoding="async" class="ot-article-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Best Restaurants">
             <div class="ot-article-body">
               <div class="ot-article-title">The best restaurants in Seattle for 2026</div>
@@ -5416,7 +5641,7 @@
           </div>
 
           <!-- Article 2 -->
-          <div class="ot-article-card" onclick="alert('Viewing OpenTable Editorial: Where soccer fans should visit in Seattle this summer')">
+          <div class="ot-article-card" onclick="alert('Viewing TableMe Editorial: Where soccer fans should visit in Seattle this summer')">
             <img loading="lazy" decoding="async" class="ot-article-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" alt="Soccer Fans Summer Guide">
             <div class="ot-article-body">
               <div class="ot-article-title">Where soccer fans should visit in Seattle this summer</div>
@@ -5428,37 +5653,37 @@
       </div>
 
       <!-- ===================================================================== -->
-      <!-- SECTION 13: FREQUENTLY ASKED QUESTIONS ABOUT OPENTABLE (PDF PAGE 2)   -->
+      <!-- SECTION 13: FREQUENTLY ASKED QUESTIONS ABOUT TABLEME (PDF PAGE 2)   -->
       <!-- ===================================================================== -->
       <div class="ot-faq-container">
-        <h2 style="font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:0.5rem;">Frequently asked questions about OpenTable</h2>
+        <h2 style="font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:0.5rem;">Frequently asked questions about TableMe</h2>
         <div class="ot-faq-intro">
-          OpenTable helps you discover the best restaurants for every occasion. Through the website and app, you can explore over 70,000 restaurants worldwide and instantly see what’s available nearby. Quickly narrow down your choices by filtering for new restaurants, hidden culinary gems, local favorites, and more. Whether you’re looking to book top restaurants near you or MICHELIN-Starred restaurants around the world, OpenTable has you covered.
+          TableMe helps you discover the best restaurants for every occasion. Through the website and app, you can explore over 70,000 restaurants worldwide and instantly see what’s available nearby. Quickly narrow down your choices by filtering for new restaurants, hidden culinary gems, local favorites, and more. Whether you’re looking to book top restaurants near you or MICHELIN-Starred restaurants around the world, TableMe has you covered.
         </div>
 
         <div class="ot-faq-item">
           <div class="ot-faq-q" onclick="toggleFaq(this)">
-            <span>How does OpenTable work?</span>
+            <span>How does TableMe work?</span>
             <span class="ot-faq-arrow">▼</span>
           </div>
           <div class="ot-faq-a">
-            With over 70,000+ restaurants worldwide, the OpenTable website and app offer a one-stop-shop to discover and book restaurants. Search by date, time, and location to see what’s available, and then narrow down your options using filters like outdoor seating, price range or dietary restrictions.
+            With over 70,000+ restaurants worldwide, the TableMe website and app offer a one-stop-shop to discover and book restaurants. Search by date, time, and location to see what’s available, and then narrow down your options using filters like outdoor seating, price range or dietary restrictions.
           </div>
         </div>
 
         <div class="ot-faq-item">
           <div class="ot-faq-q" onclick="toggleFaq(this)">
-            <span>Why should I use OpenTable to find restaurants?</span>
+            <span>Why should I use TableMe to find restaurants?</span>
             <span class="ot-faq-arrow">▼</span>
           </div>
           <div class="ot-faq-a">
-            OpenTable provides direct, verified access to real-time table inventory. Unlike third-party aggregators, OpenTable coordinates directly with restaurant reservation management systems, ensuring your reservation is instantly held and verified by the host stand. You can browse authentic diner reviews, view photos of popular dishes, and earn loyalty reward points on qualifying dining visits.
+            TableMe provides direct, verified access to real-time table inventory. Unlike third-party aggregators, TableMe coordinates directly with restaurant reservation management systems, ensuring your reservation is instantly held and verified by the host stand. You can browse authentic diner reviews, view photos of popular dishes, and earn loyalty reward points on qualifying dining visits.
           </div>
         </div>
 
         <div class="ot-faq-item">
           <div class="ot-faq-q" onclick="toggleFaq(this)">
-            <span>Can I read or leave a restaurant review on OpenTable?</span>
+            <span>Can I read or leave a restaurant review on TableMe?</span>
             <span class="ot-faq-arrow">▼</span>
           </div>
           <div class="ot-faq-a">
@@ -5540,18 +5765,18 @@
         <div class="ot-restaurateurs-content">
           <h2>Restaurateurs: Dig into the world's most complete restaurant platform</h2>
           <p>
-            Connect with high-intent diners, optimize your dining room flow with real-time AI table allocation, integrate directly with your hotel PMS, and drive repeat visits with OpenTable's host operating systems.
+            Connect with high-intent diners, optimize your dining room flow with real-time AI table allocation, integrate directly with your hotel PMS, and drive repeat visits with TableMe's host operating systems.
           </p>
           <div style="margin-top:1.25rem;" class="ot-restaurateurs-actions">
             <button type="button" class="btn btn-ot-red" onclick="openHotelOsModal(currentRestId)">
               🏨 Launch Hotel OS Console
             </button>
-            <button type="button" class="btn btn-secondary" onclick="alert('Navigating to OpenTable Restaurant Solutions & Pricing')">
+            <button type="button" class="btn btn-secondary" onclick="alert('Navigating to TableMe Restaurant Solutions & Pricing')">
               View plans and pricing
             </button>
           </div>
           <div style="font-size:0.8rem; color:#64748b; margin-top:1rem;">
-            Favorite restaurant not yet on OpenTable? <a style="color:#cbd5e1; text-decoration:underline; cursor:pointer;" onclick="alert('Thank you for suggesting a restaurant to our curation team!')">Suggest a restaurant.</a>
+            Favorite restaurant not yet on TableMe? <a style="color:#cbd5e1; text-decoration:underline; cursor:pointer;" onclick="alert('Thank you for suggesting a restaurant to our curation team!')">Suggest a restaurant.</a>
           </div>
         </div>
         <div style="font-size:4.5rem; opacity:0.85; display:flex; align-items:center; gap:12px;">
@@ -5560,7 +5785,7 @@
       </div>
 
 
-      <!-- OpenTable 5-Photo Mosaic Hero Gallery -->
+      <!-- TableMe 5-Photo Mosaic Hero Gallery -->
       <div class="ot-hero-gallery">
         <div class="ot-gallery-item main-feature">
           <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="JOEY Bellevue Dining Room and Bar Lounge">
@@ -5592,7 +5817,7 @@
         <div class="ot-title-row">
           <div>
             <h1 class="ot-rest-name">JOEY Bellevue</h1>
-            <div class="ot-rest-tagline">Featuring Zum Anker (Tablekeeper Dark Factory Engine)</div>
+            <div class="ot-rest-tagline">Featuring Zum Anker (TableMe Dark Factory Engine)</div>
           </div>
           <div class="ot-tags">
             <span class="ot-tag">🏆 Top 100 Hot Spots</span>
@@ -5603,7 +5828,7 @@
 
         <div class="ot-meta-pills">
           <span class="ot-stars">★ 4.9</span>
-          <span>(2,842 OpenTable Reviews)</span>
+          <span>(2,842 TableMe Reviews)</span>
           <span>•</span>
           <span>$$$$</span>
           <span>•</span>
@@ -5613,7 +5838,7 @@
         </div>
       </div>
 
-      <!-- Two-Column OpenTable Layout -->
+      <!-- Two-Column TableMe Layout -->
       <div class="ot-layout-grid">
         <!-- Left Column: Restaurant Dining Experience -->
         <div class="ot-main-col">
@@ -5758,7 +5983,7 @@
           </section>
         </div>
 
-        <!-- Right Column: Sticky OpenTable Booking Widget -->
+        <!-- Right Column: Sticky TableMe Booking Widget -->
         <div class="ot-sidebar-col">
           <div class="ot-sticky-widget">
             <div class="ot-widget-title">Make a reservation</div>
@@ -6449,7 +6674,7 @@
       </div>
     </section>
 
-    <!-- View: Rewards Hub (/rewards) - Replicated from OpenTable Reference PDF -->
+    <!-- View: Rewards Hub (/rewards) - Replicated from TableMe Reference PDF -->
     <section id="view-rewards" class="hidden">
       <div class="ot-rewards-hub-wrapper">
         <div class="ot-rewards-hub-header">
@@ -6458,12 +6683,12 @@
         </div>
 
         <div class="ot-rewards-hub-grid">
-          <!-- Left Column: OpenTable Regulars -->
+          <!-- Left Column: TableMe Regulars -->
           <div class="ot-hub-box">
             <div>
               <div class="ot-hub-box-head">
-                <h2 class="ot-hub-box-title">OpenTable Regulars</h2>
-                <p class="ot-hub-box-sub">Dine to earn points and Gold status benefits with OpenTable's loyalty program.</p>
+                <h2 class="ot-hub-box-title">TableMe Regulars</h2>
+                <p class="ot-hub-box-sub">Dine to earn points and Gold status benefits with TableMe's loyalty program.</p>
               </div>
 
               <!-- Rewards Cards Visual Fan Graphic -->
@@ -6576,7 +6801,7 @@
             <!-- Partner Perks Summary -->
             <div style="margin-top:1.5rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:0.875rem 1rem; font-size:0.825rem; color:#94a3b8; display:flex; align-items:center; gap:8px;">
               <span>✨</span>
-              <span>Partner benefits automatically stack with OpenTable loyalty points and status.</span>
+              <span>Partner benefits automatically stack with TableMe loyalty points and status.</span>
             </div>
           </div>
         </div>
@@ -6588,7 +6813,7 @@
       <div class="hotel-os-container" style="max-width:620px;">
         <div class="hotel-os-header">
           <div class="hotel-os-title">
-            <span>🎟️</span> <span>OpenTable Regulars Member Privileges</span>
+            <span>🎟️</span> <span>TableMe Regulars Member Privileges</span>
           </div>
           <button type="button" class="btn btn-secondary btn-sm" onclick="closeRewardsTiersModal()" style="font-size:1.1rem; line-height:1; padding:0.25rem 0.6rem;">✕</button>
         </div>
@@ -6611,7 +6836,7 @@
             <div style="background:#111827; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1rem; display:flex; justify-content:space-between; align-items:center;">
               <div>
                 <div style="font-weight:700; color:#fff;">$20 Dining Credit</div>
-                <div style="font-size:0.8rem; color:#94a3b8;">Valid across all Seattle & Eastside OpenTable restaurants</div>
+                <div style="font-size:0.8rem; color:#94a3b8;">Valid across all Seattle & Eastside TableMe restaurants</div>
               </div>
               <button type="button" class="btn btn-ot-red btn-sm" onclick="redeemRewardReward('$20 Dining Credit', 2000)">
                 Redeem 2,000 pts
@@ -6645,7 +6870,7 @@
       </div>
     </div>
 
-    <!-- OpenTable Restaurateurs & Host Stand Multi-Device Suite Modal -->
+    <!-- TableMe Restaurateurs & Host Stand Multi-Device Suite Modal -->
     <div id="hotel-os-modal" class="hotel-os-modal" style="display:none;" onclick="if(event.target===this)closeHotelOsModal()">
       <div class="hotel-os-container" style="max-width:1240px; padding:0; background:#0b0f15; border-color:#222d3d;">
         <!-- Top Suite Header Bar -->
@@ -6653,7 +6878,7 @@
           <div class="host-suite-title-group">
             <div class="host-suite-brand">
               <span class="host-suite-brand-dot"></span>
-              <span>OpenTable Restaurateurs</span>
+              <span>TableMe Restaurateurs</span>
               <span class="sim-chip" style="background:rgba(16,185,129,0.2); color:#34d399; margin-left:0.25rem;">Live 1000Hz Host Stand</span>
             </div>
             <!-- Restaurant Switcher (10 Real Restaurants) -->
@@ -6798,7 +7023,7 @@
                       </div>
                     </div>
 
-                    <!-- Reservation Cards (Authentic from OpenTable Screenshot) -->
+                    <!-- Reservation Cards (Authentic from TableMe Screenshot) -->
                     <div id="ipad-res-list">
                       <!-- Card 1: Thomas Mink (Table 32) -->
                       <div class="host-res-card" onclick="selectHostTable('T32')">
@@ -7128,7 +7353,7 @@
               </div>
               <div class="desktop-ot-logo">
                 <span class="red-dot"></span>
-                <span>OpenTable</span>
+                <span>TableMe</span>
               </div>
               <div style="display:flex; align-items:center; gap:12px;">
                 <span style="position:relative; cursor:pointer;" title="1 Unread Alert">
@@ -7321,7 +7546,7 @@
         <div id="host-mode-studio" class="host-mode-view" style="display:none; padding:1rem;">
           <div style="text-align:center; margin-bottom:1rem;">
             <h3 style="color:#ffffff; font-size:1.25rem; font-weight:800;">
-              ✨ OpenTable Complete Restaurateur Suite (Screenshot Replica)
+              ✨ TableMe Complete Restaurateur Suite (Screenshot Replica)
             </h3>
             <p style="font-size:0.85rem; color:#94a3b8;">
               Live cross-device synchrony: Mobile Floorplan, Desktop Shift Manager, and iPad Host Stand Controller
@@ -7361,7 +7586,7 @@
               <div class="desktop-chassis" style="max-width:480px;">
                 <div class="desktop-top-header" style="padding:6px 12px; font-size:0.75rem;">
                   <div style="font-weight:700; color:#fff;">Green Food & Good Taste</div>
-                  <div class="desktop-ot-logo" style="font-size:0.85rem;"><span class="red-dot"></span> OpenTable</div>
+                  <div class="desktop-ot-logo" style="font-size:0.85rem;"><span class="red-dot"></span> TableMe</div>
                 </div>
                 <div style="padding:10px; background:#0f1620; min-height:280px;">
                   <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:4px; font-size:0.6rem;">
@@ -7525,7 +7750,7 @@
     </div>
 
   
-    <!-- OpenTable Phone & Email Authentication Modal (Exact Replica from Screenshot) -->
+    <!-- TableMe Phone & Email Authentication Modal (Exact Replica from Screenshot) -->
     <div id="ot-auth-modal" class="ot-auth-modal-overlay" style="display:none;" onclick="if(event.target===this)closeAuthModal()">
       <div class="ot-auth-card">
         <button type="button" class="ot-auth-close-btn" onclick="closeAuthModal()">✕</button>
@@ -7613,7 +7838,7 @@
         <!-- View 4: Email Create Account Step -->
         <div id="auth-view-signup" style="display:none;">
           <h2 class="ot-auth-title">Create your account</h2>
-          <p class="ot-auth-subtitle">Join OpenTable rewards and verified instant dining bookings.</p>
+          <p class="ot-auth-subtitle">Join TableMe rewards and verified instant dining bookings.</p>
 
           <div id="modal-signup-error-container" style="margin-bottom:1rem;"></div>
 
@@ -7690,7 +7915,7 @@
           </div>
 
           <!-- Interactive API Dispatch Console -->
-          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:10px; padding:1.25rem;">
+          <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem;">
             <h3 style="color:#ffffff; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
               <span>🎮</span> Interactive Agent API Console & Sandbox
             </h3>
@@ -7800,7 +8025,7 @@
         </div>
 
         <!-- Fleet Multi-User & Rapid Simulator Control Bar -->
-        <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:12px; padding:1rem; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:12px; padding:1rem; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
             <label style="font-size:0.85rem; color:#94a3b8; font-weight:bold; text-transform:uppercase; margin:0;">Active User Client:</label>
             <select id="client-user-select" onchange="onClientUserChange(event)" style="background:#020617; color:#ffffff; border:1px solid #475569; padding:0.45rem 0.75rem; border-radius:6px; font-weight:600; font-size:0.9rem; min-width:280px;">
@@ -7926,7 +8151,7 @@
                 <!-- App Header inside Mobile -->
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.75rem;">
                   <div>
-                    <div style="font-size:0.7rem; text-transform:uppercase; color:#38bdf8; font-weight:bold; letter-spacing:0.05em;">Tablekeeper Mobile</div>
+                    <div style="font-size:0.7rem; text-transform:uppercase; color:#38bdf8; font-weight:bold; letter-spacing:0.05em;">TableMe Mobile</div>
                     <strong style="color:#ffffff; font-size:1.05rem;" id="mobile-current-username">Haqqan (VIP)</strong>
                   </div>
                   <div style="text-align:right;">
@@ -8028,7 +8253,7 @@
         </div>
 
         <!-- Real-Time Cross-Dashboard Reservation Ledger -->
-        <div style="margin-top:1.5rem; background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:10px; padding:1.25rem;">
+        <div style="margin-top:1.5rem; background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
             <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
               <span>📋</span> Cross-Dashboard Synchronized Reservations Ledger
@@ -8040,7 +8265,7 @@
           <div id="client-ledger-table-wrap" style="overflow-x:auto;">
             <table class="table" style="width:100%; font-size:0.85rem; border-collapse:collapse;">
               <thead>
-                <tr style="border-bottom:1px solid #334155; color:#94a3b8; text-align:left;">
+                <tr style="border-bottom:1px solid #e2e8f0; color:#475569; text-align:left; background:#f8fafc;">
                   <th style="padding:0.5rem;">Reference</th>
                   <th style="padding:0.5rem;">Client Identity</th>
                   <th style="padding:0.5rem;">Venue</th>
@@ -8115,7 +8340,7 @@
         </div>
 
         <!-- Filter & Search Toolbar -->
-        <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:12px; padding:0.85rem 1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+        <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:12px; padding:0.85rem 1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
           <div style="display:flex; align-items:center; gap:0.6rem; flex:1; min-width:260px;">
             <span style="font-size:1.1rem; color:#94a3b8;">🔍</span>
             <input type="text" id="fleet-search-input" oninput="filterFleetClients()" placeholder="Filter 100 VIPs by Name, Email, ID, or City..."
@@ -8382,7 +8607,7 @@
         <div style="margin-top:2rem; border-top:1px solid rgba(192, 132, 252, 0.3); padding-top:1.5rem;">
           
           <!-- Top Control Strip: Continuous Engine Status & Band Agent Sync -->
-          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
             <div style="display:flex; align-items:center; gap:0.75rem;">
               <span id="cont-pulse-dot" style="width:12px; height:12px; border-radius:50%; background:#10b981; box-shadow:0 0 12px #10b981; display:inline-block; animation:pulse 1.5s infinite;"></span>
               <div>
@@ -8398,7 +8623,7 @@
             </div>
 
             <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
-              <div style="background:#020617; border:1px solid #1e293b; border-radius:8px; padding:0.4rem 0.8rem; font-size:0.8rem; font-family:monospace; color:#38bdf8;">
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.4rem 0.8rem; font-size:0.8rem; font-family:monospace; color:#0284c7;">
                 Velocity: <strong style="color:#10b981;" id="cont-velocity-val">33.3 Ops/min</strong>
               </div>
               <button type="button" class="btn btn-sm" id="btn-toggle-continuous" onclick="toggleContinuousEngine()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a; font-weight:800; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px;">
@@ -8408,7 +8633,7 @@
           </div>
 
           <!-- Band Platform Continuous Sync Strip & Live Whiteboard Board -->
-          <div style="background:linear-gradient(135deg, rgba(30, 27, 75, 0.9), rgba(15, 23, 42, 0.95)); border:1px solid rgba(168, 85, 247, 0.45); border-radius:12px; padding:0.95rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+          <div style="background:linear-gradient(135deg, #faf5ff, #f3e8ff); border:1px solid #d8b4fe; box-shadow:0 4px 15px rgba(168,85,247,0.08); border-radius:12px; padding:0.95rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
             <div style="display:flex; align-items:center; gap:0.85rem;">
               <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, #a855f7, #6366f1); color:#ffffff; font-size:1.15rem; font-weight:900; box-shadow:0 0 16px rgba(168,85,247,0.5); flex-shrink:0;">
                 ⬡
@@ -8419,7 +8644,7 @@
                   <span class="badge" style="background:rgba(168, 85, 247, 0.2); color:#c084fc; border:1px solid #c084fc; font-weight:800; font-family:monospace;">Room: 8fe8a0a5</span>
                   <span class="badge" style="background:#10b981; color:#0f172a; font-weight:800;" id="band-sync-status-badge">● SYNCED IN REAL-TIME</span>
                 </div>
-                <div style="font-size:0.75rem; color:#cbd5e1; margin-top:0.2rem; font-family:system-ui, -apple-system, sans-serif;" id="band-board-summary-text">
+                <div style="font-size:0.75rem; color:#475569; margin-top:0.2rem; font-family:system-ui, -apple-system, sans-serif;" id="band-board-summary-text">
                   Synchronizing room whiteboard board, multi-agent commits, and memory invariants with zero drift.
                 </div>
               </div>
@@ -8441,7 +8666,7 @@
 
             
             <!-- Left: Top 10 Global Restaurants Ranked Continuously -->
-            <div style="background:rgba(15, 23, 42, 0.9); border:1px solid #334155; border-radius:14px; padding:1.15rem;">
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.04); padding:1.15rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                 <h3 style="color:#ffffff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
                   <span>🏆</span> Top 10 Restaurants Ranked Continuously
@@ -8451,7 +8676,7 @@
               <div style="overflow-x:auto;">
                 <table style="width:100%; border-collapse:collapse; font-size:0.8rem;">
                   <thead>
-                    <tr style="border-bottom:1px solid #334155; color:#94a3b8; text-align:left;">
+                    <tr style="border-bottom:1px solid #e2e8f0; color:#475569; text-align:left; background:#f8fafc;">
                       <th style="padding:0.4rem 0.5rem;"># Rank</th>
                       <th style="padding:0.4rem 0.5rem;">Restaurant Name</th>
                       <th style="padding:0.4rem 0.5rem;">City</th>
@@ -8468,7 +8693,7 @@
             </div>
 
             <!-- Right: Top 10 VIP Diners Ranked by Activity & Spend -->
-            <div style="background:rgba(15, 23, 42, 0.9); border:1px solid #334155; border-radius:14px; padding:1.15rem;">
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.04); padding:1.15rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                 <h3 style="color:#ffffff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
                   <span>👑</span> Top 10 VIP Diners Leaderboard
@@ -8478,7 +8703,7 @@
               <div style="overflow-x:auto;">
                 <table style="width:100%; border-collapse:collapse; font-size:0.8rem;">
                   <thead>
-                    <tr style="border-bottom:1px solid #334155; color:#94a3b8; text-align:left;">
+                    <tr style="border-bottom:1px solid #e2e8f0; color:#475569; text-align:left; background:#f8fafc;">
                       <th style="padding:0.4rem 0.5rem;"># Rank</th>
                       <th style="padding:0.4rem 0.5rem;">Diner Name</th>
                       <th style="padding:0.4rem 0.5rem;">City</th>
@@ -8496,7 +8721,7 @@
           </div>
 
           <!-- SECTION B: REAL-TIME CHARTS: GROUP MESH & PARTICULAR ID TELEMETRY -->
-          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:14px; padding:1.25rem; margin-bottom:1.5rem;">
+          <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:14px; padding:1.25rem; margin-bottom:1.5rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1px solid #1e293b; padding-bottom:0.75rem;">
               <div>
                 <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
@@ -8546,7 +8771,7 @@
           </div>
 
           <!-- SECTION C: CONTINUOUS MULTI-AGENT COMMUNICATION STREAM (BAND SYNC) -->
-          <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:14px; padding:1.25rem;">
+          <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:14px; padding:1.25rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:0.75rem; border-bottom:1px solid #1e293b; padding-bottom:0.6rem;">
               <div style="display:flex; align-items:center; gap:0.5rem;">
                 <span style="font-size:1.25rem;">📡</span>
@@ -8656,7 +8881,7 @@
         </div>
 
         <!-- Checkout Simulator Box -->
-        <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
+        <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
           <h3 style="color:#ffffff; font-size:1.15rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
             <span>⚡</span> Real-Time Table Deposit Checkout Simulator
           </h3>
@@ -8710,7 +8935,7 @@
         </div>
 
         <!-- Global Real-Time Transaction Ledger -->
-        <div style="background:rgba(15, 23, 42, 0.95); border:1px solid #334155; border-radius:10px; padding:1.25rem;">
+        <div style="background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-radius:10px; padding:1.25rem;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
             <h3 style="color:#ffffff; font-size:1.15rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
               <span>📜</span> Global Transaction & Cryptographic Ledger
@@ -8720,7 +8945,7 @@
           <div style="overflow-x:auto;">
             <table class="table" style="width:100%; font-size:0.85rem; border-collapse:collapse;">
               <thead>
-                <tr style="border-bottom:1px solid #334155; color:#94a3b8; text-align:left;">
+                <tr style="border-bottom:1px solid #e2e8f0; color:#475569; text-align:left; background:#f8fafc;">
                   <th style="padding:0.6rem;">Tx Hash</th>
                   <th style="padding:0.6rem;">Account</th>
                   <th style="padding:0.6rem;">Ref</th>
@@ -8815,7 +9040,7 @@
     </main>
 
   <!-- ===================================================================== -->
-  <!-- SECTION 16: COMPREHENSIVE AUTHENTIC OPENTABLE FOOTER (PDF PAGE 2)     -->
+  <!-- SECTION 16: COMPREHENSIVE AUTHENTIC TABLEME FOOTER (PDF PAGE 2)     -->
   <!-- ===================================================================== -->
   <footer class="ot-footer">
     <div class="ot-footer-container">
@@ -8837,7 +9062,7 @@
           <ul class="ot-footer-links-list">
             <li><a class="ot-footer-link" onclick="navigateTo(event, '/rewards')">Dining Rewards</a></li>
             <li><a class="ot-footer-link">Private Dining</a></li>
-            <li><a class="ot-footer-link">OpenTable Icons</a></li>
+            <li><a class="ot-footer-link">TableMe Icons</a></li>
             <li><a class="ot-footer-link">Top 100 Restaurants</a></li>
             <li><a class="ot-footer-link">Reserve for Others</a></li>
             <li><a class="ot-footer-link">Restaurants Near Me</a></li>
@@ -8845,9 +9070,9 @@
           </ul>
         </div>
 
-        <!-- Col 2: OPENTABLE -->
+        <!-- Col 2: TABLEME -->
         <div>
-          <div class="ot-footer-col-title">OpenTable</div>
+          <div class="ot-footer-col-title">TableMe</div>
           <ul class="ot-footer-links-list">
             <li><a class="ot-footer-link">About Us</a></li>
             <li><a class="ot-footer-link">Blog</a></li>
@@ -8860,8 +9085,8 @@
         <div>
           <div class="ot-footer-col-title">More</div>
           <ul class="ot-footer-links-list">
-            <li><a class="ot-footer-link">OpenTable for iOS</a></li>
-            <li><a class="ot-footer-link">OpenTable for Android</a></li>
+            <li><a class="ot-footer-link">TableMe for iOS</a></li>
+            <li><a class="ot-footer-link">TableMe for Android</a></li>
             <li><a class="ot-footer-link">Affiliate Program</a></li>
             <li><a class="ot-footer-link">Contact Us</a></li>
           </ul>
@@ -8871,13 +9096,13 @@
         <div>
           <div class="ot-footer-col-title">Our Sites</div>
           <ul class="ot-footer-links-list">
-            <li><a class="ot-footer-link">OpenTable.jp</a></li>
-            <li><a class="ot-footer-link">OpenTable.de</a></li>
-            <li><a class="ot-footer-link">OpenTable.es</a></li>
-            <li><a class="ot-footer-link">OpenTable.ca</a></li>
-            <li><a class="ot-footer-link">OpenTable.hk</a></li>
-            <li><a class="ot-footer-link">OpenTable.co.uk</a></li>
-            <li><a class="ot-footer-link">OpenTable.com.au</a></li>
+            <li><a class="ot-footer-link">TableMe.jp</a></li>
+            <li><a class="ot-footer-link">TableMe.de</a></li>
+            <li><a class="ot-footer-link">TableMe.es</a></li>
+            <li><a class="ot-footer-link">TableMe.ca</a></li>
+            <li><a class="ot-footer-link">TableMe.hk</a></li>
+            <li><a class="ot-footer-link">TableMe.co.uk</a></li>
+            <li><a class="ot-footer-link">TableMe.com.au</a></li>
           </ul>
         </div>
 
@@ -8889,9 +9114,9 @@
             <li><a class="ot-footer-link">Restaurant Reservation Software</a></li>
             <li><a class="ot-footer-link">Restaurant Marketing Software</a></li>
             <li><a class="ot-footer-link">Restaurant Event Software</a></li>
-            <li><a class="ot-footer-link">OpenTable For Restaurants</a></li>
+            <li><a class="ot-footer-link">TableMe For Restaurants</a></li>
             <li><a class="ot-footer-link">Restaurant Resources</a></li>
-            <li><a class="ot-footer-link">OpenTable Pricing & Plans</a></li>
+            <li><a class="ot-footer-link">TableMe Pricing & Plans</a></li>
           </ul>
         </div>
       </div>
@@ -8899,7 +9124,7 @@
       <!-- Bottom Disclaimer & Socials -->
       <div class="ot-footer-bottom">
         <div class="ot-footer-copy">
-          Copyright © 2026 OpenTable, Inc. 425 Market St Ste 1200, San Francisco CA 94105 - All rights reserved. OpenTable is part of Booking Holdings, the world leader in online travel and related services.
+          Copyright © 2026 TableMe, Inc. 425 Market St Ste 1200, San Francisco CA 94105 - All rights reserved. TableMe is part of Booking Holdings, the world leader in online travel and related services.
         </div>
         <div class="ot-footer-socials">
           <span style="cursor:pointer;" title="Facebook">📘</span>
@@ -8920,7 +9145,7 @@
     let currentSearchSeq = 0;
     let activeBooking = null; // Holds current selected slot and idempotency key
 
-    // --- 10 REAL OPERATING RESTAURANTS (HOTEL OS & OPENTABLE DATA) ---
+    // --- 10 REAL OPERATING RESTAURANTS (HOTEL OS & TABLEME DATA) ---
     const RESTAURANTS_DATA = {
       'r_spinasse': {
         id: 'r_spinasse',
@@ -9131,7 +9356,7 @@
       'r_anker': {
         id: 'r_anker',
         name: 'JOEY Bellevue',
-        tagline: 'Featuring Zum Anker (Tablekeeper Dark Factory Engine)',
+        tagline: 'Featuring Zum Anker (TableMe Dark Factory Engine)',
         region: 'Eastside',
         neighborhood: 'Bellevue Downtown (Lincoln Square)',
         cuisine: 'American, Steakhouse, Pan-Asian',
@@ -10001,7 +10226,7 @@
       }
     }
 
-    // Render OpenTable Icons Cards (Screenshot 3)
+    // Render TableMe Icons Cards (Screenshot 3)
     function renderIconsCarousel() {
       const container = document.getElementById('ot-icons-carousel');
       if (!container) return;
@@ -10036,7 +10261,7 @@
               <div class="ot-card-badge">
                 <span style="color:#da3743; font-size:0.8rem;">●</span> Icon
               </div>
-              <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Saved ${r.name} to your OpenTable bookmarks!')">
+              <div class="ot-card-bookmark" onclick="event.stopPropagation(); alert('Saved ${r.name} to your TableMe bookmarks!')">
                 🔖
               </div>
             </div>
@@ -10106,7 +10331,7 @@
       if (metaPillsEl) {
         metaPillsEl.innerHTML = `
           <span class="ot-stars">${r.rating}</span>
-          <span>(${r.reviews_count} OpenTable Reviews)</span>
+          <span>(${r.reviews_count} TableMe Reviews)</span>
           <span>•</span>
           <span>${r.price}</span>
           <span>•</span>
@@ -10166,7 +10391,7 @@
     }
 
     // Hotel Operating System Modal (PMS & Real Operations)
-    // --- OPENTABLE RESTAURATEURS & HOST STAND INTERACTIVE SUITE ENGINE ---
+    // --- TABLEME RESTAURATEURS & HOST STAND INTERACTIVE SUITE ENGINE ---
     let hostActiveRestId = 'r_anker';
     let currentSelectedTableId = 'T32';
     let hostWaitlistCount = 5;
@@ -16536,7 +16761,7 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
     }
 
     
-    // --- OPENTABLE PHONE & EMAIL MODAL LOGIC ---
+    // --- TABLEME PHONE & EMAIL MODAL LOGIC ---
     function openAuthModal(mode) {
       const modal = document.getElementById('ot-auth-modal');
       if (!modal) return;
@@ -16591,7 +16816,7 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
       // Auto-authenticate as verified phone diner
       const phone = document.getElementById('ot-phone-input').value.trim();
       const displayName = `Diner (${phone.slice(-4) || '8492'})`;
-      const email = `guest_${Date.now()}@opentable.demo`;
+      const email = `guest_${Date.now()}@tableme.demo`;
 
       try {
         // Attempt quick signup or login on backend
@@ -16608,7 +16833,7 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
         currentUser = { token, name: displayName, email };
         renderAuthBar();
         closeAuthModal();
-        alert(`✓ Verified! Welcome back, ${displayName}. Your OpenTable rewards are active.`);
+        alert(`✓ Verified! Welcome back, ${displayName}. Your TableMe rewards are active.`);
       } catch (err) {
         // Local fallback session
         const token = 'tok_phone_' + Math.random().toString(36).slice(2);
@@ -19353,7 +19578,7 @@ REST_HOST_LAYOUTS['r_nobu_malibu'] = REST_HOST_LAYOUTS['r_nobumalibu'];
 
   
     // ==========================================================================
-    // OPENTABLE INTERACTIVE CALENDAR & SEARCH POPOVER ENGINE
+    // TABLEME INTERACTIVE CALENDAR & SEARCH POPOVER ENGINE
     // ==========================================================================
     let calCurrentYear = 2026;
     let calCurrentMonth = 9; // October (0-indexed: 9 = October)
